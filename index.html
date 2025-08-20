@@ -6,13 +6,18 @@
     <title>Itinerario: Austin a Medellín</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
-        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:30px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.countdown-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:40px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-21px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:42px;font-size:1.8em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px}.item-description{margin:0;line-height:1.6}.tbd{color:#7f8c8d;font-style:italic}.info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff}.info-card ul{padding-left:20px;margin:0}
+        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:0.9em;margin:0 0 5px 0}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:40px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-21px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:42px;font-size:1.8em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px}.item-description{margin:0;line-height:1.6}.tbd{color:#7f8c8d;font-style:italic}.info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff}.info-card ul{padding-left:20px;margin:0}
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>🤠 De Austin a Medellín 🇨🇴</h1>
+
+        <div class="header-info">
+            <p class="update-notice">ℹ️ <i>Este itinerario se actualiza automáticamente con los nuevos cambios.</i></p>
+            <p class="timestamp">Última actualización: <span id="last-updated-date"></span></p>
+        </div>
 
         <div class="countdown-container">
             <div class="countdown-card" id="card-nathan">
@@ -74,6 +79,14 @@
     <script>
         const cardNathan = document.getElementById('card-nathan');
         const cardRonAnyela = document.getElementById('card-ron-anyela');
+        const lastUpdatedElement = document.getElementById('last-updated-date');
+
+        // --- MOSTRAR FECHA DE ÚLTIMA ACTUALIZACIÓN ---
+        if (document.lastModified) {
+            const lastModifiedDate = new Date(document.lastModified);
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' };
+            lastUpdatedElement.textContent = new Intl.DateTimeFormat('es-CO', options).format(lastModifiedDate);
+        }
 
         const createTimerHTML = (title, arrivalDate, idPrefix) => {
             return `
