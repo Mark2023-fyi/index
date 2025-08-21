@@ -40,7 +40,7 @@
 
         <div class="header-info">
             <h4 class="update-notice"><span class="live-indicator"></span>Itinerario en Vivo</h4>
-            <p class="timestamp">Última actualización: 20 de agosto de 2025, 11:30 PM</p>
+            <p class="timestamp">Última actualización: 20 de agosto de 2025, 10:56 PM</p>
         </div>
 
         <div class="countdown-container">
@@ -89,7 +89,7 @@
             <div class="timeline-item festivo-item" data-icon="🎊"><div class="item-content"><div class="item-date">Lunes, 12 de Enero</div><p class="item-description">Día en Algeciras (Día Festivo 🎊). Planes por determinar.</p></div></div>
             <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Martes, 13 de Enero</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
             <div class="timeline-item" data-icon="🚌"><div class="item-content"><div class="item-date">Miércoles, 14 de Enero</div><p class="item-description"><strong>PM:</strong> Salida - Bus - Rosita, Yazmin, Yedinson, Daniel, Cristina, etc. para Medellin.</p></div></div>
-            <div class="timeline-item effect-day" data-id="birthday" data-icon="🚌✈️"><div class="item-content"><div class="item-date">Jueves, 15 de Enero <span class="label-cumple">Cumpleaños de Faiber</span></div><p class="item-description"><strong>AM:</strong> Llegada - Bus - De la Familia a Medellin, que viaja desde la noche anterior.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.</p></div></div>
+            <div class="timeline-item effect-day" data-id="birthday" data-icon="🎂"><div class="item-content"><div class="item-date">Jueves, 15 de Enero <span class="label-cumple">Cumpleaños de Faiber</span></div><p class="item-description"><strong>AM:</strong> Llegada - Bus - De la Familia a Medellin, que viaja desde la noche anterior.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.</p></div></div>
             <div class="timeline-item" data-icon="🧳"><div class="item-content"><div class="item-date">Viernes, 16 de Enero</div><p class="item-description">Último día. Descanso y empacar.</p></div></div>
             <div class="timeline-item" data-icon="🛫"><div class="item-content"><div class="item-date">Sábado, 17 de Enero</div><p class="item-description"><strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP209" target="_blank" class="flight-button">✈️ Ver Vuelo CM209</a><span class="flight-route">Medellín → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP715" target="_blank" class="flight-button">✈️ Ver Vuelo CM715</a><span class="flight-route">Panamá → Austin</span></div></div></div></div></div>
         </div>
@@ -190,7 +190,16 @@
                     const type = dayElement.dataset.id;
                     
                     if (type === 'birthday') {
-                        setInterval(() => myEffect({ particleCount: 1, startVelocity: 5, ticks: 200 + Math.random() * 100, origin: { x: Math.random(), y: 0 }, gravity: 0.1, scalar: Math.random() * 0.4 + 0.8, drift: Math.random() - 0.5, colors: ['#bb0000', '#FFD700'] }), 400);
+                        setInterval(() => myEffect({
+                            particleCount: 1,
+                            startVelocity: 0,
+                            ticks: 300,
+                            origin: { x: Math.random(), y: (Math.random() * 0.7) + 0.1 },
+                            gravity: 0.1,
+                            scalar: Math.random() * 0.4 + 0.8,
+                            drift: Math.random() - 0.5,
+                            colors: ['#bb0000', '#FFD700']
+                        }), 400);
                     }
                 });
             }
