@@ -17,7 +17,9 @@
         .weather-card{background:#fff;border:1px solid #ddd;color:#333;padding:15px;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}
         .weather-card .city{font-weight:600;font-size:1.2em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.5em;margin:5px 0;color:#007bff}.weather-card .details{display:flex;justify-content:center;align-items:center;gap:10px;margin:5px 0 0 0}.weather-card .icon{font-size:2.5em}.weather-card .temp{font-size:1.5em;font-weight:600}
         /* --- ESTILOS PARA ETIQUETAS Y FESTIVOS --- */
-        .label-cambio{background-color:#ff9800;color:#fff;padding:2px 8px;border-radius:10px;font-size:0.65em;font-weight:700;margin-left:10px;text-transform:uppercase;}
+        .label-cambio, .label-nuevo{color:#fff;padding:2px 8px;border-radius:10px;font-size:0.65em;font-weight:700;margin-left:10px;text-transform:uppercase;}
+        .label-cambio{background-color:#ff9800;}
+        .label-nuevo{background-color:#4CAF50;}
         .festivo-item .item-content{background-color:#e3f2fd;}
     </style>
 </head>
@@ -68,7 +70,7 @@
             
             <div class="timeline-item festivo-item" data-icon="🥂"><div class="item-content"><div class="item-date">Jueves, 1 de Ene</div><p class="item-description">Día de Año Nuevo. Descanso. 🎉</p></div></div>
             <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Viernes, 2 de Ene</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 3 de Ene</div><p class="item-description"><strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.</p></div></div>
+            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 3 de Ene <span class="label-nuevo">Nuevo</span></div><p class="item-description"><strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP716" target="_blank" class="flight-button">✈️ Ver Vuelo CM716</a><span class="flight-route">Austin → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP155" target="_blank" class="flight-button">✈️ Ver Vuelo CM155</a><span class="flight-route">Panamá → Medellín</span></div></div></div></div></div>
             <div class="timeline-item" data-icon="👨‍👩‍👧‍👦"><div class="item-content"><div class="item-date">Domingo, 4 de Ene</div><p class="item-description">Primer encuentro familiar. Almuerzo (hora por definir).</p></div></div>
             <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 5 de Ene</div><p class="item-description tbd">Planes por determinar.</p></div></div>
             <div class="timeline-item" data-icon="🏙️"><div class="item-content"><div class="item-date">Martes, 6 de Ene</div><p class="item-description">Tiempo para explorar Medellín.</p></div></div>
