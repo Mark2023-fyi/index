@@ -18,9 +18,9 @@
         .weather-card .city{font-weight:600;font-size:1.2em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.5em;margin:5px 0;color:#007bff}.weather-card .details{display:flex;justify-content:center;align-items:center;gap:10px;margin:5px 0 0 0}.weather-card .icon{font-size:2.5em}.weather-card .temp{font-size:1.5em;font-weight:600}
         .label-cambio, .label-nuevo, .label-cumple{color:#fff;padding:2px 8px;border-radius:10px;font-size:0.65em;font-weight:700;margin-left:10px;text-transform:uppercase;}
         .label-cambio{background-color:#ff9800;} .label-nuevo{background-color:#4CAF50;} .label-cumple{background-color:#E91E63;}
-        .festivo-item .item-content{background-color:#e3f2fd;}
-        .confetti-day .item-content{position:relative; overflow:hidden;}
-        .confetti-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+        .festivo-item > .item-content{background-color:#e3f2fd;}
+        .effect-day > .item-content{position:relative; overflow:hidden;}
+        .effect-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
         #popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}#popup-content{background:#fff;padding:30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;text-align:center;transform:scale(.9);transition:transform .3s}.popup-visible #popup-content{transform:scale(1)}#popup-content h2{margin-top:0;color:#ffc107}#close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}#close-popup:hover{color:#333}
     </style>
 </head>
@@ -40,7 +40,7 @@
 
         <div class="header-info">
             <h4 class="update-notice"><span class="live-indicator"></span>Itinerario en Vivo</h4>
-            <p class="timestamp">Última actualización: <span id="last-updated-date"></span></p>
+            <p class="timestamp">Última actualización: 20 de agosto de 2025, 11:30 PM</p>
         </div>
 
         <div class="countdown-container">
@@ -55,43 +55,43 @@
 
         <div class="timeline">
             <h2>Diciembre 2025</h2>
-            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 13 de Dic</div><p class="item-description"><strong>PM:</strong> LLegada de Nathan a Medellin desde USA.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP716" target="_blank" class="flight-button">✈️ Ver Vuelo CM716</a><span class="flight-route">Austin → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP155" target="_blank" class="flight-button">✈️ Ver Vuelo CM155</a><span class="flight-route">Panamá → Medellín</span></div></div></div></div></div>
-            <div class="timeline-item" data-icon="🚗"><div class="item-content"><div class="item-date">Domingo, 14 de Dic</div><p class="item-description">Salida de Nathan de Medellin para Bogota/Meta.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Lunes, 15 de Dic</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Martes, 16 de Dic</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Miércoles, 17 de Dic</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Jueves, 18 de Dic</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Viernes, 19 de Dic</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Sábado, 20 de Dic</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="🏠"><div class="item-content"><div class="item-date">Domingo, 21 de Dic</div><p class="item-description">Regreso de Nathan a Medellin.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelo en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/EFY821" target="_blank" class="flight-button">✈️ Ver Vuelo EFY821</a><span class="flight-route">Villavicencio → Medellín</span></div></div></div></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 22 de Dic</div><p class="item-description tbd">Planes por determinar en Medellín.</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Martes, 23 de Dic</div><p class="item-description tbd">Planes por determinar en Medellín.</p></div></div>
-            <div class="timeline-item festivo-item" data-icon="🎄"><div class="item-content"><div class="item-date">Miércoles, 24 de Dic</div><p class="item-description">Celebración de Nochebuena 🎅</p></div></div>
-            <div class="timeline-item festivo-item confetti-day" data-icon="🎁"><div class="item-content"><div class="item-date">Jueves, 25 de Dic</div><p class="item-description">Día de Navidad 🌟</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Viernes, 26 de Dic</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Sábado, 27 de Dic</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Domingo, 28 de Dic</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 29 de Dic</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Martes, 30 de Dic</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item festivo-item" data-icon="🎉"><div class="item-content"><div class="item-date">Miércoles, 31 de Dic</div><p class="item-description">Celebración de Fin de Año 🥂</p></div></div>
+            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 13 de Diciembre</div><p class="item-description"><strong>PM:</strong> LLegada de Nathan a Medellin desde USA.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP716" target="_blank" class="flight-button">✈️ Ver Vuelo CM716</a><span class="flight-route">Austin → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP155" target="_blank" class="flight-button">✈️ Ver Vuelo CM155</a><span class="flight-route">Panamá → Medellín</span></div></div></div></div></div>
+            <div class="timeline-item" data-icon="🚗"><div class="item-content"><div class="item-date">Domingo, 14 de Diciembre</div><p class="item-description">Salida de Nathan de Medellin para Bogota/Meta.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Lunes, 15 de Diciembre</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Martes, 16 de Diciembre</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Miércoles, 17 de Diciembre</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Jueves, 18 de Diciembre</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Viernes, 19 de Diciembre</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Sábado, 20 de Diciembre</div><p class="item-description tbd">Estadía fuera de Medellín. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="🏠"><div class="item-content"><div class="item-date">Domingo, 21 de Diciembre</div><p class="item-description">Regreso de Nathan a Medellin.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelo en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/EFY821" target="_blank" class="flight-button">✈️ Ver Vuelo EFY821</a><span class="flight-route">Villavicencio → Medellín</span></div></div></div></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 22 de Diciembre</div><p class="item-description tbd">Planes por determinar en Medellín.</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Martes, 23 de Diciembre</div><p class="item-description tbd">Planes por determinar en Medellín.</p></div></div>
+            <div class="timeline-item festivo-item" data-icon="🎄"><div class="item-content"><div class="item-date">Miércoles, 24 de Diciembre</div><p class="item-description">Celebración de Nochebuena 🎅</p></div></div>
+            <div class="timeline-item festivo-item" data-icon="🎁"><div class="item-content"><div class="item-date">Jueves, 25 de Diciembre</div><p class="item-description">Día de Navidad 🌟</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Viernes, 26 de Diciembre</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Sábado, 27 de Diciembre</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Domingo, 28 de Diciembre</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 29 de Diciembre</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Martes, 30 de Diciembre</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item festivo-item" data-icon="🎉"><div class="item-content"><div class="item-date">Miércoles, 31 de Diciembre</div><p class="item-description">Celebración de Fin de Año 🥂</p></div></div>
             <h2>Enero 2026</h2>
-            <div class="timeline-item festivo-item confetti-day" data-icon="🥂"><div class="item-content"><div class="item-date">Jueves, 1 de Ene</div><p class="item-description">Día de Año Nuevo. Descanso. 🎉</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Viernes, 2 de Ene</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 3 de Ene</div><p class="item-description"><strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP716" target="_blank" class="flight-button">✈️ Ver Vuelo CM716</a><span class="flight-route">Austin → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP155" target="_blank" class="flight-button">✈️ Ver Vuelo CM155</a><span class="flight-route">Panamá → Medellín</span></div></div></div></div></div>
-            <div class="timeline-item" data-icon="👨‍👩‍👧‍👦"><div class="item-content"><div class="item-date">Domingo, 4 de Ene</div><p class="item-description">Primer encuentro familiar. Almuerzo (hora por definir).</p></div></div>
-            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 5 de Ene</div><p class="item-description tbd">Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="🏙️"><div class="item-content"><div class="item-date">Martes, 6 de Ene</div><p class="item-description">Tiempo para explorar Medellín.</p></div></div>
-            <div class="timeline-item" data-icon="🏙️"><div class="item-content"><div class="item-date">Miércoles, 7 de Ene</div><p class="item-description">Tiempo para explorar Medellín.</p></div></div>
-            <div class="timeline-item" data-icon="🚌"><div class="item-content"><div class="item-date">Jueves, 8 de Ene</div><p class="item-description"><strong>AM:</strong> Tiempo para explorar en Medellin.<br><strong>PM:</strong> Salida - Bus - Rosita, Yazmin, Nathan, Yedinson, Daniel, Cristina, etc. para Algeciras.</p></div></div>
-            <div class="timeline-item" data-icon="☀️"><div class="item-content"><div class="item-date">Viernes, 9 de Ene</div><p class="item-description"><strong>AM:</strong> Llegada del grupo en bus a Algeciras.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Sábado, 10 de Ene</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Domingo, 11 de Ene</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
-            <div class="timeline-item festivo-item" data-icon="🎊"><div class="item-content"><div class="item-date">Lunes, 12 de Ene</div><p class="item-description">Día en Algeciras (Día Festivo 🎊). Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Martes, 13 de Ene</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
-            <div class="timeline-item" data-icon="🚌"><div class="item-content"><div class="item-date">Miércoles, 14 de Ene</div><p class="item-description"><strong>PM:</strong> Salida - Bus - Rosita, Yazmin, Yedinson, Daniel, Cristina, etc. para Medellin.</p></div></div>
-            <div class="timeline-item confetti-day" data-icon="🚌✈️"><div class="item-content"><div class="item-date">Jueves, 15 de Ene <span class="label-cumple">Cumpleaños de Faiber</span></div><p class="item-description"><strong>AM:</strong> Llegada - Bus - De la Familia a Medellin, que viaja desde la noche anterior.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.</p></div></div>
-            <div class="timeline-item" data-icon="🧳"><div class="item-content"><div class="item-date">Viernes, 16 de Ene</div><p class="item-description">Último día. Descanso y empacar.</p></div></div>
-            <div class="timeline-item" data-icon="🛫"><div class="item-content"><div class="item-date">Sábado, 17 de Ene</div><p class="item-description"><strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP209" target="_blank" class="flight-button">✈️ Ver Vuelo CM209</a><span class="flight-route">Medellín → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP715" target="_blank" class="flight-button">✈️ Ver Vuelo CM715</a><span class="flight-route">Panamá → Austin</span></div></div></div></div></div>
+            <div class="timeline-item festivo-item" data-icon="🥂"><div class="item-content"><div class="item-date">Jueves, 1 de Enero</div><p class="item-description">Día de Año Nuevo. Descanso. 🎉</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Viernes, 2 de Enero</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 3 de Enero</div><p class="item-description"><strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP716" target="_blank" class="flight-button">✈️ Ver Vuelo CM716</a><span class="flight-route">Austin → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP155" target="_blank" class="flight-button">✈️ Ver Vuelo CM155</a><span class="flight-route">Panamá → Medellín</span></div></div></div></div></div>
+            <div class="timeline-item" data-icon="👨‍👩‍👧‍👦"><div class="item-content"><div class="item-date">Domingo, 4 de Enero</div><p class="item-description">Primer encuentro familiar. Almuerzo (hora por definir).</p></div></div>
+            <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 5 de Enero</div><p class="item-description tbd">Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="🏙️"><div class="item-content"><div class="item-date">Martes, 6 de Enero</div><p class="item-description">Tiempo para explorar Medellín.</p></div></div>
+            <div class="timeline-item" data-icon="🏙️"><div class="item-content"><div class="item-date">Miércoles, 7 de Enero</div><p class="item-description">Tiempo para explorar Medellín.</p></div></div>
+            <div class="timeline-item" data-icon="🚌"><div class="item-content"><div class="item-date">Jueves, 8 de Enero</div><p class="item-description"><strong>AM:</strong> Tiempo para explorar en Medellin.<br><strong>PM:</strong> Salida - Bus - Rosita, Yazmin, Nathan, Yedinson, Daniel, Cristina, etc. para Algeciras.</p></div></div>
+            <div class="timeline-item" data-icon="☀️"><div class="item-content"><div class="item-date">Viernes, 9 de Enero</div><p class="item-description"><strong>AM:</strong> Llegada del grupo en bus a Algeciras.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Sábado, 10 de Enero</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Domingo, 11 de Enero</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
+            <div class="timeline-item festivo-item" data-icon="🎊"><div class="item-content"><div class="item-date">Lunes, 12 de Enero</div><p class="item-description">Día en Algeciras (Día Festivo 🎊). Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="⛰️"><div class="item-content"><div class="item-date">Martes, 13 de Enero</div><p class="item-description tbd">Día en Algeciras. Planes por determinar.</p></div></div>
+            <div class="timeline-item" data-icon="🚌"><div class="item-content"><div class="item-date">Miércoles, 14 de Enero</div><p class="item-description"><strong>PM:</strong> Salida - Bus - Rosita, Yazmin, Yedinson, Daniel, Cristina, etc. para Medellin.</p></div></div>
+            <div class="timeline-item effect-day" data-id="birthday" data-icon="🚌✈️"><div class="item-content"><div class="item-date">Jueves, 15 de Enero <span class="label-cumple">Cumpleaños de Faiber</span></div><p class="item-description"><strong>AM:</strong> Llegada - Bus - De la Familia a Medellin, que viaja desde la noche anterior.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.</p></div></div>
+            <div class="timeline-item" data-icon="🧳"><div class="item-content"><div class="item-date">Viernes, 16 de Enero</div><p class="item-description">Último día. Descanso y empacar.</p></div></div>
+            <div class="timeline-item" data-icon="🛫"><div class="item-content"><div class="item-date">Sábado, 17 de Enero</div><p class="item-description"><strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.</p><div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons"><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP209" target="_blank" class="flight-button">✈️ Ver Vuelo CM209</a><span class="flight-route">Medellín → Panamá</span></div><div class="flight-info"><a href="https://es.flightaware.com/live/flight/CMP715" target="_blank" class="flight-button">✈️ Ver Vuelo CM715</a><span class="flight-route">Panamá → Austin</span></div></div></div></div></div>
         </div>
 
         <div class="info-cards-container">
@@ -104,15 +104,6 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- MOSTRAR FECHA DE ÚLTIMA ACTUALIZACIÓN ---
-            const lastUpdatedElement = document.getElementById('last-updated-date');
-            if (document.lastModified) {
-                const lastModifiedDate = new Date(document.lastModified);
-                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' };
-                lastUpdatedElement.textContent = new Intl.DateTimeFormat('es-CO', options).format(lastModifiedDate);
-            }
-
-            // --- LÓGICA DEL POPUP ---
             const popup = document.getElementById('popup-overlay');
             const closeButton = document.getElementById('close-popup');
             const revealDate = new Date('2026-01-04T12:00:00');
@@ -121,7 +112,6 @@
             }
             closeButton.addEventListener('click', () => popup.classList.remove('popup-visible'));
 
-            // --- LÓGICA DE LOS CONTADORES ---
             const cardNathan = document.getElementById('card-nathan');
             const cardRonAnyela = document.getElementById('card-ron-anyela');
             const createTimerHTML = (title, arrivalDate, idPrefix) => `<h3>${title}</h3><p class="arrival-date">${arrivalDate}</p><div class="timer" id="countdown-${idPrefix}"><div class="time-block"><span id="${idPrefix}-days">…</span><span>Días</span></div><div class="time-block"><span id="${idPrefix}-hours">…</span><span>Hrs</span></div><div class="time-block"><span id="${idPrefix}-minutes">…</span><span>Min</span></div><div class="time-block"><span id="${idPrefix}-seconds">…</span><span>Seg</span></div></div>`;
@@ -158,12 +148,11 @@
                     }, 1000);
                 } catch (error){
                     console.error('Fallo al obtener la hora:', error);
-                    cardNathan.innerHTML = '<h3>Error de conexión</h3>';
-                    cardRonAnyela.innerHTML = '<h3>Error de conexión</h3>';
+                    cardNathan.innerHTML = '<h3>Error de conexión, intente otra vez</h3>';
+                    cardRonAnyela.innerHTML = '<h3>Error de conexión, intente otra vez</h3>';
                 }
             }
             
-            // --- LÓGICA DEL CLIMA Y HORA LOCAL ---
             async function loadWeatherWidgets() {
                 const austin = { lat: 30.27, lon: -97.74, tz: 'America/Chicago', name: 'Austin, TX', el: document.getElementById('weather-austin') };
                 const medellin = { lat: 6.25, lon: -75.58, tz: 'America/Bogota', name: 'Medellín', el: document.getElementById('weather-medellin') };
@@ -190,32 +179,19 @@
                 updateCity(medellin);
             }
 
-            // --- LÓGICA DEL CONFETI (CORREGIDA) ---
             if (typeof confetti === 'function') {
-                document.querySelectorAll('.confetti-day').forEach(dayElement => {
+                document.querySelectorAll('.effect-day').forEach(dayElement => {
                     const contentBox = dayElement.querySelector('.item-content');
                     const canvas = document.createElement('canvas');
-                    canvas.classList.add('confetti-canvas');
+                    canvas.classList.add('effect-canvas');
                     contentBox.appendChild(canvas);
-                    const myConfetti = confetti.create(canvas, {
-                        resize: true,
-                        useWorker: true
-                    });
 
-                    setInterval(function() {
-                        myConfetti({
-                            particleCount: 1,
-                            startVelocity: 0,
-                            ticks: 200 + Math.random() * 100,
-                            origin: {
-                                x: Math.random(),
-                                y: 0
-                            },
-                            gravity: 0.2 + Math.random() * 0.2,
-                            scalar: Math.random() * 0.4 + 0.8,
-                            drift: Math.random() - 0.5
-                        });
-                    }, 300);
+                    const myEffect = confetti.create(canvas, { resize: true, useWorker: true });
+                    const type = dayElement.dataset.id;
+                    
+                    if (type === 'birthday') {
+                        setInterval(() => myEffect({ particleCount: 1, startVelocity: 5, ticks: 200 + Math.random() * 100, origin: { x: Math.random(), y: 0 }, gravity: 0.1, scalar: Math.random() * 0.4 + 0.8, drift: Math.random() - 0.5, colors: ['#bb0000', '#FFD700'] }), 400);
+                    }
                 });
             }
             
