@@ -6,7 +6,7 @@
     <title>Itinerario: Austin a Medellín</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
-        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:1em;font-weight:600;margin:0 0 5px 0;display:flex;justify-content:center;align-items:center;gap:8px}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-21px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:42px;font-size:1.8em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center}.tbd{color:#7f8c8d;font-style:italic}
+        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:1em;font-weight:600;margin:0 0 5px 0;display:flex;justify-content:center;align-items:center;gap:8px}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:5px}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
         .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
@@ -16,9 +16,9 @@
         .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff}.info-card ul{padding-left:20px;margin:0}
         .weather-card{background:#fff;border:1px solid #ddd;color:#333;padding:15px;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}
         .weather-card .city{font-weight:600;font-size:1.2em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.5em;margin:5px 0;color:#007bff}.weather-card .details{display:flex;justify-content:center;align-items:center;gap:10px;margin:5px 0 0 0}.weather-card .icon{font-size:2.5em}.weather-card .temp{font-size:1.5em;font-weight:600}
-        .label-cambio, .label-nuevo, .label-cumple{color:#fff;padding:2px 8px;border-radius:10px;font-size:0.65em;font-weight:700;margin-left:10px;text-transform:uppercase;}
+        .label-cambio, .label-nuevo, .label-cumple{color:#fff;padding:2px 8px;border-radius:10px;font-size:0.65em;font-weight:700;margin-left:5px;text-transform:uppercase;}
         .label-cambio{background-color:#ff9800;} .label-nuevo{background-color:#4CAF50;} .label-cumple{background-color:#E91E63;}
-        .festivo-item > .item-content{background-color:#e3f2fd;}
+        .festivo-item > .item-content, .calendar-day.festivo-item{background-color:#e3f2fd;}
         .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
         .view-switcher{display:flex;justify-content:center;margin-bottom:30px;background:#e0e0e0;border-radius:10px;padding:5px}
         .view-switcher button{border:none;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:1em;font-weight:600;background:transparent;color:#555;border-radius:8px;cursor:pointer;transition:all .3s ease}
@@ -31,7 +31,8 @@
         .calendar-day.has-events{cursor:pointer;transition:background .2s}.calendar-day.has-events:hover{background:#f1f8ff}
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
-        .calendar-emoji{font-size:1.2em;line-height:1}
+        .calendar-emoji{font-size:2em;line-height:1}
+        .calendar-label{margin-top:auto;align-self:center;padding-bottom:4px}
         #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px}#modal-events .item-description:last-child{margin-bottom:0}#modal-events .flight-tracker{font-size:1rem}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s}.modal-close-button:hover{background:#0056b3}
         .effect-day > .item-content{position:relative; overflow:hidden;}
@@ -64,7 +65,7 @@
 
         <div class="header-info">
             <h4 class="update-notice"><span class="live-indicator"></span>Itinerario en Vivo</h4>
-            <p class="timestamp">Última actualización: 21 de agosto de 2025, 2:40 PM</p>
+            <p class="timestamp">Última actualización: 21 de agosto de 2025, 3:30 PM</p>
         </div>
 
         <div class="countdown-container">
@@ -98,24 +99,42 @@
             // --- ESTRUCTURA DE DATOS DEL ITINERARIO ---
             const itineraryData = [
                 { date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'event-flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
-                { date: '2025-12-14', icon: '🚗', description: 'Salida de Nathan de Medellin para Bogota/Meta.', type: 'event-travel' },
-                { date: '2025-12-21', icon: '🏠', description: 'Regreso de Nathan a Medellin.', type: 'event-flight', flightInfo: { title: 'Regreso de Nathan', flights: [{ num: 'EFY821', route: 'Villavicencio → Medellín' }]}},
+                { date: '2025-12-14', icon: '🏠', description: 'Descanso y actividades.', type: 'event-tbd', label: 'Cambio' },
+                { date: '2025-12-15', icon: '🏠', description: 'Descanso y actividades.', type: 'event-tbd', label: 'Cambio' },
+                { date: '2025-12-16', icon: '🚗', description: '<strong>AM</strong> - Salida de Nathan de Medellin para el Bogota/Meta.', type: 'event-travel', label: 'Cambio' },
+                { date: '2025-12-17', icon: '⛰️', description: 'Estadía fuera de Medellín. Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-18', icon: '⛰️', description: 'Estadía fuera de Medellín. Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-19', icon: '⛰️', description: 'Estadía fuera de Medellín. Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-20', icon: '⛰️', description: 'Estadía fuera de Medellín. Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-21', icon: '⛰️', description: 'Estadía fuera de Medellín. Planes por determinar.', type: 'event-tbd', label: 'Cambio' },
+                { date: '2025-12-22', icon: '🏠', description: 'Regreso de Nathan a Medellin.', type: 'event-flight', label: 'Cambio', flightInfo: { title: 'Regreso de Nathan', flights: [{ num: 'EFY821', route: 'Villavicencio → Medellín' }]}},
+                { date: '2025-12-23', icon: '📍', description: 'Planes por determinar en Medellín.', type: 'event-tbd' },
                 { date: '2025-12-24', icon: '🎄', description: 'Celebración de Nochebuena 🎅', type: 'event-holiday', isHoliday: true },
                 { date: '2025-12-25', icon: '🎁', description: 'Día de Navidad 🌟', type: 'event-holiday', isHoliday: true },
+                { date: '2025-12-26', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-27', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-28', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-29', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
+                { date: '2025-12-30', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
                 { date: '2025-12-31', icon: '🎉', description: 'Celebración de Fin de Año 🥂', type: 'event-holiday', isHoliday: true },
                 { date: '2026-01-01', icon: '🥂', description: 'Día de Año Nuevo. Descanso. 🎉', type: 'event-holiday', isHoliday: true },
+                { date: '2026-01-02', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
                 { date: '2026-01-03', icon: '🛬', description: '<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.', type: 'event-flight', flightInfo: { title: 'Llegada de Ron y Anyela', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
                 { date: '2026-01-04', icon: '👨‍👩‍👧‍👦', description: 'Primer encuentro familiar. Almuerzo (hora por definir).', type: 'event-celebration' },
+                { date: '2026-01-05', icon: '📍', description: 'Planes por determinar.', type: 'event-tbd' },
+                { date: '2026-01-06', icon: '🏙️', description: 'Tiempo para explorar Medellín.', type: 'event-tbd' },
+                { date: '2026-01-07', icon: '🏙️', description: 'Tiempo para explorar Medellín.', type: 'event-tbd' },
                 { date: '2026-01-08', icon: '🚌', description: '<strong>AM:</strong> Tiempo para explorar en Medellin.<br><strong>PM:</strong> Salida - Bus - Grupo completo para Algeciras.', type: 'event-travel' },
                 { date: '2026-01-09', icon: '☀️', description: '<strong>AM:</strong> Llegada del grupo en bus a Algeciras.', type: 'event-travel' },
+                { date: '2026-01-10', icon: '⛰️', description: 'Día en Algeciras. Planes por determinar.', type: 'event-tbd' },
+                { date: '2026-01-11', icon: '⛰️', description: 'Día en Algeciras. Planes por determinar.', type: 'event-tbd' },
                 { date: '2026-01-12', icon: '🎊', description: 'Día en Algeciras (Día Festivo 🎊). Planes por determinar.', type: 'event-holiday', isHoliday: true },
+                { date: '2026-01-13', icon: '⛰️', description: 'Día en Algeciras. Planes por determinar.', type: 'event-tbd' },
                 { date: '2026-01-14', icon: '🚌', description: '<strong>PM:</strong> Salida - Bus - Grupo completo para Medellin.', type: 'event-travel' },
                 { date: '2026-01-15', icon: '🎂', description: '<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.', type: 'event-travel', isBirthday: true, effect: 'birthday' },
                 { date: '2026-01-16', icon: '🧳', description: 'Último día. Descanso y empacar.', type: 'event-tbd' },
                 { date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'event-flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
             ];
-            const tbdDates = {'2025-12-15':'Estadía fuera de Medellín.','2025-12-16':'Estadía fuera de Medellín.','2025-12-17':'Estadía fuera de Medellín.','2025-12-18':'Estadía fuera de Medellín.','2025-12-19':'Estadía fuera de Medellín.','2025-12-20':'Estadía fuera de Medellín.','2025-12-22':'Planes por determinar en Medellín.','2025-12-23':'Planes por determinar en Medellín.','2025-12-26':'Planes por determinar.','2025-12-27':'Planes por determinar.','2025-12-28':'Planes por determinar.','2025-12-29':'Planes por determinar.','2025-12-30':'Planes por determinar.','2026-01-02':'Planes por determinar.','2026-01-05':'Planes por determinar.','2026-01-06':'Tiempo para explorar Medellín.','2026-01-07':'Tiempo para explorar Medellín.','2026-01-10':'Día en Algeciras.','2026-01-11':'Día en Algeciras.','2026-01-13':'Día en Algeciras.'};
-            Object.keys(tbdDates).forEach(date => itineraryData.push({ date: date, icon: '📍', description: tbdDates[date] + ' Planes por determinar.', type: 'event-tbd' }));
             itineraryData.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             const timelineView = document.getElementById('timeline-view');
@@ -143,7 +162,11 @@
                         }).join('');
                         flightHTML = `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
                     }
-                    html += `<div class="timeline-item ${item.isHoliday ? 'festivo-item' : ''} ${item.effect ? 'effect-day' : ''}" data-id="${item.effect || ''}" data-icon="${item.icon}"><div class="item-content"><div class="item-date">${dayFormatter.format(itemDate)} ${item.isBirthday ? '<span class="label-cumple">Cumpleaños de Faiber</span>' : ''}</div><p class="item-description">${item.description}</p>${flightHTML}</div></div>`;
+                    let labelHTML = '';
+                    if (item.isBirthday) { labelHTML = '<span class="label-cumple">Cumpleaños de Faiber</span>'; }
+                    else if (item.label) { labelHTML = `<span class="label-${item.label.toLowerCase()}">${item.label}</span>`; }
+
+                    html += `<div class="timeline-item ${item.isHoliday ? 'festivo-item' : ''} ${item.effect ? 'effect-day' : ''}" data-id="${item.effect || ''}" data-icon="${item.icon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(itemDate)}</span> ${labelHTML}</div><p class="item-description">${item.description}</p>${flightHTML}</div></div>`;
                 });
                 timelineView.innerHTML = html;
             }
@@ -161,7 +184,14 @@
                     const events = itineraryData.filter(item => item.date === dateStr);
                     let eventHTML = '';
                     if (events.length > 0) {
-                        eventHTML = '<div class="event-icons-container">' + events.map(e => `<span class="calendar-emoji">${e.icon}</span>`).join('') + '</div>';
+                        let labelHTML = '';
+                        const eventWithLabel = events.find(e => e.label || e.isBirthday);
+                        if(eventWithLabel) {
+                            const labelClass = eventWithLabel.isBirthday ? 'label-cumple' : `label-${eventWithLabel.label.toLowerCase()}`;
+                            const labelText = eventWithLabel.isBirthday ? 'Cumpleaños' : eventWithLabel.label;
+                            labelHTML = `<div class="calendar-label"><span class="${labelClass}">${labelText}</span></div>`;
+                        }
+                        eventHTML = '<div class="event-icons-container">' + events.map(e => `<span class="calendar-emoji">${e.icon}</span>`).join('') + '</div>' + labelHTML;
                     }
                     html += `<div class="calendar-day ${events.length > 0 ? 'has-events' : ''} ${events.some(e => e.isHoliday) ? 'festivo-item' : ''}" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}</div>`;
                 }
@@ -187,7 +217,7 @@
                         }).join('');
                         flightHTML = `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
                     }
-                    modalHTML += `<div class="item-description">${event.description}</div>${flightHTML}`;
+                    modalHTML += `<div class="item-description">${event.isBirthday ? '<span class="label-cumple">Cumpleaños de Faiber</span><br><br>' : ''}${event.description}</div>${flightHTML}`;
                 });
                 modalEvents.innerHTML = modalHTML;
                 calendarModal.classList.add('popup-visible');
@@ -204,11 +234,9 @@
             privacyPopup.querySelectorAll('.close-popup, .modal-close-button').forEach(el => {
                 el.addEventListener('click', () => privacyPopup.classList.remove('popup-visible'));
             });
-
             [privacyPopup, calendarModal].forEach(popup => {
                 popup.addEventListener('click', (e) => { if (e.target === popup) { popup.classList.remove('popup-visible'); } });
             });
-
             const revealDate = new Date('2026-01-04T12:00:00');
             if (new Date() < revealDate) {
                 privacyPopup.classList.add('popup-visible');
@@ -307,7 +335,7 @@
                     const type = dayElement.dataset.id;
                     
                     if (type === 'birthday') {
-                        setInterval(() => myEffect({ particleCount: 1, startVelocity: 0, ticks: 300, origin: { x: Math.random(), y: (Math.random() * 0.7) + 0.1 }, gravity: 0.2, scalar: Math.random() * 0.4 + 0.8, drift: Math.random() - 0.5, colors: ['#bb0000', '#FFD700'] }), 400);
+                        setInterval(() => myEffect({ particleCount: 1, startVelocity: 0, ticks: 300, origin: { x: Math.random(), y: (Math.random() * 0.7) + 0.1 }, gravity: 0.1, scalar: Math.random() * 0.4 + 0.8, drift: Math.random() - 0.5, colors: ['#bb0000', '#FFD700'] }), 400);
                     }
                 });
             }
