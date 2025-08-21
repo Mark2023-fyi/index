@@ -14,8 +14,7 @@
         .flight-button{display:inline-block;background-color:#007bff;color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#555;margin-top:4px}
         .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff}.info-card ul{padding-left:20px;margin:0}
-        .weather-card{background:#fff;border:1px solid #ddd;color:#333;padding:15px;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}
-        .weather-card .city{font-weight:600;font-size:1.2em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.5em;margin:5px 0;color:#007bff}.weather-card .details{display:flex;justify-content:center;align-items:center;gap:10px;margin:5px 0 0 0}.weather-card .icon{font-size:2.5em}.weather-card .temp{font-size:1.5em;font-weight:600}
+        .weather-card{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:260px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.weather-card-left{text-align:left}.weather-card .city{font-weight:600;font-size:1em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.1em;margin:2px 0 0 0;color:#555}.weather-card-right{display:flex;align-items:center;gap:8px}.weather-card .icon{font-size:2em;line-height:1}.weather-card .temp{font-size:1.2em;font-weight:600}
         .label-cambio, .label-nuevo, .label-cumple{color:#fff;padding:2px 8px;border-radius:10px;font-size:0.65em;font-weight:700;margin-left:5px;text-transform:uppercase;}
         .label-cambio{background-color:#ff9800;} .label-nuevo{background-color:#4CAF50;} .label-cumple{background-color:#E91E63;}
         .festivo-item > .item-content, .calendar-day.festivo-item{background-color:#e3f2fd;}
@@ -31,7 +30,7 @@
         .calendar-day.has-events{cursor:pointer;transition:background .2s}.calendar-day.has-events:hover{background:#f1f8ff}
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
-        .calendar-emoji{font-size:2em;line-height:1}
+        .calendar-emoji{font-size:1.6em;line-height:1}
         .calendar-label{margin-top:auto;align-self:center;padding-bottom:4px}
         #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px}#modal-events .item-description:last-child{margin-bottom:0}#modal-events .flight-tracker{font-size:1rem}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s}.modal-close-button:hover{background:#0056b3}
@@ -65,7 +64,7 @@
 
         <div class="header-info">
             <h4 class="update-notice"><span class="live-indicator"></span>Itinerario en Vivo</h4>
-            <p class="timestamp">Última actualización: 21 de agosto de 2025, 3:30 PM</p>
+            <p class="timestamp">Última actualización: 21 de agosto de 2025, 3:35 PM</p>
         </div>
 
         <div class="countdown-container">
@@ -74,8 +73,8 @@
         </div>
         
         <div class="weather-container">
-            <div id="weather-austin" class="weather-card">Cargando clima...</div>
-            <div id="weather-medellin" class="weather-card">Cargando clima...</div>
+            <div id="weather-austin" class="weather-card">Cargando...</div>
+            <div id="weather-medellin" class="weather-card">Cargando...</div>
         </div>
 
         <div class="view-switcher">
@@ -96,7 +95,6 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- ESTRUCTURA DE DATOS DEL ITINERARIO ---
             const itineraryData = [
                 { date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'event-flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
                 { date: '2025-12-14', icon: '🏠', description: 'Descanso y actividades.', type: 'event-tbd', label: 'Cambio' },
@@ -313,7 +311,7 @@
                         const icon = getWeatherIcon(data.current.weather_code);
                         const update = () => {
                             const time = new Intl.DateTimeFormat('es-CO', { timeZone: city.tz, hour: '2-digit', minute: '2-digit', hour12: true }).format(new Date());
-                            city.el.innerHTML = `<p class="city">${city.name}</p><p class="time">${time}</p><div class="details"><span class="icon">${icon}</span><span class="temp">${temp}°C</span></div>`;
+                            city.el.innerHTML = `<div class="weather-card-left"><div class="city">${city.name}</div><div class="time">${time}</div></div><div class="weather-card-right"><div class="icon">${icon}</div><div class="temp">${temp}°C</div></div>`;
                         };
                         update();
                         setInterval(update, 60000);
