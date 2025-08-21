@@ -6,7 +6,10 @@
     <title>Itinerario: Austin a Medellín</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
-        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:0.9em;margin:0 0 5px 0}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:40px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-21px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:42px;font-size:1.8em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px}.item-description{margin:0;line-height:1.6}.tbd{color:#7f8c8d;font-style:italic}.info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff}.info-card ul{padding-left:20px;margin:0}
+        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:0.9em;margin:0 0 5px 0}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:40px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-21px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:42px;font-size:1.8em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px}.item-description{margin:0;line-height:1.6}.tbd{color:#7f8c8d;font-style:italic}
+        /* --- ESTILOS DEL WIDGET DE VUELOS --- */
+        .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}.flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333}.flight-buttons{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.flight-button{display:inline-block;background-color:#007bff;color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
+        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff}.info-card ul{padding-left:20px;margin:0}
     </style>
 </head>
 <body>
@@ -20,15 +23,26 @@
         </div>
 
         <div class="countdown-container">
-            <div class="countdown-card" id="card-nathan">
-                </div>
-            <div class="countdown-card" id="card-ron-anyela">
-                </div>
+            <div class="countdown-card" id="card-nathan"></div>
+            <div class="countdown-card" id="card-ron-anyela"></div>
         </div>
 
         <div class="timeline">
             <h2>Diciembre 2025</h2>
-            <div class="timeline-item" data-icon="🛬"><div class="item-content"><div class="item-date">Sábado, 13 de Dic</div><p class="item-description"><strong>PM:</strong> Llegada de Nathan a Medellín desde USA.</p></div></div>
+            <div class="timeline-item" data-icon="🛬">
+                <div class="item-content">
+                    <div class="item-date">Sábado, 13 de Dic</div>
+                    <p class="item-description"><strong>PM:</strong> Llegada de Nathan a Medellín desde USA.</p>
+                    
+                    <div class="flight-tracker">
+                        <h4>Estado de los Vuelos:</h4>
+                        <div class="flight-buttons">
+                            <a href="https://es.flightaware.com/live/flight/CMP716" target="_blank" class="flight-button">✈️ Ver Vuelo CM716</a>
+                            <a href="https://es.flightaware.com/live/flight/CMP155" target="_blank" class="flight-button">✈️ Ver Vuelo CM155</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="timeline-item" data-icon="🏠"><div class="item-content"><div class="item-date">Domingo, 14 de Dic</div><p class="item-description">Primer día en Medellín. Descanso y actividades.</p></div></div>
             <div class="timeline-item" data-icon="📍"><div class="item-content"><div class="item-date">Lunes, 15 de Dic</div><p class="item-description tbd">Planes por determinar en Medellín.</p></div></div>
             <div class="timeline-item" data-icon="🚗"><div class="item-content"><div class="item-date">Martes, 16 de Dic</div><p class="item-description"><strong>AM</strong> - Salida de Nathan de Medellin para el Bogota/Meta.</p></div></div>
@@ -81,7 +95,6 @@
         const cardRonAnyela = document.getElementById('card-ron-anyela');
         const lastUpdatedElement = document.getElementById('last-updated-date');
 
-        // --- MOSTRAR FECHA DE ÚLTIMA ACTUALIZACIÓN ---
         if (document.lastModified) {
             const lastModifiedDate = new Date(document.lastModified);
             const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' };
@@ -89,15 +102,7 @@
         }
 
         const createTimerHTML = (title, arrivalDate, idPrefix) => {
-            return `
-                <h3>${title}</h3>
-                <p class="arrival-date">${arrivalDate}</p>
-                <div class="timer" id="countdown-${idPrefix}">
-                    <div class="time-block"><span id="${idPrefix}-days">…</span><span>Días</span></div>
-                    <div class="time-block"><span id="${idPrefix}-hours">…</span><span>Hrs</span></div>
-                    <div class="time-block"><span id="${idPrefix}-minutes">…</span><span>Min</span></div>
-                    <div class="time-block"><span id="${idPrefix}-seconds">…</span><span>Seg</span></div>
-                </div>`;
+            return `<h3>${title}</h3><p class="arrival-date">${arrivalDate}</p><div class="timer" id="countdown-${idPrefix}"><div class="time-block"><span id="${idPrefix}-days">…</span><span>Días</span></div><div class="time-block"><span id="${idPrefix}-hours">…</span><span>Hrs</span></div><div class="time-block"><span id="${idPrefix}-minutes">…</span><span>Min</span></div><div class="time-block"><span id="${idPrefix}-seconds">…</span><span>Seg</span></div></div>`;
         };
         
         cardNathan.innerHTML = createTimerHTML('Nathan llega en:', 'Sáb, 13 de Diciembre, 2025', 'nathan');
