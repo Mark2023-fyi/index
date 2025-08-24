@@ -6,7 +6,7 @@
     <title>Itinerario: Austin a Medellín</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
-        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:1em;font-weight:600;margin:0 0 5px 0;display:flex;justify-content:center;align-items:center;gap:8px}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:5px}.tbd{color:#7f8c8d;font-style:italic}
+        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:1em;font-weight:600;margin:0 0 5px 0;display:flex;justify-content:center;align-items:center;gap:8px}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
         .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
@@ -38,11 +38,11 @@
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         .item-actions-menu{position:relative;flex-shrink:0;}.item-actions-dropdown{position:absolute;top:20px;right:0;background:white;border-radius:5px;box-shadow:0 2px 10px rgba(0,0,0,.2);z-index:10;display:none;min-width:100px;border:1px solid #eee}.item-actions-dropdown button{display:block;width:100%;padding:8px 12px;border:none;background:none;text-align:left;cursor:pointer;font-family:'Poppins',sans-serif}.item-actions-dropdown button:hover{background:#f5f5f5}
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
-        .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;width:20px;height:20px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;margin-left:auto;}
+        .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;}
     </style>
 </head>
 <body>
-    <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
+    <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style="font-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
     <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
     <div id="add-item-modal" class="popup-overlay">
         <div class="popup-content">
@@ -156,7 +156,15 @@
             renderAll();
         });
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
-        function renderAll() { renderTimeline(); renderCalendar(); renderInfoLists(); }
+        function renderAll() {
+            const container = document.querySelector('.container');
+            container.innerHTML = ''; // Limpiar para evitar duplicados de listeners
+            container.innerHTML = getBaseHTML(); // Re-insertar HTML base
+            renderTimeline(); 
+            renderCalendar(); 
+            renderInfoLists();
+            attachActionListeners(); // Re-adjuntar todos los listeners
+        }
         function createActionsMenu(item, itemType) {
             if (item.isEditable) { return `<div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮<div class="item-actions-dropdown" onmouseleave="this.style.display='none'"><button class="edit-button" data-id="${item.id}" data-type="${itemType}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${itemType}">Borrar</button></div></div>`; }
             return '';
@@ -237,84 +245,119 @@
                 }).join('');
             });
         }
+
+        function getBaseHTML() {
+            return `
+                <h1>🤠 De Austin a Medellín 🇨🇴</h1>
+                <div class="header-info">
+                    <h4 class="update-notice"><span class="live-indicator"></span>Itinerario en Vivo</h4>
+                    <p class="timestamp" id="timestamp"></p>
+                </div>
+                <div class="countdown-container">
+                    <div class="countdown-card" id="card-nathan">Cargando...</div>
+                    <div class="countdown-card" id="card-ron-anyela">Cargando...</div>
+                </div>
+                <div class="weather-container">
+                    <div id="weather-austin" class="weather-card">Cargando Clima...</div>
+                    <div id="weather-medellin" class="weather-card">Cargando Clima...</div>
+                </div>
+                <div class="view-switcher">
+                    <button id="show-timeline" class="active">Línea de Tiempo</button>
+                    <button id="show-calendar">Calendario</button>
+                </div>
+                <div class="timeline" id="timeline-view"></div>
+                <div id="calendar-view" class="view-hidden"></div>
+                <div class="info-cards-container">
+                    <h2>Información Adicional</h2>
+                    <div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div>
+                    <div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div>
+                </div>`;
+        }
         
         // --- MANEJO DE EVENTOS (CLICKS, FORMULARIOS) ---
-        document.addEventListener('click', function(e) {
-            const target = e.target;
-            if (target.matches('.add-button')) {
-                const itemType = target.dataset.type, itemDate = target.dataset.date || '';
-                document.getElementById('add-item-title').innerText = itemType === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
-                document.getElementById('author-select-container').style.display = itemType === 'timelineEvents' ? 'block' : 'none';
-                document.getElementById('add-item-form').reset();
-                document.getElementById('item-id-input').value = '';
-                document.getElementById('item-type-input').value = itemType;
-                document.getElementById('item-date-input').value = itemDate;
-                document.getElementById('add-item-modal').classList.add('popup-visible');
-            }
-            if (target.matches('.delete-button')) {
-                const id = target.dataset.id, type = target.dataset.type;
-                if (!id || !type) return;
-                if (confirm('¿Estás seguro de que quieres borrar este elemento?')) {
-                    delete appData[type][id];
-                    saveData();
-                }
-            }
-            if (target.matches('.edit-button')) {
-                const id = target.dataset.id, type = target.dataset.type;
-                if (!id || !type) return;
-                const itemToEdit = appData[type][id];
-                if (itemToEdit) {
-                    document.getElementById('add-item-title').innerText = 'Editar Elemento';
-                    document.getElementById('author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
+        function attachActionListeners() {
+            const container = document.querySelector('.container');
+            if (!container) return;
+
+            container.addEventListener('click', function(e) {
+                const target = e.target;
+                if (target.matches('.add-button')) {
+                    const itemType = target.dataset.type, itemDate = target.dataset.date || '';
+                    document.getElementById('add-item-title').innerText = itemType === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
+                    document.getElementById('author-select-container').style.display = itemType === 'timelineEvents' ? 'block' : 'none';
                     document.getElementById('add-item-form').reset();
-                    document.getElementById('item-id-input').value = itemToEdit.id;
-                    document.getElementById('item-type-input').value = type;
-                    document.getElementById('item-date-input').value = itemToEdit.date || '';
-                    if(itemToEdit.author) document.getElementById('author-select').value = itemToEdit.author;
-                    document.getElementById('item-description-input').value = itemToEdit.text;
+                    document.getElementById('item-id-input').value = '';
+                    document.getElementById('item-type-input').value = itemType;
+                    document.getElementById('item-date-input').value = itemDate;
                     document.getElementById('add-item-modal').classList.add('popup-visible');
                 }
-            }
-            const calendarDay = target.closest('.calendar-day.has-events');
-            if (calendarDay) {
-                const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
-                document.getElementById('modal-date').innerText = dayFormatter.format(date);
-                const eventsHtml = events.map(item => `<p class="item-description">${item.icon} ${item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description}</p>`).join('');
-                document.getElementById('modal-events').innerHTML = eventsHtml;
-                document.getElementById('calendar-modal').classList.add('popup-visible');
-            }
-        });
+                if (target.matches('.delete-button')) {
+                    const id = target.dataset.id, type = target.dataset.type;
+                    if (!id || !type) return;
+                    if (confirm('¿Estás seguro de que quieres borrar este elemento?')) {
+                        delete appData[type][id];
+                        saveData();
+                    }
+                }
+                if (target.matches('.edit-button')) {
+                    const id = target.dataset.id, type = target.dataset.type;
+                    if (!id || !type) return;
+                    const itemToEdit = appData[type][id];
+                    if (itemToEdit) {
+                        document.getElementById('add-item-title').innerText = 'Editar Elemento';
+                        document.getElementById('author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
+                        document.getElementById('add-item-form').reset();
+                        document.getElementById('item-id-input').value = itemToEdit.id;
+                        document.getElementById('item-type-input').value = type;
+                        document.getElementById('item-date-input').value = itemToEdit.date || '';
+                        if(itemToEdit.author) document.getElementById('author-select').value = itemToEdit.author;
+                        document.getElementById('item-description-input').value = itemToEdit.text;
+                        document.getElementById('add-item-modal').classList.add('popup-visible');
+                    }
+                }
+                const calendarDay = target.closest('.calendar-day.has-events');
+                if (calendarDay) {
+                    const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
+                    document.getElementById('modal-date').innerText = dayFormatter.format(date);
+                    const eventsHtml = events.map(item => `<p class="item-description">${item.icon} ${item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description}</p>`).join('');
+                    document.getElementById('modal-events').innerHTML = eventsHtml;
+                    document.getElementById('calendar-modal').classList.add('popup-visible');
+                }
+            });
 
-        document.getElementById('add-item-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const id = document.getElementById('item-id-input').value;
-            const type = document.getElementById('item-type-input').value;
-            const text = document.getElementById('item-description-input').value;
-            if (!type || !text) return;
+            document.getElementById('add-item-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const id = document.getElementById('item-id-input').value;
+                const type = document.getElementById('item-type-input').value;
+                const text = document.getElementById('item-description-input').value;
+                if (!type || !text) return;
 
-            const newId = id || `item-${Date.now()}`;
-            const item = appData[type]?.[newId] || {};
-            item.id = newId; item.text = text; item.timestamp = new Date().toISOString(); item.isEditable = true;
+                const newId = id || `item-${Date.now()}`;
+                const item = appData[type]?.[newId] || {};
+                item.id = newId; item.text = text; item.timestamp = new Date().toISOString(); item.isEditable = true;
 
-            if (type === 'timelineEvents') {
-                item.date = document.getElementById('item-date-input').value;
-                item.icon = '🗒️'; item.type = 'note';
-                item.author = document.getElementById('author-select').value;
-            }
-            if (!appData[type]) appData[type] = {};
-            appData[type][newId] = item;
-            saveData();
-            document.getElementById('add-item-modal').classList.remove('popup-visible');
-        });
+                if (type === 'timelineEvents') {
+                    item.date = document.getElementById('item-date-input').value;
+                    item.icon = '🗒️'; item.type = 'note';
+                    item.author = document.getElementById('author-select').value;
+                }
+                if (!appData[type]) appData[type] = {};
+                appData[type][newId] = item;
+                saveData();
+                document.getElementById('add-item-modal').classList.remove('popup-visible');
+            });
+            
+            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
+            document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
+            document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
+            document.querySelectorAll('.popup-overlay').forEach(popup => { popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } }); });
+            const privacyPopup = document.getElementById('privacy-popup'); if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
+            setInterval(updateCountdowns, 1000); fetchWeather(); setInterval(fetchWeather, 300000);
+            document.getElementById('timestamp').innerText = `Última actualización: ${new Date().toLocaleString('es-CO', {dateStyle:'long', timeStyle:'short'})}`;
+        }
         
         // --- INICIALIZACIÓN ---
-        const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
-        document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
-        document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
-        document.querySelectorAll('.popup-overlay').forEach(popup => { popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } }); });
-        const privacyPopup = document.getElementById('privacy-popup'); if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
-        setInterval(updateCountdowns, 1000); fetchWeather(); setInterval(fetchWeather, 300000);
-        document.getElementById('timestamp').innerText = `Última actualización: ${new Date().toLocaleString('es-CO', {dateStyle:'long', timeStyle:'short'})}`;
+        attachActionListeners();
     });
     </script>
 </body>
