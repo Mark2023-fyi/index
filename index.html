@@ -29,8 +29,8 @@
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
-        .item-description{position: relative; padding-right: 20px;}.item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
-        #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px; white-space: pre-wrap;}#modal-events .item-description:last-child{margin-bottom:0}#modal-events .flight-tracker{font-size:1rem}
+        .item-description{position: relative; padding-right: 25px;}.item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
+        #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px; white-space: pre-wrap;}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s}.modal-close-button:hover{background:#0056b3}
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
@@ -39,7 +39,6 @@
     </style>
 </head>
 <body>
-
     <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style="font-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
     <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
     <div id="add-item-modal" class="popup-overlay">
@@ -47,9 +46,7 @@
             <span class="close-popup">&times;</span>
             <h2 id="add-item-title">Añadir Entrada</h2>
             <form id="add-item-form">
-                <input type="hidden" id="item-id-input">
-                <input type="hidden" id="item-type-input">
-                <input type="hidden" id="item-date-input">
+                <input type="hidden" id="item-id-input"><input type="hidden" id="item-type-input"><input type="hidden" id="item-date-input">
                 <div id="author-select-container">
                     <select id="author-select" required>
                         <option value="" disabled selected>¿Quién eres?</option>
@@ -94,7 +91,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Firebase Config (sin cambios)
+        // --- CONFIGURACIÓN Y DATOS POR DEFECTO ---
         const firebaseConfig = {
             apiKey: "AIzaSyBrIoHLMIN9XmcTIsTiQQsCUYAKGJut_U8",
             authDomain: "itinerario-viaje-cbf9d.firebaseapp.com",
@@ -107,22 +104,21 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         const appDataRef = database.ref('appData');
-
         let appData = {};
         const defaultAppData = {
-            timelineEvents: [
-                { id: "event-1", date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
-                { id: "event-2", date: '2025-12-22', icon: '🏠', description: 'Regreso de Nathan a Medellin.', type: 'flight', flightInfo: { title: 'Regreso de Nathan', flights: [{ num: 'EFY821', route: 'Villavicencio → Medellín' }]}},
-                { id: "event-3", date: '2025-12-24', icon: '🎄', description: 'Celebración de Nochebuena 🎅', type: 'holiday', isHoliday: true },
-                { id: "event-4", date: '2025-12-25', icon: '🎁', description: 'Día de Navidad 🌟', type: 'holiday', isHoliday: true },
-                { id: "event-5", date: '2025-12-31', icon: '🎉', description: 'Celebración de Fin de Año 🥂', type: 'holiday', isHoliday: true },
-                { id: "event-6", date: '2026-01-01', icon: '🥂', description: 'Día de Año Nuevo. Descanso. 🎉', type: 'holiday', isHoliday: true },
-                { id: "event-7", date: '2026-01-03', icon: '🛬', description: '<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Ron y Anyela', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
-                { id: "event-8", date: '2026-01-04', icon: '👨‍👩‍👧‍👦', description: 'Primer encuentro familiar. Almuerzo (hora por definir).', type: 'celebration' },
-                { id: "event-9", date: '2026-01-12', icon: '🎊', description: 'Día en Algeciras (Día Festivo 🎊). Planes por determinar.', type: 'holiday', isHoliday: true },
-                { id: "event-10", date: '2026-01-15', icon: '🎂', description: '<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.', type: 'travel', isBirthday: true },
-                { id: "event-11", date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
-            ],
+            timelineEvents: {
+                "event-1": { id: "event-1", date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
+                "event-2": { id: "event-2", date: '2025-12-22', icon: '🏠', description: 'Regreso de Nathan a Medellin.', type: 'flight', flightInfo: { title: 'Regreso de Nathan', flights: [{ num: 'EFY821', route: 'Villavicencio → Medellín' }]}},
+                "event-3": { id: "event-3", date: '2025-12-24', icon: '🎄', description: 'Celebración de Nochebuena 🎅', type: 'holiday' },
+                "event-4": { id: "event-4", date: '2025-12-25', icon: '🎁', description: 'Día de Navidad 🌟', type: 'holiday' },
+                "event-5": { id: "event-5", date: '2025-12-31', icon: '🎉', description: 'Celebración de Fin de Año 🥂', type: 'holiday' },
+                "event-6": { id: "event-6", date: '2026-01-01', icon: '🥂', description: 'Día de Año Nuevo. Descanso. 🎉', type: 'holiday' },
+                "event-7": { id: "event-7", date: '2026-01-03', icon: '🛬', description: '<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Ron y Anyela', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
+                "event-8": { id: "event-8", date: '2026-01-04', icon: '👨‍👩‍👧‍👦', description: 'Primer encuentro familiar. Almuerzo (hora por definir).', type: 'celebration' },
+                "event-9": { id: "event-9", date: '2026-01-12', icon: '🎊', description: 'Día en Algeciras (Día Festivo 🎊). Planes por determinar.', type: 'holiday' },
+                "event-10": { id: "event-10", date: '2026-01-15', icon: '🎂', description: '<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.', type: 'travel' },
+                "event-11": { id: "event-11", date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
+            },
             importantNotes: { "note-101": { id: "note-101", text: '<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben.'}, "note-102": { id: "note-102", text: 'Faber, Yisela, y Rosita no saben absolutamente nada.'} },
             plannedActivities: { "activity-201": { id: "activity-201", text: 'Bingo'}, "activity-202": { id: "activity-202", text: 'Regalos con la letra "V" de un valor de $10,000 pesos'}, "activity-203": { id: "activity-203", text: 'Scavenger Hunt (Búsqueda del tesoro)'}, "activity-204": { id: "activity-204", text: 'Pictionary'} }
         };
@@ -131,8 +127,7 @@
         function updateCountdowns() {
             const targets = [ { id: 'card-nathan', date: '2025-12-13T18:00:00', title: 'Llegada de Nathan' }, { id: 'card-ron-anyela', date: '2026-01-03T18:00:00', title: 'Llegada de Ron & Anyela' }];
             targets.forEach(target => {
-                const countDownDate = new Date(target.date).getTime(), now = new Date().getTime(), distance = countDownDate - now, element = document.getElementById(target.id);
-                if (!element) return;
+                const countDownDate = new Date(target.date).getTime(), now = new Date().getTime(), distance = countDownDate - now, element = document.getElementById(target.id); if (!element) return;
                 let content = `<h3>${target.title}</h3><div class="arrival-date">${new Date(target.date).toLocaleDateString('es-CO',{month:'long',day:'numeric'})}</div>`;
                 if(distance<0){content+="<h4>¡Ya llegó!</h4>";}else{const d=Math.floor(distance/(1000*60*60*24)),h=Math.floor((distance%(1000*60*60*24))/(1000*60*60)),m=Math.floor((distance%(1000*60*60))/(1000*60)),s=Math.floor((distance%(1000*60))/1000);content+=`<div class="timer"><div class="time-block"><span>${String(d).padStart(2,'0')}</span><span>Días</span></div><div class="time-block"><span>${String(h).padStart(2,'0')}</span><span>Horas</span></div><div class="time-block"><span>${String(m).padStart(2,'0')}</span><span>Min</span></div><div class="time-block"><span>${String(s).padStart(2,'0')}</span><span>Seg</span></div></div>`;}
                 element.innerHTML = content;
@@ -149,43 +144,27 @@
             }
         }
 
-        // --- LÓGICA PRINCIPAL ---
+        // --- LÓGICA DE DATOS Y RENDERIZADO ---
         function saveData() { appDataRef.set(appData); }
-
         appDataRef.on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data && data.timelineEvents) {
-                appData = data;
-                appData.timelineEvents = Object.values(data.timelineEvents || {});
-            } else {
-                appData = JSON.parse(JSON.stringify(defaultAppData));
-                const timelineArray = appData.timelineEvents;
-                appData.timelineEvents = {};
-                timelineArray.forEach(event => { appData.timelineEvents[event.id] = event; });
-                saveData();
-                appData.timelineEvents = timelineArray;
-            }
+            if (data && data.timelineEvents) { appData = data; } 
+            else { appData = JSON.parse(JSON.stringify(defaultAppData)); saveData(); }
             renderAll();
         });
-        
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
-
         function renderAll() { renderTimeline(); renderCalendar(); renderInfoLists(); }
-
         function createActionsMenu(item, itemType) {
-            if (item.isEditable) {
-                return `<div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮<div class="item-actions-dropdown" onmouseleave="this.style.display='none'"><button class="edit-button" data-id="${item.id}" data-type="${itemType}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${itemType}">Borrar</button></div></div>`;
-            }
+            if (item.isEditable) { return `<div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮<div class="item-actions-dropdown" onmouseleave="this.style.display='none'"><button class="edit-button" data-id="${item.id}" data-type="${itemType}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${itemType}">Borrar</button></div></div>`; }
             return '';
         }
 
         function renderTimeline() {
             const timelineView = document.getElementById('timeline-view');
+            const sortedEvents = Object.values(appData.timelineEvents || {}).sort((a,b) => new Date(a.date) - new Date(b.date));
             let html = '', currentMonth = -1;
             const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long' });
             const startDate = new Date('2025-12-13T12:00:00'), endDate = new Date('2026-01-17T12:00:00');
-            const sortedEvents = appData.timelineEvents.sort((a,b) => new Date(a.date) - new Date(b.date));
-            
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = sortedEvents.filter(item => item.date === dateStr);
@@ -197,7 +176,10 @@
                         let content = (item.type === 'note') ? `<strong>${item.author}:</strong> ${item.text}` : item.description;
                         let timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
                         html += `<p class="item-description">${content}${timestamp}${createActionsMenu(item, 'timelineEvents')}</p>`;
-                        if (item.flightInfo) { html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4>...</div>`; }
+                        if (item.flightInfo) {
+                           const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join('');
+                           html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
+                        }
                     });
                 } else { html += `<p class="item-description tbd">No hay planes para este día.</p>`; }
                 html += `</div></div>`;
@@ -206,11 +188,10 @@
         }
 
         function renderCalendar() {
-            const calendarView = document.getElementById('calendar-view');
+            const calendarView = document.getElementById('calendar-view'), allEvents = Object.values(appData.timelineEvents || {});
             calendarView.innerHTML = '';
             [ {y:2025, m:11}, {y:2026, m:0} ].forEach(cal => {
-                const year = cal.y, month = cal.m;
-                const monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+                const year = cal.y, month = cal.m, monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
                 let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
                 const dayNames = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
                 dayNames.forEach(day => { html += `<div class="calendar-header">${day}</div>`; });
@@ -219,26 +200,28 @@
                 const daysInMonth = 32 - new Date(year, month, 32).getDate();
                 for (let day = 1; day <= daysInMonth; day++) {
                     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const events = appData.timelineEvents.filter(item => item.date === dateStr);
+                    const events = allEvents.filter(item => item.date === dateStr);
                     const noteCount = events.filter(item => item.type === 'note').length;
                     const eventHTML = events.length > 0 ? '<div class="event-icons-container">' + events.map(e => `<span class="calendar-emoji">${e.icon}</span>`).join('') + '</div>' : '';
                     const badge = noteCount > 0 ? `<div class="notification-badge">${noteCount}</div>` : '';
                     html += `<div class="calendar-day ${events.length > 0 ? 'has-events' : ''}" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}${badge}</div>`;
                 }
-                html += '</div>';
-                calendarView.innerHTML += html;
+                html += '</div>'; calendarView.innerHTML += html;
             });
         }
 
         function renderInfoLists() {
             ['importantNotes', 'plannedActivities'].forEach(type => {
-                const list = document.getElementById(`${type.replace('plannedA','planned-a')}-list`);
+                const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
                 const items = Object.values(appData[type] || {});
-                list.innerHTML = items.map(item => `<li>${item.text}<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>${createActionsMenu(item, type)}</li>`).join('');
+                list.innerHTML = items.map(item => {
+                    let timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
+                    return `<li>${item.text}${timestamp}${createActionsMenu(item, type)}</li>`;
+                }).join('');
             });
         }
         
-        // --- EVENT HANDLERS ---
+        // --- MANEJO DE EVENTOS (CLICKS, FORMULARIOS) ---
         document.addEventListener('click', function(e) {
             if (e.target.matches('.add-button')) {
                 const itemType = e.target.dataset.type, itemDate = e.target.dataset.date || '';
@@ -274,6 +257,14 @@
                     document.getElementById('add-item-modal').classList.add('popup-visible');
                 }
             }
+            if (e.target.closest('.calendar-day.has-events')) {
+                const dayElement = e.target.closest('.calendar-day.has-events');
+                const dateStr = dayElement.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
+                document.getElementById('modal-date').innerText = dayFormatter.format(date);
+                const eventsHtml = events.map(item => `<p class="item-description">${item.icon} ${item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description}</p>`).join('');
+                document.getElementById('modal-events').innerHTML = eventsHtml;
+                document.getElementById('calendar-modal').classList.add('popup-visible');
+            }
         });
 
         document.getElementById('add-item-form').addEventListener('submit', function(e) {
@@ -285,35 +276,17 @@
 
             const newId = id || `item-${Date.now()}`;
             const item = appData[type]?.[newId] || {};
-            
-            item.id = newId;
-            item.text = text;
-            item.timestamp = new Date().toISOString();
-            item.isEditable = true;
+            item.id = newId; item.text = text; item.timestamp = new Date().toISOString(); item.isEditable = true;
 
             if (type === 'timelineEvents') {
                 item.date = document.getElementById('item-date-input').value;
-                item.icon = '🗒️';
-                item.type = 'note';
+                item.icon = '🗒️'; item.type = 'note';
                 item.author = document.getElementById('author-select').value;
             }
-            
             if (!appData[type]) appData[type] = {};
             appData[type][newId] = item;
-            
             saveData();
             document.getElementById('add-item-modal').classList.remove('popup-visible');
-        });
-
-        document.getElementById('calendar-view').addEventListener('click', (e) => {
-            const dayElement = e.target.closest('.calendar-day.has-events');
-            if(dayElement) {
-                const dateStr = dayElement.dataset.date, events = appData.timelineEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
-                document.getElementById('modal-date').innerText = dayFormatter.format(date);
-                const eventsHtml = events.map(item => `<p class="item-description">${item.icon} ${item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description}</p>`).join('');
-                document.getElementById('modal-events').innerHTML = eventsHtml;
-                document.getElementById('calendar-modal').classList.add('popup-visible');
-            }
         });
         
         // --- INICIALIZACIÓN ---
