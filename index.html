@@ -88,7 +88,12 @@
         const defaultAppData = {
             lastUpdate: { user: "Sistema", time: new Date().toISOString() },
             timelineEvents: {
-                "event-1": { id: "event-1", date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}}, "event-2": { id: "event-2", date: '2025-12-22', icon: '🏠', description: 'Regreso de Nathan a Medellin.', type: 'flight', flightInfo: { title: 'Regreso de Nathan', flights: [{ num: 'EFY821', route: 'Villavicencio → Medellín' }]}}, "event-3": { id: "event-3", date: '2025-12-24', icon: '🎄', description: 'Celebración de Nochebuena 🎅', type: 'holiday' }, "event-4": { id: "event-4", date: '2025-12-25', icon: '🎁', description: 'Día de Navidad 🌟', type: 'holiday' }, "event-5": { id: "event-5", date: '2025-12-31', icon: '🎉', description: 'Celebración de Fin de Año 🥂', type: 'holiday' }, "event-6": { id: "event-6", date: '2026-01-01', icon: '🥂', description: 'Día de Año Nuevo. Descanso. 🎉', type: 'holiday' }, "event-7": { id: "event-7", date: '2026-01-03', icon: '🛬', description: '<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Ron y Anyela', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}}, "event-8": { id: "event-8", date: '2026-01-04', icon: '👨‍👩‍👧‍👦', description: 'Primer encuentro familiar. Almuerzo (hora por definir).', type: 'celebration' }, "event-9": { id: "event-9", date: '2026-01-12', icon: '🎊', description: 'Día en Algeciras (Día Festivo 🎊). Planes por determinar.', type: 'holiday' }, "event-10": { id: "event-10", date: '2026-01-15', icon: '🎂', description: '<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.', type: 'travel' }, "event-11": { id: "event-11", date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
+                "event-1": { id: "event-1", date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
+                "event-2": { id: "event-2", date: '2025-12-22', icon: '🏠', description: 'Regreso de Nathan a Medellin.', type: 'flight', flightInfo: { title: 'Regreso de Nathan', flights: [{ num: 'EFY821', route: 'Villavicencio → Medellín' }]}},
+                "event-3": { id: "event-3", date: '2025-12-24', icon: '🎄', description: 'Celebración de Nochebuena 🎅', type: 'holiday' }, "event-4": { id: "event-4", date: '2025-12-25', icon: '🎁', description: 'Día de Navidad 🌟', type: 'holiday' }, "event-5": { id: "event-5", date: '2025-12-31', icon: '🎉', description: 'Celebración de Fin de Año 🥂', type: 'holiday' }, "event-6": { id: "event-6", date: '2026-01-01', icon: '🥂', description: 'Día de Año Nuevo. Descanso. 🎉', type: 'holiday' },
+                "event-7": { id: "event-7", date: '2026-01-03', icon: '🛬', description: '<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.', type: 'flight', flightInfo: { title: 'Llegada de Ron y Anyela', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
+                "event-8": { id: "event-8", date: '2026-01-04', icon: '👨‍👩‍👧‍👦', description: 'Primer encuentro familiar. Almuerzo (hora por definir).', type: 'celebration' }, "event-9": { id: "event-9", date: '2026-01-12', icon: '🎊', description: 'Día en Algeciras (Día Festivo 🎊). Planes por determinar.', type: 'holiday' }, "event-10": { id: "event-10", date: '2026-01-15', icon: '🎂', description: '<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.', type: 'travel' },
+                "event-11": { id: "event-11", date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
             },
             importantNotes: { "note-101": { id: "note-101", text: '<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben.'}, "note-102": { id: "note-102", text: 'Faber, Yisela, y Rosita no saben absolutamente nada.'} },
             plannedActivities: { "activity-201": { id: "activity-201", text: 'Bingo'}, "activity-202": { id: "activity-202", text: 'Regalos con la letra "V" de un valor de $10,000 pesos'}, "activity-203": { id: "activity-203", text: 'Scavenger Hunt (Búsqueda del tesoro)'}, "activity-204": { id: "activity-204", text: 'Pictionary'} }
@@ -117,29 +122,28 @@
 
         // --- LÓGICA DE DATOS Y RENDERIZADO ---
         function saveData(user) {
-            if (user) { appData.lastUpdate = { user: user, time: new Date().toISOString() }; }
+            if (user) {
+                appData.lastUpdate = { user: user, time: new Date().toISOString() };
+            }
             appDataRef.set(appData); 
         }
         appDataRef.on('value', (snapshot) => {
             const data = snapshot.val();
             if (data && data.timelineEvents) { appData = data; } 
-            else { appData = JSON.parse(JSON.stringify(defaultAppData)); saveData("Sistema"); }
+            else { appData = JSON.parse(JSON.stringify(defaultAppData)); saveData(); }
             renderAll();
         });
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+
         function renderAll() {
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
             renderCalendar(); 
             renderInfoLists();
-            attachActionListeners();
             updateHeader();
-            // Iniciar widgets que dependen de elementos en el HTML
-            updateCountdowns();
-            fetchWeather();
         }
         function createActionsMenu(item) {
-            if (item.isEditable) { return `<div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮<div class="item-actions-dropdown" onmouseleave="this.style.display='none'"><button class="edit-button" data-id="${item.id}" data-type="${item.typeKey}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${item.typeKey}">Borrar</button></div></div>`; }
+            if (item.isEditable) { return `<div class="item-actions-menu">⋮<div class="item-actions-dropdown"><button class="edit-button" data-id="${item.id}" data-type="${item.typeKey}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${item.typeKey}">Borrar</button></div></div>`; }
             return '';
         }
 
@@ -160,13 +164,16 @@
                 html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span>${badge}<button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 if (events.length > 0) {
                     events.forEach(item => {
-                        item.typeKey = 'timelineEvents';
+                        item.typeKey = 'timelineEvents'; // Añadir clave para la edición/borrado
                         let contentHtml;
                         if (item.type === 'note') {
                             const timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
                             contentHtml = `<div class="item-description">
                                 ${createActionsMenu(item)}
-                                <div class="note-content"><strong>${item.author}:</strong> ${item.text}${timestamp}</div>
+                                <div class="note-content">
+                                    <strong>${item.author}:</strong> ${item.text}
+                                    ${timestamp}
+                                </div>
                             </div>`;
                         } else {
                             contentHtml = `<div class="item-description">${item.description}</div>`;
@@ -177,7 +184,7 @@
                            html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
                         }
                     });
-                } else { html += `<div class="item-description tbd">No hay planes para este día.</div>`; }
+                } else { html += `<p class="item-description tbd">No hay planes para este día.</p>`; }
                 html += `</div></div>`;
             }
             timelineView.innerHTML = html;
@@ -211,21 +218,19 @@
                 const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
                 const items = Object.values(appData[type] || {});
                 list.innerHTML = items.map(item => {
-                    item.typeKey = type;
+                    item.typeKey = type; // Añadir clave para la edición/borrado
                     let timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
                     return `<li>${createActionsMenu(item)}<div class="info-item-text">${item.text}${timestamp}</div></li>`;
                 }).join('');
             });
         }
-        
+
         function updateHeader() {
-            const { user, time } = appData.lastUpdate || { user: "Sistema", time: new Date().toISOString() };
+            const { user, time } = appData.lastUpdate;
             const timeString = new Date(time).toLocaleString('es-CO', {dateStyle:'long', timeStyle:'short'});
-            document.getElementById('timestamp').innerHTML = `Última actualización: ${timeString} <br><strong>(por ${user})</strong>`;
-            if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) { // Mostrar por 10 minutos
+            document.getElementById('timestamp').innerHTML = `Última actualización: ${timeString} <br><strong>(Actualizado por ${user})</strong>`;
+            if (user !== 'Sistema') {
                 document.getElementById('update-notification').innerHTML = `🔔 Nuevos Mensajes`;
-            } else {
-                 document.getElementById('update-notification').innerHTML = '';
             }
         }
 
@@ -257,42 +262,45 @@
                 </div>`;
         }
         
+        // --- MANEJO DE EVENTOS (CLICKS, FORMULARIOS) ---
         function attachActionListeners() {
             document.getElementById('main-container').addEventListener('click', function(e) {
                 const target = e.target;
                 const button = target.closest('.edit-button, .delete-button, .add-button');
                 const calendarDay = target.closest('.calendar-day.has-events');
+
                 if (button) {
                     const id = button.dataset.id, type = button.dataset.type;
                     if (button.matches('.delete-button')) {
                         if (confirm('¿Estás seguro de que quieres borrar este elemento?')) {
-                            const user = prompt("Por favor, ingresa tu nombre para confirmar:");
-                            if (user) { delete appData[type][id]; saveData(user); }
+                            const user = prompt("Por favor, ingresa tu nombre para confirmar la eliminación:");
+                            if (user) {
+                                delete appData[type][id];
+                                saveData(user);
+                            }
                         }
                     } else if (button.matches('.edit-button')) {
                         const itemToEdit = appData[type][id];
                         if (itemToEdit) {
-                            const modal = document.getElementById('add-item-modal');
-                            modal.querySelector('#add-item-title').innerText = 'Editar Elemento';
-                            modal.querySelector('#author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
-                            modal.querySelector('form').reset();
-                            modal.querySelector('#item-id-input').value = itemToEdit.id;
-                            modal.querySelector('#item-type-input').value = type;
-                            modal.querySelector('#item-date-input').value = itemToEdit.date || '';
-                            if(itemToEdit.author) modal.querySelector('#author-select').value = itemToEdit.author;
-                            modal.querySelector('#item-description-input').value = itemToEdit.text;
-                            modal.classList.add('popup-visible');
+                            document.getElementById('add-item-title').innerText = 'Editar Elemento';
+                            document.getElementById('author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
+                            document.getElementById('add-item-form').reset();
+                            document.getElementById('item-id-input').value = itemToEdit.id;
+                            document.getElementById('item-type-input').value = type;
+                            document.getElementById('item-date-input').value = itemToEdit.date || '';
+                            if(itemToEdit.author) document.getElementById('author-select').value = itemToEdit.author;
+                            document.getElementById('item-description-input').value = itemToEdit.text;
+                            document.getElementById('add-item-modal').classList.add('popup-visible');
                         }
                     } else if (button.matches('.add-button')) {
                         const itemDate = button.dataset.date || '';
-                        const modal = document.getElementById('add-item-modal');
-                        modal.querySelector('#add-item-title').innerText = type === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
-                        modal.querySelector('#author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
-                        modal.querySelector('form').reset();
-                        modal.querySelector('#item-id-input').value = '';
-                        modal.querySelector('#item-type-input').value = type;
-                        modal.querySelector('#item-date-input').value = itemDate;
-                        modal.classList.add('popup-visible');
+                        document.getElementById('add-item-title').innerText = type === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
+                        document.getElementById('author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
+                        document.getElementById('add-item-form').reset();
+                        document.getElementById('item-id-input').value = '';
+                        document.getElementById('item-type-input').value = type;
+                        document.getElementById('item-date-input').value = itemDate;
+                        document.getElementById('add-item-modal').classList.add('popup-visible');
                     }
                 } else if (calendarDay) {
                     const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
@@ -302,32 +310,43 @@
                     document.getElementById('calendar-modal').classList.add('popup-visible');
                 }
             });
+
             document.getElementById('add-item-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const id = document.getElementById('item-id-input').value;
                 const type = document.getElementById('item-type-input').value;
                 const text = document.getElementById('item-description-input').value;
                 const author = document.getElementById('author-select').value;
-                if (!type || !text || (type === 'timelineEvents' && !author)) { alert("Por favor, completa todos los campos."); return; }
+                if (!type || !text || (type === 'timelineEvents' && !author)) {
+                    alert("Por favor, completa todos los campos.");
+                    return;
+                }
+
                 const newId = id || `item-${Date.now()}`;
                 if (!appData[type]) appData[type] = {};
                 const item = appData[type]?.[newId] || {};
                 item.id = newId; item.text = text; item.timestamp = new Date().toISOString(); item.isEditable = true;
-                if (type === 'timelineEvents') { item.date = document.getElementById('item-date-input').value; item.icon = '🗒️'; item.type = 'note'; item.author = author; }
+
+                if (type === 'timelineEvents') {
+                    item.date = document.getElementById('item-date-input').value;
+                    item.icon = '🗒️'; item.type = 'note';
+                    item.author = author;
+                }
                 appData[type][newId] = item;
-                saveData(author || 'Alguien');
+                saveData(author || 'Usuario');
                 document.getElementById('add-item-modal').classList.remove('popup-visible');
             });
+            
             const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
             document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
             document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
             document.querySelectorAll('.popup-overlay').forEach(popup => { popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } }); });
             const privacyPopup = document.getElementById('privacy-popup'); if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
+            setInterval(updateCountdowns, 1000); fetchWeather(); setInterval(fetchWeather, 300000);
         }
+        
         // --- INICIALIZACIÓN ---
         renderAll();
-        setInterval(updateCountdowns, 1000);
-        setInterval(fetchWeather, 300000);
     });
     </script>
 </body>
