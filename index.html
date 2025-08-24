@@ -6,38 +6,58 @@
     <title>Itinerario: Austin a Medellín</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
-        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}h3.messages-title{font-size:1.1em;text-align:left;color:#333;margin-top:20px;margin-bottom:10px;border-top:1px solid #eee;padding-top:10px;}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:1em;font-weight:600;margin:0 0 5px 0;display:flex;justify-content:center;align-items:center;gap:8px}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
+        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}.header-info{text-align:center;margin-bottom:30px;color:#555}.update-notice{font-size:1em;font-weight:600;margin:0 0 5px 0;display:flex;justify-content:center;align-items:center;gap:8px}.timestamp{font-size:0.8em;color:#777;margin:0}.countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
         .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
         .flight-info{display:flex;flex-direction:column;align-items:center}
         .flight-button{display:inline-block;background-color:#007bff;color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#555;margin-top:4px}
-        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:0;margin:0; list-style-type: none;}.info-card li{padding:8px 0; border-bottom:1px solid #f0f0f0;}.info-card li:last-child{border-bottom:none;}
+        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:0;margin:0; list-style-type: none;}.info-card li{display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #f0f0f0;}.info-card li:last-child{border-bottom:none;}.info-item-text{flex-grow:1;}
         .weather-card{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:260px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.weather-card-left{text-align:left}.weather-card .city{font-weight:600;font-size:1em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.1em;margin:2px 0 0 0;color:#555}.weather-card-right{display:flex;align-items:center;gap:8px}.weather-card .icon{font-size:2em;line-height:1}.weather-card .temp{font-size:1.2em;font-weight:600}
+        .festivo-item > .item-content, .calendar-day.festivo-item{background-color:#e3f2fd;}
         .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
-        .item-description{padding-bottom:8px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
+        .view-switcher{display:flex;justify-content:center;margin-bottom:30px;background:#e0e0e0;border-radius:10px;padding:5px}
+        .view-switcher button{border:none;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:1em;font-weight:600;background:transparent;color:#555;border-radius:8px;cursor:pointer;transition:all .3s ease}
+        .view-switcher button.active{background:#fff;color:#007bff;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+        .view-hidden{display:none}
+        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:#ccc;border:1px solid #ccc;border-radius:8px;overflow:hidden}
+        .calendar-header{font-weight:600;text-align:center;padding:8px 0;font-size:0.9em;background:#f8f9fa}
+        .calendar-day{background:#fff;min-height:80px;padding:4px;font-size:0.8em;display:flex;flex-direction:column;position:relative}
+        .calendar-day.other-month{background:#f9f9f9;color:#ccc}
+        .calendar-day.has-events{cursor:pointer;transition:background .2s}.calendar-day.has-events:hover{background:#f1f8ff}
+        .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
+        .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
+        .calendar-emoji{font-size:1.6em;line-height:1}
+        .item-description{padding-bottom:8px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
+        .note-content{flex-grow:1;}
         .item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
+        #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px; white-space: pre-wrap;border:none;display:block;}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s}.modal-close-button:hover{background:#0056b3}
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
+        .item-actions-menu{position:relative;flex-shrink:0;}.item-actions-dropdown{position:absolute;top:20px;right:0;background:white;border-radius:5px;box-shadow:0 2px 10px rgba(0,0,0,.2);z-index:10;display:none;min-width:100px;border:1px solid #eee}.item-actions-dropdown button{display:block;width:100%;padding:8px 12px;border:none;background:none;text-align:left;cursor:pointer;font-family:'Poppins',sans-serif}.item-actions-dropdown button:hover{background:#f5f5f5}
+        .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
+        .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;}
         .update-notification{font-size:0.9em;font-weight:600;color:#28a745;margin-top:5px;}
-        .show-more-btn{background:none;border:none;color:#007bff;cursor:pointer;font-weight:600;padding:5px 0;}.show-more-btn:hover{text-decoration:underline;}
     </style>
 </head>
 <body>
     <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style="font-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
+    <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
     <div id="add-item-modal" class="popup-overlay">
         <div class="popup-content">
             <span class="close-popup">&times;</span>
-            <h2 id="add-item-title">Añadir Nota</h2>
+            <h2 id="add-item-title">Añadir Entrada</h2>
             <form id="add-item-form">
-                <input type="hidden" id="item-date-input">
-                <select id="author-select" required>
-                    <option value="" disabled selected>¿Quién eres?</option>
-                    <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option><option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
-                </select>
-                <textarea id="item-description-input" placeholder="Escribe tu nota aquí..." required></textarea>
+                <input type="hidden" id="item-id-input"><input type="hidden" id="item-type-input"><input type="hidden" id="item-date-input">
+                <div id="author-select-container">
+                    <select id="author-select" required>
+                        <option value="" disabled selected>¿Quién eres?</option>
+                        <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option><option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
+                    </select>
+                </div>
+                <textarea id="item-description-input" placeholder="Escribe tu nota o plan aquí..." required></textarea>
                 <button type="submit" class="modal-close-button">Guardar</button>
             </form>
         </div>
@@ -50,6 +70,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // --- CONFIGURACIÓN Y DATOS POR DEFECTO ---
         const firebaseConfig = {
             apiKey: "AIzaSyBrIoHLMIN9XmcTIsTiQQsCUYAKGJut_U8",
@@ -73,20 +94,57 @@
             plannedActivities: { "activity-201": { id: "activity-201", text: 'Bingo'}, "activity-202": { id: "activity-202", text: 'Regalos con la letra "V" de un valor de $10,000 pesos'}, "activity-203": { id: "activity-203", text: 'Scavenger Hunt (Búsqueda del tesoro)'}, "activity-204": { id: "activity-204", text: 'Pictionary'} }
         };
         
-        // --- FUNCIONES DE RENDERIZADO ---
-        function renderPage() {
-            const container = document.getElementById('main-container');
-            if (!container) return;
-            container.innerHTML = getBaseHTML();
-            renderTimeline();
+        // --- WIDGETS ---
+        function updateCountdowns() {
+            const targets = [ { id: 'card-nathan', date: '2025-12-13T18:00:00', title: 'Llegada de Nathan' }, { id: 'card-ron-anyela', date: '2026-01-03T18:00:00', title: 'Llegada de Ron & Anyela' }];
+            targets.forEach(target => {
+                const countDownDate = new Date(target.date).getTime(), now = new Date().getTime(), distance = countDownDate - now, element = document.getElementById(target.id); if (!element) return;
+                let content = `<h3>${target.title}</h3><div class="arrival-date">${new Date(target.date).toLocaleDateString('es-CO',{month:'long',day:'numeric'})}</div>`;
+                if(distance<0){content+="<h4>¡Ya llegó!</h4>";}else{const d=Math.floor(distance/(1000*60*60*24)),h=Math.floor((distance%(1000*60*60*24))/(1000*60*60)),m=Math.floor((distance%(1000*60*60))/(1000*60)),s=Math.floor((distance%(1000*60))/1000);content+=`<div class="timer"><div class="time-block"><span>${String(d).padStart(2,'0')}</span><span>Días</span></div><div class="time-block"><span>${String(h).padStart(2,'0')}</span><span>Horas</span></div><div class="time-block"><span>${String(m).padStart(2,'0')}</span><span>Min</span></div><div class="time-block"><span>${String(s).padStart(2,'0')}</span><span>Seg</span></div></div>`;}
+                element.innerHTML = content;
+            });
+        }
+        async function fetchWeather() {
+            const locations = [{id:'weather-austin',city:'Austin',emoji:'🤠'},{id:'weather-medellin',city:'Medellin',emoji:'🇨🇴'}];
+            for (const loc of locations) {
+                const element = document.getElementById(loc.id); if (!element) continue;
+                try {
+                    const response = await fetch(`https://wttr.in/${loc.city}?format=j1`), data = await response.json(), temp_C = data.current_condition[0].temp_C, temp_F = data.current_condition[0].temp_F;
+                    element.innerHTML = `<div class="weather-card-left"><div class="city">${loc.emoji} ${loc.city}</div><div class="time">${new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})}</div></div><div class="weather-card-right"><div class="icon">🌡️</div><div class="temp">${temp_F}°F / ${temp_C}°C</div></div>`;
+                } catch (error) { element.innerText = `Error clima ${loc.city}.`; }
+            }
+        }
+
+        // --- LÓGICA DE DATOS Y RENDERIZADO ---
+        function saveData(user) {
+            if (user) { appData.lastUpdate = { user: user, time: new Date().toISOString() }; }
+            appDataRef.set(appData); 
+        }
+        appDataRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data && data.timelineEvents) { appData = data; } 
+            else { appData = JSON.parse(JSON.stringify(defaultAppData)); saveData("Sistema"); }
+            renderAll();
+        });
+        const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+        function renderAll() {
+            document.getElementById('main-container').innerHTML = getBaseHTML();
+            renderTimeline(); 
+            renderCalendar(); 
+            renderInfoLists();
+            attachActionListeners();
             updateHeader();
+            // Iniciar widgets que dependen de elementos en el HTML
             updateCountdowns();
             fetchWeather();
+        }
+        function createActionsMenu(item) {
+            if (item.isEditable) { return `<div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮<div class="item-actions-dropdown" onmouseleave="this.style.display='none'"><button class="edit-button" data-id="${item.id}" data-type="${item.typeKey}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${item.typeKey}">Borrar</button></div></div>`; }
+            return '';
         }
 
         function renderTimeline() {
             const timelineView = document.getElementById('timeline-view');
-            if (!timelineView) return;
             const allEvents = Object.values(appData.timelineEvents || {});
             const sortedEvents = allEvents.sort((a,b) => new Date(a.date) - new Date(b.date));
             let html = '', currentMonth = -1;
@@ -95,43 +153,80 @@
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = sortedEvents.filter(item => item.date === dateStr);
-                const fixedEvents = events.filter(item => item.type !== 'note');
-                const userNotes = events.filter(item => item.type === 'note');
+                const noteCount = events.filter(item => item.type === 'note').length;
+                const badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                 if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
-                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content">
-                         <div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-date="${dateStr}">+</button></div>`;
-                if (fixedEvents.length > 0) {
-                    fixedEvents.forEach(item => {
-                        html += `<div class="item-description">${item.description}</div>`;
+                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span>${badge}<button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
+                if (events.length > 0) {
+                    events.forEach(item => {
+                        item.typeKey = 'timelineEvents';
+                        let contentHtml;
+                        if (item.type === 'note') {
+                            const timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
+                            contentHtml = `<div class="item-description">
+                                ${createActionsMenu(item)}
+                                <div class="note-content"><strong>${item.author}:</strong> ${item.text}${timestamp}</div>
+                            </div>`;
+                        } else {
+                            contentHtml = `<div class="item-description">${item.description}</div>`;
+                        }
+                        html += contentHtml;
                         if (item.flightInfo) {
                            const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join('');
                            html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
                         }
                     });
-                }
-                if (userNotes.length > 0) {
-                    html += `<h3 class="messages-title">Mensajes:</h3>`;
-                    const visibleNotes = userNotes.slice(0, 2);
-                    const hiddenNotes = userNotes.slice(2);
-                    visibleNotes.forEach(note => {
-                        const timestamp = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
-                        html += `<div class="item-description"><strong>${note.author}:</strong> ${note.text}${timestamp}</div>`;
-                    });
-                    if (hiddenNotes.length > 0) {
-                        html += `<button class="show-more-btn" data-day="${dateStr}">... y ${hiddenNotes.length} más (ver todos)</button>`;
-                        html += `<div id="more-notes-${dateStr}" style="display:none;">`;
-                        hiddenNotes.forEach(note => {
-                            const timestamp = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
-                            html += `<div class="item-description"><strong>${note.author}:</strong> ${note.text}${timestamp}</div>`;
-                        });
-                        html += `</div>`;
-                    }
-                }
-                if (fixedEvents.length === 0 && userNotes.length === 0) { html += `<div class="item-description tbd">No hay planes para este día.</div>`; }
+                } else { html += `<div class="item-description tbd">No hay planes para este día.</div>`; }
                 html += `</div></div>`;
             }
             timelineView.innerHTML = html;
+        }
+
+        function renderCalendar() {
+            const calendarView = document.getElementById('calendar-view'), allEvents = Object.values(appData.timelineEvents || {});
+            calendarView.innerHTML = '';
+            [ {y:2025, m:11}, {y:2026, m:0} ].forEach(cal => {
+                const year = cal.y, month = cal.m, monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+                let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
+                const dayNames = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+                dayNames.forEach(day => { html += `<div class="calendar-header">${day}</div>`; });
+                const firstDay = new Date(year, month).getDay();
+                for (let i = 0; i < firstDay; i++) { html += '<div class="calendar-day other-month"></div>'; }
+                const daysInMonth = 32 - new Date(year, month, 32).getDate();
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const events = allEvents.filter(item => item.date === dateStr);
+                    const noteCount = events.filter(item => item.type === 'note').length;
+                    const eventHTML = events.length > 0 ? '<div class="event-icons-container">' + events.map(e => `<span class="calendar-emoji">${e.icon}</span>`).join('') + '</div>' : '';
+                    const badge = noteCount > 0 ? `<div class="notification-badge">${noteCount}</div>` : '';
+                    html += `<div class="calendar-day ${events.length > 0 ? 'has-events' : ''}" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}${badge}</div>`;
+                }
+                html += '</div>'; calendarView.innerHTML += html;
+            });
+        }
+
+        function renderInfoLists() {
+            ['importantNotes', 'plannedActivities'].forEach(type => {
+                const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
+                const items = Object.values(appData[type] || {});
+                list.innerHTML = items.map(item => {
+                    item.typeKey = type;
+                    let timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
+                    return `<li>${createActionsMenu(item)}<div class="info-item-text">${item.text}${timestamp}</div></li>`;
+                }).join('');
+            });
+        }
+        
+        function updateHeader() {
+            const { user, time } = appData.lastUpdate || { user: "Sistema", time: new Date().toISOString() };
+            const timeString = new Date(time).toLocaleString('es-CO', {dateStyle:'long', timeStyle:'short'});
+            document.getElementById('timestamp').innerHTML = `Última actualización: ${timeString} <br><strong>(por ${user})</strong>`;
+            if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) { // Mostrar por 10 minutos
+                document.getElementById('update-notification').innerHTML = `🔔 Nuevos Mensajes`;
+            } else {
+                 document.getElementById('update-notification').innerHTML = '';
+            }
         }
 
         function getBaseHTML() {
@@ -149,88 +244,90 @@
                     <div id="weather-austin" class="weather-card">Cargando Clima...</div>
                     <div id="weather-medellin" class="weather-card">Cargando Clima...</div>
                 </div>
+                <div class="view-switcher">
+                    <button id="show-timeline" class="active">Línea de Tiempo</button>
+                    <button id="show-calendar">Calendario</button>
+                </div>
                 <div class="timeline" id="timeline-view"></div>
+                <div id="calendar-view" class="view-hidden"></div>
                 <div class="info-cards-container">
                     <h2>Información Adicional</h2>
-                    <div class="info-card"><h3>📝 Notas Importantes</h3><ul><li><strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben.</li><li>Faber, Yisela, y Rosita no saben absolutamente nada.</li></ul></div>
-                    <div class="info-card"><h3>🎲 Actividades Planeadas</h3><ul><li>Bingo</li><li>Regalos con la letra "V" de un valor de $10,000 pesos</li><li>Scavenger Hunt (Búsqueda del tesoro)</li><li>Pictionary</li></ul></div>
+                    <div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div>
+                    <div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div>
                 </div>`;
         }
         
-        function updateHeader() {
-            const { user, time } = appData.lastUpdate || { user: "Sistema", time: new Date().toISOString() };
-            const timeString = new Date(time).toLocaleString('es-CO', {dateStyle:'long', timeStyle:'short'});
-            const timestampEl = document.getElementById('timestamp');
-            const notificationEl = document.getElementById('update-notification');
-            if (timestampEl) timestampEl.innerHTML = `Última actualización: ${timeString} <br><strong>(por ${user})</strong>`;
-            if (notificationEl) {
-                if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) {
-                    notificationEl.innerHTML = `🔔 Nuevos Mensajes`;
-                } else {
-                    notificationEl.innerHTML = '';
+        function attachActionListeners() {
+            document.getElementById('main-container').addEventListener('click', function(e) {
+                const target = e.target;
+                const button = target.closest('.edit-button, .delete-button, .add-button');
+                const calendarDay = target.closest('.calendar-day.has-events');
+                if (button) {
+                    const id = button.dataset.id, type = button.dataset.type;
+                    if (button.matches('.delete-button')) {
+                        if (confirm('¿Estás seguro de que quieres borrar este elemento?')) {
+                            const user = prompt("Por favor, ingresa tu nombre para confirmar:");
+                            if (user) { delete appData[type][id]; saveData(user); }
+                        }
+                    } else if (button.matches('.edit-button')) {
+                        const itemToEdit = appData[type][id];
+                        if (itemToEdit) {
+                            const modal = document.getElementById('add-item-modal');
+                            modal.querySelector('#add-item-title').innerText = 'Editar Elemento';
+                            modal.querySelector('#author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
+                            modal.querySelector('form').reset();
+                            modal.querySelector('#item-id-input').value = itemToEdit.id;
+                            modal.querySelector('#item-type-input').value = type;
+                            modal.querySelector('#item-date-input').value = itemToEdit.date || '';
+                            if(itemToEdit.author) modal.querySelector('#author-select').value = itemToEdit.author;
+                            modal.querySelector('#item-description-input').value = itemToEdit.text;
+                            modal.classList.add('popup-visible');
+                        }
+                    } else if (button.matches('.add-button')) {
+                        const itemDate = button.dataset.date || '';
+                        const modal = document.getElementById('add-item-modal');
+                        modal.querySelector('#add-item-title').innerText = type === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
+                        modal.querySelector('#author-select-container').style.display = type === 'timelineEvents' ? 'block' : 'none';
+                        modal.querySelector('form').reset();
+                        modal.querySelector('#item-id-input').value = '';
+                        modal.querySelector('#item-type-input').value = type;
+                        modal.querySelector('#item-date-input').value = itemDate;
+                        modal.classList.add('popup-visible');
+                    }
+                } else if (calendarDay) {
+                    const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
+                    document.getElementById('modal-date').innerText = dayFormatter.format(date);
+                    const eventsHtml = events.map(item => `<p class="item-description">${item.icon} ${item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description}</p>`).join('');
+                    document.getElementById('modal-events').innerHTML = eventsHtml;
+                    document.getElementById('calendar-modal').classList.add('popup-visible');
                 }
-            }
-        }
-
-        function updateCountdowns() {
-            const countdown1 = document.getElementById('card-nathan');
-            const countdown2 = document.getElementById('card-ron-anyela');
-            if(countdown1) setInterval(() => { /* Lógica del contador 1 */ }, 1000);
-            if(countdown2) setInterval(() => { /* Lógica del contador 2 */ }, 1000);
-        }
-        function fetchWeather() { /* Lógica del clima */ }
-
-        // --- MANEJO DE EVENTOS ---
-        document.addEventListener('click', (e) => {
-            const target = e.target;
-            if (target.matches('.add-button')) {
-                const modal = document.getElementById('add-item-modal');
-                modal.querySelector('#item-date-input').value = target.dataset.date;
-                modal.classList.add('popup-visible');
-            }
-            if (target.matches('.show-more-btn')) {
-                const day = target.dataset.day;
-                const hiddenContainer = document.getElementById(`more-notes-${day}`);
-                if (hiddenContainer) {
-                    hiddenContainer.style.display = 'block';
-                    target.style.display = 'none';
-                }
-            }
-            const popup = target.closest('.popup-overlay');
-            if (popup && (target.matches('.close-popup') || target.matches('.modal-close-button') || target.classList.contains('popup-overlay'))) {
-                popup.classList.remove('popup-visible');
-            }
-        });
-
-        document.addEventListener('submit', function(e) {
-            if (e.target.id === 'add-item-form') {
+            });
+            document.getElementById('add-item-form').addEventListener('submit', function(e) {
                 e.preventDefault();
+                const id = document.getElementById('item-id-input').value;
+                const type = document.getElementById('item-type-input').value;
                 const text = document.getElementById('item-description-input').value;
                 const author = document.getElementById('author-select').value;
-                const date = document.getElementById('item-date-input').value;
-                if (!text || !author || !date) { alert("Por favor, completa todos los campos."); return; }
-                const newId = `note-${Date.now()}`;
-                const newItem = { id: newId, text: text, author: author, date: date, timestamp: new Date().toISOString(), type: 'note', icon: '🗒️' };
-                if (!appData.timelineEvents) appData.timelineEvents = {};
-                appData.timelineEvents[newId] = newItem;
-                saveData(author);
-                e.target.reset();
+                if (!type || !text || (type === 'timelineEvents' && !author)) { alert("Por favor, completa todos los campos."); return; }
+                const newId = id || `item-${Date.now()}`;
+                if (!appData[type]) appData[type] = {};
+                const item = appData[type]?.[newId] || {};
+                item.id = newId; item.text = text; item.timestamp = new Date().toISOString(); item.isEditable = true;
+                if (type === 'timelineEvents') { item.date = document.getElementById('item-date-input').value; item.icon = '🗒️'; item.type = 'note'; item.author = author; }
+                appData[type][newId] = item;
+                saveData(author || 'Alguien');
                 document.getElementById('add-item-modal').classList.remove('popup-visible');
-            }
-        });
-        
-        // --- INICIALIZACIÓN ---
-        appDataRef.on('value', (snapshot) => {
-            const data = snapshot.val();
-            if (data && data.timelineEvents) { appData = data; } 
-            else { appData = JSON.parse(JSON.stringify(defaultAppData)); saveData("Sistema"); }
-            renderPage();
-        });
-        
-        const privacyPopup = document.getElementById('privacy-popup'); 
-        if (new Date() < new Date('2026-01-04T12:00:00')) { 
-            privacyPopup.classList.add('popup-visible'); 
+            });
+            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
+            document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
+            document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
+            document.querySelectorAll('.popup-overlay').forEach(popup => { popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } }); });
+            const privacyPopup = document.getElementById('privacy-popup'); if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
         }
+        // --- INICIALIZACIÓN ---
+        renderAll();
+        setInterval(updateCountdowns, 1000);
+        setInterval(fetchWeather, 300000);
     });
     </script>
 </body>
