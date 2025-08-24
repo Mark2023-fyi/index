@@ -13,7 +13,7 @@
         .flight-info{display:flex;flex-direction:column;align-items:center}
         .flight-button{display:inline-block;background-color:#007bff;color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#555;margin-top:4px}
-        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:20px;margin:0; list-style-type: '🔸'; padding-left: 1.5em;}.info-card li{margin-bottom: 8px; position: relative;}
+        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:20px;margin:0; list-style-type: '🔸'; padding-left: 1.5em;}.info-card li{margin-bottom: 8px; position: relative; padding-right: 20px;}
         .weather-card{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:260px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.weather-card-left{text-align:left}.weather-card .city{font-weight:600;font-size:1em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.1em;margin:2px 0 0 0;color:#555}.weather-card-right{display:flex;align-items:center;gap:8px}.weather-card .icon{font-size:2em;line-height:1}.weather-card .temp{font-size:1.2em;font-weight:600}
         .festivo-item > .item-content, .calendar-day.festivo-item{background-color:#e3f2fd;}
         .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
@@ -129,87 +129,42 @@
                 { id: 10, date: '2026-01-15', icon: '🎂', description: '<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.', type: 'travel', isBirthday: true },
                 { id: 11, date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
             ],
-            importantNotes: [
-                { id: 101, text: '<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben.'},
-                { id: 102, text: 'Faber, Yisela, y Rosita no saben absolutamente nada.'}
-            ],
-            plannedActivities: [
-                { id: 201, text: 'Bingo'},
-                { id: 202, text: 'Regalos con la letra "V" de un valor de $10,000 pesos'},
-                { id: 203, text: 'Scavenger Hunt (Búsqueda del tesoro)'},
-                { id: 204, text: 'Pictionary'}
-            ]
+            importantNotes: [ { id: 101, text: '<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben.'}, { id: 102, text: 'Faber, Yisela, y Rosita no saben absolutamente nada.'} ],
+            plannedActivities: [ { id: 201, text: 'Bingo'}, { id: 202, text: 'Regalos con la letra "V" de un valor de $10,000 pesos'}, { id: 203, text: 'Scavenger Hunt (Búsqueda del tesoro)'}, { id: 204, text: 'Pictionary'} ]
         };
         
-        // =================================================================
-        // WIDGETS (CONTADOR Y CLIMA)
-        // =================================================================
         function updateCountdowns() {
-            const targets = [
-                { id: 'card-nathan', date: '2025-12-13T18:00:00', title: 'Llegada de Nathan' },
-                { id: 'card-ron-anyela', date: '2026-01-03T18:00:00', title: 'Llegada de Ron & Anyela' }
-            ];
-            
+            const targets = [ { id: 'card-nathan', date: '2025-12-13T18:00:00', title: 'Llegada de Nathan' }, { id: 'card-ron-anyela', date: '2026-01-03T18:00:00', title: 'Llegada de Ron & Anyela' }];
             targets.forEach(target => {
                 const countDownDate = new Date(target.date).getTime();
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
-
                 const element = document.getElementById(target.id);
                 if (!element) return;
-                
                 let content = `<h3>${target.title}</h3><div class="arrival-date">${new Date(target.date).toLocaleDateString('es-CO', {month:'long', day:'numeric'})}</div>`;
-
-                if (distance < 0) {
-                    content += "<h4>¡Ya llegó!</h4>";
-                } else {
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    content += `<div class="timer">
-                        <div class="time-block"><span>${String(days).padStart(2,'0')}</span><span>Días</span></div>
-                        <div class="time-block"><span>${String(hours).padStart(2,'0')}</span><span>Horas</span></div>
-                        <div class="time-block"><span>${String(minutes).padStart(2,'0')}</span><span>Min</span></div>
-                        <div class="time-block"><span>${String(seconds).padStart(2,'0')}</span><span>Seg</span></div>
-                    </div>`;
+                if (distance < 0) { content += "<h4>¡Ya llegó!</h4>"; } 
+                else {
+                    const d = Math.floor(distance/(1000*60*60*24)), h = Math.floor((distance%(1000*60*60*24))/(1000*60*60)), m = Math.floor((distance%(1000*60*60))/(1000*60)), s = Math.floor((distance%(1000*60))/1000);
+                    content += `<div class="timer"><div class="time-block"><span>${String(d).padStart(2,'0')}</span><span>Días</span></div><div class="time-block"><span>${String(h).padStart(2,'0')}</span><span>Horas</span></div><div class="time-block"><span>${String(m).padStart(2,'0')}</span><span>Min</span></div><div class="time-block"><span>${String(s).padStart(2,'0')}</span><span>Seg</span></div></div>`;
                 }
                 element.innerHTML = content;
             });
         }
         
         async function fetchWeather() {
-            const locations = [
-                { id: 'weather-austin', city: 'Austin', emoji: '🤠' },
-                { id: 'weather-medellin', city: 'Medellin', emoji: '🇨🇴' }
-            ];
+            const locations = [ { id: 'weather-austin', city: 'Austin', emoji: '🤠' }, { id: 'weather-medellin', city: 'Medellin', emoji: '🇨🇴' }];
             for (const loc of locations) {
                 const element = document.getElementById(loc.id);
                 if (!element) continue;
                 try {
                     const response = await fetch(`https://wttr.in/${loc.city}?format=j1`);
                     const data = await response.json();
-                    const temp_C = data.current_condition[0].temp_C;
-                    const temp_F = data.current_condition[0].temp_F;
-                    const desc = data.current_condition[0].weatherDesc[0].value;
-                    element.innerHTML = `
-                        <div class="weather-card-left">
-                            <div class="city">${loc.emoji} ${loc.city}</div>
-                            <div class="time">${new Date().toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit'})}</div>
-                        </div>
-                        <div class="weather-card-right">
-                            <div class="icon">🌡️</div>
-                            <div class="temp">${temp_F}°F / ${temp_C}°C</div>
-                        </div>`;
-                } catch (error) {
-                    element.innerText = `Error cargando clima de ${loc.city}.`;
-                }
+                    const temp_C = data.current_condition[0].temp_C, temp_F = data.current_condition[0].temp_F;
+                    element.innerHTML = `<div class="weather-card-left"><div class="city">${loc.emoji} ${loc.city}</div><div class="time">${new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})}</div></div><div class="weather-card-right"><div class="icon">🌡️</div><div class="temp">${temp_F}°F / ${temp_C}°C</div></div>`;
+                } catch (error) { element.innerText = `Error cargando clima de ${loc.city}.`; }
             }
         }
 
-        // =================================================================
-        // LÓGICA PRINCIPAL DE LA APP
-        // =================================================================
         function saveData() {
             if (appData.timelineEvents) appData.timelineEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
             appDataRef.set(appData);
@@ -217,7 +172,7 @@
 
         appDataRef.on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data) {
+            if (data && data.timelineEvents) {
                 appData = { timelineEvents: data.timelineEvents || [], importantNotes: data.importantNotes || [], plannedActivities: data.plannedActivities || [] };
             } else {
                 appData = JSON.parse(JSON.stringify(defaultAppData));
@@ -228,22 +183,11 @@
         
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
 
-        function renderAll() {
-            renderTimeline();
-            renderCalendar(2025, 11);
-            renderCalendar(2026, 0, true);
-            renderInfoLists();
-        }
+        function renderAll() { renderTimeline(); renderCalendar(2025, 11); renderCalendar(2026, 0, true); renderInfoLists(); }
 
         function createActionsMenu(item, itemType) {
-            if (item.type === 'note' || itemType === 'importantNotes' || itemType === 'plannedActivities') {
-                return `
-                <div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮
-                    <div class="item-actions-dropdown" onmouseleave="this.style.display='none'">
-                        <button class="edit-button" data-id="${item.id}" data-type="${itemType}">Editar</button>
-                        <button class="delete-button" data-id="${item.id}" data-type="${itemType}">Borrar</button>
-                    </div>
-                </div>`;
+            if (item.id && (item.type === 'note' || itemType === 'importantNotes' || itemType === 'plannedActivities')) {
+                return `<div class="item-actions-menu" onclick="event.stopPropagation(); this.querySelector('.item-actions-dropdown').style.display='block'">⋮<div class="item-actions-dropdown" onmouseleave="this.style.display='none'"><button class="edit-button" data-id="${item.id}" data-type="${itemType}">Editar</button><button class="delete-button" data-id="${item.id}" data-type="${itemType}">Borrar</button></div></div>`;
             }
             return '';
         }
@@ -253,33 +197,26 @@
             let html = '<h2>Diciembre 2025</h2>';
             let currentMonth = 11;
             const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long' });
-            const startDate = new Date('2025-12-13T12:00:00');
-            const endDate = new Date('2026-01-17T12:00:00');
+            const startDate = new Date('2025-12-13T12:00:00'), endDate = new Date('2026-01-17T12:00:00');
             
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = (appData.timelineEvents || []).filter(item => item.date === dateStr);
-                
-                if (d.getMonth() !== currentMonth) {
-                    html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`;
-                    currentMonth = d.getMonth();
-                }
+                if (d.getMonth() !== currentMonth) { html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; currentMonth = d.getMonth(); }
                 
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
                 html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
 
                 if (events.length > 0) {
                     events.forEach(item => {
-                        let content = item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description;
+                        let content = (item.type === 'note' && item.author) ? `<strong>${item.author}:</strong> ${item.text}` : item.description;
                         html += `<p class="item-description">${content}${createActionsMenu(item, 'timelineEvents')}</p>`;
                         if (item.flightInfo) {
                            const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join('');
                            html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento de Vuelos en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
                         }
                     });
-                } else {
-                    html += `<p class="item-description tbd">No hay planes para este día.</p>`;
-                }
+                } else { html += `<p class="item-description tbd">No hay planes para este día.</p>`; }
                 html += `</div></div>`;
             }
             timelineView.innerHTML = html;
@@ -291,10 +228,8 @@
             let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
             const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
             dayNames.forEach(day => { html += `<div class="calendar-header">${day}</div>`; });
-
             const firstDay = new Date(year, month).getDay();
             for (let i = 0; i < firstDay; i++) { html += '<div class="calendar-day other-month"></div>'; }
-            
             const daysInMonth = 32 - new Date(year, month, 32).getDate();
             for (let day = 1; day <= daysInMonth; day++) {
                 const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
@@ -303,24 +238,20 @@
                 html += `<div class="calendar-day ${events.length > 0 ? 'has-events' : ''}" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}</div>`;
             }
             html += '</div>';
-            if (append) calendarView.innerHTML += html;
-            else calendarView.innerHTML = html;
+            if (append) calendarView.innerHTML += html; else calendarView.innerHTML = html;
         }
 
         function renderInfoLists() {
-            const notesList = document.getElementById('important-notes-list');
-            const activitiesList = document.getElementById('planned-activities-list');
+            const notesList = document.getElementById('important-notes-list'), activitiesList = document.getElementById('planned-activities-list');
             notesList.innerHTML = (appData.importantNotes || []).map(item => `<li>${item.text}${createActionsMenu(item, 'importantNotes')}</li>`).join('');
             activitiesList.innerHTML = (appData.plannedActivities || []).map(item => `<li>${item.text}${createActionsMenu(item, 'plannedActivities')}</li>`).join('');
         }
         
-        const addItemModal = document.getElementById('add-item-modal');
-        const addItemForm = document.getElementById('add-item-form');
+        const addItemModal = document.getElementById('add-item-modal'), addItemForm = document.getElementById('add-item-form');
         
         document.addEventListener('click', function(e) {
             if (e.target.matches('.add-button')) {
-                const itemType = e.target.dataset.type;
-                const itemDate = e.target.dataset.date || '';
+                const itemType = e.target.dataset.type, itemDate = e.target.dataset.date || '';
                 document.getElementById('add-item-title').innerText = itemType === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
                 document.getElementById('author-select-container').style.display = itemType === 'timelineEvents' ? 'block' : 'none';
                 addItemForm.reset();
@@ -330,16 +261,16 @@
                 addItemModal.classList.add('popup-visible');
             }
             if (e.target.matches('.delete-button')) {
-                const id = parseInt(e.target.dataset.id);
-                const type = e.target.dataset.type;
+                const id = parseInt(e.target.dataset.id), type = e.target.dataset.type;
+                if (!id || !type || !appData[type]) return;
                 if (confirm('¿Estás seguro de que quieres borrar este elemento?')) {
                     appData[type] = appData[type].filter(item => item.id !== id);
                     saveData();
                 }
             }
             if (e.target.matches('.edit-button')) {
-                const id = parseInt(e.target.dataset.id);
-                const type = e.target.dataset.type;
+                const id = parseInt(e.target.dataset.id), type = e.target.dataset.type;
+                if (!id || !type || !appData[type]) return;
                 const itemToEdit = appData[type].find(item => item.id === id);
                 if (itemToEdit) {
                     document.getElementById('add-item-title').innerText = 'Editar Elemento';
@@ -348,7 +279,7 @@
                     document.getElementById('item-type-input').value = type;
                     document.getElementById('item-date-input').value = itemToEdit.date || '';
                     if(itemToEdit.author) document.getElementById('author-select').value = itemToEdit.author;
-                    document.getElementById('item-description-input').value = itemToEdit.text || itemToEdit.description;
+                    document.getElementById('item-description-input').value = itemToEdit.text; // Siempre editamos el 'text'
                     addItemModal.classList.add('popup-visible');
                 }
             }
@@ -359,16 +290,15 @@
             const id = document.getElementById('item-id-input').value;
             const type = document.getElementById('item-type-input').value;
             const text = document.getElementById('item-description-input').value;
-            
-            if (id) { // Editing existing item
+            if (!type || !text) return;
+
+            if (id) { // Editing
                 const item = appData[type].find(i => i.id == id);
-                if (type === 'timelineEvents') {
-                    item.author = document.getElementById('author-select').value;
+                if(item) {
                     item.text = text;
-                } else {
-                    item.text = text;
+                    if (type === 'timelineEvents') item.author = document.getElementById('author-select').value;
                 }
-            } else { // Adding new item
+            } else { // Adding
                 const newItem = { id: Date.now(), text: text };
                 if (type === 'timelineEvents') {
                     newItem.date = document.getElementById('item-date-input').value;
@@ -383,17 +313,13 @@
             addItemModal.classList.remove('popup-visible');
         });
 
-        // Calendar Modal Logic
         document.getElementById('calendar-view').addEventListener('click', (e) => {
             const dayElement = e.target.closest('.calendar-day.has-events');
             if(dayElement) {
-                const dateStr = dayElement.dataset.date;
-                const events = (appData.timelineEvents || []).filter(item => item.date === dateStr);
-                const date = new Date(dateStr + 'T12:00:00');
-                
+                const dateStr = dayElement.dataset.date, events = (appData.timelineEvents || []).filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
                 document.getElementById('modal-date').innerText = dayFormatter.format(date);
                 const eventsHtml = events.map(item => {
-                    let content = item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description;
+                    let content = (item.type === 'note' && item.author) ? `<strong>${item.author}:</strong> ${item.text}` : item.description;
                     return `<p class="item-description">${item.icon} ${content}</p>`;
                 }).join('');
                 document.getElementById('modal-events').innerHTML = eventsHtml;
@@ -401,32 +327,16 @@
             }
         });
 
-        // View Switcher Logic
-        const timelineView = document.getElementById('timeline-view');
-        const calendarView = document.getElementById('calendar-view');
-        document.getElementById('show-timeline').addEventListener('click', function(){
-            this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active');
-            timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden');
-        });
-        document.getElementById('show-calendar').addEventListener('click', function(){
-            this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active');
-            calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden');
-        });
-
-        // Popups Close Logic
-        document.querySelectorAll('.popup-overlay').forEach(popup => {
-            popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } });
-        });
+        const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
+        document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
+        document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
+        document.querySelectorAll('.popup-overlay').forEach(popup => { popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } }); });
         const privacyPopup = document.getElementById('privacy-popup');
-        if (new Date() < new Date('2026-01-04T12:00:00')) {
-            privacyPopup.classList.add('popup-visible');
-        }
+        if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
 
-        // INICIAR WIDGETS
         setInterval(updateCountdowns, 1000);
         fetchWeather();
-        setInterval(fetchWeather, 300000); // Actualiza el clima cada 5 minutos
-        
+        setInterval(fetchWeather, 300000);
         document.getElementById('timestamp').innerText = `Última actualización: ${new Date().toLocaleString('es-CO', {dateStyle:'long', timeStyle:'short'})}`;
     });
     </script>
