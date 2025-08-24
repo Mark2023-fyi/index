@@ -74,7 +74,7 @@
         <h1>🤠 De Austin a Medellín 🇨🇴</h1>
         <div class="header-info">
             <h4 class="update-notice"><span class="live-indicator"></span>Itinerario en Vivo</h4>
-            <p class="timestamp">Última actualización: 23 de agosto de 2025, 9:20 PM</p>
+            <p class="timestamp">Última actualización: 23 de agosto de 2025, 9:37 PM</p>
         </div>
         <div class="countdown-container">
             <div class="countdown-card" id="card-nathan"></div>
@@ -97,9 +97,32 @@
         </div>
     </div>
     
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            let itineraryData;
+            // =================================================================
+            // TU CONFIGURACIÓN DE FIREBASE - ¡LISTA!
+            // =================================================================
+            const firebaseConfig = {
+                apiKey: "AIzaSyBrIoHLMIN9XmcTIsTiQQsCUYAKGJut_U8",
+                authDomain: "itinerario-viaje-cbf9d.firebaseapp.com",
+                databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com",
+                projectId: "itinerario-viaje-cbf9d",
+                storageBucket: "itinerario-viaje-cbf9d.appspot.com",
+                messagingSenderId: "88371586960",
+                appId: "1:88371586960:web:8b2dd61a4b7d2bed963515"
+            };
+
+            // Inicializar Firebase
+            firebase.initializeApp(firebaseConfig);
+            const database = firebase.database();
+            const itineraryRef = database.ref('itineraryData');
+
+            // =================================================================
+
+            let itineraryData = []; 
             const defaultItineraryData = [
                 { date: '2025-12-13', icon: '🛬', description: '<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.', type: 'event-flight', flightInfo: { title: 'Llegada de Nathan', flights: [{ num: 'CM716', route: 'Austin → Panamá' }, { num: 'CM155', route: 'Panamá → Medellín' }]}},
                 { date: '2025-12-14', icon: '🏠', description: 'Descanso y actividades.', type: 'event-tbd' },
@@ -121,15 +144,23 @@
                 { date: '2026-01-17', icon: '🛫', description: '<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.', type: 'event-flight', flightInfo: { title: 'Vuelos de Regreso', flights: [{ num: 'CM209', route: 'Medellín → Panamá' }, { num: 'CM715', route: 'Panamá → Austin' }]}}
             ];
 
-            function loadData() {
-                const savedData = localStorage.getItem('itineraryDataV2');
-                itineraryData = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultItineraryData));
-                itineraryData.sort((a, b) => new Date(a.date) - new Date(b.date));
-            }
-
             function saveData() {
                 itineraryData.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('itineraryDataV2', JSON.stringify(itineraryData));
+                itineraryRef.set(itineraryData);
+            }
+
+            function listenForData() {
+                itineraryRef.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    if (data) {
+                        itineraryData = data;
+                    } else {
+                        itineraryData = defaultItineraryData;
+                        saveData();
+                    }
+                    itineraryData.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    renderAllViews();
+                });
             }
 
             const timelineView = document.getElementById('timeline-view');
@@ -139,6 +170,7 @@
             function renderAllViews() {
                 renderTimeline();
                 calendarView.innerHTML = renderCalendar(2025, 11) + renderCalendar(2026, 0);
+                attachAddEventButtonListeners();
             }
 
             function renderTimeline() {
@@ -178,24 +210,24 @@
             }
             
             function renderCalendar(year, month) {
-                const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-                const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-                const firstDay = new Date(year, month).getDay();
-                const daysInMonth = 32 - new Date(year, month, 32).getDate();
-                let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
-                dayNames.forEach(day => { html += `<div class="calendar-header">${day}</div>`; });
-                for (let i = 0; i < firstDay; i++) { html += '<div class="calendar-day other-month"></div>'; }
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const events = itineraryData.filter(item => item.date === dateStr);
-                    let eventHTML = '';
-                    if (events.length > 0) {
-                        eventHTML = '<div class="event-icons-container">' + events.map(e => `<span class="calendar-emoji">${e.icon}</span>`).join('') + '</div>';
-                    }
-                    html += `<div class="calendar-day ${events.length > 0 ? 'has-events' : ''} ${events.some(e => e.isHoliday) ? 'festivo-item' : ''}" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}</div>`;
-                }
-                html += '</div>';
-                return html;
+                 const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                 const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+                 const firstDay = new Date(year, month).getDay();
+                 const daysInMonth = 32 - new Date(year, month, 32).getDate();
+                 let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
+                 dayNames.forEach(day => { html += `<div class="calendar-header">${day}</div>`; });
+                 for (let i = 0; i < firstDay; i++) { html += '<div class="calendar-day other-month"></div>'; }
+                 for (let day = 1; day <= daysInMonth; day++) {
+                     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                     const events = itineraryData.filter(item => item.date === dateStr);
+                     let eventHTML = '';
+                     if (events.length > 0) {
+                         eventHTML = '<div class="event-icons-container">' + events.map(e => `<span class="calendar-emoji">${e.icon}</span>`).join('') + '</div>';
+                     }
+                     html += `<div class="calendar-day ${events.length > 0 ? 'has-events' : ''} ${events.some(e => e.isHoliday) ? 'festivo-item' : ''}" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}</div>`;
+                 }
+                 html += '</div>';
+                 return html;
             }
 
             const addEventModal = document.getElementById('add-event-modal');
@@ -211,21 +243,25 @@
                 e.preventDefault();
                 const date = addEventModal.dataset.date;
                 const newText = document.getElementById('event-description-input').value;
-                const existingEventIndex = itineraryData.findIndex(event => event.date === date && event.icon !== '🗒️');
-                if (existingEventIndex > -1) {
-                    itineraryData[existingEventIndex].description += `<br><br>🗒️ <strong>Nota:</strong> ${newText}`;
-                } else {
-                    itineraryData.push({ date: date, icon: '🗒️', description: `🗒️ <strong>Nota:</strong> ${newText}`, type: 'event-tbd'});
-                }
-                saveData();
-                renderAllViews();
+                
+                itineraryData.push({ 
+                    date: date, 
+                    icon: '🗒️', 
+                    description: `<strong>Nota:</strong> ${newText}`, 
+                    type: 'note'
+                });
+                
+                saveData(); 
                 addEventModal.classList.remove('popup-visible');
             });
-            timelineView.addEventListener('click', (e) => {
-                if(e.target.classList.contains('add-event-button')) {
-                    openAddEventModal(e.target.dataset.date);
-                }
-            });
+            
+            function attachAddEventButtonListeners() {
+                document.querySelectorAll('.add-event-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        openAddEventModal(e.currentTarget.dataset.date);
+                    });
+                });
+            }
 
             const calendarModal = document.getElementById('calendar-modal');
             function openCalendarModal(date) { /* Lógica del modal... */ }
@@ -243,11 +279,10 @@
             if (new Date() < revealDate) {
                 privacyPopup.classList.add('popup-visible');
             }
-           
-            loadData();
-            renderAllViews();
             
-            // --- OTRAS FUNCIONES (Contadores, Clima, etc.) ---
+            listenForData();
+            
+            // --- OTRAS FUNCIONES (Contadores, Clima, etc. se mantienen igual) ---
             // (La lógica completa de estas funciones se pega aquí sin cambios)
         });
     </script>
