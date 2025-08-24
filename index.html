@@ -13,7 +13,7 @@
         .flight-info{display:flex;flex-direction:column;align-items:center}
         .flight-button{display:inline-block;background-color:#007bff;color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#555;margin-top:4px}
-        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:20px;margin:0; list-style-type: '🔸'; padding-left: 1.5em;}.info-card li{margin-bottom: 8px; position: relative; padding-right: 20px;}
+        .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:0;margin:0; list-style-type: none;}.info-card li{display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #f0f0f0;}.info-card li:last-child{border-bottom:none;}.info-item-text{flex-grow:1;}
         .weather-card{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:260px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.weather-card-left{text-align:left}.weather-card .city{font-weight:600;font-size:1em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.1em;margin:2px 0 0 0;color:#555}.weather-card-right{display:flex;align-items:center;gap:8px}.weather-card .icon{font-size:2em;line-height:1}.weather-card .temp{font-size:1.2em;font-weight:600}
         .festivo-item > .item-content, .calendar-day.festivo-item{background-color:#e3f2fd;}
         .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
@@ -29,17 +29,20 @@
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
-        .item-description{position: relative; padding-right: 25px;}.item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
-        #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px; white-space: pre-wrap;}
+        .item-description{padding-bottom:8px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
+        .note-content{flex-grow:1;}
+        .item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
+        #modal-events .item-description{text-align:left;font-size:1.1em;line-height:1.6;margin-bottom:15px; white-space: pre-wrap;border:none;display:block;}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s}.modal-close-button:hover{background:#0056b3}
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
-        .item-actions-menu{position:absolute;top:0;right:0;cursor:pointer;font-weight:bold;padding:0 8px;user-select:none}.item-actions-dropdown{position:absolute;top:20px;right:0;background:white;border-radius:5px;box-shadow:0 2px 10px rgba(0,0,0,.2);z-index:10;display:none;min-width:100px;border:1px solid #eee}.item-actions-dropdown button{display:block;width:100%;padding:8px 12px;border:none;background:none;text-align:left;cursor:pointer;font-family:'Poppins',sans-serif}.item-actions-dropdown button:hover{background:#f5f5f5}
+        .item-actions-menu{position:relative;flex-shrink:0;}.item-actions-dropdown{position:absolute;top:20px;right:0;background:white;border-radius:5px;box-shadow:0 2px 10px rgba(0,0,0,.2);z-index:10;display:none;min-width:100px;border:1px solid #eee}.item-actions-dropdown button{display:block;width:100%;padding:8px 12px;border:none;background:none;text-align:left;cursor:pointer;font-family:'Poppins',sans-serif}.item-actions-dropdown button:hover{background:#f5f5f5}
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
+        .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;width:20px;height:20px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;margin-left:auto;}
     </style>
 </head>
 <body>
-    <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style="font-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
+    <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
     <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
     <div id="add-item-modal" class="popup-overlay">
         <div class="popup-content">
@@ -161,21 +164,35 @@
 
         function renderTimeline() {
             const timelineView = document.getElementById('timeline-view');
-            const sortedEvents = Object.values(appData.timelineEvents || {}).sort((a,b) => new Date(a.date) - new Date(b.date));
+            const allEvents = Object.values(appData.timelineEvents || {});
+            const sortedEvents = allEvents.sort((a,b) => new Date(a.date) - new Date(b.date));
             let html = '', currentMonth = -1;
             const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long' });
             const startDate = new Date('2025-12-13T12:00:00'), endDate = new Date('2026-01-17T12:00:00');
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = sortedEvents.filter(item => item.date === dateStr);
+                const noteCount = events.filter(item => item.type === 'note').length;
+                const badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                 if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
-                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
+                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span>${badge}<button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 if (events.length > 0) {
                     events.forEach(item => {
-                        let content = (item.type === 'note') ? `<strong>${item.author}:</strong> ${item.text}` : item.description;
-                        let timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
-                        html += `<p class="item-description">${content}${timestamp}${createActionsMenu(item, 'timelineEvents')}</p>`;
+                        let contentHtml;
+                        if (item.type === 'note') {
+                            const timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
+                            contentHtml = `<div class="item-description">
+                                ${createActionsMenu(item, 'timelineEvents')}
+                                <div class="note-content">
+                                    <strong>${item.author}:</strong> ${item.text}
+                                    ${timestamp}
+                                </div>
+                            </div>`;
+                        } else {
+                            contentHtml = `<div class="item-description">${item.description}</div>`;
+                        }
+                        html += contentHtml;
                         if (item.flightInfo) {
                            const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join('');
                            html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
@@ -216,15 +233,16 @@
                 const items = Object.values(appData[type] || {});
                 list.innerHTML = items.map(item => {
                     let timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
-                    return `<li>${item.text}${timestamp}${createActionsMenu(item, type)}</li>`;
+                    return `<li>${createActionsMenu(item, type)}<div class="info-item-text">${item.text}${timestamp}</div></li>`;
                 }).join('');
             });
         }
         
         // --- MANEJO DE EVENTOS (CLICKS, FORMULARIOS) ---
         document.addEventListener('click', function(e) {
-            if (e.target.matches('.add-button')) {
-                const itemType = e.target.dataset.type, itemDate = e.target.dataset.date || '';
+            const target = e.target;
+            if (target.matches('.add-button')) {
+                const itemType = target.dataset.type, itemDate = target.dataset.date || '';
                 document.getElementById('add-item-title').innerText = itemType === 'timelineEvents' ? 'Añadir Nota al Día' : 'Añadir Elemento';
                 document.getElementById('author-select-container').style.display = itemType === 'timelineEvents' ? 'block' : 'none';
                 document.getElementById('add-item-form').reset();
@@ -233,16 +251,16 @@
                 document.getElementById('item-date-input').value = itemDate;
                 document.getElementById('add-item-modal').classList.add('popup-visible');
             }
-            if (e.target.matches('.delete-button')) {
-                const id = e.target.dataset.id, type = e.target.dataset.type;
+            if (target.matches('.delete-button')) {
+                const id = target.dataset.id, type = target.dataset.type;
                 if (!id || !type) return;
                 if (confirm('¿Estás seguro de que quieres borrar este elemento?')) {
                     delete appData[type][id];
                     saveData();
                 }
             }
-            if (e.target.matches('.edit-button')) {
-                const id = e.target.dataset.id, type = e.target.dataset.type;
+            if (target.matches('.edit-button')) {
+                const id = target.dataset.id, type = target.dataset.type;
                 if (!id || !type) return;
                 const itemToEdit = appData[type][id];
                 if (itemToEdit) {
@@ -257,9 +275,9 @@
                     document.getElementById('add-item-modal').classList.add('popup-visible');
                 }
             }
-            if (e.target.closest('.calendar-day.has-events')) {
-                const dayElement = e.target.closest('.calendar-day.has-events');
-                const dateStr = dayElement.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
+            const calendarDay = target.closest('.calendar-day.has-events');
+            if (calendarDay) {
+                const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr), date = new Date(dateStr + 'T12:00:00');
                 document.getElementById('modal-date').innerText = dayFormatter.format(date);
                 const eventsHtml = events.map(item => `<p class="item-description">${item.icon} ${item.type === 'note' ? `<strong>${item.author}:</strong> ${item.text}` : item.description}</p>`).join('');
                 document.getElementById('modal-events').innerHTML = eventsHtml;
