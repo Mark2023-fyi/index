@@ -76,9 +76,15 @@
         .modal-disclaimer{font-size:0.75em; color:#999; margin-top:15px;}
         .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
+        #reply-context-container { border: 1px solid #eee; background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 15px; text-align: left; max-height: 150px; overflow-y: auto;}
+        .reply-context { border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 8px; }
+        .reply-context:last-child { border-bottom: none; margin-bottom: 0; }
+        .reply-context strong { font-size: 0.9em; }
+        .reply-context small { font-size: 0.75em; color: #6c757d; }
+        .reply-context p { font-size: 0.9em; margin: 4px 0; }
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
-        .message-count-badge { background-color: var(--brand-blue); color: white; font-size: 0.8em; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        .message-count-badge { background-color: var(--brand-red); color: white; font-size: 0.8em; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
         .toggle-visibility-btn { background: #f0f2f5; border: 1px solid #ddd; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; color: #555; margin: 10px auto; display: block; }
         .toggle-visibility-btn:hover { background: #e9ecef; }
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:var(--brand-blue); text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
@@ -89,8 +95,8 @@
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
-        .chat-header { display: flex; justify-content: space-between; align-items: center; margin: 40px 0 20px 0; }
-        .chat-header h2 { flex-grow: 1; }
+        .chat-header { display: flex; justify-content: space-between; align-items: center; margin: 40px 0 10px 0; }
+        .chat-header h2 { flex-grow: 1; margin-bottom: 0; }
         .fullscreen-btn { background: none; border: none; font-size: 1.5em; cursor: pointer; color: #555; padding: 0 10px; }
         footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
         
@@ -109,7 +115,8 @@
         .bubble-footer .reply-btn { font-size: 0.7em; font-weight: 600; cursor: pointer; background: none; border: none; color: rgba(0,0,0,0.5); padding: 0; opacity: 1; }
         .message-theirs .bubble-footer .reply-btn { color: rgba(255,255,255,0.7); }
         .bubble-footer .reply-btn:hover { color: var(--brand-blue); }
-        .last-message-indicator { font-size: 0.7em; font-weight: 400; color: #6c757d; margin-left: 10px; }
+        .last-message-bar { font-size: 0.8em; text-align: center; color: #6c757d; padding: 5px; background: #f0f2f5; border-radius: 8px; margin: 0 0 20px 0; }
+        .last-message-bar strong { color: #333; }
         .chat-input-bar { display: flex; gap: 10px; align-items: center; padding: 10px; background-color: #f0f2f5; border-top: 1px solid #ddd; }
         .chat-input-bar select { font-family: 'Poppins', sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #ccc; background-color: #fff; }
         .chat-input-bar textarea { flex-grow: 1; padding: 10px; border-radius: 18px; border: 1px solid #ccc; resize: none; font-family: 'Poppins', sans-serif; font-size: 1em; line-height: 1.4; max-height: 100px; }
@@ -126,10 +133,11 @@
         /* --- Fullscreen Chat Styles --- */
         body.fullscreen-chat-active { padding: 0; overflow: hidden; }
         body.fullscreen-chat-active .container { max-width: 100%; width: 100%; height: 100vh; padding: 0; margin: 0; }
-        body.fullscreen-chat-active #chat-view { height: 100%; }
-        body.fullscreen-chat-active #chat-view-wrapper { height: 100%; border-radius: 0; border: none; }
         body.fullscreen-chat-active #main-container > *:not(#chat-view) { display: none !important; }
+        body.fullscreen-chat-active #chat-view { height: 100%; padding: 0; }
+        body.fullscreen-chat-active #chat-view-wrapper { height: 100%; border-radius: 0; border: none; }
         body.fullscreen-chat-active .chat-header { margin-top: 0; padding: 10px 20px; border-radius: 0; }
+        body.fullscreen-chat-active #chat-messages-container { padding-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -149,6 +157,7 @@
         <div class="popup-content">
             <span class="close-popup">&times;</span>
             <h2 id="add-item-title">Añadir Entrada</h2>
+            <div id="reply-context-container"></div>
             <form id="add-item-form">
                 <input type="hidden" id="item-id-input"><input type="hidden" id="item-type-input"><input type="hidden" id="item-date-input"><input type="hidden" id="reply-to-id-input">
                 <div id="author-select-container">
@@ -223,11 +232,26 @@
             return `<div class="weather-forecast"><span class="weather-icon">🌥️</span> <span class="weather-temp">29°/19°C</span> &nbsp;•&nbsp; Algeciras</div>`;
         }
 
-        function truncateText(text, wordLimit = 20) {
-            const words = text.split(' ');
-            if (words.length <= wordLimit) return text;
-            const visibleText = words.slice(0, wordLimit).join(' ');
-            const hiddenText = words.slice(wordLimit).join(' ');
+        function timeAgo(isoString) {
+            const date = new Date(isoString);
+            const seconds = Math.floor((new Date() - date) / 1000);
+            let interval = seconds / 31536000;
+            if (interval > 1) return `hace ${Math.floor(interval)} años`;
+            interval = seconds / 2592000;
+            if (interval > 1) return `hace ${Math.floor(interval)} meses`;
+            interval = seconds / 86400;
+            if (interval > 1) return `hace ${Math.floor(interval)} días`;
+            interval = seconds / 3600;
+            if (interval > 1) return `hace ${Math.floor(interval)} horas`;
+            interval = seconds / 60;
+            if (interval > 1) return `hace ${Math.floor(interval)} minutos`;
+            return "hace un momento";
+        }
+
+        function truncateText(text, charLimit = 150) {
+            if (text.length <= charLimit) return text;
+            const visibleText = text.substring(0, charLimit);
+            const hiddenText = text.substring(charLimit);
             return `<span>${visibleText}</span><span class="ellipsis">... </span><span class="more-text" style="display:none;">${hiddenText}</span> <a href="#" class="toggle-text-btn">Ver más</a>`;
         }
         
@@ -273,7 +297,7 @@
                     hiddenHtml += renderSingleThread(thread, options);
                 });
                 html += `<div class="collapsible-messages" style="display:none;">${hiddenHtml}</div>`;
-                html += `<button class="toggle-visibility-btn">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
+                html += `<button class="toggle-visibility-btn" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
             }
             return html;
         }
@@ -298,7 +322,7 @@
                 footerHtml += `<button class="reply-btn" data-reply-to-id="${note.id}" data-type="${options.dataType}" ${note.date ? `data-date="${note.date}"` : ''}>Responder${replyCounter}</button>`;
             }
             footerHtml += `</div>`;
-            const messageContent = `<div class="note-content">${authorHtml}${note.text}${footerHtml}</div>`;
+            const messageContent = `<div class="note-content">${authorHtml}${truncateText(note.text)}${footerHtml}</div>`;
             if(isReply) {
                 return `<div class="reply-block">${messageContent}</div>`;
             } else {
@@ -320,7 +344,7 @@
                 const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})}</span>`;
                 const replies = allMessages.filter(m => m.replyingTo === note.id);
                 const replyCounter = replies.length > 0 ? `<span class="reply-counter-badge">${replies.length}</span>` : '';
-                const replyButtonHtml = `<button class="reply-btn" data-reply-to-id="${note.id}" data-type="${options.dataType}">Responder${replyCounter}</button>`;
+                const replyButtonHtml = `<button class="reply-btn" data-type="groupChat" data-reply-to-id="${note.id}">Responder${replyCounter}</button>`;
 
                 let replyQuoteHTML = '';
                 if (note.replyingTo) {
@@ -340,7 +364,7 @@
                             ${authorHtml}
                             <div class="note-content">
                                 ${replyQuoteHTML}
-                                ${note.text}
+                                ${truncateText(note.text, 200)}
                                 <div class="bubble-footer">
                                     ${replyButtonHtml}
                                     ${timestampHtml}
@@ -416,13 +440,16 @@
         function renderChat() {
             const chatView = document.getElementById('chat-view');
             const allChatMessages = Object.values(appData.groupChat || {});
-            let lastMessageIndicator = '';
+            let lastMessageBarHTML = '';
             if (allChatMessages.length > 0) {
                 const sortedMessages = [...allChatMessages].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                const lastAuthor = sortedMessages[0].author;
-                lastMessageIndicator = `<span class="last-message-indicator">(${lastAuthor} dejó un mensaje)</span>`;
+                const lastMessage = sortedMessages[0];
+                const lastMessageText = lastMessage.text.length > 40 ? lastMessage.text.substring(0, 40) + '...' : lastMessage.text;
+                lastMessageBarHTML = `<div class="last-message-bar"><strong>${lastMessage.author}</strong>: "${lastMessageText}" <span class="time-ago">(${timeAgo(lastMessage.timestamp)})</span></div>`;
             }
-            let header = `<div class="chat-header"><h2>Chat Grupal ${lastMessageIndicator}</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div>`;
+
+            let header = `<div class="chat-header"><h2>Chat Grupal</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div>`;
+            
             let messagesHTML = renderMessageBubblesHTML(allChatMessages, { dataType: 'groupChat' });
             if (allChatMessages.length === 0) {
                 messagesHTML = `<div class="item-content tbd" style="text-align:center; padding: 20px;">No hay mensajes. ¡Sé el primero en escribir!</div>`;
@@ -438,7 +465,7 @@
                     <button type="submit" title="Enviar Mensaje">➤</button>
                 </form>
             `;
-            chatView.innerHTML = `<div id="chat-view-wrapper">${header}<div id="chat-messages-container">${messagesHTML}</div>${inputBarHTML}</div>`;
+            chatView.innerHTML = `<div id="chat-view-wrapper">${header}${lastMessageBarHTML}<div id="chat-messages-container">${messagesHTML}</div>${inputBarHTML}</div>`;
             const savedAuthor = localStorage.getItem('itineraryAuthor');
             if (savedAuthor) {
                 document.getElementById('chat-author-select').value = savedAuthor;
@@ -450,7 +477,7 @@
                 const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
                 const items = Object.values(appData[type] || {});
                 items.sort((a,b) => (b.timestamp && a.timestamp) ? new Date(b.timestamp) - new Date(a.timestamp) : 0);
-                list.innerHTML = items.map(item => `<li><div class="info-item-text">${truncateText(item.text, 20)}${item.timestamp?`<span class="item-timestamp">${new Date(item.timestamp).toLocaleString("es-CO",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</span>`:""}</div></li>`).join("");
+                list.innerHTML = items.map(item => `<li><div class="info-item-text">${truncateText(item.text)}</div></li>`).join("");
             });
         }
         
@@ -501,6 +528,27 @@
         
         function openModal(options) {
             const modal = document.getElementById('add-item-modal');
+            const contextContainer = document.getElementById('reply-context-container');
+            
+            contextContainer.innerHTML = ''; // Clear previous context
+            
+            if (options.originalMessage) {
+                let contextHTML = `<div class="reply-context">
+                    <strong>${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO')}</small>
+                    <p>${options.originalMessage.text}</p>
+                </div>`;
+                
+                if (options.replies && options.replies.length > 0) {
+                    options.replies.forEach(reply => {
+                        contextHTML += `<div class="reply-context">
+                            <strong>${reply.author}</strong> <small>${new Date(reply.timestamp).toLocaleString('es-CO')}</small>
+                            <p>${reply.text}</p>
+                        </div>`;
+                    });
+                }
+                contextContainer.innerHTML = contextHTML;
+            }
+
             modal.querySelector('#add-item-title').innerText = options.title;
             modal.querySelector('form').reset();
             modal.querySelector('#item-type-input').value = options.type;
@@ -519,15 +567,33 @@
                 const target = e.target;
                 if (target.matches('#enter-button')) { const overlay = document.getElementById('pre-screen-overlay'); if (overlay) { overlay.classList.add('hidden'); setTimeout(() => { overlay.style.display = 'none'; }, 700); } return; }
                 if (target.matches('.dismiss-banner-btn')) { const banner = target.closest('.how-to-banner'); if(banner) banner.style.display = 'none'; localStorage.setItem('itineraryBannerDismissed', 'true'); return; }
-                if (target.matches('.toggle-text-btn')) { e.preventDefault(); const parent = target.closest('.note-content, .info-item-text'), moreText = parent.querySelector('.more-text'), ellipsis = parent.querySelector('.ellipsis'); if (moreText) { const isHidden = moreText.style.display === 'none'; moreText.style.display = isHidden ? 'inline' : 'none'; if(ellipsis) ellipsis.style.display = isHidden ? 'none' : 'inline'; target.textContent = isHidden ? 'Ver menos' : 'Ver más'; } return; }
+                if (target.matches('.toggle-text-btn')) { 
+                    e.preventDefault();
+                    const parent = target.parentElement;
+                    const ellipsis = parent.querySelector('.ellipsis');
+                    const moreText = parent.querySelector('.more-text');
+                    const isHidden = moreText.style.display === 'none';
+                    
+                    ellipsis.style.display = isHidden ? 'none' : 'inline';
+                    moreText.style.display = isHidden ? 'inline' : 'none';
+                    target.textContent = isHidden ? 'Ver menos' : 'Ver más';
+                    return;
+                }
+                
                 if (target.matches('.toggle-visibility-btn')) {
                     const hiddenContent = target.previousElementSibling;
-                    if (hiddenContent && hiddenContent.classList.contains('collapsible-messages')) {
+                    const isHidden = hiddenContent.style.display === 'none';
+                    if (isHidden) {
                         hiddenContent.style.display = 'block';
-                        target.style.display = 'none';
+                        target.textContent = 'Ocultar mensajes';
+                    } else {
+                        hiddenContent.style.display = 'none';
+                        const count = target.dataset.count;
+                        target.textContent = `Ver ${count} mensajes anteriores`;
                     }
                     return;
                 }
+                
                 const popup = target.closest('.popup-overlay');
                 if (popup && (target === popup || target.matches('.close-popup, .modal-close-button'))) { popup.classList.remove('popup-visible'); return; }
                 
@@ -555,12 +621,26 @@
                 }
                 const replyButton = target.closest('.reply-btn');
                 if(replyButton) {
-                    const replyToId = replyButton.dataset.replyToId;
                     const type = replyButton.dataset.type;
+                    const replyToId = replyButton.dataset.replyToId;
                     const date = replyButton.dataset.date || '';
                     const originalMessage = appData[type] ? appData[type][replyToId] : null;
+
                     if (originalMessage) {
-                        openModal({ title: `Responder a ${originalMessage.author}`, type: type, date: date, replyToId: replyToId });
+                        let replies = [];
+                        if(type === 'groupChat') {
+                            const allMessages = Object.values(appData.groupChat || []);
+                            replies = allMessages.filter(m => m.replyingTo === replyToId)
+                                                .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+                        }
+                        openModal({ 
+                            title: `Responder a ${originalMessage.author}`, 
+                            type: type, 
+                            date: date, 
+                            replyToId: replyToId,
+                            originalMessage: originalMessage,
+                            replies: replies
+                        });
                     }
                     return;
                 }
