@@ -132,7 +132,7 @@
             renderTimeline(); 
             renderCalendar(); 
             renderInfoLists();
-            attachActionListeners();
+            attachDynamicListeners(); // FIX: Attach listeners for dynamic content
             updateHeader();
             // Iniciar widgets que dependen de elementos en el HTML
             updateCountdowns();
@@ -174,7 +174,7 @@
                         html += contentHtml;
                         if (item.flightInfo) {
                            const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join('');
-                           html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
+                            html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
                         }
                     });
                 } else { html += `<div class="item-description tbd">No hay planes para este día.</div>`; }
@@ -257,7 +257,8 @@
                 </div>`;
         }
         
-        function attachActionListeners() {
+        // FIX: Listeners for dynamic elements, attached after each render
+        function attachDynamicListeners() {
             document.getElementById('main-container').addEventListener('click', function(e) {
                 const target = e.target;
                 const button = target.closest('.edit-button, .delete-button, .add-button');
@@ -302,6 +303,13 @@
                     document.getElementById('calendar-modal').classList.add('popup-visible');
                 }
             });
+            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
+            document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
+            document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
+        }
+
+        // FIX: Listeners for static elements, attached only once
+        function attachStaticListeners() {
             document.getElementById('add-item-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const id = document.getElementById('item-id-input').value;
@@ -318,14 +326,12 @@
                 saveData(author || 'Alguien');
                 document.getElementById('add-item-modal').classList.remove('popup-visible');
             });
-            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
-            document.getElementById('show-timeline').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
-            document.getElementById('show-calendar').addEventListener('click', function(){ this.classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
             document.querySelectorAll('.popup-overlay').forEach(popup => { popup.addEventListener('click', (e) => { if (e.target === popup || e.target.matches('.close-popup, .modal-close-button')) { popup.classList.remove('popup-visible'); } }); });
             const privacyPopup = document.getElementById('privacy-popup'); if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
         }
+
         // --- INICIALIZACIÓN ---
-        renderAll();
+        attachStaticListeners(); // FIX: Call static listeners once
         setInterval(updateCountdowns, 1000);
         setInterval(fetchWeather, 300000);
     });
