@@ -9,6 +9,7 @@
         :root {
             --brand-red: #CF4647;
             --brand-blue: #007bff;
+            --brand-green: #28a745;
         }
         body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}
         
@@ -32,7 +33,9 @@
         .live-status{display:flex;align-items:center;gap:8px;font-weight:600;color:#d9534f;}
         .update-details{display:flex;align-items:center;gap:10px;flex-grow:1;justify-content:flex-end;}
         .last-update{color:#6c757d;text-align:right;}
-        .notification-chip{background-color:#28a745;color:white;padding:5px 12px;border-radius:16px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+        .notification-chip{color:white;padding:5px 12px;border-radius:16px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+        .notification-chip.timeline-update { background-color: var(--brand-green); }
+        .notification-chip.chat-update { background-color: var(--brand-blue); }
         .how-to-banner{background-color:#e3f2fd;border:1px solid #90caf9;border-radius:10px;padding:15px 20px;margin-bottom:30px;position:relative;display:none;}
         .how-to-banner h4{margin:0 0 10px 0;color:#0d47a1;text-align:left;}
         .how-to-banner p{margin:0 0 10px 0;font-size:0.9em;line-height:1.6;text-align:left;}
@@ -41,8 +44,8 @@
         .icon-inline{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:0 2px;}
         .add-button-demo{background-color:var(--brand-blue);color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
         .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
-        .reply-counter-badge-demo{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
-        .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid var(--brand-blue);text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
+        .reply-counter-badge-demo{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
+        .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:10px}.item-content{background:#fff;padding:15px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
         .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
@@ -66,7 +69,7 @@
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
-        .item-description{padding-bottom:8px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:center;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
+        .item-description{padding-bottom:4px;border-bottom:1px solid #f0f0f0;margin-bottom:4px;display:flex;align-items:center;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
         .note-content{flex-grow:1; word-wrap: break-word;}.author-name{font-size:0.9em;font-weight:600}
         .item-description.grouped-message{margin-top:-4px;padding-top:4px}
         .item-timestamp{font-size:0.7em; color:#888; white-space:nowrap;}
@@ -91,10 +94,10 @@
         .toggle-visibility-btn { background: #f0f2f5; border: 1px solid #ddd; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; color: #555; margin: 10px auto; display: block; }
         .toggle-visibility-btn:hover { background: #e9ecef; }
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:var(--brand-blue); text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
-        .note-footer{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:8px;}
+        .note-footer{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top: 4px;}
         .reply-btn{background:none; border:none; cursor:pointer; font-size:0.75em; color:#555; padding:2px 6px; opacity:0.7; border-radius:4px; font-weight:600; display:inline-flex; align-items:center; gap:5px;}.reply-btn:hover{opacity:1; color:var(--brand-blue); background-color: #f0f2f5;}
-        .reply-counter-badge{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
-        .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:10px;}
+        .reply-counter-badge{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
+        .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:8px;}
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
@@ -104,8 +107,9 @@
         footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
         
         /* --- Chat View Styles --- */
-        #chat-view-wrapper { background-color: #fff; border: 1px solid #ddd; border-radius: 12px; display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; }
-        #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 20px; }
+        #chat-view-wrapper { background-color: #fff; border: 1px solid #ddd; border-radius: 12px; display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; }
+        #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 10px; }
+        #scroll-up-indicator { text-align: center; padding: 5px; font-size: 0.8em; color: #6c757d; background: #f0f2f5; border-radius: 8px; margin: 0 10px 10px 10px; }
         .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
         .chat-message { max-width: 75%; min-width: 100px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
         .message-mine { align-self: flex-end; background-color: #dcf8c6; color: #333; }
@@ -118,13 +122,14 @@
         .bubble-footer .reply-btn { font-size: 0.7em; font-weight: 600; cursor: pointer; background: none; border: none; color: rgba(0,0,0,0.5); padding: 0; opacity: 1; }
         .message-theirs .bubble-footer .reply-btn { color: rgba(0,0,0,0.6); }
         .bubble-footer .reply-btn:hover { color: var(--brand-blue); }
-        .last-message-bar { font-size: 0.8em; text-align: center; color: #6c757d; padding: 5px; background: #f0f2f5; border-radius: 8px; margin: 0 0 20px 0; }
+        .last-message-bar { font-size: 0.8em; text-align: center; color: #6c757d; padding: 5px; background: #f0f2f5; border-radius: 8px; margin: 0 0 10px 0; }
         .last-message-bar strong { color: #333; }
         .chat-input-bar { display: flex; gap: 10px; align-items: center; padding: 10px; background-color: #f0f2f5; border-top: 1px solid #ddd; }
         .chat-input-bar select { font-family: 'Poppins', sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #ccc; background-color: #fff; }
         .chat-input-bar textarea { flex-grow: 1; padding: 10px; border-radius: 18px; border: 1px solid #ccc; resize: none; font-family: 'Poppins', sans-serif; font-size: 1em; line-height: 1.4; max-height: 100px; }
         .chat-input-bar button { background-color: var(--brand-blue); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; }
         .chat-input-bar button:hover { background-color: #0056b3; }
+        .chat-disclaimer { font-size: 0.7em; color: #6c757d; text-align: center; margin-top: 8px; padding: 0 10px; }
         .reply-quote-block { margin: -2px 0 8px 0; padding: 6px 10px; border-radius: 6px; border-left: 3px solid; }
         .reply-quote-author { font-size: 0.8em; font-weight: 600; }
         .reply-quote-text { font-size: 0.85em; opacity: 0.8; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -141,16 +146,6 @@
         body.fullscreen-chat-active #chat-view-wrapper { height: 100%; border-radius: 0; border: none; }
         body.fullscreen-chat-active .chat-header { margin-top: 0; padding: 10px 20px; border-radius: 0; }
         body.fullscreen-chat-active #chat-messages-container { padding-bottom: 10px; }
-
-        /* --- Settings Styles --- */
-        .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
-        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 28px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #28a745; }
-        input:checked + .slider:before { transform: translateX(22px); }
-
     </style>
 </head>
 <body>
@@ -187,20 +182,6 @@
         </div>
     </div>
 
-    <div id="chat-settings-modal" class="popup-overlay">
-        <div class="popup-content">
-            <span class="close-popup">&times;</span>
-            <h2>Configuración del Chat</h2>
-            <div class="settings-row">
-                <label for="sound-toggle">Sonido de notificación de mensajes</label>
-                <label class="switch">
-                    <input type="checkbox" id="sound-toggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
-    </div>
-
     <div class="container" id="main-container">
         </div>
     
@@ -217,9 +198,7 @@
         const database = firebase.database();
         const appDataRef = database.ref('appData');
         let appData = {};
-        let previousAppData = {};
         let currentView = 'timeline';
-        const NOTIFICATION_SOUND = new Audio("data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaW5nIGN1c3RvbWl6ZWQgYnkgSm9zZV9QcmVjaXNpb24gKGh0dHBzOi8vd3d3LmZyZWVzb3VuZC5vcmcvcGVvcGxlL0pvc2VfUHJlY2lzaW9uLylMAEACFABwGwIAAAAAE2Vjb2RpbmcAAAAAAExhdmY1NSIuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV'//");
         const defaultAppData = { lastUpdate: { user: "Sistema", time: new Date().toISOString(), type: 'general' }, timelineEvents: { "event-1":{id:"event-1",date:"2025-12-13",icon:"🛬",description:"<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.",type:"flight",flightInfo:{title:"Llegada de Nathan",flights:[{num:"CM716",route:"Austin → Panamá"},{num:"CM155",route:"Panamá → Medellín"}]}},"event-2":{id:"event-2",date:"2025-12-22",icon:"🏠",description:"Regreso de Nathan a Medellin.",type:"flight",flightInfo:{title:"Regreso de Nathan",flights:[{num:"EFY821",route:"Villavicencio → Medellín"}]}},"event-3":{id:"event-3",date:"2025-12-24",icon:"🎄",description:"Celebración de Nochebuena 🎅",type:"holiday"},"event-4":{id:"event-4",date:"2025-12-25",icon:"🎁",description:"Día de Navidad 🌟",type:"holiday"},"event-5":{id:"event-5",date:"2025-12-31",icon:"🎉",description:"Celebración de Fin de Año 🥂",type:"holiday"},"event-6":{id:"event-6",date:"2026-01-01",icon:"🥂",description:"Día de Año Nuevo. Descanso. 🎉",type:"holiday"},"event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CM716",route:"Austin → Panamá"},{num:"CM155",route:"Panamá → Medellín"}]}},"event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},"event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},"event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},"event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CM209",route:"Medellín → Panamá"},{num:"CM715",route:"Panamá → Austin"}]}}}, importantNotes: { "note-101":{id:"note-101",text:"<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben."},"note-102":{id:"note-102",text:"Faber, Yisela, y Rosita no saben absolutamente nada."} }, plannedActivities: { "activity-201":{id:"activity-201",text:"Bingo"},"activity-202":{id:"activity-202",text:'Regalos con la letra "V" de un valor de $10,000 pesos'},"activity-203":{id:"activity-203",text:"Scavenger Hunt (Búsqueda del tesoro)"},"activity-204":{id:"activity-204",text:"Pictionary"} } };
         
         // --- WIDGETS ---
@@ -241,29 +220,8 @@
             const data = snapshot.val();
             let loadedData = (data && data.timelineEvents) ? data : JSON.parse(JSON.stringify(defaultAppData));
             if(!loadedData.groupChat) loadedData.groupChat = {};
-
-            const soundEnabled = localStorage.getItem('chatSoundEnabled') === 'true';
-            const currentUser = localStorage.getItem('itineraryAuthor');
-
-            if (previousAppData && loadedData && soundEnabled) {
-                const newTotalMessages = Object.keys(loadedData.groupChat || {}).length + Object.keys(loadedData.timelineEvents || {}).filter(k => loadedData.timelineEvents[k].type === 'note').length;
-                const oldTotalMessages = Object.keys(previousAppData.groupChat || {}).length + Object.keys(previousAppData.timelineEvents || {}).filter(k => previousAppData.timelineEvents[k].type === 'note').length;
-                const lastUpdater = loadedData.lastUpdate.user;
-
-                if (newTotalMessages > oldTotalMessages && lastUpdater !== currentUser) {
-                    NOTIFICATION_SOUND.play().catch(e => console.error("Error al reproducir sonido:", e));
-                }
-            }
-            
             appData = loadedData;
-            previousAppData = JSON.parse(JSON.stringify(loadedData)); // Deep copy for next comparison
-
             renderApp();
-            
-            const chatMessagesContainer = document.getElementById('chat-messages-container');
-            if (chatMessagesContainer) {
-                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-            }
         });
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
         
@@ -495,7 +453,7 @@
                 lastMessageBarHTML = `<div class="last-message-bar"><strong>${lastMessage.author}</strong>: "${lastMessageText}" <span class="time-ago">(${timeAgo(lastMessage.timestamp)})</span></div>`;
             }
 
-            let header = `<div class="chat-header"><h2>Chat Grupal</h2><div style="display:flex; align-items:center;"><button id="chat-settings-btn" class="fullscreen-btn" title="Configuración">⚙️</button><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div></div>`;
+            let header = `<div class="chat-header"><h2>Chat Grupal</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div>`;
             
             let messagesHTML = renderMessageBubblesHTML(allChatMessages, { dataType: 'groupChat' });
             if (allChatMessages.length === 0) {
@@ -511,8 +469,9 @@
                     <textarea id="chat-textarea" placeholder="Escribe un mensaje..." required></textarea>
                     <button type="submit" title="Enviar Mensaje">➤</button>
                 </form>
+                <p class="chat-disclaimer">Los mensajes a través de esta aplicación no son seguros, cualquiera con este link puede acceder.</p>
             `;
-            chatView.innerHTML = `<div id="chat-view-wrapper">${header}${lastMessageBarHTML}<div id="chat-messages-container">${messagesHTML}</div>${inputBarHTML}</div>`;
+            chatView.innerHTML = `<div id="chat-view-wrapper">${header}${lastMessageBarHTML}<div id="scroll-up-indicator">↑ Mensajes Anteriores</div><div id="chat-messages-container">${messagesHTML}</div>${inputBarHTML}</div>`;
             const savedAuthor = localStorage.getItem('itineraryAuthor');
             if (savedAuthor) {
                 document.getElementById('chat-author-select').value = savedAuthor;
@@ -539,14 +498,17 @@
             let notificationHtml = '';
             if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) {
                 let locationText = '';
+                let chipClass = '';
                 if(type === 'chat') {
                     locationText = ' en Chat Grupal';
+                    chipClass = 'chat-update';
                 } else if (type === 'timeline' && eventDate) {
                     const dateObj = new Date(eventDate + 'T12:00:00');
                     const notificationDate = dateObj.toLocaleDateString('es-CO', { month: 'short', day: 'numeric' });
                     locationText = ` en: ${notificationDate.charAt(0).toUpperCase() + notificationDate.slice(1).replace('.','')}`;
+                    chipClass = 'timeline-update';
                 }
-                notificationHtml = `<div class="notification-chip">🔔 Nuevo Mensaje${locationText}</div>`;
+                notificationHtml = `<div class="notification-chip ${chipClass}">🔔 Nuevo Mensaje${locationText}</div>`;
             }
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
@@ -572,6 +534,14 @@
                         }
                     }
                 });
+                if (activeView === 'chat') {
+                    setTimeout(() => {
+                        const chatContainer = document.getElementById('chat-messages-container');
+                        if(chatContainer) {
+                            chatContainer.scrollTop = chatContainer.scrollHeight;
+                        }
+                    }, 0);
+                }
             }
         }
         
@@ -656,15 +626,6 @@
                     return;
                 }
 
-                const settingsBtn = target.closest('#chat-settings-btn');
-                if(settingsBtn) {
-                    const settingsModal = document.getElementById('chat-settings-modal');
-                    const soundToggle = document.getElementById('sound-toggle');
-                    soundToggle.checked = localStorage.getItem('chatSoundEnabled') === 'true';
-                    settingsModal.classList.add('popup-visible');
-                    return;
-                }
-
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
@@ -728,8 +689,8 @@
                     const newId = `item-${Date.now()}`;
                     if (!appData.groupChat) appData.groupChat = {};
                     const item = { id: newId, text, author, timestamp: new Date().toISOString() };
-                    appData.groupChat[newId] = item;
-                    saveData(author, null, 'chat');
+                    appData.groupChat[newId] = item; // Update local data first
+                    saveData(author, null, 'chat'); // Then send to Firebase
                     textarea.value = '';
                     textarea.style.height = 'auto';
                 }
@@ -749,10 +710,14 @@
                 localStorage.setItem('itineraryAuthor', author);
                 const newId = `item-${Date.now()}`;
                 if (!appData[type]) appData[type] = {};
+                
                 let eventDateForNotification = null;
                 const item = { id: newId, text, author, timestamp: new Date().toISOString() };
                 const replyingToId = document.getElementById('reply-to-id-input').value;
                 if(replyingToId) item.replyingTo = replyingToId;
+
+                appData[type][newId] = item;
+
                 if (type === 'timelineEvents') { 
                     item.date = document.getElementById('item-date-input').value; 
                     item.icon = '🗒️'; 
@@ -762,19 +727,23 @@
                 } else {
                     saveData(author, null, 'general');
                 }
-                appData[type][newId] = item;
+                
                 document.getElementById('add-item-modal').classList.remove('popup-visible');
             });
 
-            document.getElementById('sound-toggle').addEventListener('change', function(e) {
-                localStorage.setItem('chatSoundEnabled', e.target.checked);
-                if (e.target.checked) {
-                    // Play a silent sound to unlock audio on mobile browsers
-                    NOTIFICATION_SOUND.volume = 0;
-                    NOTIFICATION_SOUND.play().catch(()=>{});
-                    NOTIFICATION_SOUND.volume = 1;
+            document.body.addEventListener('scroll', function(e) {
+                if (e.target.id === 'chat-messages-container') {
+                    const container = e.target;
+                    const indicator = document.getElementById('scroll-up-indicator');
+                    if (indicator) {
+                        if (container.scrollTop < 50) {
+                            indicator.style.display = 'none';
+                        } else {
+                            indicator.style.display = 'block';
+                        }
+                    }
                 }
-            });
+            }, true);
         }
 
         // --- INITIALIZATION ---
