@@ -6,7 +6,81 @@
     <title>Itinerario: Austin a Medellín</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
-        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}
+        body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}
+        
+        /* --- Pre-Screen Styles --- */
+        #pre-screen-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #ffffff;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.7s ease;
+        }
+        #pre-screen-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pre-screen-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 20px;
+        }
+        .pre-screen-text {
+            text-align: center;
+            color: #333;
+        }
+        .pre-screen-text h2 {
+             color: #CF4647;
+        }
+        .pre-screen-text p {
+            font-size: 1.1em;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .loader {
+            height: 60px;
+            aspect-ratio: 2;
+            border-bottom: 3px solid #0000;
+            background: linear-gradient(90deg,#888 50%,#0000 0) -25% 100%/50% 3px repeat-x border-box;
+            position: relative;
+            animation: l3-0 .75s linear infinite;
+        }
+        .loader:before {
+            content: "";
+            position: absolute;
+            inset: auto 42.5% 0;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #CF4647;
+            animation: l3-1 .75s cubic-bezier(0,900,1,900) infinite;
+        }
+        @keyframes l3-0 { to {background-position: -125% 100%} }
+        @keyframes l3-1 { 0%,2% {bottom: 0%} 98%,to {bottom:.1%} }
+        .enter-button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .enter-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* --- Main App Styles --- */
+        .container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}
         .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;background-color:#fff;padding:8px 15px;border-radius:10px;font-size:0.85em;margin-bottom:15px;box-shadow:0 2px 4px rgba(0,0,0,.05);gap:15px}
         .live-status{display:flex;align-items:center;gap:8px;font-weight:600;color:#d9534f;}
         .update-details{display:flex;align-items:center;gap:10px;flex-grow:1;justify-content:flex-end;}
@@ -62,7 +136,17 @@
     </style>
 </head>
 <body>
-    <div id="privacy-popup" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 style="color:#ffc107">⚠️ ¡Cuidado!</h2><p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p><p style="font-size:0.8em; color:#777;">(Este mensaje desaparecerá el 4 de enero, 2026).</p><button class="modal-close-button">OK</button></div></div>
+    <div id="pre-screen-overlay">
+        <div class="pre-screen-content">
+            <div class="pre-screen-text">
+                <h2>⚠️ ¡Cuidado!</h2>
+                <p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p>
+            </div>
+            <div class="loader"></div>
+            <button id="enter-button" class="enter-button">Sí, ingresar</button>
+        </div>
+    </div>
+
     <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
     <div id="add-item-modal" class="popup-overlay">
         <div class="popup-content">
@@ -297,6 +381,15 @@
             document.body.addEventListener('click', (e) => {
                 const target = e.target;
                 
+                if (target.matches('#enter-button')) {
+                    const overlay = document.getElementById('pre-screen-overlay');
+                    if (overlay) {
+                        overlay.classList.add('hidden');
+                        setTimeout(() => { overlay.style.display = 'none'; }, 700);
+                    }
+                    return;
+                }
+                
                 if (target.matches('.dismiss-banner-btn')) {
                     const banner = target.closest('.how-to-banner');
                     if(banner) banner.style.display = 'none';
@@ -316,9 +409,10 @@
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date;
-                    const allEvents = Object.values(appData.timelineEvents || {});
-                    const events = allEvents.filter(item => item.date === dateStr);
+                    const allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
                     const date = new Date(dateStr + 'T12:00:00');
+                    const noteCount = events.filter(item => item.type === 'note').length;
+                    const badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                     
                     document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
 
@@ -327,7 +421,7 @@
                     if (date >= weatherStartDate && date <= weatherEndDate) {
                         modalContent += getAlgecirasWeatherHTML();
                     }
-                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
+                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr, badge)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
 
                     document.getElementById('calendar-modal').classList.add('popup-visible');
@@ -373,9 +467,6 @@
                 saveData(author || 'Alguien', eventDateForNotification);
                 document.getElementById('add-item-modal').classList.remove('popup-visible');
             });
-            
-            const privacyPopup = document.getElementById('privacy-popup'); 
-            if (new Date() < new Date('2026-01-04T12:00:00')) { privacyPopup.classList.add('popup-visible'); }
         }
 
         // --- INITIALIZATION ---
