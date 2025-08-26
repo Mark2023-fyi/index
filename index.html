@@ -12,13 +12,14 @@
         .update-details{display:flex;align-items:center;gap:10px;flex-grow:1;justify-content:flex-end;}
         .last-update{color:#6c757d;text-align:right;}
         .notification-chip{background-color:#28a745;color:white;padding:5px 12px;border-radius:16px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap;}
-        .how-to-banner{background-color:#e3f2fd;border:1px solid #90caf9;border-radius:10px;padding:15px 45px 15px 20px;margin-bottom:30px;position:relative;display:none;cursor:pointer;}
+        .how-to-banner{background-color:#e3f2fd;border:1px solid #90caf9;border-radius:10px;padding:15px 20px;margin-bottom:30px;position:relative;display:none;}
         .how-to-banner h4{margin:0 0 10px 0;color:#0d47a1;text-align:left;}
         .how-to-banner p{margin:0 0 10px 0;font-size:0.9em;line-height:1.6;text-align:left;}
-        .how-to-banner small{font-size:0.8em;color:#555;text-align:left;display:block;}
-        .close-banner{position:absolute;top:10px;right:15px;font-size:24px;font-weight:bold;color:#999;cursor:pointer;}.close-banner:hover{color:#333;}
+        .dismiss-banner-btn{background:none;border:none;color:#555;text-decoration:underline;font-size:0.8em;cursor:pointer;padding:5px;margin-top:5px;display:block;}
+        .dismiss-banner-btn:hover{color:#0d47a1;}
         .icon-inline{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:0 2px;}
         .add-button-demo{background-color:#007bff;color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
+        .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
         .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
@@ -55,6 +56,9 @@
         .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;}
         .toggle-notes-btn{background:none;border:1px solid #007bff;color:#007bff;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:0.8em;font-weight:600;margin-top:10px;}.toggle-notes-btn:hover{background:#e3f2fd;}
+        .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
+        .weather-icon{font-size:1.5em;}
+        footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
     </style>
 </head>
 <body>
@@ -81,6 +85,8 @@
     <div class="container" id="main-container">
         </div>
     
+    <footer>Version 082525</footer>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -116,6 +122,17 @@
         });
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
         
+        function handleBannerVisibility() {
+            const banner = document.getElementById('how-to-banner');
+            if (banner && localStorage.getItem('itineraryBannerDismissed') !== 'true') {
+                banner.style.display = 'block';
+            }
+        }
+
+        function getAlgecirasWeatherHTML() {
+            return `<div class="weather-forecast"><span class="weather-icon">🌥️</span> <span class="weather-temp">29°/19°C</span> &nbsp;•&nbsp; Algeciras</div>`;
+        }
+
         function renderApp() {
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
@@ -125,6 +142,7 @@
             updateHeader();
             updateCountdowns();
             fetchWeather();
+            handleBannerVisibility();
         }
 
         function generateDayContentHTML(events, dateStr) {
@@ -180,6 +198,12 @@
                 if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
                 html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span>${badge}<button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
+                
+                const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
+                if (d >= weatherStartDate && d <= weatherEndDate) {
+                    html += getAlgecirasWeatherHTML();
+                }
+
                 html += generateDayContentHTML(events, dateStr);
                 html += `</div></div>`;
             }
@@ -213,7 +237,11 @@
             ['importantNotes', 'plannedActivities'].forEach(type => {
                 const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
                 const items = Object.values(appData[type] || {});
-                list.innerHTML = items.map(item => `<li><div class="info-item-text">${item.text}</div></li>`).join('');
+                items.sort((a,b) => (b.timestamp && a.timestamp) ? new Date(b.timestamp) - new Date(a.timestamp) : 0);
+                list.innerHTML = items.map(item => {
+                    const timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
+                    return `<li><div class="info-item-text">${item.text}${timestamp}</div></li>`
+                }).join('');
             });
         }
         
@@ -247,10 +275,9 @@
                     <div class="update-details" id="update-details"></div>
                 </div>
                 <div class="how-to-banner" id="how-to-banner">
-                    <span class="close-banner">&times;</span>
                     <h4>¿Cómo usar?</h4>
-                    <p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes al presionar el botón <span class="icon-inline add-button-demo">+</span> a cualquier día, mirar mensajes cuando veas el ícono <span class="icon-inline">🗒️</span> y seguir los vuelos en vivo <span class="icon-inline"><span class="live-indicator"></span></span>.</p>
-                    <small>Este mensaje desaparecerá permanentemente una vez lo presiones.</small>
+                    <p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes al presionar el botón <span class="icon-inline add-button-demo">+</span>, mirar notificaciones de mensajes nuevos cuando veas este ícono <span class="icon-inline notification-badge-demo">6</span> y seguir los vuelos en vivo <span class="icon-inline"><span class="live-indicator"></span></span>.</p>
+                    <button class="dismiss-banner-btn">No volver a mostrar</button>
                 </div>
                 <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                 <div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div>
@@ -267,18 +294,12 @@
         }
         
         function attachStaticListeners() {
-            // How-to banner logic
-            const banner = document.getElementById('how-to-banner');
-            if (banner && localStorage.getItem('itineraryBannerDismissed') !== 'true') {
-                banner.style.display = 'block';
-            }
-
             document.body.addEventListener('click', (e) => {
                 const target = e.target;
                 
-                const bannerToClose = target.closest('.how-to-banner');
-                if (bannerToClose) {
-                    bannerToClose.style.display = 'none';
+                if (target.matches('.dismiss-banner-btn')) {
+                    const banner = target.closest('.how-to-banner');
+                    if(banner) banner.style.display = 'none';
                     localStorage.setItem('itineraryBannerDismissed', 'true');
                     return;
                 }
@@ -295,19 +316,25 @@
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
-                    if (events.length > 0) {
-                        const date = new Date(dateStr + 'T12:00:00');
-                        document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
-                        document.getElementById('modal-events').innerHTML = `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
-                        document.getElementById('calendar-modal').classList.add('popup-visible');
-                    } else {
-                        const modal = document.getElementById('add-item-modal');
-                        modal.querySelector('#add-item-title').innerText = 'Añadir Nota al Día';
-                        modal.querySelector('#author-select-container').style.display = 'block';
-                        modal.querySelector('form').reset();
-                        modal.querySelector('#item-type-input').value = 'timelineEvents';
-                        modal.querySelector('#item-date-input').value = dateStr;
-                        modal.classList.add('popup-visible');
+                    const date = new Date(dateStr + 'T12:00:00');
+                    let modalContent = '';
+                    
+                    const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
+                    if (date >= weatherStartDate && date <= weatherEndDate) {
+                        modalContent += getAlgecirasWeatherHTML();
+                    }
+                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
+
+                    document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
+                    document.getElementById('modal-events').innerHTML = modalContent;
+                    document.getElementById('calendar-modal').classList.add('popup-visible');
+                    
+                    if (events.length === 0) {
+                        // This timeout allows the modal to become visible before the add-item modal potentially covers it.
+                        setTimeout(() => {
+                            const addButton = document.querySelector('#modal-date .add-button');
+                            if(addButton) addButton.click();
+                        }, 50);
                     }
                     return;
                 }
