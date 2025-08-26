@@ -65,27 +65,26 @@
         .item-description{padding-bottom:8px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:center;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
         .note-content{flex-grow:1;}.author-name{font-size:0.9em;font-weight:600}
         .item-description.grouped-message{margin-top:-4px;padding-top:4px}
-        .item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
+        .item-timestamp{font-size:0.7em; color:#888; white-space:nowrap;}
         #modal-events .item-description{margin-bottom:4px;padding-bottom:4px;}
         #modal-events .item-content{box-shadow:none;padding:0;}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
         .modal-disclaimer{font-size:0.75em; color:#999; margin-top:15px;}
-        #date-picker-container { margin-top:10px; } #date-picker-container label { font-weight: 600; font-size: 0.9em; }
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
-        #add-item-modal textarea, #add-item-modal select, #add-item-modal input[type="date"]{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
+        #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;display:inline-flex;align-items:center;justify-content:center;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .toggle-notes-btn{background:none;border:1px solid #007bff;color:#007bff;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:0.8em;font-weight:600;margin-top:10px;}.toggle-notes-btn:hover{background:#e3f2fd;}
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:#007bff; text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
-        .reply-btn{background:none; border:none; cursor:pointer; font-size:0.8em; color:#555; padding:4px 8px; opacity:0.6; border-radius:4px; font-weight:600;display:inline-flex;align-items:center;gap:5px;}.reply-btn:hover{opacity:1; color:#007bff; background-color: #f0f2f5;}
+        .note-footer{display:flex; align-items:center; gap:12px; margin-top:8px;}
+        .reply-btn{background:none; border:none; cursor:pointer; font-size:0.75em; color:#555; padding:2px 6px; opacity:0.7; border-radius:4px; font-weight:600; display:inline-flex; align-items:center; gap:5px;}.reply-btn:hover{opacity:1; color:#007bff; background-color: #f0f2f5;}
         .reply-counter-badge{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
         .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:10px;}
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
-        #message-center-view .item-content { margin-bottom: 20px; }
-        #message-center-view .main-add-button { display:block; margin: 0 auto 30px; }
+        #messaging-center-view .item-content { margin-bottom: 15px; }
         footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
     </style>
 </head>
@@ -114,10 +113,6 @@
                         <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option><option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
                     </select>
                 </div>
-                <div id="date-picker-container" style="display:none; text-align:left;">
-                    <label for="item-date-picker-input">¿Para qué día es la nota?</label>
-                    <input type="date" id="item-date-picker-input" required>
-                </div>
                 <textarea id="item-description-input" placeholder="Escribe tu nota o plan aquí..." required></textarea>
                 <button type="submit" class="modal-close-button">Guardar</button>
                 <p class="modal-disclaimer">Los mensajes no se pueden borrar ni editar.</p>
@@ -128,7 +123,7 @@
     <div class="container" id="main-container">
         </div>
     
-    <footer>Version 082525</footer>
+    <footer>Version 082625</footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -188,13 +183,76 @@
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
             renderCalendar(); 
-            renderMessageCenter();
+            renderMessagingCenter();
             renderInfoLists();
             attachDynamicListeners();
             updateHeader();
             updateCountdowns();
             fetchWeather();
             handleBannerVisibility();
+        }
+
+        function renderMessageThreadsHTML(noteEvents, uniqueId, options = {}) {
+            if (noteEvents.length === 0) return '';
+            let html = '';
+            const notesById = {};
+            noteEvents.forEach(note => { notesById[note.id] = { ...note, replies: [] }; });
+            const messageThreads = [];
+            noteEvents.forEach(note => {
+                if (note.replyingTo && notesById[note.replyingTo]) {
+                    notesById[note.replyingTo].replies.push(notesById[note.id]);
+                } else {
+                    messageThreads.push(notesById[note.id]);
+                }
+            });
+
+            if (options.sortByLatestActivity) {
+                messageThreads.forEach(thread => {
+                    const lastReplyTimestamp = thread.replies.length > 0 ? Math.max(...thread.replies.map(r => new Date(r.timestamp).getTime())) : 0;
+                    thread.latestActivity = Math.max(new Date(thread.timestamp).getTime(), lastReplyTimestamp);
+                });
+                messageThreads.sort((a, b) => b.latestActivity - a.latestActivity);
+            } else {
+                messageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            }
+             messageThreads.forEach(thread => thread.replies.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));
+            
+            const badgeCount = options.isMainView ? messageThreads.length : 0;
+            const badge = badgeCount > 0 ? `<div class="timeline-notification-badge">${badgeCount}</div>` : '';
+            html += `<h4 class="messages-header">Mensajes: ${badge}</h4>`;
+
+            let lastAuthor = null;
+            const renderMessage = (note, isReply = false) => {
+                const showAuthor = note.author !== lastAuthor;
+                lastAuthor = isReply ? null : note.author;
+                const authorHtml = showAuthor ? `<strong class="author-name">${note.author}:</strong> ` : '';
+                const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
+                const replyCounter = note.replies && note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
+                const footerHtml = `<div class="note-footer">${timestampHtml}<button class="reply-btn" data-reply-to-id="${note.id}" data-date="${note.date}">Responder${replyCounter}</button></div>`;
+
+                if(isReply) {
+                    return `<div class="reply-block"><div class="note-content">${authorHtml}${truncateText(note.text)}${footerHtml}</div></div>`;
+                } else {
+                    const groupClass = showAuthor ? '' : 'grouped-message';
+                    let dayInfo = '';
+                    if (options.showDate) {
+                        const date = new Date(note.date + 'T12:00:00');
+                        dayInfo = `<div class="item-date" style="font-size:0.9em; margin-bottom:10px;">${dayFormatter.format(date)}</div>`;
+                    }
+                    return `<div class="item-content ${groupClass}">${dayInfo}<div class="item-description"><div class="note-content">${authorHtml}${truncateText(note.text)}${footerHtml}</div></div>`;
+                }
+            };
+            
+            messageThreads.forEach(thread => {
+                html += renderMessage(thread, false);
+                if (thread.replies.length > 0) {
+                    html += `<div class="replies-container">`;
+                    thread.replies.forEach(reply => { html += renderMessage(reply, true); });
+                    html += `</div>`;
+                }
+                if(!options.showDate) html += `</div>`; // Close .item-content
+            });
+            return html;
         }
 
         function generateDayContentHTML(events, dateStr) {
@@ -208,64 +266,8 @@
                  html = `<div class="item-description tbd">No hay planes para este día.</div>`;
             }
             
-            if (noteEvents.length > 0) {
-                const notesById = {};
-                noteEvents.forEach(note => { notesById[note.id] = { ...note, replies: [] }; });
-                const messageThreads = [];
-                noteEvents.forEach(note => {
-                    if (note.replyingTo && notesById[note.replyingTo]) {
-                        notesById[note.replyingTo].replies.push(notesById[note.id]);
-                    } else {
-                        messageThreads.push(notesById[note.id]);
-                    }
-                });
-                messageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                messageThreads.forEach(thread => thread.replies.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));
-                const badge = messageThreads.length > 0 ? `<div class="timeline-notification-badge">${messageThreads.length}</div>` : '';
-                html += `<h4 class="messages-header">Mensajes: ${badge}</h4>`;
-                
-                let lastAuthor = null;
-                const renderMessage = (note, isReply = false) => {
-                    const showAuthor = note.author !== lastAuthor;
-                    lastAuthor = isReply ? null : note.author;
-                    const authorHtml = showAuthor ? `<strong class="author-name">${note.author}:</strong> ` : '';
-                    const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
-                    
-                    if(isReply) {
-                        return `<div class="reply-block"><div class="note-content">${authorHtml}${truncateText(note.text)}${timestampHtml}</div></div>`;
-                    } else {
-                        const groupClass = showAuthor ? '' : 'grouped-message';
-                        const replyCounter = note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
-                        return `<div class="item-description ${groupClass}">
-                                    <div class="note-content">${authorHtml}${truncateText(note.text)}${timestampHtml}</div>
-                                    <button class="reply-btn" data-reply-to-id="${note.id}" data-date="${note.date}">Responder ${replyCounter}</button>
-                                </div>`;
-                    }
-                };
-                
-                messageThreads.slice(0, 3).forEach(thread => {
-                    html += renderMessage(thread, false);
-                    if (thread.replies.length > 0) {
-                        html += `<div class="replies-container">`;
-                        thread.replies.forEach(reply => { html += renderMessage(reply, true); });
-                        html += `</div>`;
-                    }
-                });
+            html += renderMessageThreadsHTML(noteEvents, dateStr, { isMainView: true });
 
-                if (messageThreads.length > 3) {
-                    let collapsedHtml = '';
-                    messageThreads.slice(3).forEach(thread => {
-                        collapsedHtml += renderMessage(thread, false);
-                        if (thread.replies.length > 0) {
-                            collapsedHtml += `<div class="replies-container">`;
-                            thread.replies.forEach(reply => { collapsedHtml += renderMessage(reply, true); });
-                            collapsedHtml += `</div>`;
-                        }
-                    });
-                    html += `<div id="notes-threads-${dateStr}" class="collapsible-notes" style="display:none;">${collapsedHtml}</div>`;
-                    html += `<button class="toggle-notes-btn" data-target="notes-threads-${dateStr}">Ver ${messageThreads.length - 3} conversaciones más</button>`;
-                }
-            }
             return html;
         }
 
@@ -311,35 +313,22 @@
                 html += '</div>'; calendarView.innerHTML += html;
             });
         }
-        
-        function renderMessageCenter() {
-            const messageCenterView = document.getElementById('message-center-view');
-            const allNotes = Object.values(appData.timelineEvents || {}).filter(event => event.type === 'note');
-            let html = `<button class="modal-close-button main-add-button" data-type="timelineEvents">Añadir Nota Nueva</button>`;
-            
-            if(allNotes.length === 0) {
-                html += '<p style="text-align:center; color:#777;">No hay mensajes todavía.</p>';
-                messageCenterView.innerHTML = html;
-                return;
-            }
 
-            const notesByDate = allNotes.reduce((acc, note) => {
-                (acc[note.date] = acc[note.date] || []).push(note);
-                return acc;
-            }, {});
-
-            const sortedDates = Object.keys(notesByDate).sort((a,b) => new Date(b) - new Date(a));
+        function renderMessagingCenter() {
+            const messagingView = document.getElementById('messaging-center-view');
+            const allEvents = Object.values(appData.timelineEvents || {});
+            const allNoteEvents = allEvents.filter(e => e.type === 'note');
             
-            sortedDates.forEach(dateStr => {
-                const events = notesByDate[dateStr];
-                const date = new Date(dateStr + 'T12:00:00');
-                html += `<div class="item-content"><div class="item-date"><span>${dayFormatter.format(date)}</span></div>`;
-                html += generateDayContentHTML(events, dateStr);
-                html += `</div>`;
-            });
-            messageCenterView.innerHTML = html;
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const todayStr = `${year}-${month}-${day}`;
+            
+            let header = `<h2>Centro de Mensajes</h2>`;
+            messagingView.innerHTML = header + renderMessageThreadsHTML(allNoteEvents, 'messaging-center', { sortByLatestActivity: true, showDate: true });
         }
-
+        
         function renderInfoLists() {
             ['importantNotes', 'plannedActivities'].forEach(type => {
                 const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
@@ -370,22 +359,30 @@
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
 
-        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button><button id="show-messages">Centro de Mensajes</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div id="message-center-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
+        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-messaging">Centro de Mensajes</button><button id="show-calendar">Calendario</button></div><div class="timeline" id="timeline-view"></div><div id="messaging-center-view" class="view-hidden"></div><div id="calendar-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
         
         function attachDynamicListeners() {
-            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view'), messageCenterView = document.getElementById('message-center-view');
-            const showTimelineBtn = document.getElementById('show-timeline'), showCalendarBtn = document.getElementById('show-calendar'), showMessagesBtn = document.getElementById('show-messages');
-            
-            const handleViewChange = (activeBtn, activeView) => {
-                [showTimelineBtn, showCalendarBtn, showMessagesBtn].forEach(btn => btn.classList.remove('active'));
-                [timelineView, calendarView, messageCenterView].forEach(view => view.classList.add('view-hidden'));
-                activeBtn.classList.add('active');
-                activeView.classList.remove('view-hidden');
+            const views = {
+                timeline: document.getElementById('timeline-view'),
+                calendar: document.getElementById('calendar-view'),
+                messaging: document.getElementById('messaging-center-view')
             };
-            
-            showTimelineBtn.addEventListener('click', () => handleViewChange(showTimelineBtn, timelineView));
-            showCalendarBtn.addEventListener('click', () => handleViewChange(showCalendarBtn, calendarView));
-            showMessagesBtn.addEventListener('click', () => handleViewChange(showMessagesBtn, messageCenterView));
+            document.getElementById('show-timeline').addEventListener('click', () => switchView('timeline'));
+            document.getElementById('show-calendar').addEventListener('click', () => switchView('calendar'));
+            document.getElementById('show-messaging').addEventListener('click', () => switchView('messaging'));
+
+            function switchView(activeView) {
+                Object.keys(views).forEach(key => {
+                    const button = document.getElementById(`show-${key}`);
+                    if (key === activeView) {
+                        button.classList.add('active');
+                        views[key].classList.remove('view-hidden');
+                    } else {
+                        button.classList.remove('active');
+                        views[key].classList.add('view-hidden');
+                    }
+                });
+            }
         }
         
         function attachStaticListeners() {
@@ -396,17 +393,17 @@
                 if (target.matches('.toggle-text-btn')) { e.preventDefault(); const parent = target.closest('.note-content, .info-item-text'), moreText = parent.querySelector('.more-text'), ellipsis = parent.querySelector('.ellipsis'); if (moreText) { const isHidden = moreText.style.display === 'none'; moreText.style.display = isHidden ? 'inline' : 'none'; if(ellipsis) ellipsis.style.display = isHidden ? 'none' : 'inline'; target.textContent = isHidden ? 'Ver menos' : 'Ver más'; } return; }
                 const popup = target.closest('.popup-overlay');
                 if (popup && (target === popup || target.matches('.close-popup, .modal-close-button'))) { popup.classList.remove('popup-visible'); return; }
-                if (target.matches('.toggle-notes-btn')) { const targetId = target.dataset.target, notesDiv = document.getElementById(targetId); if (notesDiv) { const isHidden = notesDiv.style.display === 'none'; notesDiv.style.display = isHidden ? 'block' : 'none'; target.textContent = isHidden ? 'Mostrar menos' : `Ver ${notesDiv.children.length} conversaciones más`; } return; }
                 
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
                     const date = new Date(dateStr + 'T12:00:00');
+                    const noteCount = events.filter(item => item.type === 'note').length, badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                     document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
                     let modalContent = '';
                     const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                     if (date >= weatherStartDate && date <= weatherEndDate) { modalContent += getAlgecirasWeatherHTML(); }
-                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
+                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr, badge)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
                     document.getElementById('calendar-modal').classList.add('popup-visible');
                     if (events.length === 0) { setTimeout(() => { const addButton = document.querySelector('#modal-date .add-button'); if(addButton) addButton.click(); }, 50); }
@@ -424,14 +421,13 @@
                         modal.querySelector('#item-type-input').value = 'timelineEvents';
                         modal.querySelector('#item-date-input').value = date;
                         modal.querySelector('#reply-to-id-input').value = replyToId;
-                        modal.querySelector('#date-picker-container').style.display = 'none';
                         document.getElementById('calendar-modal').classList.remove('popup-visible');
                         modal.classList.add('popup-visible');
                     }
                     return;
                 }
                 
-                const addButton = target.closest('.add-button, .main-add-button');
+                const addButton = target.closest('.add-button');
                 if(addButton) {
                     const type = addButton.dataset.type, itemDate = addButton.dataset.date || '';
                     const modal = document.getElementById('add-item-modal');
@@ -440,7 +436,6 @@
                     modal.querySelector('#item-type-input').value = type;
                     modal.querySelector('#item-date-input').value = itemDate;
                     modal.querySelector('#reply-to-id-input').value = '';
-                    modal.querySelector('#date-picker-container').style.display = itemDate ? 'none' : 'block';
                     document.getElementById('calendar-modal').classList.remove('popup-visible');
                     modal.classList.add('popup-visible');
                     return;
@@ -458,10 +453,7 @@
                 if(replyingToId) item.replyingTo = replyingToId;
                 let eventDateForNotification = null;
                 if (type === 'timelineEvents') { 
-                    let date = document.getElementById('item-date-input').value;
-                    if(!date) date = document.getElementById('item-date-picker-input').value;
-                    if(!date) { alert('Por favor selecciona una fecha.'); return; }
-                    item.date = date; 
+                    item.date = document.getElementById('item-date-input').value; 
                     item.icon = '🗒️'; item.type = 'note'; item.author = author; 
                     eventDateForNotification = item.date;
                 }
