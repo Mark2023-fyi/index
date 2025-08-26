@@ -7,11 +7,18 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
         body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}
-        .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;background-color:#fff;padding:8px 15px;border-radius:10px;font-size:0.85em;margin-bottom:30px;box-shadow:0 2px 4px rgba(0,0,0,.05);gap:15px}
+        .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;background-color:#fff;padding:8px 15px;border-radius:10px;font-size:0.85em;margin-bottom:15px;box-shadow:0 2px 4px rgba(0,0,0,.05);gap:15px}
         .live-status{display:flex;align-items:center;gap:8px;font-weight:600;color:#d9534f;}
         .update-details{display:flex;align-items:center;gap:10px;flex-grow:1;justify-content:flex-end;}
         .last-update{color:#6c757d;text-align:right;}
         .notification-chip{background-color:#28a745;color:white;padding:5px 12px;border-radius:16px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+        .how-to-banner{background-color:#e3f2fd;border:1px solid #90caf9;border-radius:10px;padding:15px 45px 15px 20px;margin-bottom:30px;position:relative;display:none;cursor:pointer;}
+        .how-to-banner h4{margin:0 0 10px 0;color:#0d47a1;text-align:left;}
+        .how-to-banner p{margin:0 0 10px 0;font-size:0.9em;line-height:1.6;text-align:left;}
+        .how-to-banner small{font-size:0.8em;color:#555;text-align:left;display:block;}
+        .close-banner{position:absolute;top:10px;right:15px;font-size:24px;font-weight:bold;color:#999;cursor:pointer;}.close-banner:hover{color:#333;}
+        .icon-inline{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:0 2px;}
+        .add-button-demo{background-color:#007bff;color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
         .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
@@ -233,18 +240,48 @@
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
 
-        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
+        function getBaseHTML() { 
+            return `<h1>🤠 De Austin a Medellín 🇨🇴</h1>
+                <div class="status-bar" id="status-bar">
+                    <div class="live-status"><span class="live-indicator"></span>En vivo</div>
+                    <div class="update-details" id="update-details"></div>
+                </div>
+                <div class="how-to-banner" id="how-to-banner">
+                    <span class="close-banner">&times;</span>
+                    <h4>¿Cómo usar?</h4>
+                    <p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes al presionar el botón <span class="icon-inline add-button-demo">+</span> a cualquier día, mirar mensajes cuando veas el ícono <span class="icon-inline">🗒️</span> y seguir los vuelos en vivo <span class="icon-inline"><span class="live-indicator"></span></span>.</p>
+                    <small>Este mensaje desaparecerá permanentemente una vez lo presiones.</small>
+                </div>
+                <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
+                <div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div>
+                <div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div>
+                <div class="timeline" id="timeline-view"></div>
+                <div id="calendar-view" class="view-hidden"></div>
+                <div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`;
+        }
         
         function attachDynamicListeners() {
-            const timelineView = document.getElementById('timeline-view');
-            const calendarView = document.getElementById('calendar-view');
+            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
             document.getElementById('show-timeline').addEventListener('click', () => { document.getElementById('show-timeline').classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
             document.getElementById('show-calendar').addEventListener('click', () => { document.getElementById('show-calendar').classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
         }
         
         function attachStaticListeners() {
+            // How-to banner logic
+            const banner = document.getElementById('how-to-banner');
+            if (banner && localStorage.getItem('itineraryBannerDismissed') !== 'true') {
+                banner.style.display = 'block';
+            }
+
             document.body.addEventListener('click', (e) => {
                 const target = e.target;
+                
+                const bannerToClose = target.closest('.how-to-banner');
+                if (bannerToClose) {
+                    bannerToClose.style.display = 'none';
+                    localStorage.setItem('itineraryBannerDismissed', 'true');
+                    return;
+                }
 
                 const popup = target.closest('.popup-overlay');
                 if (popup && (target === popup || target.matches('.close-popup, .modal-close-button'))) { popup.classList.remove('popup-visible'); return; }
