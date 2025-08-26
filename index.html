@@ -53,8 +53,8 @@
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
-        .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;}
-        .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;}
+        .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;display:inline-flex;align-items:center;justify-content:center;}
+        .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .toggle-notes-btn{background:none;border:1px solid #007bff;color:#007bff;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:0.8em;font-weight:600;margin-top:10px;}.toggle-notes-btn:hover{background:#e3f2fd;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
@@ -145,7 +145,7 @@
             handleBannerVisibility();
         }
 
-        function generateDayContentHTML(events, dateStr) {
+        function generateDayContentHTML(events, dateStr, badge = '') {
             let html = '';
             const planEvents = events.filter(e => e.type !== 'note');
             const noteEvents = events.filter(e => e.type === 'note');
@@ -164,7 +164,7 @@
             
             if (noteEvents.length > 0) {
                 noteEvents.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                html += '<h4 class="messages-header">Mensajes:</h4>';
+                html += `<h4 class="messages-header">Mensajes: ${badge}</h4>`;
                 
                 let lastAuthor = null;
                 const renderNote = note => {
@@ -197,14 +197,14 @@
                 const badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                 if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
-                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span>${badge}<button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
+                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 
                 const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                 if (d >= weatherStartDate && d <= weatherEndDate) {
                     html += getAlgecirasWeatherHTML();
                 }
 
-                html += generateDayContentHTML(events, dateStr);
+                html += generateDayContentHTML(events, dateStr, badge);
                 html += `</div></div>`;
             }
             timelineView.innerHTML = html;
@@ -315,22 +315,24 @@
                 
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
-                    const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
+                    const dateStr = calendarDay.dataset.date;
+                    const allEvents = Object.values(appData.timelineEvents || {});
+                    const events = allEvents.filter(item => item.date === dateStr);
                     const date = new Date(dateStr + 'T12:00:00');
-                    let modalContent = '';
                     
+                    document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
+
+                    let modalContent = '';
                     const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                     if (date >= weatherStartDate && date <= weatherEndDate) {
                         modalContent += getAlgecirasWeatherHTML();
                     }
                     modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
-
-                    document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
+
                     document.getElementById('calendar-modal').classList.add('popup-visible');
                     
                     if (events.length === 0) {
-                        // This timeout allows the modal to become visible before the add-item modal potentially covers it.
                         setTimeout(() => {
                             const addButton = document.querySelector('#modal-date .add-button');
                             if(addButton) addButton.click();
