@@ -9,75 +9,18 @@
         body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px}
         
         /* --- Pre-Screen Styles --- */
-        #pre-screen-overlay {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: #ffffff;
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.7s ease;
-        }
-        #pre-screen-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .pre-screen-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            padding: 20px;
-        }
-        .pre-screen-text {
-            text-align: center;
-            color: #333;
-        }
-        .pre-screen-text h2 {
-             color: #CF4647;
-        }
-        .pre-screen-text p {
-            font-size: 1.1em;
-            max-width: 400px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .loader {
-            height: 60px;
-            aspect-ratio: 2;
-            border-bottom: 3px solid #0000;
-            background: linear-gradient(90deg,#888 50%,#0000 0) -25% 100%/50% 3px repeat-x border-box;
-            position: relative;
-            animation: l3-0 .75s linear infinite;
-        }
-        .loader:before {
-            content: "";
-            position: absolute;
-            inset: auto 42.5% 0;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            background: #CF4647;
-            animation: l3-1 .75s cubic-bezier(0,900,1,900) infinite;
-        }
+        #pre-screen-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.7s ease; }
+        #pre-screen-overlay.hidden { opacity: 0; pointer-events: none; }
+        .pre-screen-content { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 20px; }
+        .pre-screen-text { text-align: center; color: #333; }
+        .pre-screen-text h2 { color: #CF4647; }
+        .pre-screen-text p { font-size: 1.1em; max-width: 400px; margin: 0 auto; line-height: 1.6; }
+        .loader { height: 60px; aspect-ratio: 2; border-bottom: 3px solid #0000; background: linear-gradient(90deg,#888 50%,#0000 0) -25% 100%/50% 3px repeat-x border-box; position: relative; animation: l3-0 .75s linear infinite; }
+        .loader:before { content: ""; position: absolute; inset: auto 42.5% 0; aspect-ratio: 1; border-radius: 50%; background: #CF4647; animation: l3-1 .75s cubic-bezier(0,900,1,900) infinite; }
         @keyframes l3-0 { to {background-position: -125% 100%} }
         @keyframes l3-1 { 0%,2% {bottom: 0%} 98%,to {bottom:.1%} }
-        .enter-button {
-            font-family: 'Poppins', sans-serif;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 30px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        .enter-button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
+        .enter-button { font-family: 'Poppins', sans-serif; background-color: #007bff; color: white; border: none; border-radius: 8px; padding: 12px 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
+        .enter-button:hover { background-color: #0056b3; transform: scale(1.05); }
 
         /* --- Main App Styles --- */
         .container{max-width:800px;margin:0 auto}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:#007bff}
@@ -103,8 +46,9 @@
         .flight-route{font-size:0.8em;color:#555;margin-top:4px}
         .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:#007bff; display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:0;margin:0; list-style-type: none;}.info-card li{display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #f0f0f0;}.info-card li:last-child{border-bottom:none;}.info-item-text{flex-grow:1;}
         .weather-card{background:#fff;border:1px solid #ddd;padding:10px 15px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);flex:1;min-width:260px;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.weather-card-left{text-align:left}.weather-card .city{font-weight:600;font-size:1em;margin:0}.weather-card .time{font-family:'Roboto Mono',monospace;font-size:1.1em;margin:2px 0 0 0;color:#555}.weather-card-right{display:flex;align-items:center;gap:8px}.weather-card .icon{font-size:2em;line-height:1}.weather-card .temp{font-size:1.2em;font-weight:600}
-        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
+        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh;}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
         #modal-date{display:flex;justify-content:space-between;align-items:center;width:100%;gap:15px;margin-right:20px;}
+        #modal-events{overflow-y:auto; flex-grow:1; text-align:left;}
         .view-switcher{display:flex;justify-content:center;margin-bottom:30px;background:#e0e0e0;border-radius:10px;padding:5px}
         .view-switcher button{border:none;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:1em;font-weight:600;background:transparent;color:#555;border-radius:8px;cursor:pointer;transition:all .3s ease}
         .view-switcher button.active{background:#fff;color:#007bff;box-shadow:0 2px 5px rgba(0,0,0,.1)}
@@ -123,13 +67,14 @@
         .item-timestamp{display:block; font-size:0.7em; color:#888; margin-top:5px;}
         #modal-events .item-description{margin-bottom:4px;padding-bottom:4px;}
         #modal-events .item-content{box-shadow:none;padding:0;}
-        .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s}.modal-close-button:hover{background:#0056b3}
+        .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;display:inline-flex;align-items:center;justify-content:center;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .toggle-notes-btn{background:none;border:1px solid #007bff;color:#007bff;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:0.8em;font-weight:600;margin-top:10px;}.toggle-notes-btn:hover{background:#e3f2fd;}
+        .toggle-text-btn{font-size:0.8em; font-weight:600; color:#007bff; text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
         footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
@@ -217,6 +162,15 @@
             return `<div class="weather-forecast"><span class="weather-icon">🌥️</span> <span class="weather-temp">29°/19°C</span> &nbsp;•&nbsp; Algeciras</div>`;
         }
 
+        function truncateText(text, wordLimit = 20) {
+            const words = text.split(' ');
+            if (words.length <= wordLimit) return text;
+
+            const visibleText = words.slice(0, wordLimit).join(' ');
+            const hiddenText = words.slice(wordLimit).join(' ');
+            return `<span>${visibleText}</span><span class="ellipsis">... </span><span class="more-text" style="display:none;">${hiddenText}</span> <a href="#" class="toggle-text-btn">Ver más</a>`;
+        }
+        
         function renderApp() {
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
@@ -235,13 +189,7 @@
             const noteEvents = events.filter(e => e.type === 'note');
 
             if (planEvents.length > 0) {
-                planEvents.forEach(item => {
-                    html += `<div class="item-description">${item.description}</div>`;
-                    if (item.flightInfo) {
-                        const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join('');
-                        html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`;
-                    }
-                });
+                planEvents.forEach(item => { html += `<div class="item-description">${item.description}</div>`; if (item.flightInfo) { const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join(''); html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`; } });
             } else if (noteEvents.length === 0) {
                  html = `<div class="item-description tbd">No hay planes para este día.</div>`;
             }
@@ -256,7 +204,7 @@
                     lastAuthor = note.author;
                     const authorHtml = showAuthor ? `<strong class="author-name">${note.author}:</strong> ` : '';
                     const groupClass = showAuthor ? '' : 'grouped-message';
-                    return `<div class="item-description ${groupClass}"><div class="note-content">${authorHtml}${note.text}<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span></div></div>`;
+                    return `<div class="item-description ${groupClass}"><div class="note-content">${authorHtml}${truncateText(note.text)}<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span></div></div>`;
                 };
                 
                 html += noteEvents.slice(0, 3).map(renderNote).join('');
@@ -282,12 +230,8 @@
                 if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
                 html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
-                
                 const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
-                if (d >= weatherStartDate && d <= weatherEndDate) {
-                    html += getAlgecirasWeatherHTML();
-                }
-
+                if (d >= weatherStartDate && d <= weatherEndDate) { html += getAlgecirasWeatherHTML(); }
                 html += generateDayContentHTML(events, dateStr, badge);
                 html += `</div></div>`;
             }
@@ -322,10 +266,7 @@
                 const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
                 const items = Object.values(appData[type] || {});
                 items.sort((a,b) => (b.timestamp && a.timestamp) ? new Date(b.timestamp) - new Date(a.timestamp) : 0);
-                list.innerHTML = items.map(item => {
-                    const timestamp = item.timestamp ? `<span class="item-timestamp">${new Date(item.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : '';
-                    return `<li><div class="info-item-text">${item.text}${timestamp}</div></li>`
-                }).join('');
+                list.innerHTML = items.map(item => `<li><div class="info-item-text">${truncateText(item.text, 20)}${item.timestamp?`<span class="item-timestamp">${new Date(item.timestamp).toLocaleString("es-CO",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</span>`:""}</div></li>`).join("");
             });
         }
         
@@ -352,24 +293,7 @@
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
 
-        function getBaseHTML() { 
-            return `<h1>🤠 De Austin a Medellín 🇨🇴</h1>
-                <div class="status-bar" id="status-bar">
-                    <div class="live-status"><span class="live-indicator"></span>En vivo</div>
-                    <div class="update-details" id="update-details"></div>
-                </div>
-                <div class="how-to-banner" id="how-to-banner">
-                    <h4>¿Cómo usar?</h4>
-                    <p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes al presionar el botón <span class="icon-inline add-button-demo">+</span>, mirar notificaciones de mensajes nuevos cuando veas este ícono <span class="icon-inline notification-badge-demo">6</span> y seguir los vuelos en vivo <span class="icon-inline"><span class="live-indicator"></span></span>.</p>
-                    <button class="dismiss-banner-btn">No volver a mostrar</button>
-                </div>
-                <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
-                <div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div>
-                <div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div>
-                <div class="timeline" id="timeline-view"></div>
-                <div id="calendar-view" class="view-hidden"></div>
-                <div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`;
-        }
+        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes al presionar el botón <span class="icon-inline add-button-demo">+</span>, mirar notificaciones de mensajes nuevos cuando veas este ícono <span class="icon-inline notification-badge-demo">6</span> y seguir los vuelos en vivo <span class="icon-inline"><span class="live-indicator"></span></span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
         
         function attachDynamicListeners() {
             const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
@@ -383,20 +307,30 @@
                 
                 if (target.matches('#enter-button')) {
                     const overlay = document.getElementById('pre-screen-overlay');
-                    if (overlay) {
-                        overlay.classList.add('hidden');
-                        setTimeout(() => { overlay.style.display = 'none'; }, 700);
-                    }
+                    if (overlay) { overlay.classList.add('hidden'); setTimeout(() => { overlay.style.display = 'none'; }, 700); }
                     return;
                 }
                 
                 if (target.matches('.dismiss-banner-btn')) {
-                    const banner = target.closest('.how-to-banner');
-                    if(banner) banner.style.display = 'none';
+                    const banner = target.closest('.how-to-banner'); if(banner) banner.style.display = 'none';
                     localStorage.setItem('itineraryBannerDismissed', 'true');
                     return;
                 }
 
+                if (target.matches('.toggle-text-btn')) {
+                    e.preventDefault();
+                    const parent = target.closest('.note-content, .info-item-text');
+                    const moreText = parent.querySelector('.more-text');
+                    const ellipsis = parent.querySelector('.ellipsis');
+                    if (moreText) {
+                        const isHidden = moreText.style.display === 'none';
+                        moreText.style.display = isHidden ? 'inline' : 'none';
+                        if(ellipsis) ellipsis.style.display = isHidden ? 'none' : 'inline';
+                        target.textContent = isHidden ? 'Ver menos' : 'Ver más';
+                    }
+                    return;
+                }
+                
                 const popup = target.closest('.popup-overlay');
                 if (popup && (target === popup || target.matches('.close-popup, .modal-close-button'))) { popup.classList.remove('popup-visible'); return; }
 
@@ -408,30 +342,19 @@
                 
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
-                    const dateStr = calendarDay.dataset.date;
-                    const allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
+                    const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
                     const date = new Date(dateStr + 'T12:00:00');
-                    const noteCount = events.filter(item => item.type === 'note').length;
-                    const badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
+                    const noteCount = events.filter(item => item.type === 'note').length, badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                     
                     document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
-
                     let modalContent = '';
                     const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
-                    if (date >= weatherStartDate && date <= weatherEndDate) {
-                        modalContent += getAlgecirasWeatherHTML();
-                    }
+                    if (date >= weatherStartDate && date <= weatherEndDate) { modalContent += getAlgecirasWeatherHTML(); }
                     modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr, badge)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
-
                     document.getElementById('calendar-modal').classList.add('popup-visible');
                     
-                    if (events.length === 0) {
-                        setTimeout(() => {
-                            const addButton = document.querySelector('#modal-date .add-button');
-                            if(addButton) addButton.click();
-                        }, 50);
-                    }
+                    if (events.length === 0) { setTimeout(() => { const addButton = document.querySelector('#modal-date .add-button'); if(addButton) addButton.click(); }, 50); }
                     return;
                 }
 
