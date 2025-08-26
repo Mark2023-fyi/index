@@ -70,19 +70,22 @@
         #modal-events .item-content{box-shadow:none;padding:0;}
         .modal-close-button{border:none;background:#007bff;color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
         .modal-disclaimer{font-size:0.75em; color:#999; margin-top:15px;}
+        #date-picker-container { margin-top:10px; } #date-picker-container label { font-weight: 600; font-size: 0.9em; }
         .add-button{background-color:#007bff;color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
-        #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
+        #add-item-modal textarea, #add-item-modal select, #add-item-modal input[type="date"]{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .timeline-notification-badge{background-color:#ff4d4d;color:white;border-radius:50%;min-width:20px;height:20px;padding:0 3px;font-size:12px;line-height:20px;text-align:center;font-weight:bold;display:inline-flex;align-items:center;justify-content:center;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .toggle-notes-btn{background:none;border:1px solid #007bff;color:#007bff;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:0.8em;font-weight:600;margin-top:10px;}.toggle-notes-btn:hover{background:#e3f2fd;}
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:#007bff; text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
-        .reply-btn{background:none; border:none; cursor:pointer; font-size:0.8em; color:#555; padding:4px 8px; opacity:0.6; border-radius:4px; font-weight:600;}.reply-btn:hover{opacity:1; color:#007bff; background-color: #f0f2f5;}
-        .reply-counter-badge{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;margin-left:5px;}
+        .reply-btn{background:none; border:none; cursor:pointer; font-size:0.8em; color:#555; padding:4px 8px; opacity:0.6; border-radius:4px; font-weight:600;display:inline-flex;align-items:center;gap:5px;}.reply-btn:hover{opacity:1; color:#007bff; background-color: #f0f2f5;}
+        .reply-counter-badge{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
         .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:10px;}
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
+        #message-center-view .item-content { margin-bottom: 20px; }
+        #message-center-view .main-add-button { display:block; margin: 0 auto 30px; }
         footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
     </style>
 </head>
@@ -110,6 +113,10 @@
                         <option value="" disabled selected>¿Quién eres?</option>
                         <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option><option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
                     </select>
+                </div>
+                <div id="date-picker-container" style="display:none; text-align:left;">
+                    <label for="item-date-picker-input">¿Para qué día es la nota?</label>
+                    <input type="date" id="item-date-picker-input" required>
                 </div>
                 <textarea id="item-description-input" placeholder="Escribe tu nota o plan aquí..." required></textarea>
                 <button type="submit" class="modal-close-button">Guardar</button>
@@ -181,6 +188,7 @@
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
             renderCalendar(); 
+            renderMessageCenter();
             renderInfoLists();
             attachDynamicListeners();
             updateHeader();
@@ -303,6 +311,34 @@
                 html += '</div>'; calendarView.innerHTML += html;
             });
         }
+        
+        function renderMessageCenter() {
+            const messageCenterView = document.getElementById('message-center-view');
+            const allNotes = Object.values(appData.timelineEvents || {}).filter(event => event.type === 'note');
+            let html = `<button class="modal-close-button main-add-button" data-type="timelineEvents">Añadir Nota Nueva</button>`;
+            
+            if(allNotes.length === 0) {
+                html += '<p style="text-align:center; color:#777;">No hay mensajes todavía.</p>';
+                messageCenterView.innerHTML = html;
+                return;
+            }
+
+            const notesByDate = allNotes.reduce((acc, note) => {
+                (acc[note.date] = acc[note.date] || []).push(note);
+                return acc;
+            }, {});
+
+            const sortedDates = Object.keys(notesByDate).sort((a,b) => new Date(b) - new Date(a));
+            
+            sortedDates.forEach(dateStr => {
+                const events = notesByDate[dateStr];
+                const date = new Date(dateStr + 'T12:00:00');
+                html += `<div class="item-content"><div class="item-date"><span>${dayFormatter.format(date)}</span></div>`;
+                html += generateDayContentHTML(events, dateStr);
+                html += `</div>`;
+            });
+            messageCenterView.innerHTML = html;
+        }
 
         function renderInfoLists() {
             ['importantNotes', 'plannedActivities'].forEach(type => {
@@ -334,12 +370,22 @@
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
 
-        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
+        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button><button id="show-messages">Centro de Mensajes</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div id="message-center-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
         
         function attachDynamicListeners() {
-            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
-            document.getElementById('show-timeline').addEventListener('click', () => { document.getElementById('show-timeline').classList.add('active'); document.getElementById('show-calendar').classList.remove('active'); timelineView.classList.remove('view-hidden'); calendarView.classList.add('view-hidden'); });
-            document.getElementById('show-calendar').addEventListener('click', () => { document.getElementById('show-calendar').classList.add('active'); document.getElementById('show-timeline').classList.remove('active'); calendarView.classList.remove('view-hidden'); timelineView.classList.add('view-hidden'); });
+            const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view'), messageCenterView = document.getElementById('message-center-view');
+            const showTimelineBtn = document.getElementById('show-timeline'), showCalendarBtn = document.getElementById('show-calendar'), showMessagesBtn = document.getElementById('show-messages');
+            
+            const handleViewChange = (activeBtn, activeView) => {
+                [showTimelineBtn, showCalendarBtn, showMessagesBtn].forEach(btn => btn.classList.remove('active'));
+                [timelineView, calendarView, messageCenterView].forEach(view => view.classList.add('view-hidden'));
+                activeBtn.classList.add('active');
+                activeView.classList.remove('view-hidden');
+            };
+            
+            showTimelineBtn.addEventListener('click', () => handleViewChange(showTimelineBtn, timelineView));
+            showCalendarBtn.addEventListener('click', () => handleViewChange(showCalendarBtn, calendarView));
+            showMessagesBtn.addEventListener('click', () => handleViewChange(showMessagesBtn, messageCenterView));
         }
         
         function attachStaticListeners() {
@@ -356,12 +402,11 @@
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
                     const date = new Date(dateStr + 'T12:00:00');
-                    const noteCount = events.filter(item => item.type === 'note').length, badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                     document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
                     let modalContent = '';
                     const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                     if (date >= weatherStartDate && date <= weatherEndDate) { modalContent += getAlgecirasWeatherHTML(); }
-                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr, badge)}</div>`;
+                    modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
                     document.getElementById('calendar-modal').classList.add('popup-visible');
                     if (events.length === 0) { setTimeout(() => { const addButton = document.querySelector('#modal-date .add-button'); if(addButton) addButton.click(); }, 50); }
@@ -379,13 +424,14 @@
                         modal.querySelector('#item-type-input').value = 'timelineEvents';
                         modal.querySelector('#item-date-input').value = date;
                         modal.querySelector('#reply-to-id-input').value = replyToId;
+                        modal.querySelector('#date-picker-container').style.display = 'none';
                         document.getElementById('calendar-modal').classList.remove('popup-visible');
                         modal.classList.add('popup-visible');
                     }
                     return;
                 }
                 
-                const addButton = target.closest('.add-button');
+                const addButton = target.closest('.add-button, .main-add-button');
                 if(addButton) {
                     const type = addButton.dataset.type, itemDate = addButton.dataset.date || '';
                     const modal = document.getElementById('add-item-modal');
@@ -394,6 +440,7 @@
                     modal.querySelector('#item-type-input').value = type;
                     modal.querySelector('#item-date-input').value = itemDate;
                     modal.querySelector('#reply-to-id-input').value = '';
+                    modal.querySelector('#date-picker-container').style.display = itemDate ? 'none' : 'block';
                     document.getElementById('calendar-modal').classList.remove('popup-visible');
                     modal.classList.add('popup-visible');
                     return;
@@ -411,7 +458,10 @@
                 if(replyingToId) item.replyingTo = replyingToId;
                 let eventDateForNotification = null;
                 if (type === 'timelineEvents') { 
-                    item.date = document.getElementById('item-date-input').value; 
+                    let date = document.getElementById('item-date-input').value;
+                    if(!date) date = document.getElementById('item-date-picker-input').value;
+                    if(!date) { alert('Por favor selecciona una fecha.'); return; }
+                    item.date = date; 
                     item.icon = '🗒️'; item.type = 'note'; item.author = author; 
                     eventDateForNotification = item.date;
                 }
