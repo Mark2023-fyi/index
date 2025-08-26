@@ -77,11 +77,14 @@
         .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         #reply-context-container { border: 1px solid #eee; background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 15px; text-align: left; max-height: 150px; overflow-y: auto;}
+        #reply-context-container h4, #reply-context-container h5 { text-align: left; margin: 0 0 5px 0; font-size: 0.8em; color: #6c757d; text-transform: uppercase; }
+        #reply-context-container h5 { margin-top: 10px; }
         .reply-context { border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 8px; }
+        .reply-context.original-message { background-color: #e9ecef; padding: 8px; border-radius: 6px; }
         .reply-context:last-child { border-bottom: none; margin-bottom: 0; }
         .reply-context strong { font-size: 0.9em; }
         .reply-context small { font-size: 0.75em; color: #6c757d; }
-        .reply-context p { font-size: 0.9em; margin: 4px 0; }
+        .reply-context p { font-size: 0.9em; margin: 4px 0; white-space: pre-wrap; word-wrap: break-word; }
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .message-count-badge { background-color: var(--brand-red); color: white; font-size: 0.8em; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
@@ -106,14 +109,14 @@
         .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
         .chat-message { max-width: 75%; min-width: 100px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
         .message-mine { align-self: flex-end; background-color: #dcf8c6; color: #333; }
-        .message-theirs { align-self: flex-start; background-color: var(--brand-red); color: #fff; }
+        .message-theirs { align-self: flex-start; background-color: #e3f2fd; color: #333; }
         .chat-author-name { font-size: 0.8em; font-weight: 600; color: #555; margin-bottom: 4px; }
-        .message-theirs .chat-author-name { color: #f0f2f5; }
-        .bubble-footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 5px; height: 16px; }
+        .message-theirs .chat-author-name { color: var(--brand-blue); }
+        .bubble-footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 2px; height: 16px; }
         .bubble-footer .item-timestamp { color: rgba(0,0,0,0.4); font-size: 0.7em; }
-        .message-theirs .bubble-footer .item-timestamp { color: rgba(255,255,255,0.7); }
+        .message-theirs .bubble-footer .item-timestamp { color: rgba(0,0,0,0.5); }
         .bubble-footer .reply-btn { font-size: 0.7em; font-weight: 600; cursor: pointer; background: none; border: none; color: rgba(0,0,0,0.5); padding: 0; opacity: 1; }
-        .message-theirs .bubble-footer .reply-btn { color: rgba(255,255,255,0.7); }
+        .message-theirs .bubble-footer .reply-btn { color: rgba(0,0,0,0.6); }
         .bubble-footer .reply-btn:hover { color: var(--brand-blue); }
         .last-message-bar { font-size: 0.8em; text-align: center; color: #6c757d; padding: 5px; background: #f0f2f5; border-radius: 8px; margin: 0 0 20px 0; }
         .last-message-bar strong { color: #333; }
@@ -126,8 +129,8 @@
         .reply-quote-author { font-size: 0.8em; font-weight: 600; }
         .reply-quote-text { font-size: 0.85em; opacity: 0.8; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .message-mine .reply-quote-block { background-color: rgba(168, 224, 153, 0.5); border-left-color: #72b863; }
-        .message-theirs .reply-quote-block { background-color: rgba(255, 255, 255, 0.2); border-left-color: #fff; }
-        .message-theirs .reply-quote-author { color: #f0f2f5; }
+        .message-theirs .reply-quote-block { background-color: rgba(0, 123, 255, 0.1); border-left-color: var(--brand-blue); }
+        .message-theirs .reply-quote-author { color: var(--brand-blue); }
         .message-mine .reply-quote-author { color: #1e5513; }
 
         /* --- Fullscreen Chat Styles --- */
@@ -138,6 +141,16 @@
         body.fullscreen-chat-active #chat-view-wrapper { height: 100%; border-radius: 0; border: none; }
         body.fullscreen-chat-active .chat-header { margin-top: 0; padding: 10px 20px; border-radius: 0; }
         body.fullscreen-chat-active #chat-messages-container { padding-bottom: 10px; }
+
+        /* --- Settings Styles --- */
+        .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 28px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #28a745; }
+        input:checked + .slider:before { transform: translateX(22px); }
+
     </style>
 </head>
 <body>
@@ -153,6 +166,7 @@
     </div>
 
     <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
+    
     <div id="add-item-modal" class="popup-overlay">
         <div class="popup-content">
             <span class="close-popup">&times;</span>
@@ -173,6 +187,20 @@
         </div>
     </div>
 
+    <div id="chat-settings-modal" class="popup-overlay">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h2>Configuración del Chat</h2>
+            <div class="settings-row">
+                <label for="sound-toggle">Sonido de notificación de mensajes</label>
+                <label class="switch">
+                    <input type="checkbox" id="sound-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
     <div class="container" id="main-container">
         </div>
     
@@ -189,8 +217,10 @@
         const database = firebase.database();
         const appDataRef = database.ref('appData');
         let appData = {};
-        let currentView = 'timeline'; // State to remember the current view
-        const defaultAppData = { lastUpdate: { user: "Sistema", time: new Date().toISOString() }, timelineEvents: { "event-1":{id:"event-1",date:"2025-12-13",icon:"🛬",description:"<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.",type:"flight",flightInfo:{title:"Llegada de Nathan",flights:[{num:"CM716",route:"Austin → Panamá"},{num:"CM155",route:"Panamá → Medellín"}]}},"event-2":{id:"event-2",date:"2025-12-22",icon:"🏠",description:"Regreso de Nathan a Medellin.",type:"flight",flightInfo:{title:"Regreso de Nathan",flights:[{num:"EFY821",route:"Villavicencio → Medellín"}]}},"event-3":{id:"event-3",date:"2025-12-24",icon:"🎄",description:"Celebración de Nochebuena 🎅",type:"holiday"},"event-4":{id:"event-4",date:"2025-12-25",icon:"🎁",description:"Día de Navidad 🌟",type:"holiday"},"event-5":{id:"event-5",date:"2025-12-31",icon:"🎉",description:"Celebración de Fin de Año 🥂",type:"holiday"},"event-6":{id:"event-6",date:"2026-01-01",icon:"🥂",description:"Día de Año Nuevo. Descanso. 🎉",type:"holiday"},"event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CM716",route:"Austin → Panamá"},{num:"CM155",route:"Panamá → Medellín"}]}},"event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},"event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},"event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},"event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CM209",route:"Medellín → Panamá"},{num:"CM715",route:"Panamá → Austin"}]}}}, importantNotes: { "note-101":{id:"note-101",text:"<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben."},"note-102":{id:"note-102",text:"Faber, Yisela, y Rosita no saben absolutamente nada."} }, plannedActivities: { "activity-201":{id:"activity-201",text:"Bingo"},"activity-202":{id:"activity-202",text:'Regalos con la letra "V" de un valor de $10,000 pesos'},"activity-203":{id:"activity-203",text:"Scavenger Hunt (Búsqueda del tesoro)"},"activity-204":{id:"activity-204",text:"Pictionary"} } };
+        let previousAppData = {};
+        let currentView = 'timeline';
+        const NOTIFICATION_SOUND = new Audio("data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaW5nIGN1c3RvbWl6ZWQgYnkgSm9zZV9QcmVjaXNpb24gKGh0dHBzOi8vd3d3LmZyZWVzb3VuZC5vcmcvcGVvcGxlL0pvc2VfUHJlY2lzaW9uLylMAEACFABwGwIAAAAAE2Vjb2RpbmcAAAAAAExhdmY1NSIuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV'//");
+        const defaultAppData = { lastUpdate: { user: "Sistema", time: new Date().toISOString(), type: 'general' }, timelineEvents: { "event-1":{id:"event-1",date:"2025-12-13",icon:"🛬",description:"<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.",type:"flight",flightInfo:{title:"Llegada de Nathan",flights:[{num:"CM716",route:"Austin → Panamá"},{num:"CM155",route:"Panamá → Medellín"}]}},"event-2":{id:"event-2",date:"2025-12-22",icon:"🏠",description:"Regreso de Nathan a Medellin.",type:"flight",flightInfo:{title:"Regreso de Nathan",flights:[{num:"EFY821",route:"Villavicencio → Medellín"}]}},"event-3":{id:"event-3",date:"2025-12-24",icon:"🎄",description:"Celebración de Nochebuena 🎅",type:"holiday"},"event-4":{id:"event-4",date:"2025-12-25",icon:"🎁",description:"Día de Navidad 🌟",type:"holiday"},"event-5":{id:"event-5",date:"2025-12-31",icon:"🎉",description:"Celebración de Fin de Año 🥂",type:"holiday"},"event-6":{id:"event-6",date:"2026-01-01",icon:"🥂",description:"Día de Año Nuevo. Descanso. 🎉",type:"holiday"},"event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CM716",route:"Austin → Panamá"},{num:"CM155",route:"Panamá → Medellín"}]}},"event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},"event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},"event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},"event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CM209",route:"Medellín → Panamá"},{num:"CM715",route:"Panamá → Austin"}]}}}, importantNotes: { "note-101":{id:"note-101",text:"<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben."},"note-102":{id:"note-102",text:"Faber, Yisela, y Rosita no saben absolutamente nada."} }, plannedActivities: { "activity-201":{id:"activity-201",text:"Bingo"},"activity-202":{id:"activity-202",text:'Regalos con la letra "V" de un valor de $10,000 pesos'},"activity-203":{id:"activity-203",text:"Scavenger Hunt (Búsqueda del tesoro)"},"activity-204":{id:"activity-204",text:"Pictionary"} } };
         
         // --- WIDGETS ---
         function updateCountdowns() {
@@ -203,15 +233,31 @@
         }
 
         // --- DATA & RENDER LOGIC ---
-        function saveData(user, itemDate = null) {
-            if(user) appData.lastUpdate = { user:user, time:new Date().toISOString(), eventDate:itemDate };
+        function saveData(user, itemDate = null, updateType = 'general') {
+            if(user) appData.lastUpdate = { user, time: new Date().toISOString(), eventDate: itemDate, type: updateType };
             appDataRef.set(appData); 
         }
         appDataRef.on('value', (snapshot) => {
             const data = snapshot.val();
             let loadedData = (data && data.timelineEvents) ? data : JSON.parse(JSON.stringify(defaultAppData));
             if(!loadedData.groupChat) loadedData.groupChat = {};
+
+            const soundEnabled = localStorage.getItem('chatSoundEnabled') === 'true';
+            const currentUser = localStorage.getItem('itineraryAuthor');
+
+            if (previousAppData && loadedData && soundEnabled) {
+                const newTotalMessages = Object.keys(loadedData.groupChat || {}).length + Object.keys(loadedData.timelineEvents || {}).filter(k => loadedData.timelineEvents[k].type === 'note').length;
+                const oldTotalMessages = Object.keys(previousAppData.groupChat || {}).length + Object.keys(previousAppData.timelineEvents || {}).filter(k => previousAppData.timelineEvents[k].type === 'note').length;
+                const lastUpdater = loadedData.lastUpdate.user;
+
+                if (newTotalMessages > oldTotalMessages && lastUpdater !== currentUser) {
+                    NOTIFICATION_SOUND.play().catch(e => console.error("Error al reproducir sonido:", e));
+                }
+            }
+            
             appData = loadedData;
+            previousAppData = JSON.parse(JSON.stringify(loadedData)); // Deep copy for next comparison
+
             renderApp();
             
             const chatMessagesContainer = document.getElementById('chat-messages-container');
@@ -249,6 +295,7 @@
         }
 
         function truncateText(text, charLimit = 150) {
+            text = text || '';
             if (text.length <= charLimit) return text;
             const visibleText = text.substring(0, charLimit);
             const hiddenText = text.substring(charLimit);
@@ -319,7 +366,7 @@
             const replyCounter = !isReply && note.replies && note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
             let footerHtml = `<div class="note-footer">${timestampHtml}`;
             if(!isReply) {
-                footerHtml += `<button class="reply-btn" data-reply-to-id="${note.id}" data-type="${options.dataType}" ${note.date ? `data-date="${note.date}"` : ''}>Responder${replyCounter}</button>`;
+                footerHtml += `<button class="reply-btn" data-type="${options.dataType}" data-reply-to-id="${note.id}" ${note.date ? `data-date="${note.date}"` : ''}>Responder${replyCounter}</button>`;
             }
             footerHtml += `</div>`;
             const messageContent = `<div class="note-content">${authorHtml}${truncateText(note.text)}${footerHtml}</div>`;
@@ -448,7 +495,7 @@
                 lastMessageBarHTML = `<div class="last-message-bar"><strong>${lastMessage.author}</strong>: "${lastMessageText}" <span class="time-ago">(${timeAgo(lastMessage.timestamp)})</span></div>`;
             }
 
-            let header = `<div class="chat-header"><h2>Chat Grupal</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div>`;
+            let header = `<div class="chat-header"><h2>Chat Grupal</h2><div style="display:flex; align-items:center;"><button id="chat-settings-btn" class="fullscreen-btn" title="Configuración">⚙️</button><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div></div>`;
             
             let messagesHTML = renderMessageBubblesHTML(allChatMessages, { dataType: 'groupChat' });
             if (allChatMessages.length === 0) {
@@ -484,20 +531,22 @@
         function updateHeader() {
             const updateDetailsContainer = document.getElementById('update-details');
             if (!updateDetailsContainer) return;
-            const { user, time, eventDate } = appData.lastUpdate || {};
+            const { user, time, eventDate, type } = appData.lastUpdate || {};
             if(!time) { updateDetailsContainer.innerHTML = ''; return; }
             const updateTimestamp = new Date(time).toLocaleString('es-CO', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
             const formattedTimestamp = updateTimestamp.charAt(0).toUpperCase() + updateTimestamp.slice(1).replace('.','');
             const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${formattedTimestamp}</div>`;
             let notificationHtml = '';
             if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) {
-                let dateText = '';
-                if (eventDate) {
+                let locationText = '';
+                if(type === 'chat') {
+                    locationText = ' en Chat Grupal';
+                } else if (type === 'timeline' && eventDate) {
                     const dateObj = new Date(eventDate + 'T12:00:00');
                     const notificationDate = dateObj.toLocaleDateString('es-CO', { month: 'short', day: 'numeric' });
-                    dateText = ` en: ${notificationDate.charAt(0).toUpperCase() + notificationDate.slice(1).replace('.','')}`;
+                    locationText = ` en: ${notificationDate.charAt(0).toUpperCase() + notificationDate.slice(1).replace('.','')}`;
                 }
-                notificationHtml = `<div class="notification-chip">🔔 Nuevo Mensaje${dateText}</div>`;
+                notificationHtml = `<div class="notification-chip">🔔 Nuevo Mensaje${locationText}</div>`;
             }
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
@@ -533,12 +582,14 @@
             contextContainer.innerHTML = ''; // Clear previous context
             
             if (options.originalMessage) {
-                let contextHTML = `<div class="reply-context">
+                let contextHTML = `<h4>Respondiendo a:</h4>
+                <div class="reply-context original-message">
                     <strong>${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO')}</small>
                     <p>${options.originalMessage.text}</p>
                 </div>`;
                 
                 if (options.replies && options.replies.length > 0) {
+                    contextHTML += `<h5>Respuestas Anteriores:</h5>`;
                     options.replies.forEach(reply => {
                         contextHTML += `<div class="reply-context">
                             <strong>${reply.author}</strong> <small>${new Date(reply.timestamp).toLocaleString('es-CO')}</small>
@@ -582,7 +633,7 @@
                 
                 if (target.matches('.toggle-visibility-btn')) {
                     const hiddenContent = target.previousElementSibling;
-                    const isHidden = hiddenContent.style.display === 'none';
+                    const isHidden = hiddenContent.style.display === 'none' || hiddenContent.style.display === '';
                     if (isHidden) {
                         hiddenContent.style.display = 'block';
                         target.textContent = 'Ocultar mensajes';
@@ -595,13 +646,22 @@
                 }
                 
                 const popup = target.closest('.popup-overlay');
-                if (popup && (target === popup || target.matches('.close-popup, .modal-close-button'))) { popup.classList.remove('popup-visible'); return; }
+                if (popup && (target === popup || target.matches('.close-popup'))) { popup.classList.remove('popup-visible'); return; }
                 
                 const fullscreenBtn = target.closest('#fullscreen-chat-btn');
                 if(fullscreenBtn) {
                     document.body.classList.toggle('fullscreen-chat-active');
                     fullscreenBtn.innerHTML = document.body.classList.contains('fullscreen-chat-active') ? '&#x2924;' : '&#x26F6;';
                     fullscreenBtn.title = document.body.classList.contains('fullscreen-chat-active') ? 'Salir de Pantalla Completa' : 'Pantalla Completa';
+                    return;
+                }
+
+                const settingsBtn = target.closest('#chat-settings-btn');
+                if(settingsBtn) {
+                    const settingsModal = document.getElementById('chat-settings-modal');
+                    const soundToggle = document.getElementById('sound-toggle');
+                    soundToggle.checked = localStorage.getItem('chatSoundEnabled') === 'true';
+                    settingsModal.classList.add('popup-visible');
                     return;
                 }
 
@@ -624,13 +684,13 @@
                     const type = replyButton.dataset.type;
                     const replyToId = replyButton.dataset.replyToId;
                     const date = replyButton.dataset.date || '';
-                    const originalMessage = appData[type] ? appData[type][replyToId] : null;
+                    const messagePool = (type === 'groupChat') ? Object.values(appData.groupChat) : Object.values(appData.timelineEvents);
+                    const originalMessage = messagePool.find(m => m.id === replyToId);
 
                     if (originalMessage) {
                         let replies = [];
                         if(type === 'groupChat') {
-                            const allMessages = Object.values(appData.groupChat || []);
-                            replies = allMessages.filter(m => m.replyingTo === replyToId)
+                            replies = messagePool.filter(m => m.replyingTo === replyToId)
                                                 .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
                         }
                         openModal({ 
@@ -669,7 +729,7 @@
                     if (!appData.groupChat) appData.groupChat = {};
                     const item = { id: newId, text, author, timestamp: new Date().toISOString() };
                     appData.groupChat[newId] = item;
-                    saveData(author);
+                    saveData(author, null, 'chat');
                     textarea.value = '';
                     textarea.style.height = 'auto';
                 }
@@ -698,10 +758,22 @@
                     item.icon = '🗒️'; 
                     item.type = 'note'; 
                     eventDateForNotification = item.date;
+                    saveData(author, eventDateForNotification, 'timeline');
+                } else {
+                    saveData(author, null, 'general');
                 }
                 appData[type][newId] = item;
-                saveData(author, eventDateForNotification);
                 document.getElementById('add-item-modal').classList.remove('popup-visible');
+            });
+
+            document.getElementById('sound-toggle').addEventListener('change', function(e) {
+                localStorage.setItem('chatSoundEnabled', e.target.checked);
+                if (e.target.checked) {
+                    // Play a silent sound to unlock audio on mobile browsers
+                    NOTIFICATION_SOUND.volume = 0;
+                    NOTIFICATION_SOUND.play().catch(()=>{});
+                    NOTIFICATION_SOUND.volume = 1;
+                }
             });
         }
 
