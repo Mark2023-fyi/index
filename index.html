@@ -37,6 +37,7 @@
         .icon-inline{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:0 2px;}
         .add-button-demo{background-color:#007bff;color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
         .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
+        .reply-counter-badge-demo{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
         .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:20px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid #007bff;text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:#007bff;font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
@@ -77,6 +78,7 @@
         .toggle-notes-btn{background:none;border:1px solid #007bff;color:#007bff;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:0.8em;font-weight:600;margin-top:10px;}.toggle-notes-btn:hover{background:#e3f2fd;}
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:#007bff; text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
         .reply-btn{background:none; border:none; cursor:pointer; font-size:0.8em; color:#555; padding:4px 8px; opacity:0.6; border-radius:4px; font-weight:600;}.reply-btn:hover{opacity:1; color:#007bff; background-color: #f0f2f5;}
+        .reply-counter-badge{background-color:#28a745;color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;margin-left:5px;}
         .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:10px;}
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
@@ -187,7 +189,7 @@
             handleBannerVisibility();
         }
 
-        function generateDayContentHTML(events, dateStr, badge = '') {
+        function generateDayContentHTML(events, dateStr) {
             let html = '';
             const planEvents = events.filter(e => e.type !== 'note');
             const noteEvents = events.filter(e => e.type === 'note');
@@ -211,26 +213,24 @@
                 });
                 messageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
                 messageThreads.forEach(thread => thread.replies.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));
+                const badge = messageThreads.length > 0 ? `<div class="timeline-notification-badge">${messageThreads.length}</div>` : '';
                 html += `<h4 class="messages-header">Mensajes: ${badge}</h4>`;
                 
                 let lastAuthor = null;
                 const renderMessage = (note, isReply = false) => {
                     const showAuthor = note.author !== lastAuthor;
-                    lastAuthor = isReply ? null : note.author; // Reset author for each new thread/reply group
+                    lastAuthor = isReply ? null : note.author;
                     const authorHtml = showAuthor ? `<strong class="author-name">${note.author}:</strong> ` : '';
                     const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
                     
                     if(isReply) {
-                        return `<div class="reply-block">
-                                    <div class="note-content">
-                                        ${authorHtml}${truncateText(note.text)}${timestampHtml}
-                                    </div>
-                                </div>`;
+                        return `<div class="reply-block"><div class="note-content">${authorHtml}${truncateText(note.text)}${timestampHtml}</div></div>`;
                     } else {
                         const groupClass = showAuthor ? '' : 'grouped-message';
+                        const replyCounter = note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
                         return `<div class="item-description ${groupClass}">
                                     <div class="note-content">${authorHtml}${truncateText(note.text)}${timestampHtml}</div>
-                                    <button class="reply-btn" data-reply-to-id="${note.id}" data-date="${note.date}">Responder</button>
+                                    <button class="reply-btn" data-reply-to-id="${note.id}" data-date="${note.date}">Responder ${replyCounter}</button>
                                 </div>`;
                     }
                 };
@@ -270,14 +270,12 @@
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = allEvents.filter(item => item.date === dateStr);
-                const noteCount = events.filter(item => item.type === 'note').length;
-                const badge = noteCount > 0 ? `<div class="timeline-notification-badge">${noteCount}</div>` : '';
                 if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
                 html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                 if (d >= weatherStartDate && d <= weatherEndDate) { html += getAlgecirasWeatherHTML(); }
-                html += generateDayContentHTML(events, dateStr, badge);
+                html += generateDayContentHTML(events, dateStr);
                 html += `</div></div>`;
             }
             timelineView.innerHTML = html;
@@ -297,7 +295,7 @@
                 for (let day = 1; day <= daysInMonth; day++) {
                     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     const events = allEvents.filter(item => item.date === dateStr);
-                    const noteCount = events.filter(item => item.type === 'note').length;
+                    const noteCount = events.filter(item => item.type === 'note' && !item.replyingTo).length;
                     const eventHTML = events.length > 0 ? `<div class="event-icons-container"><span class="calendar-emoji">${events.find(e=>e.type!=="note")?.icon||"🗒️"}</span></div>` : '';
                     const badge = noteCount > 0 ? `<div class="notification-badge">${noteCount}</div>` : '';
                     html += `<div class="calendar-day" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}${badge}</div>`;
@@ -336,7 +334,7 @@
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
 
-        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes al presionar el botón <span class="icon-inline add-button-demo">+</span>, mirar notificaciones de mensajes nuevos cuando veas este ícono <span class="icon-inline notification-badge-demo">6</span> y seguir los vuelos en vivo <span class="icon-inline"><span class="live-indicator"></span></span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
+        function getBaseHTML() { return `<h1>🤠 De Austin a Medellín 🇨🇴</h1><div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div><div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div><div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div><div class="weather-container"><div id="weather-austin" class="weather-card">Cargando Clima...</div><div id="weather-medellin" class="weather-card">Cargando Clima...</div></div><div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-calendar">Calendario</button></div><div class="timeline" id="timeline-view"></div><div id="calendar-view" class="view-hidden"></div><div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; }
         
         function attachDynamicListeners() {
             const timelineView = document.getElementById('timeline-view'), calendarView = document.getElementById('calendar-view');
