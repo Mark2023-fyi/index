@@ -69,11 +69,12 @@
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
-        .item-description{padding-bottom:4px;border-bottom:1px solid #f0f0f0;margin-bottom:4px;display:flex;align-items:center;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
-        .note-content{flex-grow:1; word-wrap: break-word;}.author-name{font-size:0.9em;font-weight:600; display: flex; align-items: center;}
-        .item-description.grouped-message{margin-top:-4px;padding-top:4px}
+        .item-description{padding-bottom:4px;border-bottom:1px solid #f0f0f0;margin-bottom:4px;display:flex;align-items:flex-start;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
+        .note-content{flex-grow:1; word-wrap: break-word; word-break: break-word;}.author-name{font-size:0.9em;font-weight:600; display: flex; align-items: center;}
         .item-timestamp{font-size:0.7em; color:#888; white-space:nowrap;}
-        .nuevo-indicator { color: var(--brand-green); font-weight: bold; margin-right: 5px; font-size: 0.7em; }
+        .recent-indicator { font-weight: bold; margin-right: 5px; font-size: 0.7em; }
+        .recent-indicator.red { color: var(--brand-red); }
+        .recent-indicator.green { color: var(--brand-green); }
         #modal-events .item-description{margin-bottom:4px;padding-bottom:4px;}
         #modal-events .item-content{box-shadow:none;padding:10px 0 0 0;}
         .modal-close-button{border:none;background:var(--brand-blue);color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
@@ -91,7 +92,6 @@
         .reply-context p { font-size: 0.9em; margin: 4px 0; white-space: pre-wrap; word-wrap: break-word; }
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
-        .message-count-badge { background-color: var(--brand-red); color: white; font-size: 0.8em; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
         .toggle-visibility-btn { background-color: var(--brand-blue); color: white; border: none; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; margin: 10px auto; display: block; }
         .toggle-visibility-btn:hover { background-color: #0056b3; }
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:var(--brand-blue); text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
@@ -103,7 +103,6 @@
         .message-number { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; font-size: 0.75em; font-weight: 600; margin-right: 8px; flex-shrink: 0; }
         .message-number.thread { background-color: var(--brand-red); color: white; }
         .message-number.reply { background-color: var(--brand-green); color: white; }
-        .reply-block .author-name { display: flex; align-items: center; }
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
         .chat-header { display: flex; justify-content: space-between; align-items: center; margin: 40px 0 10px 0; }
@@ -116,11 +115,13 @@
         #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 10px; }
         #scroll-up-indicator { text-align: center; padding: 5px; font-size: 0.8em; color: #6c757d; background: #f8f9fa; border-radius: 8px; margin: 0 10px 10px 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
+        .chat-message-container.grouped { margin-top: 2px; }
         .chat-message { max-width: 75%; min-width: 100px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
         .message-mine { align-self: flex-end; background-color: #dcf8c6; color: #333; }
         .message-theirs { align-self: flex-start; background-color: #e3f2fd; color: #333; }
-        .chat-author-name { font-size: 0.8em; font-weight: 600; color: #555; margin-bottom: 4px; }
+        .chat-author-name { font-size: 0.8em; font-weight: 600; color: #555; margin-bottom: 4px; display: flex; align-items: center; }
         .message-theirs .chat-author-name { color: var(--brand-blue); }
+        .avatar { width: 24px; height: 24px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 8px; font-size: 0.8em; flex-shrink: 0; }
         .bubble-footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 2px; height: 16px; }
         .bubble-footer .item-timestamp { color: rgba(0,0,0,0.4); font-size: 0.7em; }
         .message-theirs .bubble-footer .item-timestamp { color: rgba(0,0,0,0.5); }
@@ -209,11 +210,11 @@
         // --- WIDGETS ---
         function updateCountdowns() {
             const targets = [ { id: 'card-nathan', date: '2025-12-13T18:00:00', title: 'Llegada de Nathan' }, { id: 'card-ron-anyela', date: '2026-01-03T18:00:00', title: 'Llegada de Ron & Anyela' }];
-            targets.forEach(target => { const el=document.getElementById(target.id); if(!el) return; const t=new Date(target.date).getTime(), n=new Date().getTime(), d=t-n; let c=`<h3>${target.title}</h3><div class="arrival-date">${new Date(target.date).toLocaleDateString("es-CO",{month:"long",day:"numeric"})}</div>`; if(d<0) c+="<h4>¡Ya llegó!</h4>"; else {const s=Math.floor(d/864e5),o=Math.floor(d%864e5/36e5),i=Math.floor(d%36e5/6e4),a=Math.floor(d%6e4/1e3);c+=`<div class="timer"><div class="time-block"><span>${String(s).padStart(2,"0")}</span><span>Días</span></div><div class="time-block"><span>${String(o).padStart(2,"0")}</span><span>Horas</span></div><div class="time-block"><span>${String(i).padStart(2,"0")}</span><span>Min</span></div><div class="time-block"><span>${String(a).padStart(2,"0")}</span><span>Seg</span></div></div>`} el.innerHTML=c });
+            targets.forEach(target => { const el=document.getElementById(target.id); if(!el) return; const t=new Date(target.date).getTime(), n=new Date().getTime(), d=t-n; let c=`<h3>${target.title}</h3><div class="arrival-date">${formatAndCapitalizeDate(new Date(target.date))}</div>`; if(d<0) c+="<h4>¡Ya llegó!</h4>"; else {const s=Math.floor(d/864e5),o=Math.floor(d%864e5/36e5),i=Math.floor(d%36e5/6e4),a=Math.floor(d%6e4/1e3);c+=`<div class="timer"><div class="time-block"><span>${String(s).padStart(2,"0")}</span><span>Días</span></div><div class="time-block"><span>${String(o).padStart(2,"0")}</span><span>Horas</span></div><div class="time-block"><span>${String(i).padStart(2,"0")}</span><span>Min</span></div><div class="time-block"><span>${String(a).padStart(2,"0")}</span><span>Seg</span></div></div>`} el.innerHTML=c });
         }
         async function fetchWeather() {
             const locations = [{id:'weather-austin',city:'Austin',emoji:'🤠'},{id:'weather-medellin',city:'Medellin',emoji:'🇨🇴'}];
-            for (const loc of locations) { const el=document.getElementById(loc.id); if(!el) continue; try { const res=await fetch(`https://wttr.in/${loc.city}?format=j1`), data=await res.json(), tempC=data.current_condition[0].temp_C, tempF=data.current_condition[0].temp_F; el.innerHTML=`<div class="weather-card-left"><div class="city">${loc.emoji} ${loc.city}</div><div class="time">${new Date().toLocaleTimeString("es-CO",{hour:"2-digit",minute:"2-digit"})}</div></div><div class="weather-card-right"><div class="icon">🌡️</div><div class="temp">${tempF}°F / ${tempC}°C</div></div>` } catch (error) { el.innerText = `Error clima ${loc.city}.` } }
+            for (const loc of locations) { const el=document.getElementById(loc.id); if(!el) continue; try { const res=await fetch(`https://wttr.in/${loc.city}?format=j1`), data=await res.json(), tempC=data.current_condition[0].temp_C, tempF=data.current_condition[0].temp_F; el.innerHTML=`<div class="weather-card-left"><div class="city">${loc.emoji} ${loc.city}</div><div class="time">${new Date().toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit', timeZone: 'America/Bogota'}).replace('p. m.', 'PM').replace('a. m.', 'AM')} COL</div></div><div class="weather-card-right"><div class="icon">🌡️</div><div class="temp">${tempF}°F / ${tempC}°C</div></div>` } catch (error) { el.innerText = `Error clima ${loc.city}.` } }
         }
 
         // --- DATA & RENDER LOGIC ---
@@ -232,7 +233,8 @@
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
         const formatAndCapitalizeDate = (date) => {
             const formatted = dayFormatter.format(date);
-            return formatted.replace(/(\b[a-z](?=[a-z]{2}))/g, (letter) => letter.toUpperCase());
+            // Capitalize first letter of the string, which is the weekday
+            return formatted.charAt(0).toUpperCase() + formatted.slice(1);
         };
         
         function handleBannerVisibility() {
@@ -269,6 +271,26 @@
             const hiddenText = text.substring(charLimit);
             return `<span>${visibleText}</span><span class="ellipsis">... </span><span class="more-text" style="display:none;">${hiddenText}</span> <a href="#" class="toggle-text-btn">Ver más</a>`;
         }
+
+        const AVATAR_COLORS = ['#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#3949AB', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#7CB342', '#F4511E', '#795548', '#546E7A'];
+        const getInitials = (name) => {
+            if (!name) return '';
+            const names = name.split(' ');
+            if (names.length > 1 && names[1]) {
+                return (names[0].charAt(0) + names[1].charAt(0)).toUpperCase();
+            }
+            return name.charAt(0).toUpperCase();
+        };
+
+        const generateColor = (name) => {
+            let hash = 0;
+            if (!name || name.length === 0) return AVATAR_COLORS[0];
+            for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const index = Math.abs(hash) % AVATAR_COLORS.length;
+            return AVATAR_COLORS[index];
+        };
         
         function renderApp() {
             document.getElementById('main-container').innerHTML = getBaseHTML();
@@ -301,20 +323,22 @@
             const threadNumberMap = new Map(threadsOldestFirst.map((thread, index) => [thread.id, index + 1]));
 
             const messageThreads = allMessageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            messageThreads.forEach(thread => thread.replies.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));
             
             let html = '';
             const collapseAfter = options.collapseAfter || messageThreads.length;
-            
-            messageThreads.slice(0, collapseAfter).forEach(thread => {
-                html += renderSingleThread(thread, threadNumberMap.get(thread.id), options);
-            });
+
+            const renderAndTrack = (threads) => {
+                let tempHtml = '';
+                threads.forEach(thread => {
+                    tempHtml += renderSingleThread(thread, threadNumberMap.get(thread.id), { ...options });
+                });
+                return tempHtml;
+            };
+
+            html += renderAndTrack(messageThreads.slice(0, collapseAfter));
 
             if (messageThreads.length > collapseAfter) {
-                let hiddenHtml = '';
-                messageThreads.slice(collapseAfter).forEach(thread => {
-                    hiddenHtml += renderSingleThread(thread, threadNumberMap.get(thread.id), options);
-                });
+                let hiddenHtml = renderAndTrack(messageThreads.slice(collapseAfter));
                 html += `<div class="collapsible-messages" style="display:none;">${hiddenHtml}</div>`;
                 html += `<button class="toggle-visibility-btn" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
             }
@@ -322,12 +346,26 @@
         }
 
         function renderSingleThread(thread, threadNumber, options) {
-            options.mostRecentId = options.mostRecentId || null;
+            let mostRecentInThreadId = null;
+            if (thread.replies.length > 0) {
+                const latestReply = [...thread.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp))[0];
+                mostRecentInThreadId = latestReply.id;
+            }
+            options.mostRecentInThreadId = mostRecentInThreadId;
+
             let threadHtml = renderMessage(thread, threadNumber, false, options);
             if (thread.replies.length > 0) {
                 threadHtml += `<div class="replies-container">`;
-                thread.replies.forEach((reply, index) => { 
-                    threadHtml += renderMessage(reply, index + 1, true, options);
+                const repliesOldestFirst = [...thread.replies].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+                const replyNumberMap = new Map(repliesOldestFirst.map((reply, index) => [reply.id, index + 1]));
+                const repliesNewestFirst = [...thread.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                let lastReplyAuthor = thread.author;
+                repliesNewestFirst.forEach((reply) => { 
+                    const showAuthor = reply.author !== lastReplyAuthor;
+                    const replyNumber = replyNumberMap.get(reply.id);
+                    threadHtml += renderMessage(reply, replyNumber, true, { ...options, showAuthor });
+                    lastReplyAuthor = reply.author;
                 });
                 threadHtml += `</div>`;
             }
@@ -338,16 +376,25 @@
         function renderMessage(note, number, isReply, options = {}) {
             const numberClass = isReply ? 'reply' : 'thread';
             const numberHtml = `<span class="message-number ${numberClass}">${number}</span>`;
-            const authorHtml = `<strong class="author-name">${note.author}:</strong> `;
-            const nuevoIndicator = (note.id === options.mostRecentId) ? `<strong class="nuevo-indicator">MÁS RECIENTE</strong>` : '';
-            const timestampHtml = `<span class="item-timestamp">${nuevoIndicator} ${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
+            const authorHtml = `<strong class="author-name">${note.author}:</strong>`;
+            
+            let nuevoIndicator = '';
+            if (note.id === options.mostRecentId && !isReply) {
+                nuevoIndicator = `<strong class="recent-indicator red">NUEVO</strong>`;
+            } else if (isReply && note.id === options.mostRecentInThreadId) {
+                nuevoIndicator = `<strong class="recent-indicator green">MÁS RECIENTE</strong>`;
+            }
+            
+            const timestampHtml = `<span class="item-timestamp">${nuevoIndicator} ${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit', timeZone: 'America/Bogota'}).replace('.', '')} COL</span>`;
             const replyCounter = !isReply && note.replies && note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
             let footerHtml = `<div class="note-footer">${timestampHtml}`;
             if(!isReply) {
                 footerHtml += `<button class="reply-btn" data-type="${options.dataType}" data-reply-to-id="${note.id}" ${note.date ? `data-date="${note.date}"` : ''}>Responder${replyCounter}</button>`;
             }
             footerHtml += `</div>`;
-            const messageContent = `<div class="note-content"><div class="author-name">${numberHtml} ${authorHtml}</div>${truncateText(note.text)}${footerHtml}</div>`;
+            
+            const authorLine = `<div class="author-name">${numberHtml} ${authorHtml}</div>`;
+            const messageContent = `<div class="note-content">${authorLine}${truncateText(note.text)}${footerHtml}</div>`;
 
             if(isReply) {
                 return `<div class="reply-block">${messageContent}</div>`;
@@ -363,44 +410,54 @@
             if (messageThreads.length === 0) return '';
             
             let html = '';
-            const renderBubble = (note) => {
-                const isMine = note.author === currentUser;
-                const bubbleClasses = `chat-message ${isMine ? 'message-mine' : 'message-theirs'}`;
-                const authorHtml = !isMine ? `<strong class="chat-author-name">${note.author}</strong>` : '';
-                const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})}</span>`;
-                const replies = allMessages.filter(m => m.replyingTo === note.id);
-                const replyCounter = replies.length > 0 ? `<span class="reply-counter-badge">${replies.length}</span>` : '';
-                const replyButtonHtml = `<button class="reply-btn" data-type="groupChat" data-reply-to-id="${note.id}">Responder${replyCounter}</button>`;
+            let lastAuthor = null;
 
-                let replyQuoteHTML = '';
-                if (note.replyingTo) {
-                    const originalMessage = allMessages.find(m => m.id === note.replyingTo);
-                    if (originalMessage) {
-                        const quoteText = originalMessage.text.length > 60 ? originalMessage.text.substring(0, 60) + '...' : originalMessage.text;
-                        replyQuoteHTML = `
-                            <div class="reply-quote-block">
-                                <strong class="reply-quote-author">${originalMessage.author}</strong>
-                                <p class="reply-quote-text">${quoteText}</p>
-                            </div>`;
-                    }
+            messageThreads.forEach(note => {
+                const showAuthor = note.author !== lastAuthor;
+                html += renderBubble(note, showAuthor, options);
+                lastAuthor = note.author;
+            });
+            return html;
+        }
+        
+        function renderBubble(note, showAuthor, options) {
+            const currentUser = localStorage.getItem('itineraryAuthor');
+            const isMine = note.author === currentUser;
+            const groupClass = showAuthor ? '' : 'grouped';
+            const bubbleClasses = `chat-message ${isMine ? 'message-mine' : 'message-theirs'}`;
+            const avatar = `<div class="avatar" style="background-color: ${generateColor(note.author)}">${getInitials(note.author)}</div>`;
+            const authorHtml = !isMine && showAuthor ? `<div class="chat-author-name">${avatar}<strong>${note.author}</strong></div>` : '';
+            const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit', timeZone: 'America/Bogota'}).replace('p. m.', 'PM').replace('a. m.', 'AM')} COL</span>`;
+            const replies = Object.values(appData.groupChat || []).filter(m => m.replyingTo === note.id);
+            const replyCounter = replies.length > 0 ? `<span class="reply-counter-badge">${replies.length}</span>` : '';
+            const replyButtonHtml = `<button class="reply-btn" data-type="groupChat" data-reply-to-id="${note.id}">Responder${replyCounter}</button>`;
+
+            let replyQuoteHTML = '';
+            if (note.replyingTo) {
+                const originalMessage = Object.values(appData.groupChat || []).find(m => m.id === note.replyingTo);
+                if (originalMessage) {
+                    const quoteText = originalMessage.text.length > 60 ? originalMessage.text.substring(0, 60) + '...' : originalMessage.text;
+                    replyQuoteHTML = `
+                        <div class="reply-quote-block">
+                            <strong class="reply-quote-author">${originalMessage.author}</strong>
+                            <p class="reply-quote-text">${quoteText}</p>
+                        </div>`;
                 }
-                return `
-                    <div class="chat-message-container">
-                        <div class="${bubbleClasses}">
-                            ${authorHtml}
-                            <div class="note-content">
-                                ${replyQuoteHTML}
-                                ${truncateText(note.text, 200)}
-                                <div class="bubble-footer">
-                                    ${replyButtonHtml}
-                                    ${timestampHtml}
-                                </div>
+            }
+            return `
+                <div class="chat-message-container ${groupClass}">
+                    ${authorHtml}
+                    <div class="${bubbleClasses}">
+                        <div class="note-content">
+                            ${replyQuoteHTML}
+                            ${truncateText(note.text, 200)}
+                            <div class="bubble-footer">
+                                ${replyButtonHtml}
+                                ${timestampHtml}
                             </div>
                         </div>
-                    </div>`;
-            };
-            messageThreads.forEach(thread => { html += renderBubble(thread); });
-            return html;
+                    </div>
+                </div>`;
         }
 
         function generateDayContentHTML(events, dateStr) {
@@ -413,9 +470,8 @@
                  html = `<div class="item-description tbd">No hay planes para este día.</div>`;
             }
             if(noteEvents.length > 0) {
-                const topLevelNotes = noteEvents.filter(note => !note.replyingTo);
                 const mostRecentNote = noteEvents.reduce((latest, current) => new Date(current.timestamp) > new Date(latest.timestamp) ? current : latest);
-                html += `<h4 class="messages-header">Notas del Día <span class="message-count-badge">${topLevelNotes.length}</span></h4>`;
+                html += `<h4 class="messages-header">Notas del Día</h4>`;
                 html += renderMessageThreadsListHTML(noteEvents, { dataType: 'timelineEvents', collapseAfter: 3, mostRecentId: mostRecentNote.id });
             }
             return html;
@@ -435,7 +491,7 @@
                     currentMonth = d.getMonth(); 
                     html += `<h2>${monthName}</h2>`; 
                 }
-                const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
+                const dayIcon = events.find(e => e.type !== 'note')?.icon || '🗓️';
                 html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${formatAndCapitalizeDate(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                 if (d >= weatherStartDate && d <= weatherEndDate) { html += getAlgecirasWeatherHTML(); }
@@ -519,8 +575,8 @@
             if (!updateDetailsContainer) return;
             const { user, time, eventDate, type } = appData.lastUpdate || {};
             if(!time) { updateDetailsContainer.innerHTML = ''; return; }
-            const updateTimestamp = new Date(time).toLocaleString('es-CO', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-            const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${updateTimestamp}</div>`;
+            const updateTimestamp = new Date(time).toLocaleString('es-CO', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
+            const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${updateTimestamp} COL</div>`;
             let notificationHtml = '';
             if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) {
                 let locationText = '';
@@ -530,7 +586,7 @@
                     chipClass = 'chat-update';
                 } else if (type === 'timeline' && eventDate) {
                     const dateObj = new Date(eventDate + 'T12:00:00');
-                    const notificationDate = dateObj.toLocaleDateString('es-CO', { month: 'short', day: 'numeric' });
+                    const notificationDate = dateObj.toLocaleDateString('es-CO', { month: 'short', day: 'numeric', timeZone: 'America/Bogota' });
                     locationText = ` en: ${notificationDate}`;
                     chipClass = 'timeline-update';
                 }
@@ -580,7 +636,7 @@
             if (options.originalMessage) {
                 let contextHTML = `<h4>Respondiendo a:</h4>
                 <div class="reply-context original-message">
-                    <strong>${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO')}</small>
+                    <strong>${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO', {timeZone: 'America/Bogota'})} COL</small>
                     <p>${options.originalMessage.text}</p>
                 </div>`;
                 
@@ -588,7 +644,7 @@
                     contextHTML += `<h5>Respuestas Anteriores:</h5>`;
                     options.replies.forEach(reply => {
                         contextHTML += `<div class="reply-context">
-                            <strong>${reply.author}</strong> <small>${new Date(reply.timestamp).toLocaleString('es-CO')}</small>
+                            <strong>${reply.author}</strong> <small>${new Date(reply.timestamp).toLocaleString('es-CO', {timeZone: 'America/Bogota'})} COL</small>
                             <p>${reply.text}</p>
                         </div>`;
                     });
@@ -663,7 +719,7 @@
                     modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
                     document.getElementById('calendar-modal').classList.add('popup-visible');
-                    if (events.length === 0) {
+                    if (events.length === 0) { 
                         setTimeout(() => { 
                             const addButton = document.querySelector('#modal-date .add-button'); 
                             if(addButton) addButton.click(); 
