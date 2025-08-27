@@ -45,7 +45,7 @@
         .add-button-demo{background-color:var(--brand-blue);color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
         .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
         .reply-counter-badge-demo{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
-        .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 40px;position:relative;margin-left:25px;margin-bottom:10px}.item-content{background:#fff;padding:15px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
+        .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 20px 10px 40px;position:relative;margin-left:25px;margin-bottom:10px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid var(--brand-blue);text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:15px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
         .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
@@ -74,7 +74,7 @@
         .item-description.grouped-message{margin-top:-4px;padding-top:4px}
         .item-timestamp{font-size:0.7em; color:#888; white-space:nowrap;}
         #modal-events .item-description{margin-bottom:4px;padding-bottom:4px;}
-        #modal-events .item-content{box-shadow:none;padding:0;}
+        #modal-events .item-content{box-shadow:none;padding:10px 0 0 0;}
         .modal-close-button{border:none;background:var(--brand-blue);color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
         .modal-disclaimer{font-size:0.75em; color:#999; margin-top:15px;}
         .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
@@ -99,6 +99,8 @@
         .reply-counter-badge{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
         .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:8px;}
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
+        .message-number { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background-color: #e9ecef; border-radius: 50%; font-size: 0.75em; font-weight: 600; margin-right: 8px; color: #555; flex-shrink: 0; }
+        .reply-block .author-name { display: flex; align-items: center; }
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
         .chat-header { display: flex; justify-content: space-between; align-items: center; margin: 40px 0 10px 0; }
@@ -109,7 +111,7 @@
         /* --- Chat View Styles --- */
         #chat-view-wrapper { background-color: #fff; border: 1px solid #ddd; border-radius: 12px; display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; }
         #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 10px; }
-        #scroll-up-indicator { text-align: center; padding: 5px; font-size: 0.8em; color: #6c757d; background: #f0f2f5; border-radius: 8px; margin: 0 10px 10px 10px; }
+        #scroll-up-indicator { text-align: center; padding: 5px; font-size: 0.8em; color: #6c757d; background: #f8f9fa; border-radius: 8px; margin: 0 10px 10px 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
         .chat-message { max-width: 75%; min-width: 100px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
         .message-mine { align-self: flex-end; background-color: #dcf8c6; color: #333; }
@@ -278,28 +280,32 @@
             if (messages.length === 0) return '';
             const notesById = {};
             messages.forEach(note => { notesById[note.id] = { ...note, replies: [] }; });
-            const messageThreads = [];
+            const allMessageThreads = [];
             messages.forEach(note => {
                 if (note.replyingTo && notesById[note.replyingTo]) {
                     notesById[note.replyingTo].replies.push(notesById[note.id]);
                 } else {
-                    messageThreads.push(notesById[note.id]);
+                    allMessageThreads.push(notesById[note.id]);
                 }
             });
-            messageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Most recent first
+            
+            const threadsOldestFirst = [...allMessageThreads].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+            const threadNumberMap = new Map(threadsOldestFirst.map((thread, index) => [thread.id, index + 1]));
+
+            const messageThreads = allMessageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             messageThreads.forEach(thread => thread.replies.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));
             
             let html = '';
             const collapseAfter = options.collapseAfter || messageThreads.length;
             
             messageThreads.slice(0, collapseAfter).forEach(thread => {
-                html += renderSingleThread(thread, options);
+                html += renderSingleThread(thread, threadNumberMap.get(thread.id), options);
             });
 
             if (messageThreads.length > collapseAfter) {
                 let hiddenHtml = '';
                 messageThreads.slice(collapseAfter).forEach(thread => {
-                    hiddenHtml += renderSingleThread(thread, options);
+                    hiddenHtml += renderSingleThread(thread, threadNumberMap.get(thread.id), options);
                 });
                 html += `<div class="collapsible-messages" style="display:none;">${hiddenHtml}</div>`;
                 html += `<button class="toggle-visibility-btn" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
@@ -307,18 +313,21 @@
             return html;
         }
 
-        function renderSingleThread(thread, options) {
-            let threadHtml = renderMessage(thread, false, options);
+        function renderSingleThread(thread, threadNumber, options) {
+            let threadHtml = renderMessage(thread, threadNumber, false, options);
             if (thread.replies.length > 0) {
                 threadHtml += `<div class="replies-container">`;
-                thread.replies.forEach(reply => { threadHtml += renderMessage(reply, true, options); });
+                thread.replies.forEach((reply, index) => { 
+                    threadHtml += renderMessage(reply, index + 1, true, options);
+                });
                 threadHtml += `</div>`;
             }
             threadHtml += `</div>`; // Closing .item-content
             return threadHtml;
         }
 
-        function renderMessage(note, isReply = false, options = {}) {
+        function renderMessage(note, number, isReply, options = {}) {
+            const numberHtml = `<span class="message-number">${number}</span>`;
             const authorHtml = `<strong class="author-name">${note.author}:</strong> `;
             const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
             const replyCounter = !isReply && note.replies && note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
@@ -327,7 +336,8 @@
                 footerHtml += `<button class="reply-btn" data-type="${options.dataType}" data-reply-to-id="${note.id}" ${note.date ? `data-date="${note.date}"` : ''}>Responder${replyCounter}</button>`;
             }
             footerHtml += `</div>`;
-            const messageContent = `<div class="note-content">${authorHtml}${truncateText(note.text)}${footerHtml}</div>`;
+            const messageContent = `<div class="note-content"><div class="author-name">${numberHtml} ${authorHtml}</div>${truncateText(note.text)}${footerHtml}</div>`;
+
             if(isReply) {
                 return `<div class="reply-block">${messageContent}</div>`;
             } else {
@@ -637,7 +647,12 @@
                     modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
                     document.getElementById('calendar-modal').classList.add('popup-visible');
-                    if (events.filter(e => e.type !== 'note').length === 0) { setTimeout(() => { const addButton = document.querySelector('#modal-date .add-button'); if(addButton) addButton.click(); }, 50); }
+                    if (events.length === 0) { 
+                        setTimeout(() => { 
+                            const addButton = document.querySelector('#modal-date .add-button'); 
+                            if(addButton) addButton.click(); 
+                        }, 50); 
+                    }
                     return;
                 }
                 const replyButton = target.closest('.reply-btn');
@@ -689,8 +704,8 @@
                     const newId = `item-${Date.now()}`;
                     if (!appData.groupChat) appData.groupChat = {};
                     const item = { id: newId, text, author, timestamp: new Date().toISOString() };
-                    appData.groupChat[newId] = item; // Update local data first
-                    saveData(author, null, 'chat'); // Then send to Firebase
+                    appData.groupChat[newId] = item;
+                    saveData(author, null, 'chat');
                     textarea.value = '';
                     textarea.style.height = 'auto';
                 }
