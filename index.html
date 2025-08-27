@@ -45,7 +45,7 @@
         .add-button-demo{background-color:var(--brand-blue);color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
         .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
         .reply-counter-badge-demo{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
-        .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 20px 10px 40px;position:relative;margin-left:25px;margin-bottom:10px}.timeline-item::before{content:attr(data-icon);position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid var(--brand-blue);text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:15px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
+        .countdown-container,.weather-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}.countdown-card{background:#1d2b38;color:#fff;padding:20px;border-radius:12px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15);flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center}.countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:#00aaff}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#9ab;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#f0f2f5;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#9ab}.timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:#e0e0e0}.timeline-item{padding:10px 20px 10px 65px;position:relative;margin-left:0;margin-bottom:10px}.timeline-item::before{content:attr(data-icon);position:absolute;left:0;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid var(--brand-blue);text-align:center;line-height:56px;font-size:2.5em}.item-content{background:#fff;padding:15px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}.item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#7f8c8d;font-style:italic}
         .flight-tracker{border-top:1px solid #eee;margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
         .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
@@ -70,9 +70,10 @@
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
         .item-description{padding-bottom:4px;border-bottom:1px solid #f0f0f0;margin-bottom:4px;display:flex;align-items:center;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
-        .note-content{flex-grow:1; word-wrap: break-word;}.author-name{font-size:0.9em;font-weight:600}
+        .note-content{flex-grow:1; word-wrap: break-word;}.author-name{font-size:0.9em;font-weight:600; display: flex; align-items: center;}
         .item-description.grouped-message{margin-top:-4px;padding-top:4px}
         .item-timestamp{font-size:0.7em; color:#888; white-space:nowrap;}
+        .nuevo-indicator { color: var(--brand-green); font-weight: bold; margin-right: 5px; font-size: 0.7em; }
         #modal-events .item-description{margin-bottom:4px;padding-bottom:4px;}
         #modal-events .item-content{box-shadow:none;padding:10px 0 0 0;}
         .modal-close-button{border:none;background:var(--brand-blue);color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
@@ -91,15 +92,17 @@
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .message-count-badge { background-color: var(--brand-red); color: white; font-size: 0.8em; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
-        .toggle-visibility-btn { background: #f0f2f5; border: 1px solid #ddd; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; color: #555; margin: 10px auto; display: block; }
-        .toggle-visibility-btn:hover { background: #e9ecef; }
+        .toggle-visibility-btn { background-color: var(--brand-blue); color: white; border: none; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; margin: 10px auto; display: block; }
+        .toggle-visibility-btn:hover { background-color: #0056b3; }
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:var(--brand-blue); text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
         .note-footer{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top: 4px;}
         .reply-btn{background:none; border:none; cursor:pointer; font-size:0.75em; color:#555; padding:2px 6px; opacity:0.7; border-radius:4px; font-weight:600; display:inline-flex; align-items:center; gap:5px;}.reply-btn:hover{opacity:1; color:var(--brand-blue); background-color: #f0f2f5;}
         .reply-counter-badge{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
         .replies-container{margin-left:20px; padding-left:15px; border-left:2px solid #e9ecef; margin-top:8px;}
         .reply-block{background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:10px; margin-top:8px;}
-        .message-number { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background-color: #e9ecef; border-radius: 50%; font-size: 0.75em; font-weight: 600; margin-right: 8px; color: #555; flex-shrink: 0; }
+        .message-number { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; font-size: 0.75em; font-weight: 600; margin-right: 8px; flex-shrink: 0; }
+        .message-number.thread { background-color: var(--brand-red); color: white; }
+        .message-number.reply { background-color: var(--brand-green); color: white; }
         .reply-block .author-name { display: flex; align-items: center; }
         .weather-forecast{background-color:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
@@ -225,7 +228,12 @@
             appData = loadedData;
             renderApp();
         });
+
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+        const formatAndCapitalizeDate = (date) => {
+            const formatted = dayFormatter.format(date);
+            return formatted.replace(/(\b[a-z](?=[a-z]{2}))/g, (letter) => letter.toUpperCase());
+        };
         
         function handleBannerVisibility() {
             const banner = document.getElementById('how-to-banner');
@@ -273,7 +281,7 @@
             updateCountdowns();
             fetchWeather();
             handleBannerVisibility();
-            switchView(currentView); // Restore the current view after re-render
+            switchView(currentView);
         }
 
         function renderMessageThreadsListHTML(messages, options = {}) {
@@ -314,6 +322,7 @@
         }
 
         function renderSingleThread(thread, threadNumber, options) {
+            options.mostRecentId = options.mostRecentId || null;
             let threadHtml = renderMessage(thread, threadNumber, false, options);
             if (thread.replies.length > 0) {
                 threadHtml += `<div class="replies-container">`;
@@ -322,14 +331,16 @@
                 });
                 threadHtml += `</div>`;
             }
-            threadHtml += `</div>`; // Closing .item-content
+            threadHtml += `</div>`;
             return threadHtml;
         }
 
         function renderMessage(note, number, isReply, options = {}) {
-            const numberHtml = `<span class="message-number">${number}</span>`;
+            const numberClass = isReply ? 'reply' : 'thread';
+            const numberHtml = `<span class="message-number ${numberClass}">${number}</span>`;
             const authorHtml = `<strong class="author-name">${note.author}:</strong> `;
-            const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
+            const nuevoIndicator = (note.id === options.mostRecentId) ? `<strong class="nuevo-indicator">MÁS RECIENTE</strong>` : '';
+            const timestampHtml = `<span class="item-timestamp">${nuevoIndicator} ${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>`;
             const replyCounter = !isReply && note.replies && note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
             let footerHtml = `<div class="note-footer">${timestampHtml}`;
             if(!isReply) {
@@ -403,8 +414,9 @@
             }
             if(noteEvents.length > 0) {
                 const topLevelNotes = noteEvents.filter(note => !note.replyingTo);
+                const mostRecentNote = noteEvents.reduce((latest, current) => new Date(current.timestamp) > new Date(latest.timestamp) ? current : latest);
                 html += `<h4 class="messages-header">Notas del Día <span class="message-count-badge">${topLevelNotes.length}</span></h4>`;
-                html += renderMessageThreadsListHTML(noteEvents, { dataType: 'timelineEvents', collapseAfter: 3 });
+                html += renderMessageThreadsListHTML(noteEvents, { dataType: 'timelineEvents', collapseAfter: 3, mostRecentId: mostRecentNote.id });
             }
             return html;
         }
@@ -413,14 +425,18 @@
             const timelineView = document.getElementById('timeline-view');
             const allEvents = Object.values(appData.timelineEvents || {});
             let html = '', currentMonth = -1;
-            const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long' });
+            const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long', year: 'numeric' });
             const startDate = new Date('2025-12-13T12:00:00'), endDate = new Date('2026-01-17T12:00:00');
             for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = allEvents.filter(item => item.date === dateStr);
-                if (d.getMonth() !== currentMonth) { currentMonth = d.getMonth(); html += `<h2>${monthFormatter.format(d)} ${d.getFullYear()}</h2>`; }
+                const monthName = monthFormatter.format(d).replace(/(\b[a-z](?=[a-z]{2}))/g, letter => letter.toUpperCase());
+                if (d.getMonth() !== currentMonth) { 
+                    currentMonth = d.getMonth(); 
+                    html += `<h2>${monthName}</h2>`; 
+                }
                 const dayIcon = events.length > 0 ? events.find(e => e.type !== 'note')?.icon || '🗒️' : '🗓️';
-                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${dayFormatter.format(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
+                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${formatAndCapitalizeDate(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                 if (d >= weatherStartDate && d <= weatherEndDate) { html += getAlgecirasWeatherHTML(); }
                 html += generateDayContentHTML(events, dateStr);
@@ -433,7 +449,8 @@
             const calendarView = document.getElementById('calendar-view'), allEvents = Object.values(appData.timelineEvents || {});
             calendarView.innerHTML = '';
             [ {y:2025, m:11}, {y:2026, m:0} ].forEach(cal => {
-                const year = cal.y, month = cal.m, monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+                const year = cal.y, month = cal.m;
+                const monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
                 let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
                 const dayNames = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
                 dayNames.forEach(day => { html += `<div class="calendar-header">${day}</div>`; });
@@ -503,8 +520,7 @@
             const { user, time, eventDate, type } = appData.lastUpdate || {};
             if(!time) { updateDetailsContainer.innerHTML = ''; return; }
             const updateTimestamp = new Date(time).toLocaleString('es-CO', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-            const formattedTimestamp = updateTimestamp.charAt(0).toUpperCase() + updateTimestamp.slice(1).replace('.','');
-            const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${formattedTimestamp}</div>`;
+            const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${updateTimestamp}</div>`;
             let notificationHtml = '';
             if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) {
                 let locationText = '';
@@ -515,7 +531,7 @@
                 } else if (type === 'timeline' && eventDate) {
                     const dateObj = new Date(eventDate + 'T12:00:00');
                     const notificationDate = dateObj.toLocaleDateString('es-CO', { month: 'short', day: 'numeric' });
-                    locationText = ` en: ${notificationDate.charAt(0).toUpperCase() + notificationDate.slice(1).replace('.','')}`;
+                    locationText = ` en: ${notificationDate}`;
                     chipClass = 'timeline-update';
                 }
                 notificationHtml = `<div class="notification-chip ${chipClass}">🔔 Nuevo Mensaje${locationText}</div>`;
@@ -640,14 +656,14 @@
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date, allEvents = Object.values(appData.timelineEvents || {}), events = allEvents.filter(item => item.date === dateStr);
                     const date = new Date(dateStr + 'T12:00:00');
-                    document.getElementById('modal-date').innerHTML = `<span>${dayFormatter.format(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
+                    document.getElementById('modal-date').innerHTML = `<span>${formatAndCapitalizeDate(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
                     let modalContent = '';
                     const weatherStartDate = new Date('2026-01-09T00:00:00'), weatherEndDate = new Date('2026-01-16T23:59:59');
                     if (date >= weatherStartDate && date <= weatherEndDate) { modalContent += getAlgecirasWeatherHTML(); }
                     modalContent += `<div class="item-content">${generateDayContentHTML(events, dateStr)}</div>`;
                     document.getElementById('modal-events').innerHTML = modalContent;
                     document.getElementById('calendar-modal').classList.add('popup-visible');
-                    if (events.length === 0) { 
+                    if (events.length === 0) {
                         setTimeout(() => { 
                             const addButton = document.querySelector('#modal-date .add-button'); 
                             if(addButton) addButton.click(); 
@@ -665,7 +681,7 @@
 
                     if (originalMessage) {
                         let replies = [];
-                        if(type === 'groupChat') {
+                        if(type === 'groupChat' || type === 'timelineEvents') {
                             replies = messagePool.filter(m => m.replyingTo === replyToId)
                                                 .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
                         }
