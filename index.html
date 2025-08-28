@@ -219,7 +219,7 @@
     <div class="container" id="main-container">
     </div>
     
-    <footer>Version 082725c</footer>
+    <footer>Version 082725f</footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -330,7 +330,7 @@
             updateCountdowns();
             fetchWeather();
             handleBannerVisibility();
-            switchView(currentView);
+            switchView(currentView, true); // Pass true to avoid fullscreen on initial load
         }
 
         function renderMessageThreadsListHTML(messages, options = {}) {
@@ -382,6 +382,7 @@
 
             let threadHtml = renderMessage(thread, threadNumber, false, options);
             if (thread.replies.length > 0) {
+                threadHtml += `<h4 class="messages-header" style="margin-top: 10px; padding-top: 10px; font-size: 0.9em;">Comentarios:</h4>`;
                 threadHtml += `<div class="replies-container">`;
                 const repliesOldestFirst = [...thread.replies].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
                 const replyNumberMap = new Map(repliesOldestFirst.map((reply, index) => [reply.id, index + 1]));
@@ -563,7 +564,7 @@
                 lastMessageBarHTML = `<div class="last-message-bar"><strong>${lastMessage.author}</strong>: "${lastMessageText}" <span class="time-ago">(${timeAgo(lastMessage.timestamp)})</span></div>`;
             }
 
-            let header = `<div class="chat-header"><h2>Chat Grupal</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Pantalla Completa">⛶</button></div>`;
+            let header = `<div class="chat-header"><h2>Chat Grupal</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Salir de Pantalla Completa">&#x2924;</button></div>`;
             
             let messagesHTML = renderMessageBubblesHTML(allChatMessages, { dataType: 'groupChat' });
             if (allChatMessages.length === 0) {
@@ -634,8 +635,16 @@
             document.getElementById('show-timeline').addEventListener('click', () => switchView('timeline'));
             document.getElementById('show-calendar').addEventListener('click', () => switchView('calendar'));
             document.getElementById('show-chat').addEventListener('click', () => switchView('chat'));
-            window.switchView = function(activeView) {
+            
+            window.switchView = function(activeView, isInitialLoad = false) {
                 currentView = activeView;
+
+                if (activeView === 'chat' && !isInitialLoad) {
+                    document.body.classList.add('fullscreen-chat-active');
+                } else {
+                    document.body.classList.remove('fullscreen-chat-active');
+                }
+
                 Object.keys(views).forEach(key => {
                     const button = document.getElementById(`show-${key}`);
                     if (button) {
@@ -648,12 +657,11 @@
                         }
                     }
                 });
+                
                 if (activeView === 'chat') {
                     setTimeout(() => {
                         const chatContainer = document.getElementById('chat-messages-container');
-                        if(chatContainer) {
-                            chatContainer.scrollTop = chatContainer.scrollHeight;
-                        }
+                        if(chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight;
                     }, 0);
                 }
             }
@@ -758,9 +766,8 @@
                 
                 const fullscreenBtn = target.closest('#fullscreen-chat-btn');
                 if(fullscreenBtn) {
-                    document.body.classList.toggle('fullscreen-chat-active');
-                    fullscreenBtn.innerHTML = document.body.classList.contains('fullscreen-chat-active') ? '&#x2924;' : '&#x26F6;';
-                    fullscreenBtn.title = document.body.classList.contains('fullscreen-chat-active') ? 'Salir de Pantalla Completa' : 'Pantalla Completa';
+                    document.body.classList.remove('fullscreen-chat-active');
+                    switchView('timeline');
                     return;
                 }
 
