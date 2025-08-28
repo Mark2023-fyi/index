@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itinerario: Austin a Medellín</title>
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
         :root {
             --brand-red: #CF4647;
             --brand-blue: #007bff;
@@ -81,15 +81,17 @@
         .modal-disclaimer{font-size:0.75em; color:#999; margin-top:15px;}
         .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
-        #reply-context-container { border: 1px solid #eee; background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 15px; text-align: left; max-height: 150px; overflow-y: auto;}
+        #reply-context-container { border: 1px solid #eee; background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 15px; text-align: left; max-height: 160px; overflow-y: auto; position: relative;}
+        #reply-context-container.is-scrollable::after { content: 'Desliza para ver más ▼'; position: sticky; bottom: -10px; display: block; text-align: center; background: linear-gradient(to top, #f8f9fa, #f8f9fa 70%, transparent); padding-top: 15px; padding-bottom: 10px; font-size: 0.8em; color: #555; font-weight: 600; }
         #reply-context-container h4, #reply-context-container h5 { text-align: left; margin: 0 0 5px 0; font-size: 0.8em; color: #6c757d; text-transform: uppercase; }
         #reply-context-container h5 { margin-top: 10px; }
         .reply-context { border-bottom: 1px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 8px; }
         .reply-context.original-message { background-color: #e9ecef; padding: 8px; border-radius: 6px; }
         .reply-context:last-child { border-bottom: none; margin-bottom: 0; }
         .reply-context strong { font-size: 0.9em; }
-        .reply-context small { font-size: 0.75em; color: #6c757d; }
         .reply-context p { font-size: 0.9em; margin: 4px 0; white-space: pre-wrap; word-wrap: break-word; }
+        .reply-context-footer { text-align: right; margin-top: 4px; }
+        .reply-context-footer small { font-size: 0.75em; color: #6c757d; display: flex; align-items: center; justify-content: flex-end; }
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
         .toggle-visibility-btn { background-color: var(--brand-blue); color: white; border: none; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; margin: 10px auto; display: block; }
@@ -116,7 +118,7 @@
         #scroll-up-indicator { text-align: center; padding: 5px; font-size: 0.8em; color: #6c757d; background: #f8f9fa; border-radius: 8px; margin: 0 10px 10px 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
         .chat-message-container.grouped { margin-top: 2px; }
-        .chat-message { max-width: 75%; min-width: 100px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+        .chat-message { max-width: 75%; min-width: 80px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
         .message-mine { align-self: flex-end; background-color: #dcf8c6; color: #333; }
         .message-theirs { align-self: flex-start; background-color: #e3f2fd; color: #333; }
         .chat-author-name { font-size: 0.8em; font-weight: 600; color: #555; margin-bottom: 4px; display: flex; align-items: center; }
@@ -169,6 +171,11 @@
             .popup-content { padding: 20px; max-width: 95%; max-height: 90vh; }
             .view-switcher button { padding: 8px 12px; font-size: 0.9em; }
             .calendar-day { min-height: 60px; }
+            
+            /* Chat UX Improvements */
+            #chat-view { margin-top: -20px; }
+            #chat-view-wrapper { height: 80vh; }
+            .chat-message { font-size: 0.95em; }
             .chat-input-bar { flex-wrap: wrap; }
             .chat-input-bar select { width: 100%; margin-bottom: 5px; }
             .chat-input-bar textarea { min-height: 40px; }
@@ -210,9 +217,9 @@
     </div>
 
     <div class="container" id="main-container">
-        </div>
+    </div>
     
-    <footer>Version 082625b</footer>
+    <footer>Version 082725c</footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -254,7 +261,6 @@
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
         const formatAndCapitalizeDate = (date) => {
             const formatted = dayFormatter.format(date);
-            // Capitalize first letter of the string, which is the weekday
             return formatted.charAt(0).toUpperCase() + formatted.slice(1);
         };
         
@@ -593,13 +599,18 @@
         
         function updateHeader() {
             const updateDetailsContainer = document.getElementById('update-details');
-            if (!updateDetailsContainer) return;
-            const { user, time, eventDate, type } = appData.lastUpdate || {};
+            if (!updateDetailsContainer || !appData.lastUpdate) return;
+            
+            const { user, time, eventDate, type } = appData.lastUpdate;
             if(!time) { updateDetailsContainer.innerHTML = ''; return; }
+            
             const updateTimestamp = new Date(time).toLocaleString('es-CO', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
             const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${updateTimestamp} COL</div>`;
+            
             let notificationHtml = '';
-            if (user !== 'Sistema' && (new Date() - new Date(time)) < 600000) {
+            const timeSinceUpdate = new Date() - new Date(time);
+
+            if (user !== 'Sistema' && timeSinceUpdate < 600000) { // 10 minute window
                 let locationText = '';
                 let chipClass = '';
                 if(type === 'chat') {
@@ -651,10 +662,12 @@
         function openModal(options) {
             const modal = document.getElementById('add-item-modal');
             const contextContainer = document.getElementById('reply-context-container');
-            
-            contextContainer.innerHTML = ''; // Clear previous context
-            
+            contextContainer.innerHTML = '';
+            contextContainer.classList.remove('is-scrollable');
+            contextContainer.style.display = 'none';
+
             if (options.originalMessage) {
+                contextContainer.style.display = 'block';
                 let contextHTML = `<h4>Respondiendo a:</h4>
                 <div class="reply-context original-message">
                     <strong>${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO', {timeZone: 'America/Bogota'})} COL</small>
@@ -662,15 +675,34 @@
                 </div>`;
                 
                 if (options.replies && options.replies.length > 0) {
-                    contextHTML += `<h5>Respuestas Anteriores:</h5>`;
-                    options.replies.forEach(reply => {
-                        contextHTML += `<div class="reply-context">
-                            <strong>${reply.author}</strong> <small>${new Date(reply.timestamp).toLocaleString('es-CO', {timeZone: 'America/Bogota'})} COL</small>
-                            <p>${reply.text}</p>
-                        </div>`;
+                    const repliesOldestFirst = [...options.replies].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+                    const replyNumberMap = new Map(repliesOldestFirst.map((reply, index) => [reply.id, index + 1]));
+                    const repliesNewestFirst = [...options.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+                    
+                    let repliesHtml = '<h5>Respuestas Anteriores:</h5>';
+                    
+                    repliesNewestFirst.forEach((reply, index) => {
+                        const replyNumber = replyNumberMap.get(reply.id);
+                        const numberHtml = `<span class="message-number reply">${replyNumber}</span>`;
+                        const nuevoIndicator = (index === 0) ? `<strong class="recent-indicator green">MÁS RECIENTE</strong>` : '';
+                        const timestampHtml = `<small>${nuevoIndicator} ${new Date(reply.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit', timeZone: 'America/Bogota'}).replace('.', '')} COL</small>`;
+
+                        repliesHtml += `
+                            <div class="reply-context">
+                                <div class="author-name">${numberHtml} <strong>${reply.author}</strong></div>
+                                <p>${reply.text}</p>
+                                <div class="reply-context-footer">${timestampHtml}</div>
+                            </div>`;
                     });
+                    contextHTML += repliesHtml;
                 }
                 contextContainer.innerHTML = contextHTML;
+                
+                setTimeout(() => {
+                    if (contextContainer.scrollHeight > contextContainer.clientHeight) {
+                        contextContainer.classList.add('is-scrollable');
+                    }
+                }, 0);
             }
 
             modal.querySelector('#add-item-title').innerText = options.title;
@@ -719,7 +751,10 @@
                 }
                 
                 const popup = target.closest('.popup-overlay');
-                if (popup && (target === popup || target.matches('.close-popup'))) { popup.classList.remove('popup-visible'); return; }
+                if (popup && (target === popup || target.matches('.close-popup') || target.matches('.modal-close-button'))) { 
+                    popup.classList.remove('popup-visible'); 
+                    return; 
+                }
                 
                 const fullscreenBtn = target.closest('#fullscreen-chat-btn');
                 if(fullscreenBtn) {
@@ -753,7 +788,7 @@
                     const type = replyButton.dataset.type;
                     const replyToId = replyButton.dataset.replyToId;
                     const date = replyButton.dataset.date || '';
-                    const messagePool = (type === 'groupChat') ? Object.values(appData.groupChat) : Object.values(appData.timelineEvents);
+                    const messagePool = (type === 'groupChat') ? Object.values(appData.groupChat || {}) : Object.values(appData.timelineEvents || {});
                     const originalMessage = messagePool.find(m => m.id === replyToId);
 
                     if (originalMessage) {
@@ -777,9 +812,8 @@
                 if(addButton) {
                     const type = addButton.dataset.type;
                     const itemDate = addButton.dataset.date || '';
-                    let title = type === 'groupChat' ? 'Nuevo Mensaje' : 'Añadir Nota';
-                    if (type === 'importantNotes') title = 'Añadir Nota Importante';
-                    if (type === 'plannedActivities') title = 'Añadir Actividad';
+                    let title = type === 'importantNotes' ? 'Añadir Nota Importante' : 
+                                type === 'plannedActivities' ? 'Añadir Actividad' : 'Añadir Nota';
                     openModal({ title: title, type: type, date: itemDate });
                     return;
                 }
@@ -794,13 +828,47 @@
                     const text = textarea.value.trim();
                     if (!text || !author) { alert("Por favor, selecciona tu nombre y escribe un mensaje."); return; }
                     localStorage.setItem('itineraryAuthor', author);
-                    const newId = `item-${Date.now()}`;
+                    
+                    const newId = `msg-${Date.now()}`;
                     if (!appData.groupChat) appData.groupChat = {};
                     const item = { id: newId, text, author, timestamp: new Date().toISOString() };
+                    
                     appData.groupChat[newId] = item;
                     saveData(author, null, 'chat');
                     textarea.value = '';
                     textarea.style.height = 'auto';
+                } else if (e.target.id === 'add-item-form') {
+                    e.preventDefault(); 
+                    const type = document.getElementById('item-type-input').value;
+                    const text = document.getElementById('item-description-input').value.trim();
+                    const author = document.getElementById('author-select').value;
+                    if (!type || !text || !author) { alert("Por favor, completa todos los campos."); return; }
+                    localStorage.setItem('itineraryAuthor', author);
+                    
+                    const newId = `${type.slice(0,4)}-${Date.now()}`;
+                    if (!appData[type]) appData[type] = {};
+                    
+                    const item = { id: newId, text, author, timestamp: new Date().toISOString() };
+                    const replyingToId = document.getElementById('reply-to-id-input').value;
+                    if(replyingToId) item.replyingTo = replyingToId;
+                    
+                    let notificationType = 'general';
+                    let eventDateForNotification = null;
+
+                    if (type === 'timelineEvents') { 
+                        item.date = document.getElementById('item-date-input').value; 
+                        item.icon = '🗒️'; 
+                        item.type = 'note'; 
+                        eventDateForNotification = item.date;
+                        notificationType = 'timeline';
+                    } else if (type === 'groupChat') {
+                        notificationType = 'chat';
+                    }
+                    
+                    appData[type][newId] = item;
+                    saveData(author, eventDateForNotification, notificationType);
+                    
+                    document.getElementById('add-item-modal').classList.remove('popup-visible');
                 }
             });
 
@@ -810,45 +878,13 @@
                     e.target.style.height = (e.target.scrollHeight) + 'px';
                 }
             });
-            
-            document.getElementById('add-item-form').addEventListener('submit', function(e) {
-                e.preventDefault(); 
-                const type = document.getElementById('item-type-input').value, text = document.getElementById('item-description-input').value.trim(), author = document.getElementById('author-select').value;
-                if (!type || !text || !author) { alert("Por favor, completa todos los campos."); return; }
-                localStorage.setItem('itineraryAuthor', author);
-                const newId = `item-${Date.now()}`;
-                if (!appData[type]) appData[type] = {};
-                
-                let eventDateForNotification = null;
-                const item = { id: newId, text, author, timestamp: new Date().toISOString() };
-                const replyingToId = document.getElementById('reply-to-id-input').value;
-                if(replyingToId) item.replyingTo = replyingToId;
-
-                appData[type][newId] = item;
-
-                if (type === 'timelineEvents') { 
-                    item.date = document.getElementById('item-date-input').value; 
-                    item.icon = '🗒️'; 
-                    item.type = 'note'; 
-                    eventDateForNotification = item.date;
-                    saveData(author, eventDateForNotification, 'timeline');
-                } else {
-                    saveData(author, null, 'general');
-                }
-                
-                document.getElementById('add-item-modal').classList.remove('popup-visible');
-            });
 
             document.body.addEventListener('scroll', function(e) {
                 if (e.target.id === 'chat-messages-container') {
                     const container = e.target;
                     const indicator = document.getElementById('scroll-up-indicator');
                     if (indicator) {
-                        if (container.scrollTop < 50) {
-                            indicator.style.display = 'none';
-                        } else {
-                            indicator.style.display = 'block';
-                        }
+                        indicator.style.display = container.scrollTop < 50 ? 'none' : 'block';
                     }
                 }
             }, true);
