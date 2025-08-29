@@ -79,7 +79,7 @@
         .weather-temp { font-size: 1.3em; font-weight: 600; font-family: 'Roboto Mono', monospace; }
         .weather-time { font-size: 0.9em; color: #333; font-family: 'Roboto Mono', monospace; margin-top: 2px; }
         .weather-divider { width: 1px; background-color: rgba(0,0,0,0.2); align-self: stretch; margin: -5px 10px; }
-        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
+        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(240, 240, 245, 0.5);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
         .popup-visible{opacity:1!important;visibility:visible!important}
         .popup-content{padding:20px 30px 30px;position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh; background: rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.49);}
         .popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#555;cursor:pointer;transition:color .2s;z-index:10;}.close-popup:hover{color:#000}
@@ -224,9 +224,52 @@
             .chat-input-bar select { width: 100%; margin-bottom: 5px; }
             .chat-input-bar textarea { min-height: 40px; }
         }
+
+        /* --- Success Indicator Styles --- */
+        #success-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--brand-green);
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background: rgba(220, 255, 220, 0.6);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(40, 167, 69, 0.4);
+        }
+        #success-indicator.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .checkmark { width: 56px; height: 56px; border-radius: 50%; display: block; stroke-width: 3; stroke: var(--brand-green); stroke-miterlimit: 10; margin: 0 auto; }
+        #success-indicator:not(.hidden) .checkmark-circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-linecap: round; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        #success-indicator:not(.hidden) .checkmark-check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards; }
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
     </style>
 </head>
 <body>
+    <div id="success-indicator" class="hidden">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        <span>¡Guardado!</span>
+    </div>
+
     <div id="pre-screen-overlay">
         <div class="pre-screen-content">
             <div class="pre-screen-text">
@@ -758,6 +801,16 @@
                     <div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; 
         }
         
+        function showSuccessIndicator() {
+            const indicator = document.getElementById('success-indicator');
+            if (indicator) {
+                indicator.classList.remove('hidden');
+                setTimeout(() => {
+                    indicator.classList.add('hidden');
+                }, 1500); // Hide after 1.5 seconds
+            }
+        }
+
         function attachDynamicListeners() {
             const views = { timeline: document.getElementById('timeline-view'), calendar: document.getElementById('calendar-view'), chat: document.getElementById('chat-view') };
             document.getElementById('show-timeline').addEventListener('click', () => switchView('timeline'));
@@ -971,6 +1024,7 @@
                     saveData(author, null, 'chat');
                     textarea.value = '';
                     textarea.style.height = 'auto';
+                    showSuccessIndicator();
                 } else if (e.target.id === 'add-item-form') {
                     e.preventDefault(); 
                     const type = document.getElementById('item-type-input').value;
@@ -1003,6 +1057,7 @@
                     saveData(author, eventDateForNotification, notificationType);
                     
                     document.getElementById('add-item-modal').classList.remove('popup-visible');
+                    showSuccessIndicator();
                 }
             });
 
