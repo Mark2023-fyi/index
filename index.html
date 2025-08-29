@@ -10,6 +10,8 @@
             --brand-red: #CF4647;
             --brand-blue: #007bff;
             --brand-green: #28a745;
+            --birthday-color-1: #ff7e5f;
+            --birthday-color-2: #feb47b;
         }
         body{font-family:'Poppins',sans-serif;background-color:#f0f2f5;color:#333;margin:0;padding:20px; overflow-wrap: break-word;}
         
@@ -53,8 +55,6 @@
         .flight-button{display:inline-block;background-color:var(--brand-blue);color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#555;margin-top:4px}
         .info-card{background-color:#fff;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}.info-card h3{margin-top:0;color:var(--brand-blue); display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:0;margin:0; list-style-type: none;}.info-card li{display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #f0f0f0;}.info-card li:last-child{border-bottom:none;}.info-item-text{flex-grow:1;}
-        
-        /* --- New Weather Widget Styles --- */
         .weather-widget { background-color: #fff; border-radius: 12px; padding: 15px 20px; box-shadow: 0 4px 12px rgba(0,0,0,.08); margin-bottom: 15px; }
         .weather-widget h3 { margin: 0 0 15px 0; font-size: 1.2em; color: var(--brand-blue); }
         .weather-locations { display: flex; justify-content: space-around; align-items: center; }
@@ -63,9 +63,8 @@
         .weather-temp { font-size: 1.3em; font-weight: 600; font-family: 'Roboto Mono', monospace; }
         .weather-time { font-size: 0.9em; color: #555; font-family: 'Roboto Mono', monospace; margin-top: 2px; }
         .weather-divider { width: 1px; background-color: #e0e0e0; align-self: stretch; margin: -5px 10px; }
-
-        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh;}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s}.close-popup:hover{color:#333}
-        #modal-date{display:flex;justify-content:space-between;align-items:center;width:100%;gap:15px;margin-right:20px;}
+        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.7);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.popup-visible{opacity:1!important;visibility:visible!important}.popup-content{background:#fff;padding:20px 30px 30px;border-radius:10px;box-shadow:0 5px 25px rgba(0,0,0,.3);position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh;}.popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#aaa;cursor:pointer;transition:color .2s;z-index:10;}.close-popup:hover{color:#333}
+        #modal-date{display:flex;justify-content:space-between;align-items:center;width:100%;gap:15px;padding-right:30px;}
         #modal-events{overflow-y:auto; flex-grow:1; text-align:left;}
         .view-switcher{display:flex;justify-content:center;margin-bottom:30px;background:#e0e0e0;border-radius:10px;padding:5px}
         .view-switcher button{border:none;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:1em;font-weight:600;background:transparent;color:#555;border-radius:8px;cursor:pointer;transition:all .3s ease}
@@ -104,8 +103,8 @@
         .reply-context-footer small { font-size: 0.75em; color: #6c757d; display: flex; align-items: center; justify-content: flex-end; }
         .notification-badge{position:absolute;top:4px;left:4px;background-color:#ff4d4d;color:white;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;font-weight:bold;}
         .messages-header{font-weight:600;color:#333;font-size:1em;margin:15px 0 5px 0;padding-top:10px;border-top:1px solid #eee;display:flex;align-items:center;gap:8px;}
-        .toggle-visibility-btn { background-color: var(--brand-blue); color: white; border: none; border-radius: 8px; padding: 8px 15px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; margin: 10px auto; display: block; }
-        .toggle-visibility-btn:hover { background-color: #0056b3; }
+        .toggle-visibility-link { background: none; border: none; padding: 8px; margin: 5px auto; display: block; width: fit-content; color: var(--brand-blue); font-weight: 600; font-size: 0.9em; cursor: pointer; text-decoration: none; }
+        .toggle-visibility-link:hover { text-decoration: underline; }
         .toggle-text-btn{font-size:0.8em; font-weight:600; color:var(--brand-blue); text-decoration:none; white-space:nowrap; margin-left:5px;}.toggle-text-btn:hover{text-decoration:underline;}
         .note-footer{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top: 4px;}
         .reply-btn{background:none; border:none; cursor:pointer; font-size:0.75em; color:#555; padding:2px 6px; opacity:0.7; border-radius:4px; font-weight:600; display:inline-flex; align-items:center; gap:5px;}.reply-btn:hover{opacity:1; color:var(--brand-blue); background-color: #f0f2f5;}
@@ -123,6 +122,22 @@
         .fullscreen-btn:hover { color: #333; transform: scale(1.1); }
         footer{text-align:center;margin-top:40px;font-size:0.8em;color:#999;}
         
+        /* --- Birthday & Confetti Styles --- */
+        .birthday-banner { background: linear-gradient(45deg, var(--birthday-color-1), var(--birthday-color-2)); color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; animation: pulse 2s infinite; position: relative; overflow: hidden; }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } 50% { transform: scale(1.03); box-shadow: 0 6px 18px rgba(254, 180, 123, 0.5); } 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } }
+        .calendar-day.birthday-date { background-color: #fff4e6; border: 1px solid var(--birthday-color-2); font-weight: bold; }
+        .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; top: -20px; animation: fall 5s linear infinite; }
+        .confetti:nth-child(1) { left: 10%; background-color: #00f; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 20%; background-color: #0f0; animation-delay: -1s; }
+        .confetti:nth-child(3) { left: 30%; background-color: #ff0; animation-delay: -0.5s; }
+        .confetti:nth-child(4) { left: 40%; background-color: #f0f; animation-delay: -2s; }
+        .confetti:nth-child(5) { left: 50%; background-color: #0ff; animation-delay: -1.5s; }
+        .confetti:nth-child(6) { left: 60%; background-color: #f80; animation-delay: -2.5s; }
+        .confetti:nth-child(7) { left: 70%; background-color: #08f; animation-delay: -3s; }
+        .confetti:nth-child(8) { left: 80%; background-color: #8f0; animation-delay: -4s; }
+        .confetti:nth-child(9) { left: 90%; background-color: #80f; animation-delay: -3.5s; }
+        @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(200px) rotate(720deg); opacity: 0; } }
+
         /* --- Chat View Styles --- */
         #chat-view-wrapper { background-color: #fff; border: 1px solid #ddd; border-radius: 12px; display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; }
         #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 10px; }
@@ -231,7 +246,7 @@
     <div class="container" id="main-container">
     </div>
     
-    <footer>Version 082825b</footer>
+    <footer>Version 082825c</footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -261,7 +276,7 @@
             ];
 
             for (const loc of locations) {
-                const elements = document.querySelectorAll('#' + loc.id); // Use querySelectorAll to find all instances
+                const elements = document.querySelectorAll('#' + loc.id);
                 if (elements.length === 0) continue;
 
                 try {
@@ -338,7 +353,7 @@
             if (textContent.length <= charLimit) {
                 return html;
             }
-            const visibleText = html.substring(0, charLimit); // This can still break HTML, but is a simple approach
+            const visibleText = html.substring(0, charLimit);
             const hiddenText = html.substring(charLimit);
             return `<span>${visibleText}</span><span class="ellipsis">... </span><span class="more-text" style="display:none;">${hiddenText}</span> <a href="#" class="toggle-text-btn">Ver más</a>`;
         }
@@ -418,7 +433,7 @@
             if (messageThreads.length > collapseAfter) {
                 let hiddenHtml = renderAndTrack(messageThreads.slice(collapseAfter));
                 html += `<div class="collapsible-messages" style="display:none;">${hiddenHtml}</div>`;
-                html += `<button class="toggle-visibility-btn" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
+                html += `<button class="toggle-visibility-link" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
             }
             return html;
         }
@@ -538,12 +553,22 @@
                     </div>
                 </div>`;
         }
+        
+        function getBirthdayHTML() {
+            let confettiHTML = '';
+            for(let i=0; i<9; i++) { confettiHTML += '<div class="confetti"></div>'; }
+            return `<div class="birthday-banner">🎉🎂 ¡Feliz Cumpleaños, Faiber! 🎈🥳${confettiHTML}</div>`;
+        }
 
         function generateDayContentHTML(dateStr) {
             const allEvents = Object.values(appData.timelineEvents || {});
             const events = allEvents.filter(item => item.date === dateStr);
             let html = '';
 
+            if(dateStr === '2026-01-15') {
+                html += getBirthdayHTML();
+            }
+            
             const weatherStartDate = new Date('2026-01-09T00:00:00');
             const weatherEndDate = new Date('2026-01-16T23:59:59');
             const currentDate = new Date(dateStr + 'T12:00:00');
@@ -555,7 +580,7 @@
             const noteEvents = events.filter(e => e.type === 'note');
             if (planEvents.length > 0) {
                 planEvents.forEach(item => { html += `<div class="item-description">${item.description}</div>`; if (item.flightInfo) { const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join(''); html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`; } });
-            } else if (noteEvents.length === 0) {
+            } else if (noteEvents.length === 0 && dateStr !== '2026-01-15') {
                 html += `<div class="item-description tbd">No hay planes para este día.</div>`;
             }
             if(noteEvents.length > 0) {
@@ -604,9 +629,18 @@
                     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     const events = allEvents.filter(item => item.date === dateStr);
                     const noteCount = events.filter(item => item.type === 'note' && !item.replyingTo).length;
-                    const eventHTML = events.length > 0 ? `<div class="event-icons-container"><span class="calendar-emoji">${events.find(e=>e.type!=="note")?.icon||"🗒️"}</span></div>` : '';
+                    
+                    let dayClass = 'calendar-day';
+                    let dayContent = '';
+                    if (dateStr === '2026-01-15') {
+                        dayClass += ' birthday-date';
+                        dayContent = '<span class="calendar-emoji">🎂</span>';
+                    } else if (events.length > 0) {
+                        dayContent = `<div class="event-icons-container"><span class="calendar-emoji">${events.find(e=>e.type!=="note")?.icon||"🗒️"}</span></div>`;
+                    }
+
                     const badge = noteCount > 0 ? `<div class="notification-badge">${noteCount}</div>` : '';
-                    html += `<div class="calendar-day" data-date="${dateStr}"><div class="day-number">${day}</div>${eventHTML}${badge}</div>`;
+                    html += `<div class="${dayClass}" data-date="${dateStr}"><div class="day-number">${day}</div>${dayContent}${badge}</div>`;
                 }
                 html += '</div>'; calendarView.innerHTML += html;
             });
@@ -821,12 +855,12 @@
                     return;
                 }
                 
-                if (target.matches('.toggle-visibility-btn')) {
+                if (target.matches('.toggle-visibility-link')) {
                     const hiddenContent = target.previousElementSibling;
                     const isHidden = hiddenContent.style.display === 'none' || hiddenContent.style.display === '';
                     if (isHidden) {
                         hiddenContent.style.display = 'block';
-                        target.textContent = 'Ocultar mensajes';
+                        target.textContent = 'Ocultar mensajes anteriores';
                     } else {
                         hiddenContent.style.display = 'none';
                         const count = target.dataset.count;
@@ -855,10 +889,10 @@
                     document.getElementById('modal-date').innerHTML = `<span>${formatAndCapitalizeDate(date)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button>`;
                     document.getElementById('modal-events').innerHTML = `<div class="item-content">${generateDayContentHTML(dateStr)}</div>`;
                     document.getElementById('calendar-modal').classList.add('popup-visible');
-                    fetchWeather(); // Re-fetch weather to populate Algeciras card if needed
+                    fetchWeather();
                     const allEvents = Object.values(appData.timelineEvents || {});
                     const eventsOnDay = allEvents.filter(item => item.date === dateStr);
-                    if (eventsOnDay.length === 0) { 
+                    if (eventsOnDay.length === 0 && dateStr !== '2026-01-15') { 
                         setTimeout(() => { 
                             const addButton = document.querySelector('#modal-date .add-button'); 
                             if(addButton) addButton.click(); 
@@ -976,7 +1010,7 @@
         // --- INITIALIZATION ---
         attachStaticListeners(); 
         setInterval(updateCountdowns, 1000);
-        setInterval(fetchWeather, 300000); // Update weather every 5 minutes
+        setInterval(fetchWeather, 300000);
     });
     </script>
 </body>
