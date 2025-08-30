@@ -13,24 +13,45 @@
             --brand-green: #28a745;
             --birthday-color-1: #ff7e5f;
             --birthday-color-2: #feb47b;
+            --light-bg: linear-gradient(120deg, #e0f2f7 0%, #ebedee 100%);
+            --dark-bg-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+            --light-text: #2c3e50;
+            --dark-text: #f0f2f5;
         }
         body{
             font-family:'Poppins',sans-serif;
-            /* New gradient background for the glass effect to work */
-            background-image: linear-gradient(to right top, #d4d3dd, #c0c4d5, #acb5cd, #99a6c5, #8797bd, #798eb7, #6b85b1, #5d7cab, #5370a5, #48649f, #3e5899, #334c93);
+            background-image: var(--light-bg);
             background-attachment: fixed;
-            color:#2c3e50;
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
             margin:0;
             padding:20px; 
             overflow-wrap: break-word;
+            transition: background-image 0.4s ease, color 0.4s ease;
         }
         
         /* --- Pre-Screen Styles (with glass effect) --- */
         #pre-screen-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.7s ease; }
         #pre-screen-overlay.hidden { opacity: 0; pointer-events: none; }
-        .pre-screen-content { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 20px; }
+        .pre-screen-content { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 40px; 
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2.9px);
+            -webkit-backdrop-filter: blur(2.9px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            max-width: 500px;
+            margin: 20px;
+            box-sizing: border-box;
+        }
         .pre-screen-text { text-align: center; color: #2c3e50; }
-        .pre-screen-text h2 { color: var(--brand-red); }
+        .pre-screen-text h2 { color: var(--brand-red); margin-top: 0; }
         .pre-screen-text p { font-size: 1.1em; max-width: 400px; margin: 0 auto; line-height: 1.6; }
         .loader { height: 60px; aspect-ratio: 2; border-bottom: 3px solid #0000; background: linear-gradient(90deg,#555 50%,#0000 0) -25% 100%/50% 3px repeat-x border-box; position: relative; animation: l3-0 .75s linear infinite; }
         .loader:before { content: ""; position: absolute; inset: auto 42.5% 0; aspect-ratio: 1; border-radius: 50%; background: var(--brand-red); animation: l3-1 .75s cubic-bezier(0,900,1,900) infinite; }
@@ -40,15 +61,24 @@
         .enter-button:hover { background-color: #0056b3; transform: scale(1.05); }
 
         /* --- Main App Styles --- */
-        .container{max-width:800px;margin:0 auto; transition: max-width 0.3s ease, padding 0.3s ease;}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
-        .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:8px 15px;font-size:0.85em;margin-bottom:15px;gap:15px; background: rgba(255, 255, 255, 0.45); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px); border: 1px solid rgba(255, 255, 255, 0.49);}
+        .container{max-width:800px;margin:0 auto; transition: max-width 0.3s ease, padding 0.3s ease;}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px;text-shadow: 0 1px 3px rgba(0,0,0,0.1);}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
+        .status-bar, .countdown-card, .item-content, .info-card, .weather-widget, #chat-view-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2.9px);
+            -webkit-backdrop-filter: blur(2.9px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            transition: background 0.4s ease, border 0.4s ease;
+        }
+        .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:8px 15px;font-size:0.85em;margin-bottom:15px;gap:15px;}
         .live-status{display:flex;align-items:center;gap:8px;font-weight:600;color:#d9534f;}
         .update-details{display:flex;align-items:center;gap:10px;flex-grow:1;justify-content:flex-end;}
         .last-update{color:#333;text-align:right;}
         .notification-chip{color:white;padding:5px 12px;border-radius:16px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap;}
         .notification-chip.timeline-update { background-color: var(--brand-green); }
         .notification-chip.chat-update { background-color: var(--brand-blue); }
-        .how-to-banner{border:1px solid rgba(255, 255, 255, 0.49);padding:15px 20px;margin-bottom:30px;position:relative;display:none; background: rgba(227, 242, 253, 0.6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px);}
+        .how-to-banner{padding:15px 20px;margin-bottom:30px;position:relative;display:none; background: rgba(227, 242, 253, 0.2); border-color: rgba(227, 242, 253, 1);}
         .how-to-banner h4{margin:0 0 10px 0;color:#0d47a1;text-align:left;}
         .how-to-banner p{margin:0 0 10px 0;font-size:0.9em;line-height:1.6;text-align:left;}
         .dismiss-banner-btn{background:none;border:none;color:#555;text-decoration:underline;font-size:0.8em;cursor:pointer;padding:5px;margin-top:5px;display:block;}
@@ -58,10 +88,10 @@
         .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
         .reply-counter-badge-demo{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
         .countdown-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}
-        .countdown-card{color:#1c2a39;padding:20px;text-align:center;flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center; background: rgba(255, 255, 255, 0.45); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px); border: 1px solid rgba(255, 255, 255, 0.49);}
+        .countdown-card{color:#1c2a39;padding:20px;text-align:center;flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center;}
         .countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:var(--brand-blue)}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#333;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#1c2a39;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#555}
         .timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:rgba(255, 255, 255, 0.5)}.timeline-item{padding:10px 20px 10px 65px;position:relative;margin-left:0;margin-bottom:10px}.timeline-item::before{content:attr(data-icon);position:absolute;left:0;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.7);border:3px solid var(--brand-blue);text-align:center;line-height:50px;font-size:2.5em; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);}
-        .item-content{padding:15px 20px; background: rgba(255, 255, 255, 0.45); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px); border: 1px solid rgba(255, 255, 255, 0.49);}
+        .item-content{padding:15px 20px;}
         .item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#556;font-style:italic}
         .flight-tracker{border-top:1px solid rgba(255,255,255,0.7);margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
@@ -69,9 +99,9 @@
         .flight-info{display:flex;flex-direction:column;align-items:center}
         .flight-button{display:inline-block;background-color:var(--brand-blue);color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#444;margin-top:4px}
-        .info-card{padding:20px;margin-bottom:20px; background: rgba(255, 255, 255, 0.45); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px); border: 1px solid rgba(255, 255, 255, 0.49);}
+        .info-card{padding:20px;margin-bottom:20px;}
         .info-card h3{margin-top:0;color:var(--brand-blue); display: flex; justify-content: space-between; align-items: center;}.info-card ul{padding-left:0;margin:0; list-style-type: none;}.info-card li{display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.1);}.info-card li:last-child{border-bottom:none;}.info-item-text{flex-grow:1;}
-        .weather-widget { padding: 15px 20px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.45); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px); border: 1px solid rgba(255, 255, 255, 0.49); }
+        .weather-widget { padding: 15px 20px; margin-bottom: 15px; }
         .weather-widget h3 { margin: 0 0 15px 0; font-size: 1.2em; color: var(--brand-blue); }
         .weather-locations { display: flex; justify-content: space-around; align-items: center; }
         .weather-location-item { flex: 1; text-align: center; min-height: 60px; display: flex; flex-direction: column; justify-content: center; }
@@ -81,7 +111,7 @@
         .weather-divider { width: 1px; background-color: rgba(0,0,0,0.2); align-self: stretch; margin: -5px 10px; }
         .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(240, 240, 245, 0.5);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
         .popup-visible{opacity:1!important;visibility:visible!important}
-        .popup-content{padding:20px 30px 30px;position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh; background: rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.49);}
+        .popup-content{padding:20px 30px 30px;position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh; background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);}
         .popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#555;cursor:pointer;transition:color .2s;z-index:10;}.close-popup:hover{color:#000}
         #modal-date{display:flex;justify-content:space-between;align-items:center;width:100%;gap:15px;padding-right:30px;}
         #modal-events{overflow-y:auto; flex-grow:1; text-align:left;}
@@ -157,14 +187,14 @@
         @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(200px) rotate(720deg); opacity: 0; } }
 
         /* --- Chat View Styles (with glass effect) --- */
-        #chat-view-wrapper { display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; background: rgba(255, 255, 255, 0.35); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8.1px); -webkit-backdrop-filter: blur(8.1px); border: 1px solid rgba(255, 255, 255, 0.49); overflow:hidden;}
+        #chat-view-wrapper { display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; overflow:hidden;}
         #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 10px; background-color: transparent;}
         #scroll-up-indicator { text-align: center; padding: 5px; font-size: 0.8em; color: #6c757d; background: rgba(248, 249, 250, 0.7); border-radius: 8px; margin: 0 10px 10px 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
         .chat-message-container.grouped { margin-top: 2px; }
-        .chat-message { max-width: 75%; min-width: 80px; padding: 8px 12px; border-radius: 8px; line-height: 1.5; position: relative; word-wrap: break-word; }
-        .message-mine { align-self: flex-end; color: #333; background: rgba(220, 248, 198, 0.75); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(220, 248, 198, 1); }
-        .message-theirs { align-self: flex-start; color: #333; background: rgba(227, 242, 253, 0.75); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(227, 242, 253, 1); }
+        .chat-message { max-width: 75%; min-width: 80px; padding: 8px 12px; line-height: 1.5; position: relative; word-wrap: break-word; border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); }
+        .message-mine { align-self: flex-end; color: #333; background: rgba(220, 248, 198, 0.2); border: 1px solid rgba(220, 248, 198, 0.8); }
+        .message-theirs { align-self: flex-start; color: #333; background: rgba(227, 242, 253, 0.2); border: 1px solid rgba(227, 242, 253, 0.8); }
         .chat-author-name { font-size: 0.8em; font-weight: 600; color: #555; margin-bottom: 4px; display: flex; align-items: center; }
         .message-theirs .chat-author-name { color: var(--brand-blue); }
         .avatar { width: 24px; height: 24px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 8px; font-size: 0.8em; flex-shrink: 0; }
@@ -175,7 +205,7 @@
         .bubble-footer .reply-btn:hover { color: var(--brand-blue); }
         .last-message-bar { font-size: 0.8em; text-align: center; color: #333; padding: 5px; background: rgba(240, 242, 245, 0.7); border-radius: 8px; margin: 0 0 10px 0; }
         .last-message-bar strong { color: #000; }
-        .chat-input-bar { display: flex; gap: 10px; align-items: center; padding: 10px; background-color: transparent; border-top: 1px solid rgba(255, 255, 255, 0.49); }
+        .chat-input-bar { display: flex; gap: 10px; align-items: center; padding: 10px; background-color: transparent; border-top: 1px solid rgba(255, 255, 255, 0.8); }
         .chat-input-bar select { font-family: 'Poppins', sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #ccc; background-color: #fff; }
         .chat-input-bar textarea { flex-grow: 1; padding: 10px; border-radius: 18px; border: 1px solid #ccc; resize: none; font-family: 'Poppins', sans-serif; font-size: 1em; line-height: 1.4; max-height: 100px; }
         .chat-input-bar button { background-color: var(--brand-blue); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; }
@@ -188,6 +218,9 @@
         .message-theirs .reply-quote-block { background-color: rgba(0, 123, 255, 0.1); border-left-color: var(--brand-blue); }
         .message-theirs .reply-quote-author { color: var(--brand-blue); }
         .message-mine .reply-quote-author { color: #1e5513; }
+        .chat-sent-indicator { display: flex; align-items: center; gap: 5px; align-self: flex-end; margin-right: 15px; margin-bottom: 5px; font-size: 0.75em; color: #555; opacity: 1; transition: opacity 0.3s ease; }
+        .chat-sent-indicator.hidden { opacity: 0; }
+        .chat-sent-indicator svg { width: 12px; height: 12px; fill: none; stroke: var(--brand-green); stroke-width: 3; }
 
         /* --- Fullscreen Chat Styles --- */
         body.fullscreen-chat-active { padding: 0; overflow: hidden; }
@@ -197,6 +230,49 @@
         body.fullscreen-chat-active #chat-view-wrapper { height: 100%; border-radius: 0; border: none; }
         body.fullscreen-chat-active .chat-header { margin-top: 0; padding: 10px 20px; border-radius: 0; }
         body.fullscreen-chat-active #chat-messages-container { padding-bottom: 10px; }
+        
+        /* --- Dark Mode Toggle --- */
+        .dark-mode-toggle { font-size: 1.2em; background: none; border: none; cursor: pointer; padding: 5px; line-height: 1; }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background-image: var(--dark-bg-image);
+            color: var(--dark-text);
+        }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 { color: #fff; }
+        body.dark-mode .status-bar, body.dark-mode .countdown-card, body.dark-mode .item-content, body.dark-mode .info-card, body.dark-mode .weather-widget, body.dark-mode #chat-view-wrapper {
+            background: rgba(20, 20, 30, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        body.dark-mode .last-update { color: #ccc; }
+        body.dark-mode .countdown-card, body.dark-mode .time-block span:first-child { color: var(--dark-text); }
+        body.dark-mode .countdown-card .arrival-date, body.dark-mode .time-block span:last-child { color: #aaa; }
+        body.dark-mode .flight-route, body.dark-mode .chat-disclaimer { color: #bbb; }
+        body.dark-mode .info-card li { border-bottom-color: rgba(255,255,255,0.1); }
+        body.dark-mode .weather-divider { background-color: rgba(255,255,255,0.2); }
+        body.dark-mode .weather-time, body.dark-mode .tbd { color: #bbb; }
+        body.dark-mode .popup-content {
+            background: rgba(30, 30, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        body.dark-mode .close-popup, body.dark-mode .modal-disclaimer { color: #aaa; }
+        body.dark-mode .view-switcher { background: rgba(0,0,0,0.3); }
+        body.dark-mode .view-switcher button { color: #eee; }
+        body.dark-mode .view-switcher button.active { background: rgba(255,255,255,0.1); color: #fff; }
+        body.dark-mode .calendar-header { background: rgba(0,0,0,0.2); }
+        body.dark-mode .calendar-day { background: rgba(255,255,255,0.05); }
+        body.dark-mode .calendar-day.other-month { background: rgba(0,0,0,0.1); color: #666; }
+        body.dark-mode .calendar-day:not(.other-month):hover { background: rgba(255,255,255,0.1); }
+        body.dark-mode .reply-btn, body.dark-mode .item-timestamp { color: #ccc; }
+        body.dark-mode .reply-btn:hover { background-color: rgba(255,255,255,0.1); }
+        body.dark-mode .message-mine { color: var(--dark-text); background: rgba(30, 80, 30, 0.4); border-color: rgba(100, 200, 100, 0.4); }
+        body.dark-mode .message-theirs { color: var(--dark-text); background: rgba(30, 40, 80, 0.4); border-color: rgba(100, 120, 200, 0.4); }
+        body.dark-mode .bubble-footer .item-timestamp { color: rgba(255,255,255,0.6); }
+        body.dark-mode .chat-input-bar { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+        body.dark-mode #add-item-modal textarea, body.dark-mode #add-item-modal select, body.dark-mode .chat-input-bar textarea, body.dark-mode .chat-input-bar select {
+            background-color: #333; color: #fff; border-color: #555;
+        }
+        body.dark-mode footer { color: #ccc; }
 
         /* --- Responsive Styles for Mobile --- */
         @media (max-width: 768px) {
@@ -213,7 +289,6 @@
             .item-content { padding: 12px 15px; }
             .popup-content { padding: 20px; max-width: 95%; max-height: 90vh; }
             .view-switcher button { padding: 8px 12px; font-size: 0.9em; }
-            .calendar-day { min-height: 60px; }
             .fullscreen-btn { font-size: 1.6em; padding: 5px 10px; }
             
             /* Chat UX Improvements */
@@ -262,6 +337,15 @@
     </style>
 </head>
 <body>
+    <script>
+        // Immediately apply theme from localStorage to prevent flash
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
     <div id="success-indicator" class="hidden">
         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
             <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
@@ -724,6 +808,13 @@
                 messagesHTML = `<div class="item-content tbd" style="text-align:center; padding: 20px; background: transparent; border: none; backdrop-filter: none;">No hay mensajes. ¡Sé el primero en escribir!</div>`;
             }
             const inputBarHTML = `
+                <div id="chat-sent-indicator" class="chat-sent-indicator hidden">
+                    Enviado 
+                    <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="6" cy="6" r="5" stroke-width="1.5"/>
+                        <path d="M3.5 6 L5.5 8 L8.5 4" stroke-width="1.5"/>
+                    </svg>
+                </div>
                 <form id="chat-form" class="chat-input-bar">
                     <select id="chat-author-select" required>
                         <option value="" disabled selected>Quién eres?</option>
@@ -783,7 +874,11 @@
 
         function getBaseHTML() { 
             return `<h1>🤠 De Austin a Medellín 🇨🇴</h1>
-                    <div class="status-bar" id="status-bar"><div class="live-status"><span class="live-indicator"></span>En vivo</div><div class="update-details" id="update-details"></div></div>
+                    <div class="status-bar" id="status-bar">
+                        <div class="live-status"><span class="live-indicator"></span>En vivo</div>
+                        <div class="update-details" id="update-details"></div>
+                        <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle dark mode"></button>
+                    </div>
                     <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
                     <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                     <div class="weather-widget">
@@ -807,11 +902,46 @@
                 indicator.classList.remove('hidden');
                 setTimeout(() => {
                     indicator.classList.add('hidden');
-                }, 1500); // Hide after 1.5 seconds
+                }, 1500);
+            }
+        }
+        
+        function showChatSentIndicator() {
+            const indicator = document.getElementById('chat-sent-indicator');
+             if (indicator) {
+                indicator.classList.remove('hidden');
+                setTimeout(() => {
+                    indicator.classList.add('hidden');
+                }, 1500);
             }
         }
 
+        function setupDarkModeToggle() {
+            const toggleButton = document.getElementById('dark-mode-toggle');
+            if (!toggleButton) return;
+
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    toggleButton.innerHTML = '☀️'; 
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    toggleButton.innerHTML = '🌙';
+                }
+            };
+
+            applyTheme(localStorage.getItem('theme') || 'light');
+
+            toggleButton.addEventListener('click', () => {
+                const isDark = document.body.classList.contains('dark-mode');
+                const newTheme = isDark ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+        }
+        
         function attachDynamicListeners() {
+            setupDarkModeToggle();
             const views = { timeline: document.getElementById('timeline-view'), calendar: document.getElementById('calendar-view'), chat: document.getElementById('chat-view') };
             document.getElementById('show-timeline').addEventListener('click', () => switchView('timeline'));
             document.getElementById('show-calendar').addEventListener('click', () => switchView('calendar'));
@@ -1024,7 +1154,7 @@
                     saveData(author, null, 'chat');
                     textarea.value = '';
                     textarea.style.height = 'auto';
-                    showSuccessIndicator();
+                    showChatSentIndicator();
                 } else if (e.target.id === 'add-item-form') {
                     e.preventDefault(); 
                     const type = document.getElementById('item-type-input').value;
