@@ -347,7 +347,7 @@
         // --- CONFIG & DATA ---
         // ----------------------------------------------------------------------------------
         // --- CRITICAL: PASTE YOUR GOOGLE AI API KEY HERE ---
-        const GEMINI_API_KEY = "PASTE_YOUR_API_KEY_HERE";
+        const GEMINI_API_KEY = "AIzaSyBQUx0uOZsdO3_L7tnd1pkC6a4cMMVvLGw";
         // ----------------------------------------------------------------------------------
         const firebaseConfig = { apiKey: "AIzaSyBrIoHLMIN9XmcTIsTiQQsCUYAKGJut_U8", authDomain: "itinerario-viaje-cbf9d.firebaseapp.com", databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com", projectId: "itinerario-viaje-cbf9d", storageBucket: "itinerario-viaje-cbf9d.appspot.com", messagingSenderId: "88371586960", appId: "1:88371586960:web:8b2dd61a4b7d2bed963515" };
         firebase.initializeApp(firebaseConfig);
@@ -1041,7 +1041,7 @@
                 return "Error: La clave API de Gemini no está configurada. Por favor, pídale al administrador que la agregue.";
             }
 
-            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
             
             try {
                 const response = await fetch(API_URL, {
