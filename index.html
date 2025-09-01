@@ -260,12 +260,21 @@
             flex-direction: column;
             overflow: hidden;
         }
+        .gemini-container.glowing-effect {
+            animation: glow 2.5s ease-out;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(142, 68, 173, 0.2), 0 0 10px rgba(142, 68, 173, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(142, 68, 173, 0.7), 0 0 40px rgba(142, 68, 173, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(142, 68, 173, 0.2), 0 0 10px rgba(142, 68, 173, 0.2); }
+        }
         .gemini-header {
             padding: 15px 20px;
             border-bottom: 1px solid rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
         }
         .gemini-header h2 {
             margin: 0;
@@ -301,11 +310,34 @@
         .gemini-message p {
             margin: 0;
         }
+        .gemini-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-top: 15px;
+        }
+        .gemini-suggestion {
+            background: none;
+            border: 1px solid var(--gemini-purple);
+            color: var(--gemini-purple);
+            padding: 8px 12px;
+            border-radius: 16px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .gemini-suggestion:hover {
+            background-color: var(--gemini-purple);
+            color: white;
+        }
         .gemini-input-bar {
             padding: 15px;
             border-top: 1px solid rgba(0,0,0,0.1);
             display: flex;
             gap: 10px;
+            flex-shrink: 0;
         }
         .gemini-input-bar textarea {
             flex-grow: 1;
@@ -462,7 +494,7 @@
         </div>
     </div>
     
-    <footer>Version 083125a</footer>
+    <footer>Version 090125b</footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -470,10 +502,7 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- CONFIG & DATA ---
-        // ----------------------------------------------------------------------------------
-        // --- API KEY IS ALREADY INTEGRATED ---
         const GEMINI_API_KEY = "AIzaSyBQUx0uOZsdO3_L7tnd1pkC6a4cMMVvLGw";
-        // ----------------------------------------------------------------------------------
         const firebaseConfig = { apiKey: "AIzaSyBQUx0uOZsdO3_L7tnd1pkC6a4cMMVvLGw", authDomain: "itinerario-viaje-cbf9d.firebaseapp.com", databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com", projectId: "itinerario-viaje-cbf9d", storageBucket: "itinerario-viaje-cbf9d.appspot.com", messagingSenderId: "88371586960", appId: "1:88371586960:web:8b2dd61a4b7d2bed963515" };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
@@ -946,11 +975,6 @@
             if (savedAuthor) {
                 document.getElementById('chat-author-select').value = savedAuthor;
             }
-            
-            const chatContainer = document.getElementById('chat-messages-container');
-            if (chatContainer.scrollHeight <= chatContainer.clientHeight) {
-                // No scrollbar
-            }
         }
         
         function renderInfoLists() {
@@ -998,7 +1022,7 @@
                             <div class="live-status"><span class="live-indicator"></span>En vivo</div>
                             <div class="update-details" id="update-details"></div>
                         </div>
-                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, y ahora, ¡pregúntale al asistente de IA sobre el viaje con el botón ✨!</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
                         <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                         <div class="weather-widget">
                             <h3>Clima Actual</h3>
@@ -1188,14 +1212,14 @@
         }
 
         async function askGemini(userPrompt) {
-            if (!GEMINI_API_KEY || GEMINI_API_KEY === "PASTE_YOUR_API_KEY_HERE") {
-                return "Error: The Gemini API Key is not configured. Please ask the administrator to add it.";
+            if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("PASTE")) {
+                return "Error: La clave API de Gemini no está configurada. Por favor, pídale al administrador que la agregue.";
             }
 
             const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
             
             const itineraryContext = generateItineraryContext();
-            const fullPrompt = `Based on the following travel itinerary, answer the user's question. Be helpful and concise. Today's date is ${new Date().toLocaleDateString()}.\n\n---\n\n${itineraryContext}\n\n---\n\nUSER QUESTION: "${userPrompt}"`;
+            const fullPrompt = `Based on the following travel itinerary, answer the user's question. Be helpful and concise. Today's date is ${new Date().toLocaleDateString()}. IMPORTANT: You MUST respond in SPANISH.\n\n---\n\n${itineraryContext}\n\n---\n\nUSER QUESTION: "${userPrompt}"`;
             
             try {
                 const response = await fetch(API_URL, {
@@ -1209,20 +1233,22 @@
                 if (!response.ok) {
                     const errorData = await response.json();
                     console.error("Gemini API Error:", errorData);
-                    return `API Error: ${errorData.error.message}`;
+                    return `Error de API: ${errorData.error.message}`;
                 }
 
                 const data = await response.json();
                 return data.candidates[0].content.parts[0].text;
             } catch (error) {
                 console.error("Fetch error for Gemini API:", error);
-                return "Could not contact Gemini. Check the connection or API Key.";
+                return "No se pudo contactar a Gemini. Revise la conexión o la clave API.";
             }
         }
 
         function renderGeminiConversation() {
             const container = document.getElementById('gemini-messages');
-            container.innerHTML = geminiConversationHistory.map(msg => {
+            if(!container) return;
+            
+            let html = geminiConversationHistory.map(msg => {
                 const avatar = `<div class="avatar" style="background-color: ${generateColor(msg.role === 'user' ? 'User' : 'Gemini')}">${getInitials(msg.role === 'user' ? 'You' : 'Gemini')}</div>`;
                 return `
                     <div class="gemini-message ${msg.role}">
@@ -1231,6 +1257,23 @@
                     </div>
                 `;
             }).join('');
+
+            // Add suggestions if it's the start of the conversation
+            if (geminiConversationHistory.length === 1 && geminiConversationHistory[0].role === 'model') {
+                 const suggestions = [
+                    "¿Cuándo llega Nathan?", 
+                    "¿Qué actividades tenemos planeadas?", 
+                    "Hazme un resumen del 15 de enero",
+                    "¿Quién no sabe del secreto?"
+                ];
+                html += '<div class="gemini-suggestions">';
+                suggestions.forEach(s => {
+                    html += `<button class="gemini-suggestion">${s}</button>`;
+                });
+                html += '</div>';
+            }
+
+            container.innerHTML = html;
             container.scrollTop = container.scrollHeight;
         }
 
@@ -1334,19 +1377,32 @@
                     return;
                 }
                 
-                // Gemini FAB and Overlay Listeners
                 const geminiFab = target.closest('#gemini-fab');
                 const geminiOverlay = document.getElementById('gemini-overlay');
                 if (geminiFab) {
                     geminiOverlay.classList.add('visible');
+                    const geminiContainer = geminiOverlay.querySelector('.gemini-container');
+                    geminiContainer.classList.add('glowing-effect');
+                    geminiContainer.addEventListener('animationend', () => {
+                        geminiContainer.classList.remove('glowing-effect');
+                    }, { once: true });
+
                     if(geminiConversationHistory.length === 0) {
-                        geminiConversationHistory.push({role: 'model', text: "Hello! I have read the trip itinerary. How can I help you plan?"});
+                        geminiConversationHistory.push({role: 'model', text: "¡Hola! He leído el itinerario del viaje. ¿En qué puedo ayudarte a planificar?"});
                         renderGeminiConversation();
                     }
                 }
                 const closeGeminiBtn = target.closest('#gemini-overlay .close-popup');
                 if (closeGeminiBtn || target.id === 'gemini-overlay') {
                     geminiOverlay.classList.remove('visible');
+                }
+
+                const suggestionBtn = target.closest('.gemini-suggestion');
+                if(suggestionBtn) {
+                    const prompt = suggestionBtn.textContent;
+                    const input = document.getElementById('gemini-input');
+                    input.value = prompt;
+                    document.querySelector('#gemini-form button').click();
                 }
             });
 
@@ -1401,22 +1457,15 @@
                     if (!prompt) return;
 
                     geminiConversationHistory.push({ role: 'user', text: prompt });
-                    geminiConversationHistory.push({ role: 'model', text: 'Thinking...' });
+                    geminiConversationHistory.push({ role: 'model', text: 'Pensando...' });
                     renderGeminiConversation();
                     input.value = '';
 
                     askGemini(prompt).then(response => {
-                        geminiConversationHistory.pop(); // Remove "Thinking..."
+                        geminiConversationHistory.pop();
                         geminiConversationHistory.push({ role: 'model', text: response });
                         renderGeminiConversation();
                     });
-                }
-            });
-
-            document.body.addEventListener('input', function(e) {
-                if (e.target.id === 'chat-textarea') {
-                    e.target.style.height = 'auto';
-                    e.target.style.height = (e.target.scrollHeight) + 'px';
                 }
             });
         }
