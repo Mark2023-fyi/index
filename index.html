@@ -12,6 +12,8 @@
             --brand-blue: #007bff;
             --brand-green: #28a745;
             --gemini-purple: #8E44AD;
+            --birthday-color-1: #FF5F6D;
+            --birthday-color-2: #FFC371;
         }
         body{
             font-family:'Poppins',sans-serif;
@@ -159,8 +161,8 @@
         
         /* --- Birthday & Confetti Styles --- */
         .birthday-banner { background: linear-gradient(45deg, var(--birthday-color-1), var(--birthday-color-2)); color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; animation: pulse 2s infinite; position: relative; overflow: hidden; }
-        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } 50% { transform: scale(1.03); box-shadow: 0 6px 18px rgba(254, 180, 123, 0.5); } 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } }
-        .calendar-day.birthday-date { background-color: #fff4e6; border: 1px solid var(--birthday-color-2); font-weight: bold; }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } 50% { transform: scale(1.03); box-shadow: 0 6px 18px rgba(255, 95, 109, 0.5); } 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } }
+        .calendar-day.birthday-date { background-color: #fff0f1; border: 2px solid var(--birthday-color-1); font-weight: bold; }
 
         /* --- Chat View Styles (with glass effect) --- */
         #chat-view-wrapper { display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; overflow:hidden;}
@@ -261,12 +263,11 @@
             overflow: hidden;
         }
         .gemini-container.glowing-effect {
-            animation: glow 2.5s ease-out;
+            animation: glow 2.5s 1 ease-out;
         }
         @keyframes glow {
-            0% { box-shadow: 0 0 10px rgba(142, 68, 173, 0.2), 0 0 10px rgba(142, 68, 173, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(142, 68, 173, 0.7), 0 0 40px rgba(142, 68, 173, 0.5); }
-            100% { box-shadow: 0 0 10px rgba(142, 68, 173, 0.2), 0 0 10px rgba(142, 68, 173, 0.2); }
+            0%, 100% { box-shadow: 0 0 10px rgba(142, 68, 173, 0.2), 0 0 10px rgba(142, 68, 173, 0.2), 0 4px 30px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 25px rgba(142, 68, 173, 0.7), 0 0 40px rgba(142, 68, 173, 0.5), 0 4px 30px rgba(0, 0, 0, 0.1); }
         }
         .gemini-header {
             padding: 15px 20px;
@@ -310,6 +311,27 @@
         .gemini-message p {
             margin: 0;
         }
+        .gemini-evidence {
+            background-color: rgba(225, 225, 225, 0.4);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 0.9em;
+            color: #444;
+        }
+        .gemini-evidence-title {
+            font-weight: 600;
+            color: var(--gemini-purple);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .gemini-evidence p {
+            white-space: pre-wrap;
+            margin: 0;
+        }
         .gemini-suggestions {
             display: flex;
             flex-wrap: wrap;
@@ -319,7 +341,7 @@
             margin-top: 15px;
         }
         .gemini-suggestion {
-            background: none;
+            background: rgba(255,255,255,0.2);
             border: 1px solid var(--gemini-purple);
             color: var(--gemini-purple);
             padding: 8px 12px;
@@ -488,13 +510,13 @@
             <div id="gemini-messages">
                  </div>
             <form id="gemini-form" class="gemini-input-bar">
-                <textarea id="gemini-input" placeholder="Pregunta cualquier cosa sobre el viaje..." required></textarea>
-                <button type="enviar">Enviar</button>
+                <textarea id="gemini-input" placeholder="Pregúntale al itinerario..." required></textarea>
+                <button type="submit">Enviar</button>
             </form>
         </div>
     </div>
     
-    <footer>Version 090125WG</footer>
+    <footer>Version 090125f</footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -502,8 +524,8 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- CONFIG & DATA ---
-        const GEMINI_API_KEY = "AIzaSyBQUx0uOZsdO3_L7tnd1pkC6a4cMMVvLGw";
-        const firebaseConfig = { apiKey: "AIzaSyBQUx0uOZsdO3_L7tnd1pkC6a4cMMVvLGw", authDomain: "itinerario-viaje-cbf9d.firebaseapp.com", databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com", projectId: "itinerario-viaje-cbf9d", storageBucket: "itinerario-viaje-cbf9d.appspot.com", messagingSenderId: "88371586960", appId: "1:88371586960:web:8b2dd61a4b7d2bed963515" };
+        const GEMINI_API_KEY = "AIzaSyAaX890dAtSWE-U2FDnWkiHG62SK9xEhoI";
+        const firebaseConfig = { apiKey: "AIzaSyAaX890dAtSWE-U2FDnWkiHG62SK9xEhoI", authDomain: "itinerario-viaje-cbf9d.firebaseapp.com", databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com", projectId: "itinerario-viaje-cbf9d", storageBucket: "itinerario-viaje-cbf9d.appspot.com", messagingSenderId: "88371586960", appId: "1:88371586960:web:8b2dd61a4b7d2bed963515" };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         const appDataRef = database.ref('appData');
@@ -815,9 +837,7 @@
         }
         
         function getBirthdayHTML() {
-            let confettiHTML = '';
-            for(let i=0; i<9; i++) { confettiHTML += '<div class="confetti"></div>'; }
-            return `<div class="birthday-banner">🎉🎂 ¡Feliz Cumpleaños, Faiber! 🎈🥳${confettiHTML}</div>`;
+            return `<div class="birthday-banner">🎉🎂 ¡Feliz Cumpleaños, Faiber! 🎈🥳</div>`;
         }
         
         function getEventDateRange() {
@@ -924,12 +944,10 @@
                     
                     let dayClass = 'calendar-day';
                     if (dateStr === todayStr) dayClass += ' today';
+                    if (dateStr === '2026-01-15') dayClass += ' birthday-date';
 
                     let dayContent = '';
-                    if (dateStr === '2026-01-15') {
-                        dayClass += ' birthday-date';
-                        dayContent = '<span class="calendar-emoji">🎂</span>';
-                    } else if (events.length > 0) {
+                    if (events.length > 0) {
                         dayContent = `<div class="event-icons-container"><span class="calendar-emoji">${events.find(e=>e.type!=="note")?.icon||"🗒️"}</span></div>`;
                     }
 
@@ -1183,27 +1201,71 @@
         }
 
         function generateItineraryContext() {
-            let context = "ITINERARY CONTEXT:\n\n";
+            let context = "";
             const tempDiv = document.createElement('div');
-            
             const stripHtml = (html) => {
+                if (!html) return '';
                 tempDiv.innerHTML = html;
                 return tempDiv.textContent || tempDiv.innerText || "";
             };
 
-            context += "## Timeline Events:\n";
-            const events = Object.values(appData.timelineEvents || {});
-            events.sort((a,b) => a.date.localeCompare(b.date));
-            events.forEach(event => {
-                context += `- ${event.date} (${event.icon}): ${stripHtml(event.description)}\n`;
+            const allEvents = Object.values(appData.timelineEvents || {});
+            const eventsByDate = {};
+            
+            allEvents.forEach(event => {
+                if (!event.date) return;
+                if (!eventsByDate[event.date]) {
+                    eventsByDate[event.date] = [];
+                }
+                eventsByDate[event.date].push(event);
             });
 
-            context += "\n## Important Notes:\n";
+            context += "## Itinerario y Comentarios del Viaje:\n";
+            Object.keys(eventsByDate).sort().forEach(date => {
+                const dayEvents = eventsByDate[date];
+                const mainEvents = dayEvents.filter(e => e.type !== 'note');
+                const notes = dayEvents.filter(e => e.type === 'note');
+
+                mainEvents.forEach(event => {
+                     context += `- ${event.date} (${event.icon}): ${stripHtml(event.description)}\n`;
+                     if (event.flightInfo && event.flightInfo.flights) {
+                        context += `  - Detalles del Vuelo (${event.flightInfo.title}):\n`;
+                        event.flightInfo.flights.forEach(flight => {
+                            context += `    - Vuelo ${flight.num}: ${flight.route}\n`;
+                        });
+                     }
+                });
+
+                if (notes.length > 0) {
+                    const notesById = {};
+                    notes.forEach(n => notesById[n.id] = {...n, replies: []});
+                    const noteThreads = [];
+                    notes.forEach(n => {
+                        if (n.replyingTo && notesById[n.replyingTo]) {
+                            notesById[n.replyingTo].replies.push(n);
+                        } else {
+                            noteThreads.push(notesById[n.id]);
+                        }
+                    });
+
+                    if (noteThreads.length > 0) {
+                        context += `  - Comentarios para ${date}:\n`;
+                        noteThreads.forEach(thread => {
+                            context += `    - [Comentario de ${thread.author}]: "${stripHtml(thread.text)}"\n`;
+                            thread.replies.sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp)).forEach(reply => {
+                                context += `      - [Respuesta de ${reply.author}]: "${stripHtml(reply.text)}"\n`;
+                            });
+                        });
+                    }
+                }
+            });
+
+            context += "\n## Notas Importantes Generales:\n";
             Object.values(appData.importantNotes || {}).forEach(note => {
                 context += `- ${stripHtml(note.text)}\n`;
             });
 
-            context += "\n## Planned Activities:\n";
+            context += "\n## Actividades Planeadas Generales:\n";
             Object.values(appData.plannedActivities || {}).forEach(activity => {
                 context += `- ${stripHtml(activity.text)}\n`;
             });
@@ -1211,23 +1273,31 @@
             return context;
         }
 
-        async function askGemini(userPrompt) {
+        async function askGemini(history, userPrompt) {
             if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("PASTE")) {
-                return "Error: La clave API de Gemini no está configurada. Por favor, pídale al administrador que la agregue.";
+                return "Error: La clave API de Gemini no está configurada.";
             }
 
             const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
             
             const itineraryContext = generateItineraryContext();
-            const fullPrompt = `Based on the following travel itinerary, answer the user's question. Be helpful and concise. Today's date is ${new Date().toLocaleDateString()}. IMPORTANT: You MUST respond in SPANISH.\n\n---\n\n${itineraryContext}\n\n---\n\nUSER QUESTION: "${userPrompt}"`;
-            
+            const systemInstruction = `You are a helpful travel assistant for a family trip. Use the provided ITINERARY CONTEXT to answer the user's questions. Be friendly and conversational. Today's date is ${new Date().toLocaleDateString()}. When your answer comes directly from the context, you MUST quote the relevant part in a markdown blockquote to show your work, starting it with '> **Fuente del Itinerario:**'. IMPORTANT: You MUST respond in SPANISH and maintain a natural conversational flow. Do not repeat greetings in an ongoing conversation.`;
+
+            const contents = [
+                { role: "user", parts: [{ text: `CONTEXT:\n${itineraryContext}` }] },
+                { role: "model", parts: [{ text: "Ok, entiendo el contexto. Estoy listo para ayudar." }] },
+                ...history.map(item => ({
+                    role: item.role === 'user' ? 'user' : 'model',
+                    parts: [{ text: item.text }]
+                })),
+                { role: "user", parts: [{ text: userPrompt }] }
+            ];
+
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: fullPrompt }] }],
-                    })
+                    body: JSON.stringify({ contents, systemInstruction: { parts: [{ text: systemInstruction }] } })
                 });
 
                 if (!response.ok) {
@@ -1249,16 +1319,41 @@
             if(!container) return;
             
             let html = geminiConversationHistory.map(msg => {
-                const avatar = `<div class="avatar" style="background-color: ${generateColor(msg.role === 'user' ? 'User' : 'Gemini')}">${getInitials(msg.role === 'user' ? 'You' : 'Gemini')}</div>`;
+                const avatar = `<div class="avatar" style="background-color: ${generateColor(msg.role === 'user' ? 'User' : 'Gemini')}">${getInitials(msg.role === 'user' ? 'Tú' : 'Gemini')}</div>`;
+                
+                let messageText = msg.text;
+                let evidenceHtml = '';
+                const evidenceMarker = '> **Fuente del Itinerario:**';
+
+                if (messageText.includes(evidenceMarker)) {
+                    const parts = messageText.split(evidenceMarker);
+                    messageText = parts[0].trim();
+                    let evidenceContent = parts[1].trim()
+                        .split('\n')
+                        .map(line => line.trim().startsWith('>') ? line.trim().substring(1).trim() : line.trim())
+                        .join('\n');
+                    
+                    evidenceHtml = `
+                        <div class="gemini-evidence">
+                            <div class="gemini-evidence-title">📄 Fuente del Itinerario</div>
+                            <p>${evidenceContent.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    `;
+                }
+
+                const mainTextHtml = messageText.replace(/\n/g, '<br>');
+
                 return `
                     <div class="gemini-message ${msg.role}">
                         ${avatar}
-                        <div class="note-content"><p>${msg.text.replace(/\n/g, '<br>')}</p></div>
+                        <div class="note-content">
+                            <p>${mainTextHtml}</p>
+                            ${evidenceHtml}
+                        </div>
                     </div>
                 `;
             }).join('');
 
-            // Add suggestions if it's the start of the conversation
             if (geminiConversationHistory.length === 1 && geminiConversationHistory[0].role === 'model') {
                  const suggestions = [
                     "¿Cuándo llega Nathan?", 
@@ -1400,9 +1495,8 @@
                 const suggestionBtn = target.closest('.gemini-suggestion');
                 if(suggestionBtn) {
                     const prompt = suggestionBtn.textContent;
-                    const input = document.getElementById('gemini-input');
-                    input.value = prompt;
-                    document.querySelector('#gemini-form button').click();
+                    document.getElementById('gemini-input').value = prompt;
+                    document.querySelector('#gemini-form button[type="submit"]').click();
                 }
             });
 
@@ -1456,12 +1550,13 @@
                     const prompt = input.value.trim();
                     if (!prompt) return;
 
+                    const currentHistory = [...geminiConversationHistory];
                     geminiConversationHistory.push({ role: 'user', text: prompt });
                     geminiConversationHistory.push({ role: 'model', text: 'Pensando...' });
                     renderGeminiConversation();
                     input.value = '';
 
-                    askGemini(prompt).then(response => {
+                    askGemini(currentHistory, prompt).then(response => {
                         geminiConversationHistory.pop();
                         geminiConversationHistory.push({ role: 'model', text: response });
                         renderGeminiConversation();
