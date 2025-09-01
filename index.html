@@ -11,37 +11,31 @@
             --brand-red: #CF4647;
             --brand-blue: #007bff;
             --brand-green: #28a745;
-            --birthday-color-1: #ff7e5f;
-            --birthday-color-2: #feb47b;
         }
         body{
             font-family:'Poppins',sans-serif;
-            background-image: linear-gradient(120deg, #e0f2f7 0%, #ebedee 100%);
-            background-attachment: fixed;
+            background-color: #f0f2f5;
             color:#2c3e50;
             margin:0;
             padding:20px; 
             overflow-wrap: break-word;
+            overflow-x: hidden;
         }
         
+        .lava-lamp-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: linear-gradient(120deg, #e0f2f7 0%, #ebedee 100%); }
+        .lava-lamp-background .blob { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.6; }
+        .blob:nth-child(1) { width: 400px; height: 400px; background: #89CFF0; animation: move 25s infinite alternate; }
+        .blob:nth-child(2) { width: 300px; height: 300px; background: #ADD8E6; animation: move 30s infinite alternate-reverse; }
+        .blob:nth-child(3) { width: 250px; height: 250px; background: #B0E0E6; animation: move 20s infinite alternate; }
+        @keyframes move { from { transform: translate(-100px, -50px) rotate(-90deg); } to { transform: translate(100vw, 50vh) rotate(90deg); } }
+
         /* --- Pre-Screen Styles (with glass effect) --- */
         #pre-screen-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.7s ease; }
         #pre-screen-overlay.hidden { opacity: 0; pointer-events: none; }
         .pre-screen-content { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 40px; 
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(2.9px);
-            -webkit-backdrop-filter: blur(2.9px);
-            border: 1px solid rgba(255, 255, 255, 1);
-            max-width: 500px;
-            margin: 20px;
-            box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 30px;
+            background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);
+            max-width: 500px; margin: 20px; box-sizing: border-box; 
         }
         .pre-screen-text { text-align: center; color: #2c3e50; }
         .pre-screen-text h2 { color: var(--brand-red); margin-top: 0; }
@@ -56,12 +50,7 @@
         /* --- Main App Styles --- */
         .container{max-width:800px;margin:0 auto; transition: max-width 0.3s ease, padding 0.3s ease;}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px;text-shadow: 0 1px 3px rgba(0,0,0,0.1);}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
         .status-bar, .countdown-card, .item-content, .info-card, .weather-widget, #chat-view-wrapper, .how-to-banner {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(2.9px);
-            -webkit-backdrop-filter: blur(2.9px);
-            border: 1px solid rgba(255, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);
         }
         .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:8px 15px;font-size:0.85em;margin-bottom:15px;gap:15px;}
         .live-status{display:flex;align-items:center;gap:8px;font-weight:600;color:#d9534f;}
@@ -83,11 +72,12 @@
         .countdown-card{color:#1c2a39;padding:20px;text-align:center;flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center;}
         .countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:var(--brand-blue)}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#333;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#1c2a39;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#555}
         .timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:rgba(255, 255, 255, 0.5)}.timeline-item{padding:10px 20px 10px 65px;position:relative;margin-left:0;margin-bottom:10px}.timeline-item::before{content:attr(data-icon);position:absolute;left:0;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.7);border:3px solid var(--brand-blue);text-align:center;line-height:50px;font-size:2.5em; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);}
+        .timeline-item.today .item-content { border: 2px solid var(--brand-red); box-shadow: 0 0 15px rgba(207, 70, 71, 0.2); }
         .item-content{padding:15px 20px;}
         .item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#556;font-style:italic}
         .flight-tracker{border-top:1px solid rgba(255,255,255,0.7);margin-top:15px;padding-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
         .flight-tracker h4{margin:0 0 5px 0;font-weight:600;color:#333;display:flex;align-items:center;gap:8px}
-        .flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
+        .live-indicator{display:inline-block;width:10px;height:10px;background-color:#ff4d4d;border-radius:50%;animation:blinker 1.5s linear infinite}@keyframes blinker{50%{opacity:0}}.flight-buttons{display:flex;flex-wrap:wrap;gap:15px;justify-content:center}
         .flight-info{display:flex;flex-direction:column;align-items:center}
         .flight-button{display:inline-block;background-color:var(--brand-blue);color:#fff;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:500;font-size:0.9em;transition:background-color .2s,transform .2s}.flight-button:hover{background-color:#0056b3;transform:translateY(-2px)}
         .flight-route{font-size:0.8em;color:#444;margin-top:4px}
@@ -116,6 +106,8 @@
         .calendar-day{background:rgba(255,255,255,0.6);min-height:80px;padding:4px;font-size:0.8em;display:flex;flex-direction:column;position:relative}
         .calendar-day:not(.other-month){cursor:pointer;transition:background .2s}.calendar-day:not(.other-month):hover{background:rgba(241, 248, 255, 0.8)}
         .calendar-day.other-month{background:rgba(249, 249, 249, 0.4);color:#aaa}
+        .calendar-day.today { border: 2px solid var(--brand-red); background-color: rgba(255, 235, 238, 0.7); }
+        .calendar-day.today .day-number { color: var(--brand-red); font-weight: bold; }
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
@@ -128,6 +120,8 @@
         #modal-events .item-content{box-shadow:none;padding:10px 0 0 0; background:transparent; border:none; backdrop-filter: none; -webkit-backdrop-filter: none;}
         .modal-close-button{border:none;background:var(--brand-blue);color:#fff;padding:10px 25px;font-size:1em;font-weight:600;border-radius:5px;margin-top:20px;cursor:pointer;transition:background .2s; flex-shrink:0;}.modal-close-button:hover{background:#0056b3}
         .modal-disclaimer{font-size:0.75em; color:#555; margin-top:15px;}
+        #add-item-modal .modal-actions { display:flex; gap: 10px; align-items: center; margin-top: 15px;}
+        #add-item-modal .modal-actions .modal-close-button { margin-top: 0; flex-grow: 1;}
         .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         #reply-context-container { border: 1px solid rgba(0,0,0,0.1); background: rgba(248, 249, 250, 0.7); border-radius: 8px; padding: 10px; margin-bottom: 15px; text-align: left; max-height: 160px; overflow-y: auto; position: relative;}
@@ -203,6 +197,8 @@
         .chat-input-bar textarea { flex-grow: 1; padding: 10px; border-radius: 18px; border: 1px solid #ccc; resize: none; font-family: 'Poppins', sans-serif; font-size: 1em; line-height: 1.4; max-height: 100px; }
         .chat-input-bar button { background-color: var(--brand-blue); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; }
         .chat-input-bar button:hover { background-color: #0056b3; }
+        .chat-input-bar .gemini-btn { background-color: #8E44AD; font-size: 1.2em; } /* Gemini Button Style */
+        .chat-input-bar .gemini-btn:hover { background-color: #732d91; }
         .chat-disclaimer { font-size: 0.7em; color: #444; text-align: center; margin-top: 8px; padding: 0 10px; }
         .reply-quote-block { margin: -2px 0 8px 0; padding: 6px 10px; border-radius: 6px; border-left: 3px solid; }
         .reply-quote-author { font-size: 0.8em; font-weight: 600; }
@@ -245,9 +241,11 @@
             #chat-view { margin-top: -20px; }
             #chat-view-wrapper { height: 80vh; }
             .chat-message { font-size: 0.95em; }
-            .chat-input-bar { flex-wrap: wrap; }
-            .chat-input-bar select { width: 100%; margin-bottom: 5px; }
-            .chat-input-bar textarea { min-height: 40px; }
+            .chat-input-bar { flex-wrap: wrap; gap: 5px; }
+            .chat-input-bar select { width: 100%; margin-bottom: 5px; order: 1; }
+            .chat-input-bar textarea { order: 2; }
+            .chat-input-bar .gemini-btn { order: 3; }
+            .chat-input-bar button[type="submit"] { order: 4; }
         }
 
         /* --- Success Indicator Styles --- */
@@ -287,6 +285,12 @@
     </style>
 </head>
 <body>
+    <div class="lava-lamp-background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+
     <div id="success-indicator" class="hidden">
         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
             <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
@@ -321,8 +325,10 @@
                         <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option><option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
                     </select>
                 </div>
-                <textarea id="item-description-input" placeholder="Escribe tu mensaje o nota aquí..." required></textarea>
-                <button type="submit" class="modal-close-button">Guardar</button>
+                <textarea id="item-description-input" placeholder="Escribe tu mensaje o nota aquí..."></textarea>
+                 <div class="modal-actions">
+                    <button type="submit" class="modal-close-button">Guardar</button>
+                </div>
                 <p class="modal-disclaimer">Los mensajes no se pueden borrar ni editar.</p>
             </form>
         </div>
@@ -335,10 +341,14 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
+    
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- CONFIG & DATA ---
+        // ----------------------------------------------------------------------------------
+        // --- CRITICAL: PASTE YOUR GOOGLE AI API KEY HERE ---
+        const GEMINI_API_KEY = "PASTE_YOUR_API_KEY_HERE";
+        // ----------------------------------------------------------------------------------
         const firebaseConfig = { apiKey: "AIzaSyBrIoHLMIN9XmcTIsTiQQsCUYAKGJut_U8", authDomain: "itinerario-viaje-cbf9d.firebaseapp.com", databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com", projectId: "itinerario-viaje-cbf9d", storageBucket: "itinerario-viaje-cbf9d.appspot.com", messagingSenderId: "88371586960", appId: "1:88371586960:web:8b2dd61a4b7d2bed963515" };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
@@ -376,8 +386,8 @@
                             el.innerHTML = `<span class="weather-icon">🌡️</span> Clima actual en ${loc.city}: <strong>${tempF}°F / ${tempC}°C</strong>`;
                         } else {
                             el.innerHTML = `<div class="weather-city">${loc.emoji} ${loc.city}</div>
-                                          <div class="weather-temp">${tempF}°F / ${tempC}°C</div>
-                                          <div class="weather-time">${localTime}</div>`;
+                                            <div class="weather-temp">${tempF}°F / ${tempC}°C</div>
+                                            <div class="weather-time">${localTime}</div>`;
                         }
                     });
                 } catch (error) {
@@ -413,22 +423,6 @@
             }
         }
 
-        function timeAgo(isoString) {
-            const date = new Date(isoString);
-            const seconds = Math.floor((new Date() - date) / 1000);
-            let interval = seconds / 31536000;
-            if (interval > 1) return `hace ${Math.floor(interval)} años`;
-            interval = seconds / 2592000;
-            if (interval > 1) return `hace ${Math.floor(interval)} meses`;
-            interval = seconds / 86400;
-            if (interval > 1) return `hace ${Math.floor(interval)} días`;
-            interval = seconds / 3600;
-            if (interval > 1) return `hace ${Math.floor(interval)} horas`;
-            interval = seconds / 60;
-            if (interval > 1) return `hace ${Math.floor(interval)} minutos`;
-            return "hace un momento";
-        }
-
         function truncateText(html, charLimit = 150) {
             html = html || '';
             const tempDiv = document.createElement('div');
@@ -446,6 +440,7 @@
         const AVATAR_COLORS = ['#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#3949AB', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#7CB342', '#F4511E', '#795548', '#546E7A'];
         const getInitials = (name) => {
             if (!name) return '';
+            if (name === 'Gemini') return '✨'; // Gemini Avatar
             const names = name.split(' ');
             if (names.length > 1 && names[1]) {
                 return (names[0].charAt(0) + names[1].charAt(0)).toUpperCase();
@@ -454,6 +449,7 @@
         };
 
         const generateColor = (name) => {
+            if (name === 'Gemini') return '#8E44AD'; // Gemini Color
             let hash = 0;
             if (!name || name.length === 0) return AVATAR_COLORS[0];
             for (let i = 0; i < name.length; i++) {
@@ -587,15 +583,16 @@
             const yesterday = new Date();
             yesterday.setDate(yesterday.getDate() - 1);
 
-            if (messageDate.toDateString() === today.toDateString()) {
+            const opts = { timeZone: 'America/Bogota' };
+            if (messageDate.toLocaleDateString('es-CO', opts) === today.toLocaleDateString('es-CO', opts)) {
                 return "Hoy";
             }
-            if (messageDate.toDateString() === yesterday.toDateString()) {
+            if (messageDate.toLocaleDateString('es-CO', opts) === yesterday.toLocaleDateString('es-CO', opts)) {
                 return "Ayer";
             }
-            return messageDate.toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' });
+            return messageDate.toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Bogota' });
         }
-
+        
         function renderMessageBubblesHTML(messages, options = {}) {
             let html = '';
             let lastDisplayDate = null;
@@ -617,7 +614,7 @@
             });
             return html;
         }
-        
+
         function renderBubble(note, showAuthor, options) {
             const currentUser = localStorage.getItem('itineraryAuthor');
             const isMine = note.author === currentUser;
@@ -642,13 +639,17 @@
                         </div>`;
                 }
             }
+            
+            // Replaced media logic with simple text display
+            const messageContentHTML = `<div style="margin-top: 5px;">${note.text}</div>`;
+
             return `
                 <div class="chat-message-container ${groupClass}">
                     ${authorHtml}
                     <div class="${bubbleClasses}">
                         <div class="note-content">
                             ${replyQuoteHTML}
-                            ${truncateText(note.text, 200)}
+                            ${messageContentHTML}
                             <div class="bubble-footer">
                                 ${replyButtonHtml}
                                 ${timestampHtml}
@@ -662,6 +663,19 @@
             let confettiHTML = '';
             for(let i=0; i<9; i++) { confettiHTML += '<div class="confetti"></div>'; }
             return `<div class="birthday-banner">🎉🎂 ¡Feliz Cumpleaños, Faiber! 🎈🥳${confettiHTML}</div>`;
+        }
+        
+        function getEventDateRange() {
+            const allEvents = Object.values(appData.timelineEvents || {});
+            const dates = allEvents.map(e => e.date).filter(Boolean);
+            if (dates.length === 0) {
+                const today = new Date();
+                return { start: today, end: today };
+            }
+            dates.sort();
+            const minDate = new Date(dates[0] + 'T12:00:00');
+            const maxDate = new Date(dates[dates.length - 1] + 'T12:00:00');
+            return { start: minDate, end: maxDate };
         }
 
         function generateDayContentHTML(dateStr) {
@@ -700,8 +714,14 @@
             const allEvents = Object.values(appData.timelineEvents || {});
             let html = '', currentMonth = -1;
             const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long', year: 'numeric' });
-            const startDate = new Date('2025-12-13T12:00:00'), endDate = new Date('2026-01-17T12:00:00');
-            for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+            
+            const { start: startDate, end: endDate } = getEventDateRange();
+            if (!startDate) return;
+            endDate.setDate(endDate.getDate() + 1);
+            
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            for (let d = new Date(startDate); d < endDate; d.setDate(d.getDate() + 1)) {
                 const dateStr = d.toISOString().split('T')[0];
                 const events = allEvents.filter(item => item.date === dateStr);
                 const monthName = monthFormatter.format(d).replace(/(\b[a-z](?=[a-z]{2}))/g, letter => letter.toUpperCase());
@@ -710,7 +730,8 @@
                     html += `<h2>${monthName}</h2>`; 
                 }
                 const dayIcon = events.find(e => e.type !== 'note')?.icon || '🗓️';
-                html += `<div class="timeline-item" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${formatAndCapitalizeDate(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
+                const todayClass = dateStr === todayStr ? 'today' : '';
+                html += `<div class="timeline-item ${todayClass}" data-icon="${dayIcon}"><div class="item-content"><div class="item-date"><span>${formatAndCapitalizeDate(d)}</span><button class="add-button" data-type="timelineEvents" data-date="${dateStr}">+</button></div>`;
                 html += generateDayContentHTML(dateStr);
                 html += `</div></div>`;
             }
@@ -720,7 +741,19 @@
         function renderCalendar() {
             const calendarView = document.getElementById('calendar-view'), allEvents = Object.values(appData.timelineEvents || {});
             calendarView.innerHTML = '';
-            [ {y:2025, m:11}, {y:2026, m:0} ].forEach(cal => {
+            
+            const { start: calStartDate, end: calEndDate } = getEventDateRange();
+            if (!calStartDate) return;
+            const monthsToRender = [];
+            let loopDate = new Date(calStartDate.getFullYear(), calStartDate.getMonth(), 1);
+            while (loopDate <= calEndDate) {
+                monthsToRender.push({ y: loopDate.getFullYear(), m: loopDate.getMonth() });
+                loopDate.setMonth(loopDate.getMonth() + 1);
+            }
+            
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            monthsToRender.forEach(cal => {
                 const year = cal.y, month = cal.m;
                 const monthNames=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
                 let html = `<h3>${monthNames[month]} ${year}</h3><div class="calendar-grid">`;
@@ -735,6 +768,8 @@
                     const noteCount = events.filter(item => item.type === 'note' && !item.replyingTo).length;
                     
                     let dayClass = 'calendar-day';
+                    if (dateStr === todayStr) dayClass += ' today';
+
                     let dayContent = '';
                     if (dateStr === '2026-01-15') {
                         dayClass += ' birthday-date';
@@ -775,7 +810,8 @@
                         <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option>
                         <option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
                     </select>
-                    <textarea id="chat-textarea" placeholder="Escribe un mensaje..." required></textarea>
+                    <textarea id="chat-textarea" placeholder="Escribe un mensaje..."></textarea>
+                    <button type="button" id="gemini-btn" class="gemini-btn" title="Ask Gemini">✨</button>
                     <button type="submit" title="Enviar Mensaje">➤</button>
                 </form>
                 <p class="chat-disclaimer">Los mensajes a través de esta aplicación no son seguros, cualquiera con este link puede acceder.</p>
@@ -786,7 +822,6 @@
                 document.getElementById('chat-author-select').value = savedAuthor;
             }
             
-            // Logic for scroll indicator
             const chatContainer = document.getElementById('chat-messages-container');
             const scrollIndicator = document.getElementById('scroll-up-indicator');
             if (chatContainer.scrollHeight <= chatContainer.clientHeight) {
@@ -835,34 +870,39 @@
 
         function getBaseHTML() { 
             return `<h1>🤠 De Austin a Medellín 🇨🇴</h1>
-                    <div class="status-bar" id="status-bar">
-                        <div class="live-status"><span class="live-indicator"></span>En vivo</div>
-                        <div class="update-details" id="update-details"></div>
-                    </div>
-                    <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
-                    <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
-                    <div class="weather-widget">
-                        <h3>Clima Actual</h3>
-                        <div class="weather-locations">
-                            <div id="weather-austin" class="weather-location-item">Cargando...</div>
-                            <div class="weather-divider"></div>
-                            <div id="weather-medellin" class="weather-location-item">Cargando...</div>
+                        <div class="status-bar" id="status-bar">
+                            <div class="live-status"><span class="live-indicator"></span>En vivo</div>
+                            <div class="update-details" id="update-details"></div>
                         </div>
-                    </div>
-                    <div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-chat">Chat Grupal</button><button id="show-calendar">Calendario</button></div>
-                    <div class="timeline" id="timeline-view"></div>
-                    <div id="chat-view" class="view-hidden"></div>
-                    <div id="calendar-view" class="view-hidden"></div>
-                    <div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; 
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, ver notificaciones de conversaciones nuevas con <span class="icon-inline notification-badge-demo">6</span>, y ver el número de respuestas en un mensaje con <span class="icon-inline reply-counter-badge-demo">2</span>.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
+                        <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
+                        <div class="weather-widget">
+                            <h3>Clima Actual</h3>
+                            <div class="weather-locations">
+                                <div id="weather-austin" class="weather-location-item">Cargando...</div>
+                                <div class="weather-divider"></div>
+                                <div id="weather-medellin" class="weather-location-item">Cargando...</div>
+                            </div>
+                        </div>
+                        <div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-chat">Chat Grupal</button><button id="show-calendar">Calendario</button></div>
+                        <div class="timeline" id="timeline-view"></div>
+                        <div id="chat-view" class="view-hidden"></div>
+                        <div id="calendar-view" class="view-hidden"></div>
+                        <div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; 
         }
         
-        function showSuccessIndicator() {
+        function showSuccessIndicator(message = '¡Guardado!', isError = false) {
             const indicator = document.getElementById('success-indicator');
+            const checkmark = indicator.querySelector('.checkmark');
             if (indicator) {
+                indicator.querySelector('span').innerText = message;
+                checkmark.style.display = isError ? 'none' : 'block';
+                indicator.style.color = isError ? 'var(--brand-red)' : 'var(--brand-green)';
+                indicator.style.background = isError ? 'rgba(255, 220, 220, 0.6)' : 'rgba(220, 255, 220, 0.6)';
                 indicator.classList.remove('hidden');
                 setTimeout(() => {
                     indicator.classList.add('hidden');
-                }, 1500);
+                }, 4000);
             }
         }
         
@@ -872,10 +912,10 @@
                 indicator.classList.remove('hidden');
                 setTimeout(() => {
                     indicator.classList.add('hidden');
-                }, 1500);
+                }, 2000);
             }
         }
-
+        
         function attachDynamicListeners() {
             const views = { timeline: document.getElementById('timeline-view'), calendar: document.getElementById('calendar-view'), chat: document.getElementById('chat-view') };
             document.getElementById('show-timeline').addEventListener('click', () => switchView('timeline'));
@@ -971,8 +1011,70 @@
             document.getElementById('calendar-modal').classList.remove('popup-visible');
             modal.classList.add('popup-visible');
         }
+        
+        function sendChatMessage(author, messageData) {
+            if (!author) {
+                alert("Por favor, selecciona tu nombre antes de enviar un mensaje.");
+                return;
+            }
+            localStorage.setItem('itineraryAuthor', author);
+            
+            const newId = `msg-${Date.now()}`;
+            if (!appData.groupChat) appData.groupChat = {};
+            
+            const item = {
+                id: newId,
+                author,
+                timestamp: new Date().toISOString(),
+                ...messageData 
+            };
+            
+            appData.groupChat[newId] = item;
+            saveData(author, null, 'chat');
+            if (author !== 'Gemini') { // Don't show "sent" for Gemini's own messages
+                showChatSentIndicator();
+            }
+        }
+
+        async function askGemini(prompt) {
+            if (!GEMINI_API_KEY || GEMINI_API_KEY === "PASTE_YOUR_API_KEY_HERE") {
+                return "Error: La clave API de Gemini no está configurada. Por favor, pídale al administrador que la agregue.";
+            }
+
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            topK: 1,
+                            topP: 1,
+                            maxOutputTokens: 2048,
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Gemini API Error:", errorData);
+                    return `Error de API: ${errorData.error.message}`;
+                }
+
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error("Fetch error for Gemini API:", error);
+                return "No se pudo contactar a Gemini. Revise la conexión o la clave API.";
+            }
+        }
 
         let scrollTimeout;
+        attachStaticListeners(); 
+        
         function attachStaticListeners() {
             document.body.addEventListener('click', (e) => {
                 const target = e.target;
@@ -1048,7 +1150,7 @@
                         let replies = [];
                         if(type === 'groupChat' || type === 'timelineEvents') {
                             replies = messagePool.filter(m => m.replyingTo === replyToId)
-                                                .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+                                               .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
                         }
                         openModal({ 
                             title: `Responder a ${originalMessage.author}`, 
@@ -1070,6 +1172,41 @@
                     openModal({ title: title, type: type, date: itemDate });
                     return;
                 }
+
+                const geminiBtn = target.closest('#gemini-btn');
+                if (geminiBtn) {
+                    const textarea = document.getElementById('chat-textarea');
+                    const prompt = textarea.value.trim();
+                    const author = document.getElementById('chat-author-select').value;
+                    
+                    if (!author) {
+                        alert("Por favor, selecciona tu nombre antes de preguntar a Gemini.");
+                        return;
+                    }
+                    if (!prompt) {
+                        alert("Por favor, escribe una pregunta para Gemini.");
+                        return;
+                    }
+
+                    // Post the user's question to the chat immediately
+                    sendChatMessage(author, { text: prompt });
+                    textarea.value = '';
+                    textarea.style.height = 'auto';
+
+                    // Post a "thinking" message from Gemini
+                    const thinkingId = `msg-${Date.now()}`;
+                    appData.groupChat[thinkingId] = { id: thinkingId, author: 'Gemini', text: 'Pensando...', timestamp: new Date().toISOString() };
+                    saveData('Sistema', null, 'chat');
+                    
+                    // Call the API
+                    askGemini(prompt).then(response => {
+                        // Replace the "thinking" message with the actual response
+                        appData.groupChat[thinkingId].text = response;
+                        appData.groupChat[thinkingId].timestamp = new Date().toISOString();
+                        saveData('Gemini', null, 'chat');
+                    });
+                    return;
+                }
             });
 
             document.body.addEventListener('submit', function(e) {
@@ -1079,18 +1216,12 @@
                     const textarea = document.getElementById('chat-textarea');
                     const author = authorSelect.value;
                     const text = textarea.value.trim();
-                    if (!text || !author) { alert("Por favor, selecciona tu nombre y escribe un mensaje."); return; }
-                    localStorage.setItem('itineraryAuthor', author);
                     
-                    const newId = `msg-${Date.now()}`;
-                    if (!appData.groupChat) appData.groupChat = {};
-                    const item = { id: newId, text, author, timestamp: new Date().toISOString() };
-                    
-                    appData.groupChat[newId] = item;
-                    saveData(author, null, 'chat');
-                    textarea.value = '';
-                    textarea.style.height = 'auto';
-                    showChatSentIndicator();
+                    if (text) {
+                        sendChatMessage(author, { text: text });
+                        textarea.value = '';
+                        textarea.style.height = 'auto';
+                    }
                 } else if (e.target.id === 'add-item-form') {
                     e.preventDefault(); 
                     const type = document.getElementById('item-type-input').value;
@@ -1115,8 +1246,6 @@
                         item.type = 'note'; 
                         eventDateForNotification = item.date;
                         notificationType = 'timeline';
-                    } else if (type === 'groupChat') {
-                        notificationType = 'chat';
                     }
                     
                     appData[type][newId] = item;
@@ -1133,28 +1262,9 @@
                     e.target.style.height = (e.target.scrollHeight) + 'px';
                 }
             });
-
-            document.body.addEventListener('scroll', function(e) {
-                if (e.target.id === 'chat-messages-container') {
-                    const container = e.target;
-                    const indicator = document.getElementById('scroll-up-indicator');
-                    if (!indicator) return;
-
-                    clearTimeout(scrollTimeout);
-                    if (container.scrollTop > 50) {
-                        indicator.classList.add('visible');
-                        scrollTimeout = setTimeout(() => {
-                           indicator.classList.remove('visible');
-                        }, 2000);
-                    } else {
-                        indicator.classList.remove('visible');
-                    }
-                }
-            }, true);
         }
 
         // --- INITIALIZATION ---
-        attachStaticListeners(); 
         setInterval(updateCountdowns, 1000);
         setInterval(fetchWeather, 300000);
     });
