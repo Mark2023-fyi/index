@@ -14,6 +14,10 @@
             --brand-green: #28a745;
             --birthday-color-1: #FF5F6D;
             --birthday-color-2: #FFC371;
+            /* Twitter Colors */
+            --tw-black: #14171a;
+            --tw-gray: #657786;
+            --tw-border: #e1e8ed;
         }
         body{
             font-family:'Poppins',sans-serif;
@@ -34,7 +38,7 @@
         @keyframes move { from { transform: translate(-100px, -50px) rotate(-90deg); } to { transform: translate(100vw, 50vh) rotate(90deg); } }
 
         /* --- Login Screen Styles --- */
-        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
+        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 9000; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
         #login-overlay.hidden { opacity: 0; pointer-events: none; }
         .login-content { 
             display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 40px;
@@ -93,7 +97,7 @@
             background-color: rgba(255, 240, 240, 0.3);
         }
         
-        /* Progress Bar Styles - BLUE */
+        /* Progress Bar Styles - BLUE UPDATE */
         .progress-container {
             width: 80%;
             background-color: rgba(200, 200, 200, 0.3);
@@ -106,13 +110,13 @@
         }
         .progress-bar {
             height: 100%;
-            /* Updated to Blue Gradient */
-            background: linear-gradient(90deg, var(--brand-blue), var(--brand-blue-light));
+            /* Changed to Blue Gradient */
+            background: linear-gradient(90deg, var(--brand-blue-light), var(--brand-blue)); 
             width: 0%;
             transition: width 1s linear;
             border-radius: 10px;
             position: relative;
-            /* Updated Shadow */
+            /* Changed shadow to blue */
             box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
         }
         /* Animated striping effect */
@@ -149,7 +153,9 @@
         .weather-temp { font-size: 1.3em; font-weight: 600; font-family: 'Roboto Mono', monospace; }
         .weather-time { font-size: 0.9em; color: #333; font-family: 'Roboto Mono', monospace; margin-top: 2px; }
         .weather-divider { width: 1px; background-color: rgba(0,0,0,0.2); align-self: stretch; margin: -5px 10px; }
-        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(240, 240, 245, 0.5);z-index:1000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
+        
+        /* Modal - High Z-Index fix */
+        .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(240, 240, 245, 0.5);z-index:20000;display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
         .popup-visible{opacity:1!important;visibility:visible!important}
         .popup-content{padding:20px 30px 30px;position:relative;max-width:450px;width:100%;text-align:center;transform:scale(.9);transition:transform .3s; display:flex; flex-direction:column; max-height: 85vh; background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);}
         .popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#555;cursor:pointer;transition:color .2s;z-index:10;}.close-popup:hover{color:#000}
@@ -182,7 +188,10 @@
         .modal-disclaimer{font-size:0.75em; color:#555; margin-top:15px;}
         #add-item-modal .modal-actions { display:flex; gap: 10px; align-items: center; margin-top: 15px;}
         #add-item-modal .modal-actions .modal-close-button { margin-top: 0; flex-grow: 1;}
-        .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
+        
+        /* FIX: Make sure buttons are clickable and visible */
+        .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0; position: relative; z-index: 5;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
+        
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
         #reply-context-container { border: 1px solid rgba(0,0,0,0.1); background: rgba(248, 249, 250, 0.7); border-radius: 8px; padding: 10px; margin-bottom: 15px; text-align: left; max-height: 160px; overflow-y: auto; position: relative;}
         #reply-context-container.is-scrollable::after { content: 'Desliza para ver más ▼'; position: sticky; bottom: -10px; display: block; text-align: center; background: linear-gradient(to top, rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9) 70%, transparent); padding-top: 15px; padding-bottom: 10px; font-size: 0.8em; color: #555; font-weight: 600; }
@@ -210,34 +219,76 @@
         .message-number.reply { background-color: var(--brand-green); color: white; }
         .weather-forecast{background: rgba(248, 249, 250, 0.6); border:1px solid rgba(222, 226, 230, 0.7); border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
+        .ai-badge { display: inline-block; background: linear-gradient(45deg, var(--gemini-purple), #c37ee6); color: white; font-size: 0.7em; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
         
-        /* --- TWITTER STYLE POSTS --- */
+        /* --- Post View Styles (Twitter/X Style) --- */
         .create-post-card { padding: 20px; margin-bottom: 20px; text-align: center; }
         .create-post-card button { width: 100%; padding: 12px; font-size: 1.1em; }
         .posts-container { display: flex; flex-direction: column; gap: 15px; }
         
-        .tweet-card {
-            background: rgba(255, 255, 255, 0.95); /* High opacity for readability */
+        /* Twitter-like Card Styles */
+        .post-card {
+            background: #fff;
             border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 12px;
-            display: flex;
+            padding: 15px;
+            margin-bottom: 15px;
+            color: var(--tw-black);
+            display: flex; /* Flex layout for Avatar + Content */
             gap: 12px;
-            color: #1c2a39; /* Dark text */
+            border: 1px solid var(--tw-border);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
         }
-        .tweet-left { flex-shrink: 0; }
-        .tweet-avatar { width: 48px; height: 48px; border-radius: 50%; font-size: 24px; display: flex; align-items: center; justify-content: center; background: #f0f2f5; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .tweet-right { flex-grow: 1; min-width: 0; /* Crucial for text wrap */ }
-        .tweet-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-        .tweet-author { font-weight: 700; color: #0f1419; margin-right: 5px;}
-        .tweet-time { color: #536471; font-size: 0.85em; }
-        .tweet-content { font-size: 1em; line-height: 1.5; color: #0f1419; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: anywhere; }
-        .tweet-footer { margin-top: 10px; display: flex; gap: 20px; border-top: 1px solid #eff3f4; padding-top: 8px;}
-        .tweet-action-btn { background: none; border: none; color: #536471; cursor: pointer; font-size: 0.85em; display: flex; align-items: center; gap: 5px; transition: color 0.2s; padding: 0; font-weight: 600;}
-        .tweet-action-btn:hover { color: var(--brand-blue); }
-        .tweet-action-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .post-left { flex-shrink: 0; }
+        .post-right { flex-grow: 1; min-width: 0; /* Crucial for text wrapping in flex children */ }
+        
+        /* Avatar adjustments */
+        .post-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em; /* Emoji size */
+            line-height: 1;
+        }
+
+        /* Post Header */
+        .post-header-row { 
+            display: flex; 
+            align-items: baseline; 
+            gap: 5px; 
+            margin-bottom: 4px; 
+            flex-wrap: wrap; 
+        }
+        .post-author-name { font-weight: 700; color: var(--tw-black); font-size: 1em; }
+        .post-handle, .post-time { color: var(--tw-gray); font-size: 0.9em; }
+        .post-time::before { content: "·"; margin-right: 5px; }
+
+        /* Post Content Body */
+        .post-text-body {
+            font-size: 1em;
+            line-height: 1.4;
+            color: var(--tw-black);
+            white-space: pre-wrap; /* Preserve newlines */
+            word-wrap: break-word; /* Force break long words */
+            word-break: break-word; 
+            overflow-wrap: break-word;
+        }
+
+        /* Post Actions Footer */
+        .post-actions-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            max-width: 80%;
+            color: var(--tw-gray);
+            font-size: 1.1em;
+        }
+        .post-action-btn { cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 5px; font-size: 0.9em;}
+        .post-action-btn:hover { color: var(--brand-blue); }
+        .post-action-btn.reply-btn { background: none; padding: 0; border: none; color: var(--tw-gray); font-weight: normal;}
+        .post-action-btn.reply-btn:hover { background: none; color: var(--brand-blue); }
 
         /* --- Responsive Styles for Mobile --- */
         @media (max-width: 768px) {
@@ -310,7 +361,7 @@
     <div id="login-overlay">
         <div class="login-content">
             <h2>🔐 Acceso al Itinerario</h2>
-            <p>Ingresa tus credenciales para ver y editar el viaje.</p>
+            <p>Ingresa tus credenciales para ver y editar el viaje. NOTA: ROSALINA, FAIBER Y YISELA NO SABEN NADA.</p>
             <input type="email" id="email-input" placeholder="Correo electrónico">
             <input type="password" id="password-input" placeholder="Contraseña">
             <button id="login-btn" class="login-btn">Entrar</button>
@@ -346,7 +397,7 @@
         </div>
     
     <footer>
-        Version 090125k (Twitter Style Posts) <br>
+        Version 090125k_fixed (Final) <br>
         <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
     </footer>
 
@@ -552,6 +603,18 @@
         const getAvatar = (name) => {
             return AVATARS[name] || "👤"; // Retorna el avatar o uno por defecto
         };
+        
+        const generateColor = (name) => {
+            if (name === 'Gemini') return 'var(--gemini-purple)';
+            let hash = 0;
+            if (!name || name.length === 0) return '#007bff'; // Default blue
+            for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const AVATAR_COLORS = ['#E53935', '#D81B60', '#5E35B1', '#3949AB', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#7CB342', '#F4511E', '#795548', '#546E7A'];
+            const index = Math.abs(hash) % AVATAR_COLORS.length;
+            return AVATAR_COLORS[index];
+        };
        
         function renderApp() {
             document.getElementById('main-container').innerHTML = getBaseHTML();
@@ -559,6 +622,7 @@
             renderCalendar(); 
             renderPosts(); // Renderiza la nueva sección de Posts
             renderInfoLists();
+            attachStaticListeners();
             attachDynamicListeners();
             updateHeader();
             updateCountdowns();
@@ -570,7 +634,6 @@
         }
 
         function renderMessageThreadsListHTML(messages, options = {}) {
-            // Este método se mantiene para la timeline, pero ya NO se usa para los Posts.
             if (messages.length === 0) return '';
             const notesById = {};
             messages.forEach(note => { notesById[note.id] = { ...note, replies: [] }; });
@@ -590,24 +653,87 @@
             const messageThreads = allMessageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
            
             let html = '';
-            const collapseAfter = options.collapseAfter || 10; // Mostrar más posts por defecto
-
-            const renderAndTrack = (threads) => {
-                let tempHtml = '';
-                threads.forEach(thread => {
-                    tempHtml += renderSingleThread(thread, threadNumberMap.get(thread.id), { ...options });
+            
+            // Check if we are rendering Posts (Twitter Style) or standard messages
+            if (options.dataType === 'posts') {
+                const collapseAfter = options.collapseAfter || 10;
+                // Custom loop for Twitter Style
+                messageThreads.slice(0, collapseAfter).forEach(thread => {
+                    html += renderTwitterPost(thread, { ...options });
                 });
-                return tempHtml;
-            };
-
-            html += renderAndTrack(messageThreads.slice(0, collapseAfter));
-
-            if (messageThreads.length > collapseAfter) {
-                let hiddenHtml = renderAndTrack(messageThreads.slice(collapseAfter));
-                html += `<div class="collapsible-messages" style="display:none;">${hiddenHtml}</div>`;
-                html += `<button class="toggle-visibility-link" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
+                
+                if (messageThreads.length > collapseAfter) {
+                    // Logic for hidden posts could go here if needed, simplified for now
+                }
+            } else {
+                // Standard Logic for Notes
+                const collapseAfter = options.collapseAfter || 10;
+                const renderAndTrack = (threads) => {
+                    let tempHtml = '';
+                    threads.forEach(thread => {
+                        tempHtml += renderSingleThread(thread, threadNumberMap.get(thread.id), { ...options });
+                    });
+                    return tempHtml;
+                };
+                html += renderAndTrack(messageThreads.slice(0, collapseAfter));
+                if (messageThreads.length > collapseAfter) {
+                    let hiddenHtml = renderAndTrack(messageThreads.slice(collapseAfter));
+                    html += `<div class="collapsible-messages" style="display:none;">${hiddenHtml}</div>`;
+                    html += `<button class="toggle-visibility-link" data-count="${messageThreads.length - collapseAfter}">Ver ${messageThreads.length - collapseAfter} mensajes anteriores</button>`;
+                }
             }
             return html;
+        }
+
+        // New function to render a single Twitter-style post
+        function renderTwitterPost(post, options) {
+            const avatar = getAvatar(post.author);
+            const avatarColor = generateColor(post.author);
+            const handle = `@${post.author.toLowerCase().replace(/\s+/g, '_')}`;
+            const date = new Date(post.timestamp).toLocaleString('es-CO', { day: 'numeric', month: 'short' });
+            
+            const replyCounter = post.replies && post.replies.length > 0 ? ` ${post.replies.length}` : '';
+
+            let repliesHtml = '';
+            if (post.replies.length > 0) {
+                const repliesNewestFirst = [...post.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+                repliesHtml = `<div class="replies-container" style="border-left: 2px solid var(--tw-border); margin-left: 24px; padding-left: 15px; margin-top: 10px;">`;
+                repliesNewestFirst.forEach(reply => {
+                    const rHandle = `@${reply.author.toLowerCase().replace(/\s+/g, '_')}`;
+                    repliesHtml += `
+                        <div style="margin-bottom: 8px; font-size: 0.9em;">
+                            <strong>${reply.author}</strong> <span style="color:var(--tw-gray)">${rHandle}</span>
+                            <div style="margin-top:2px;">${reply.text}</div>
+                        </div>
+                    `;
+                });
+                repliesHtml += `</div>`;
+            }
+
+            return `
+            <div class="post-card">
+                <div class="post-left">
+                    <div class="post-avatar" style="background-color: ${avatarColor}; color: white;">${avatar}</div>
+                </div>
+                <div class="post-right">
+                    <div class="post-header-row">
+                        <span class="post-author-name">${post.author}</span>
+                        <span class="post-handle">${handle}</span>
+                        <span class="post-time">${date}</span>
+                    </div>
+                    <div class="post-text-body">${post.text}</div>
+                    
+                    <div class="post-actions-row">
+                        <button class="post-action-btn reply-btn" data-type="posts" data-reply-to-id="${post.id}">
+                            💬${replyCounter || ''}
+                        </button>
+                        <span class="post-action-btn">🔁</span>
+                        <span class="post-action-btn">❤️</span>
+                        <span class="post-action-btn">📤</span>
+                    </div>
+                    ${repliesHtml}
+                </div>
+            </div>`;
         }
 
         function renderSingleThread(thread, threadNumber, options) {
@@ -634,8 +760,8 @@
         }
 
         function renderMessage(note, number, isReply, options = {}) {
-            // Este método renderiza mensajes para Timeline.
-            // Los posts usan su propia lógica en renderPosts.
+            const numberClass = isReply ? 'reply' : 'thread';
+            // Usamos el avatar en lugar del número si es un post principal, o junto al nombre
             const avatarHtml = `<span class="avatar-img">${getAvatar(note.author)}</span>`;
             const authorHtml = `<strong class="author-name">${avatarHtml} ${note.author}:</strong>`;
            
@@ -793,7 +919,6 @@
         function renderPosts() {
             const postsView = document.getElementById('posts-view');
             const allPosts = Object.values(appData.posts || []);
-            allPosts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Recientes primero
             
             // Header: Crear Publicación
             let html = `
@@ -807,34 +932,8 @@
                 html += `<div class="item-content tbd" style="text-align:center; padding: 20px;">No hay publicaciones. ¡Sé el primero en compartir algo!</div>`;
             } else {
                 html += `<div class="posts-container">`;
-                allPosts.forEach(post => {
-                    const date = new Date(post.timestamp).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-                    const replyCount = Object.values(appData.posts || []).filter(p => p.replyingTo === post.id).length;
-                    
-                    // Solo renderizamos posts principales (no respuestas directas en el feed principal, simplificado)
-                    if (!post.replyingTo) {
-                        html += `
-                        <div class="tweet-card">
-                            <div class="tweet-left">
-                                <div class="tweet-avatar">${getAvatar(post.author)}</div>
-                            </div>
-                            <div class="tweet-right">
-                                <div class="tweet-header">
-                                    <span class="tweet-author">${post.author}</span>
-                                    <span class="tweet-time">· ${date}</span>
-                                </div>
-                                <div class="tweet-content">${post.text}</div>
-                                <div class="tweet-footer">
-                                    <button class="tweet-action-btn reply-btn" data-type="posts" data-reply-to-id="${post.id}">
-                                        <svg viewBox="0 0 24 24"><g><path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path></g></svg>
-                                        ${replyCount > 0 ? replyCount : 'Responder'}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-                    }
-                });
+                // Usamos dataType: 'posts' para activar el renderizado estilo Twitter
+                html += renderMessageThreadsListHTML(allPosts, { dataType: 'posts', collapseAfter: 15 });
                 html += `</div>`;
             }
             
@@ -892,7 +991,7 @@
                             <div class="live-status"><span class="live-indicator"></span>En vivo</div>
                             <div class="update-details" id="update-details"></div>
                         </div>
-                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver informacion importante del itinerario, y ver las publicaciones familiares. Todas las horas estan en hora Colombiana.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver informacion importante del itinerario, y ver las publicaciones familiares. Todas las horas estan en hora Colombiana.</p><button class="dismiss-banner-btn"> (x) No volver a mostrar</button></div>
                         <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                         <div class="weather-widget">
                             <h3>Clima Actual</h3>
