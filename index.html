@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Itinerario: Austin a Medellín</title>
     <style>
-        /* --- General & Glassmorphism --- */
+        /* --- General & Fonts --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
         :root {
             --brand-red: #CF4647;
@@ -18,15 +18,17 @@
             --tw-black: #14171a;
             --tw-gray: #657786;
             --tw-border: #e1e8ed;
+            --tw-like: #e0245e;
         }
         body{
             font-family:'Poppins',sans-serif;
             background-color: #f0f2f5;
             color:#2c3e50;
             margin:0;
-            padding:20px; 
+            padding:0; /* Edge-to-edge fix */
             overflow-wrap: break-word;
             overflow-x: hidden;
+            width: 100%;
         }
        
         /* --- Fondo Lámpara de Lava --- */
@@ -37,25 +39,66 @@
         .blob:nth-child(3) { width: 250px; height: 250px; background: #B0E0E6; animation: move 20s infinite alternate; }
         @keyframes move { from { transform: translate(-100px, -50px) rotate(-90deg); } to { transform: translate(100vw, 50vh) rotate(90deg); } }
 
-        /* --- Login Screen Styles --- */
-        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 9000; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
+        /* --- Login Screen Styles & Snow --- */
+        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(20, 20, 30, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 20000; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; overflow: hidden; }
         #login-overlay.hidden { opacity: 0; pointer-events: none; }
+        
         .login-content { 
-            display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 40px;
-            background: rgba(255, 255, 255, 0.6); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 1);
-            max-width: 400px; width: 90%; box-sizing: border-box; 
+            display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 30px;
+            background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 1);
+            max-width: 350px; width: 85%; box-sizing: border-box; position: relative; z-index: 2;
         }
-        .login-content h2 { margin: 0; color: var(--brand-blue); }
+        .login-content h2 { margin: 0; color: var(--brand-blue); font-size: 1.5em; }
         .login-content input { width: 100%; padding: 12px; margin: 5px 0; border: 1px solid #ccc; border-radius: 8px; font-family: 'Poppins', sans-serif; box-sizing: border-box;}
         .login-btn { background-color: var(--brand-blue); color: white; border: none; padding: 12px 20px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; transition: transform 0.2s; margin-top: 10px;}
         .login-btn:hover { transform: scale(1.02); background-color: #0056b3; }
         #login-error { color: var(--brand-red); font-size: 0.9em; display: none; text-align: center; word-break: break-word;}
         
+        /* Secret Note Style */
+        .secret-note {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 2px solid #ef9a9a;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Snow Animation */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial;
+            text-shadow: 0 0 1px #000;
+            animation: fall linear forwards;
+            z-index: 1;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+
         .logout-btn { background: none; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8em; margin-top: 10px; }
         .logout-btn:hover { background: #eee; }
 
         /* --- Main App Styles --- */
-        .container{max-width:800px;margin:0 auto; transition: max-width 0.3s ease, padding 0.3s ease; display: none;} 
+        .container{
+            max-width:800px; 
+            width: 100%;
+            margin:0 auto; 
+            padding: 20px; 
+            box-sizing: border-box;
+            transition: max-width 0.3s ease, padding 0.3s ease; 
+            display: none;
+        } 
         .container.visible { display: block; }
         
         h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px;text-shadow: 0 1px 3px rgba(0,0,0,0.1);}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
@@ -110,16 +153,13 @@
         }
         .progress-bar {
             height: 100%;
-            /* Changed to Blue Gradient */
             background: linear-gradient(90deg, var(--brand-blue-light), var(--brand-blue)); 
             width: 0%;
             transition: width 1s linear;
             border-radius: 10px;
             position: relative;
-            /* Changed shadow to blue */
             box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
         }
-        /* Animated striping effect */
         .progress-bar::after {
             content: "";
             position: absolute;
@@ -176,7 +216,7 @@
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
         
-        /* Items & Messages Styles (Shared between Timeline and Posts) */
+        /* Items & Messages Styles */
         .item-description{padding-bottom:4px;border-bottom:1px solid rgba(0,0,0,0.1);margin-bottom:4px;display:flex;align-items:flex-start;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
         .note-content{flex-grow:1; word-wrap: break-word; word-break: break-word;}.author-name{font-size:0.9em;font-weight:600; display: flex; align-items: center;}
         .item-timestamp{font-size:0.7em; color:#555; white-space:nowrap;}
@@ -189,7 +229,6 @@
         #add-item-modal .modal-actions { display:flex; gap: 10px; align-items: center; margin-top: 15px;}
         #add-item-modal .modal-actions .modal-close-button { margin-top: 0; flex-grow: 1;}
         
-        /* FIX: Make sure buttons are clickable and visible */
         .add-button{background-color:var(--brand-blue);color:white;border:none;border-radius:50%;width:24px;height:24px;font-size:16px;font-weight:bold;line-height:24px;cursor:pointer;transition:all .2s;flex-shrink:0; position: relative; z-index: 5;}.add-button:hover{background-color:#0056b3;transform:scale(1.1)}
         
         #add-item-modal textarea, #add-item-modal select{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc;font-family:'Poppins',sans-serif;font-size:1em;box-sizing:border-box}
@@ -239,9 +278,8 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .post-left { flex-shrink: 0; }
-        .post-right { flex-grow: 1; min-width: 0; /* Crucial for text wrapping in flex children */ }
+        .post-right { flex-grow: 1; min-width: 0; }
         
-        /* Avatar adjustments */
         .post-avatar {
             width: 48px;
             height: 48px;
@@ -253,46 +291,38 @@
             line-height: 1;
         }
 
-        /* Post Header */
-        .post-header-row { 
-            display: flex; 
-            align-items: baseline; 
-            gap: 5px; 
-            margin-bottom: 4px; 
-            flex-wrap: wrap; 
-        }
+        .post-header-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 4px; flex-wrap: wrap; }
         .post-author-name { font-weight: 700; color: var(--tw-black); font-size: 1em; }
         .post-handle, .post-time { color: var(--tw-gray); font-size: 0.9em; }
         .post-time::before { content: "·"; margin-right: 5px; }
 
-        /* Post Content Body */
         .post-text-body {
             font-size: 1em;
             line-height: 1.4;
             color: var(--tw-black);
-            white-space: pre-wrap; /* Preserve newlines */
-            word-wrap: break-word; /* Force break long words */
-            word-break: break-word; 
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
             overflow-wrap: break-word;
         }
 
-        /* Post Actions Footer */
         .post-actions-row {
             display: flex;
             justify-content: space-between;
             margin-top: 12px;
-            max-width: 80%;
+            max-width: 90%;
             color: var(--tw-gray);
-            font-size: 1.1em;
+            font-size: 1em;
         }
-        .post-action-btn { cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 5px; font-size: 0.9em;}
+        .post-action-btn { cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 6px; font-size: 0.9em; background: none; border: none; color: var(--tw-gray);}
         .post-action-btn:hover { color: var(--brand-blue); }
-        .post-action-btn.reply-btn { background: none; padding: 0; border: none; color: var(--tw-gray); font-weight: normal;}
-        .post-action-btn.reply-btn:hover { background: none; color: var(--brand-blue); }
+        .post-action-btn.like-btn.liked { color: var(--tw-like); }
+        .post-action-btn.like-btn.liked:hover { color: #be1f50; }
+        .likes-list-text { font-size: 0.8em; color: var(--tw-gray); margin-left: 5px; font-weight: normal; }
 
         /* --- Responsive Styles for Mobile --- */
         @media (max-width: 768px) {
-            body { padding: 10px; }
+            body { padding: 0; }
+            .container { padding: 10px; }
             h1 { font-size: 1.8em; }
             .status-bar, .update-details { flex-direction: column; align-items: flex-start; gap: 8px; }
             .update-details { align-items: flex-end; width: 100%; }
@@ -360,8 +390,9 @@
 
     <div id="login-overlay">
         <div class="login-content">
+            <div class="secret-note">⚠️ NOTE: ROSALINA, FAIBER, Y YISELA NO SABEN NADA ⚠️</div>
             <h2>🔐 Acceso al Itinerario</h2>
-            <p>Ingresa tus credenciales para ver y editar el viaje. NOTA: ROSALINA, FAIBER Y YISELA NO SABEN NADA.</p>
+            <p>Ingresa tus credenciales para ver y editar el viaje.</p>
             <input type="email" id="email-input" placeholder="Correo electrónico">
             <input type="password" id="password-input" placeholder="Contraseña">
             <button id="login-btn" class="login-btn">Entrar</button>
@@ -397,7 +428,7 @@
         </div>
     
     <footer>
-        Version 090125k_fixed (Final) <br>
+        Version 090125L (Snow, Likes, Edge-to-Edge) <br>
         <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
     </footer>
 
@@ -437,28 +468,28 @@
         // Listen for Auth State Changes
         auth.onAuthStateChanged((user) => {
             if (user) {
-                // User is signed in.
                 console.log("Usuario conectado:", user.email);
                 loginOverlay.classList.add('hidden');
                 mainContainer.classList.add('visible');
+                // Remove snow to save performance when logged in
+                removeSnow();
                 
-                // Only attach the DB listener IF we are logged in
                 appDataRef.on('value', (snapshot) => {
                     const data = snapshot.val();
                     let loadedData = (data && data.timelineEvents) ? data : JSON.parse(JSON.stringify(defaultAppData));
-                    if(!loadedData.posts) loadedData.posts = {}; // Inicializar posts si no existe
+                    if(!loadedData.posts) loadedData.posts = {};
                     appData = loadedData;
                     renderApp();
                 }, (error) => {
-                    console.error("Error leyendo base de datos (posiblemente permiso denegado):", error);
+                    console.error("Error leyendo base de datos:", error);
                 });
 
             } else {
-                // User is signed out.
                 console.log("Usuario desconectado");
                 loginOverlay.classList.remove('hidden');
                 mainContainer.classList.remove('visible');
-                appDataRef.off(); // Detach listener
+                appDataRef.off(); 
+                createSnowflakes(); // Start snow
             }
         });
 
@@ -470,7 +501,6 @@
 
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Signed in success - onAuthStateChanged will handle the rest
                     loginBtn.innerText = 'Entrar';
                 })
                 .catch((error) => {
@@ -484,6 +514,38 @@
         logoutBtn.addEventListener('click', () => {
             auth.signOut();
         });
+
+        // --- SNOW LOGIC ---
+        let snowInterval;
+        function createSnowflakes() {
+            if(snowInterval) return;
+            const container = document.getElementById('login-overlay');
+            snowInterval = setInterval(() => {
+                if(document.hidden) return; 
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerText = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+                snowflake.style.opacity = Math.random();
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                
+                container.appendChild(snowflake);
+                
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 5000);
+            }, 300);
+        }
+
+        function removeSnow() {
+            if(snowInterval) {
+                clearInterval(snowInterval);
+                snowInterval = null;
+            }
+            const flakes = document.querySelectorAll('.snowflake');
+            flakes.forEach(f => f.remove());
+        }
        
         // --- WIDGETS ---
         function updateCountdowns() {
@@ -493,7 +555,6 @@
                 if(!el) return; 
                 const t=new Date(target.date).getTime(), n=new Date().getTime(), d=t-n; 
                 
-                // Pulse Effect Logic
                 const daysLeft = Math.floor(d / (1000 * 60 * 60 * 24));
                 if (daysLeft < 13 && daysLeft >= 0) {
                     el.classList.add('urgent-pulse');
@@ -501,8 +562,6 @@
                     el.classList.remove('urgent-pulse');
                 }
 
-                // Charging Bar Logic
-                // Start filling from 30 days out. 30 days = 0%, 0 days = 100%
                 const maxDays = 30; 
                 let percentage = 0;
                 if (daysLeft < maxDays) {
@@ -601,13 +660,13 @@
         };
 
         const getAvatar = (name) => {
-            return AVATARS[name] || "👤"; // Retorna el avatar o uno por defecto
+            return AVATARS[name] || "👤"; 
         };
         
         const generateColor = (name) => {
             if (name === 'Gemini') return 'var(--gemini-purple)';
             let hash = 0;
-            if (!name || name.length === 0) return '#007bff'; // Default blue
+            if (!name || name.length === 0) return '#007bff'; 
             for (let i = 0; i < name.length; i++) {
                 hash = name.charCodeAt(i) + ((hash << 5) - hash);
             }
@@ -620,7 +679,7 @@
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
             renderCalendar(); 
-            renderPosts(); // Renderiza la nueva sección de Posts
+            renderPosts(); 
             renderInfoLists();
             attachStaticListeners();
             attachDynamicListeners();
@@ -629,7 +688,7 @@
             fetchWeather();
             handleBannerVisibility();
            
-            if (currentView === 'chat') currentView = 'posts'; // Redirigir chat antiguo a posts
+            if (currentView === 'chat') currentView = 'posts';
             switchView(currentView, true);
         }
 
@@ -646,27 +705,21 @@
                 }
             });
            
-            const threadsOldestFirst = [...allMessageThreads].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
-            const threadNumberMap = new Map(threadsOldestFirst.map((thread, index) => [thread.id, index + 1]));
-
-            // Ordenar hilos más recientes primero para Posts, cronológico para notas del día (opcional, aquí usaremos reciente primero)
             const messageThreads = allMessageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-           
             let html = '';
             
-            // Check if we are rendering Posts (Twitter Style) or standard messages
             if (options.dataType === 'posts') {
                 const collapseAfter = options.collapseAfter || 10;
-                // Custom loop for Twitter Style
                 messageThreads.slice(0, collapseAfter).forEach(thread => {
                     html += renderTwitterPost(thread, { ...options });
                 });
                 
                 if (messageThreads.length > collapseAfter) {
-                    // Logic for hidden posts could go here if needed, simplified for now
+                    // Logic for pagination (omitted for brevity)
                 }
             } else {
                 // Standard Logic for Notes
+                const threadNumberMap = new Map([...allMessageThreads].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp)).map((thread, index) => [thread.id, index + 1]));
                 const collapseAfter = options.collapseAfter || 10;
                 const renderAndTrack = (threads) => {
                     let tempHtml = '';
@@ -685,7 +738,31 @@
             return html;
         }
 
-        // New function to render a single Twitter-style post
+        // --- LIKE LOGIC ---
+        function toggleLike(postId) {
+            const author = localStorage.getItem('itineraryAuthor');
+            if(!author) {
+                // Trigger author selection modal for liking
+                // Simple hack: Set generic author or alert
+                alert("Para dar 'Me gusta', primero debes crear una publicación o nota para establecer tu nombre.");
+                return;
+            }
+            
+            if (!appData.posts[postId].likes) appData.posts[postId].likes = [];
+            
+            const likesArray = appData.posts[postId].likes;
+            const index = likesArray.indexOf(author);
+            
+            if (index > -1) {
+                likesArray.splice(index, 1); // Unlike
+            } else {
+                likesArray.push(author); // Like
+            }
+            
+            saveData(author, null, 'posts');
+            renderPosts(); // Refresh view
+        }
+
         function renderTwitterPost(post, options) {
             const avatar = getAvatar(post.author);
             const avatarColor = generateColor(post.author);
@@ -693,6 +770,20 @@
             const date = new Date(post.timestamp).toLocaleString('es-CO', { day: 'numeric', month: 'short' });
             
             const replyCounter = post.replies && post.replies.length > 0 ? ` ${post.replies.length}` : '';
+            
+            // Like Logic for UI
+            const currentUser = localStorage.getItem('itineraryAuthor');
+            const likes = post.likes || [];
+            const isLiked = currentUser && likes.includes(currentUser);
+            const likeClass = isLiked ? 'liked' : '';
+            const likeIcon = isLiked ? '❤️' : '🤍'; // Using emoji for simplicity, CSS colors it better
+            
+            let likesText = '';
+            if (likes.length > 0) {
+                if (likes.length === 1) likesText = `A ${likes[0]} le gusta`;
+                else if (likes.length === 2) likesText = `A ${likes[0]} y ${likes[1]} les gusta`;
+                else likesText = `A ${likes[0]} y ${likes.length - 1} más les gusta`;
+            }
 
             let repliesHtml = '';
             if (post.replies.length > 0) {
@@ -727,10 +818,11 @@
                         <button class="post-action-btn reply-btn" data-type="posts" data-reply-to-id="${post.id}">
                             💬${replyCounter || ''}
                         </button>
-                        <span class="post-action-btn">🔁</span>
-                        <span class="post-action-btn">❤️</span>
-                        <span class="post-action-btn">📤</span>
+                        <button class="post-action-btn like-btn ${likeClass}" data-post-id="${post.id}">
+                            ${likeIcon} ${likes.length > 0 ? likes.length : ''}
+                        </button>
                     </div>
+                    ${likesText ? `<div class="likes-list-text">${likesText}</div>` : ''}
                     ${repliesHtml}
                 </div>
             </div>`;
@@ -932,7 +1024,6 @@
                 html += `<div class="item-content tbd" style="text-align:center; padding: 20px;">No hay publicaciones. ¡Sé el primero en compartir algo!</div>`;
             } else {
                 html += `<div class="posts-container">`;
-                // Usamos dataType: 'posts' para activar el renderizado estilo Twitter
                 html += renderMessageThreadsListHTML(allPosts, { dataType: 'posts', collapseAfter: 15 });
                 html += `</div>`;
             }
@@ -991,7 +1082,7 @@
                             <div class="live-status"><span class="live-indicator"></span>En vivo</div>
                             <div class="update-details" id="update-details"></div>
                         </div>
-                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver informacion importante del itinerario, y ver las publicaciones familiares. Todas las horas estan en hora Colombiana.</p><button class="dismiss-banner-btn"> (x) No volver a mostrar</button></div>
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, y ver las publicaciones familiares.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
                         <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                         <div class="weather-widget">
                             <h3>Clima Actual</h3>
@@ -1197,6 +1288,13 @@
                                 type === 'plannedActivities' ? 'Añadir Actividad' : 'Añadir Nota';
                     openModal({ title: title, type: type, date: itemDate });
                     return;
+                }
+
+                // New Like Button Listener
+                const likeButton = target.closest('.like-btn');
+                if (likeButton) {
+                    const postId = likeButton.dataset.postId;
+                    toggleLike(postId);
                 }
             });
 
