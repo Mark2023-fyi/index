@@ -433,7 +433,7 @@
         <div class="login-content">
             <div class="secret-note">⚠️ NOTE: ROSALINA, FAIBER, Y YISELA NO SABEN NADA ⚠️</div>
             <h2>🔐 Acceso al Itinerario</h2>
-            <p style="margin-top:0;">Ingresa tus credenciales para ver y editar el viaje.</p>
+            <p style="margin-top:0;">Ingresa tus credenciales para ver y editar el viaje. Usa el correo: detodo078@gmail.com e introduzca la contraseña</p>
             
             <select id="login-name-select" class="login-field">
                 <option value="" disabled selected>¿Quién eres?</option>
@@ -486,7 +486,7 @@
         </div>
     
     <footer>
-        Version 090125p (Fixed + Copa Flights + Birthday Fix) <br>
+        Version 090125p, Dic 1, 2025 <br>
         <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
     </footer>
 
@@ -526,7 +526,7 @@
                 "event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CMP716",route:"Austin → Panamá"},{num:"CMP155",route:"Panamá → Medellín"}]}},
                 "event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},
                 "event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},
-                "event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},
+                "event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},
                 "event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CMP209",route:"Medellín → Panamá"},{num:"CMP715",route:"Panamá → Austin"}]}}
             }, 
             importantNotes: { 
@@ -558,7 +558,8 @@
                 console.log("Usuario conectado:", user.email);
                 loginOverlay.classList.add('hidden');
                 mainContainer.classList.add('visible');
-                
+                removeSnow(); // Detener nieve al entrar
+
                 // Only attach the DB listener IF we are logged in
                 appDataRef.on('value', (snapshot) => {
                     const data = snapshot.val();
@@ -575,6 +576,7 @@
                 console.log("Usuario desconectado");
                 loginOverlay.classList.remove('hidden');
                 mainContainer.classList.remove('visible');
+                createSnowflakes(); // Iniciar nieve al salir/pantalla login
                 appDataRef.off(); // Detach listener
             }
         });
@@ -610,6 +612,19 @@
         function createSnowflakes() {
             if(snowInterval) return;
             const container = document.getElementById('login-overlay');
+            // Crear nieve inicial
+            for(let i=0; i<5; i++) {
+                 const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerText = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+                snowflake.style.opacity = Math.random();
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                container.appendChild(snowflake);
+                 setTimeout(() => { snowflake.remove(); }, 5000);
+            }
+
             snowInterval = setInterval(() => {
                 if(document.hidden) return; 
                 const snowflake = document.createElement('div');
@@ -902,8 +917,6 @@
                         <button class="post-action-btn like-btn ${likeClass}" data-post-id="${post.id}">
                             ${likeIcon} ${likes.length > 0 ? likes.length : ''}
                         </button>
-                        <span class="post-action-btn">🔁</span>
-                        <span class="post-action-btn">📤</span>
                     </div>
                     ${likesText ? `<div class="likes-list-text">${likesText}</div>` : ''}
                     ${repliesHtml}
@@ -1208,7 +1221,7 @@
                             <div class="live-status"><span class="live-indicator"></span>En vivo</div>
                             <div class="update-details" id="update-details"></div>
                         </div>
-                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, y ver las publicaciones familiares.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, y ver las publicaciones familiares.</p><button class="dismiss-banner-btn"> (x) Cerrar y no volver a mostrar</button></div>
                         <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                         <div class="weather-widget">
                             <h3>Clima Actual</h3>
