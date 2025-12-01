@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itinerario: Austin a Medellín</title>
     <style>
-        /* --- General & Glassmorphism Style Update --- */
+        /* --- General & Glassmorphism --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@700&display=swap');
         :root {
             --brand-red: #CF4647;
             --brand-blue: #007bff;
+            --brand-blue-light: #4facfe;
             --brand-green: #28a745;
-            --gemini-purple: #8E44AD;
             --birthday-color-1: #FF5F6D;
             --birthday-color-2: #FFC371;
         }
@@ -24,7 +24,8 @@
             overflow-wrap: break-word;
             overflow-x: hidden;
         }
-        
+       
+        /* --- Fondo Lámpara de Lava --- */
         .lava-lamp-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: linear-gradient(120deg, #e0f2f7 0%, #ebedee 100%); }
         .lava-lamp-background .blob { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.6; }
         .blob:nth-child(1) { width: 400px; height: 400px; background: #89CFF0; animation: move 25s infinite alternate; }
@@ -32,36 +33,41 @@
         .blob:nth-child(3) { width: 250px; height: 250px; background: #B0E0E6; animation: move 20s infinite alternate; }
         @keyframes move { from { transform: translate(-100px, -50px) rotate(-90deg); } to { transform: translate(100vw, 50vh) rotate(90deg); } }
 
-        /* --- Pre-Screen Styles (with glass effect) --- */
-        #pre-screen-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.7s ease; }
-        #pre-screen-overlay.hidden { opacity: 0; pointer-events: none; }
-        .pre-screen-content { 
-            display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 30px;
-            background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);
-            max-width: 500px; margin: 20px; box-sizing: border-box; 
+        /* --- Login Screen Styles --- */
+        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
+        #login-overlay.hidden { opacity: 0; pointer-events: none; }
+        .login-content { 
+            display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 40px;
+            background: rgba(255, 255, 255, 0.6); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 1);
+            max-width: 400px; width: 90%; box-sizing: border-box; 
         }
-        .pre-screen-text { text-align: center; color: #2c3e50; }
-        .pre-screen-text h2 { color: var(--brand-red); margin-top: 0; }
-        .pre-screen-text p { font-size: 1.1em; max-width: 400px; margin: 0 auto; line-height: 1.6; }
-        .loader { height: 60px; aspect-ratio: 2; border-bottom: 3px solid #0000; background: linear-gradient(90deg,#555 50%,#0000 0) -25% 100%/50% 3px repeat-x border-box; position: relative; animation: l3-0 .75s linear infinite; }
-        .loader:before { content: ""; position: absolute; inset: auto 42.5% 0; aspect-ratio: 1; border-radius: 50%; background: var(--brand-red); animation: l3-1 .75s cubic-bezier(0,900,1,900) infinite; }
-        @keyframes l3-0 { to {background-position: -125% 100%} }
-        @keyframes l3-1 { 0%,2% {bottom: 0%} 98%,to {bottom:.1%} }
-        .enter-button { font-family: 'Poppins', sans-serif; background-color: var(--brand-blue); color: white; border: none; border-radius: 8px; padding: 12px 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
-        .enter-button:hover { background-color: #0056b3; transform: scale(1.05); }
+        .login-content h2 { margin: 0; color: var(--brand-blue); }
+        .login-content input { width: 100%; padding: 12px; margin: 5px 0; border: 1px solid #ccc; border-radius: 8px; font-family: 'Poppins', sans-serif; box-sizing: border-box;}
+        .login-btn { background-color: var(--brand-blue); color: white; border: none; padding: 12px 20px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; transition: transform 0.2s; margin-top: 10px;}
+        .login-btn:hover { transform: scale(1.02); background-color: #0056b3; }
+        #login-error { color: var(--brand-red); font-size: 0.9em; display: none; text-align: center; word-break: break-word;}
+        
+        .logout-btn { background: none; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8em; margin-top: 10px; }
+        .logout-btn:hover { background: #eee; }
 
         /* --- Main App Styles --- */
-        .container{max-width:800px;margin:0 auto; transition: max-width 0.3s ease, padding 0.3s ease;}h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px;text-shadow: 0 1px 3px rgba(0,0,0,0.1);}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
-        .status-bar, .countdown-card, .item-content, .info-card, .weather-widget, #chat-view-wrapper, .how-to-banner {
+        .container{max-width:800px;margin:0 auto; transition: max-width 0.3s ease, padding 0.3s ease; display: none;} 
+        .container.visible { display: block; }
+        
+        h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px;text-shadow: 0 1px 3px rgba(0,0,0,0.1);}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
+        
+        /* Glassmorphism Cards */
+        .status-bar, .countdown-card, .item-content, .info-card, .weather-widget, .how-to-banner, .create-post-card {
             background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);
         }
+
         .status-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:8px 15px;font-size:0.85em;margin-bottom:15px;gap:15px;}
         .live-status{display:flex;align-items:center;gap:8px;font-weight:600;color:#d9534f;}
         .update-details{display:flex;align-items:center;gap:10px;flex-grow:1;justify-content:flex-end;}
         .last-update{color:#333;text-align:right;}
         .notification-chip{color:white;padding:5px 12px;border-radius:16px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap;}
         .notification-chip.timeline-update { background-color: var(--brand-green); }
-        .notification-chip.chat-update { background-color: var(--brand-blue); }
+        .notification-chip.post-update { background-color: var(--brand-blue); }
         .how-to-banner{padding:15px 20px;margin-bottom:30px;position:relative;display:none;}
         .how-to-banner h4{margin:0 0 10px 0;color:#0d47a1;text-align:left;}
         .how-to-banner p{margin:0 0 10px 0;font-size:0.9em;line-height:1.6;text-align:left;}
@@ -69,11 +75,60 @@
         .dismiss-banner-btn:hover{color:#0d47a1;}
         .icon-inline{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:0 2px;}
         .add-button-demo{background-color:var(--brand-blue);color:white;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:bold;line-height:18px;text-align:center;}
-        .notification-badge-demo{background-color:#ff4d4d;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 3px;font-size:12px;line-height:18px;text-align:center;font-weight:bold;}
-        .reply-counter-badge-demo{background-color:var(--brand-green);color:white;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:bold;}
+        
+        /* --- Countdown & Animations --- */
         .countdown-container{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;gap:15px;margin-bottom:15px}
-        .countdown-card{color:#1c2a39;padding:20px;text-align:center;flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center;}
+        .countdown-card{color:#1c2a39;padding:20px;text-align:center;flex:1;min-width:280px;min-height:105px;display:flex;flex-direction:column;justify-content:center; transition: all 0.5s ease;}
         .countdown-card h3{margin-top:0;margin-bottom:10px;font-size:1.1em;font-weight:400;color:var(--brand-blue)}.countdown-card .arrival-date{margin:-5px 0 15px 0;font-size:0.85em;color:#333;opacity:0.9}.timer{display:flex;justify-content:center;gap:15px;font-family:'Roboto Mono',monospace}.time-block{display:flex;flex-direction:column;min-width:55px}.time-block span:first-child{font-size:2.2em;font-weight:700;color:#1c2a39;line-height:1}.time-block span:last-child{font-size:.7em;text-transform:uppercase;color:#555}
+        
+        /* Pulse Animation */
+        @keyframes urgentPulse {
+            0% { box-shadow: 0 0 0 0 rgba(207, 70, 71, 0.4); transform: scale(1); }
+            70% { box-shadow: 0 0 0 15px rgba(207, 70, 71, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(207, 70, 71, 0); transform: scale(1); }
+        }
+        .urgent-pulse {
+            animation: urgentPulse 1.5s infinite;
+            border: 2px solid var(--brand-red);
+            background-color: rgba(255, 240, 240, 0.3);
+        }
+        
+        /* Progress Bar Styles - BLUE */
+        .progress-container {
+            width: 80%;
+            background-color: rgba(200, 200, 200, 0.3);
+            border-radius: 10px;
+            height: 12px;
+            margin: 15px auto 0 auto;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.5);
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            /* Updated to Blue Gradient */
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-blue-light));
+            width: 0%;
+            transition: width 1s linear;
+            border-radius: 10px;
+            position: relative;
+            /* Updated Shadow */
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        /* Animated striping effect */
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background-image: linear-gradient(45deg,rgba(255,255,255,.25) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.25) 50%,rgba(255,255,255,.25) 75%,transparent 75%,transparent);
+            background-size: 1rem 1rem;
+            animation: progress-bar-stripes 1s linear infinite;
+        }
+        @keyframes progress-bar-stripes {
+            0% { background-position: 1rem 0; }
+            100% { background-position: 0 0; }
+        }
+
         .timeline{position:relative;padding:20px 0}.timeline::before{content:'';position:absolute;top:0;left:21px;height:100%;width:4px;background:rgba(255, 255, 255, 0.5)}.timeline-item{padding:10px 20px 10px 65px;position:relative;margin-left:0;margin-bottom:10px}.timeline-item::before{content:attr(data-icon);position:absolute;left:0;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.7);border:3px solid var(--brand-blue);text-align:center;line-height:50px;font-size:2.5em; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);}
         .timeline-item.today .item-content { border: 2px solid var(--brand-red); box-shadow: 0 0 15px rgba(207, 70, 71, 0.2); }
         .item-content{padding:15px 20px;}
@@ -114,6 +169,8 @@
         .calendar-day .day-number{font-weight:600;margin-bottom:5px;text-align:right}
         .event-icons-container{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 2px;margin-top:4px}
         .calendar-emoji{font-size:1.6em;line-height:1}
+        
+        /* Items & Messages Styles (Shared between Timeline and Posts) */
         .item-description{padding-bottom:4px;border-bottom:1px solid rgba(0,0,0,0.1);margin-bottom:4px;display:flex;align-items:flex-start;gap:8px;}.item-description:last-child{border-bottom:none;margin-bottom:0;}
         .note-content{flex-grow:1; word-wrap: break-word; word-break: break-word;}.author-name{font-size:0.9em;font-weight:600; display: flex; align-items: center;}
         .item-timestamp{font-size:0.7em; color:#555; white-space:nowrap;}
@@ -153,233 +210,34 @@
         .message-number.reply { background-color: var(--brand-green); color: white; }
         .weather-forecast{background: rgba(248, 249, 250, 0.6); border:1px solid rgba(222, 226, 230, 0.7); border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;font-size:0.9em;}
         .weather-icon{font-size:1.5em;}
-        .chat-header { display: flex; justify-content: space-between; align-items: center; margin: 40px 0 10px 0; }
-        .chat-header h2 { flex-grow: 1; margin-bottom: 0; }
-        .fullscreen-btn { background: none; border: none; font-size: 1.8em; cursor: pointer; color: #888; padding: 0 10px; line-height: 1; transition: color 0.2s, transform 0.2s; }
-        .fullscreen-btn:hover { color: #333; transform: scale(1.1); }
-        footer{text-align:center;margin-top:40px;font-size:0.8em;color:#333;}
         
-        /* --- Birthday & Confetti Styles --- */
-        .birthday-banner { background: linear-gradient(45deg, var(--birthday-color-1), var(--birthday-color-2)); color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; animation: pulse 2s infinite; position: relative; overflow: hidden; }
-        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } 50% { transform: scale(1.03); box-shadow: 0 6px 18px rgba(255, 95, 109, 0.5); } 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,.08); } }
-        .calendar-day.birthday-date { background-color: #fff0f1; border: 2px solid var(--birthday-color-1); font-weight: bold; }
-
-        /* --- Chat View Styles (with glass effect) --- */
-        #chat-view-wrapper { display: flex; flex-direction: column; height: 70vh; transition: height 0.3s ease; position: relative; overflow:hidden;}
-        #chat-messages-container { flex-grow: 1; overflow-y: auto; padding: 10px; background-color: transparent;}
-        .chat-date-separator { text-align: center; margin: 15px 0; }
-        .chat-date-separator span { background-color: rgba(230, 230, 230, 0.8); color: #555; font-size: 0.8em; font-weight: 600; padding: 4px 12px; border-radius: 12px; }
-        .chat-message-container { padding: 0 10px; display: flex; flex-direction: column; margin-bottom: 8px; }
-        .chat-message-container.grouped { margin-top: 2px; }
-        .chat-message { max-width: 75%; min-width: 80px; padding: 8px 12px; line-height: 1.5; position: relative; word-wrap: break-word; border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); }
-        .message-mine { align-self: flex-end; color: #333; background: rgba(220, 248, 198, 0.2); border: 1px solid rgba(220, 248, 198, 0.8); }
-        .message-theirs { align-self: flex-start; color: #333; background: rgba(227, 242, 253, 0.2); border: 1px solid rgba(227, 242, 253, 0.8); }
-        .chat-author-name { font-size: 0.8em; font-weight: 600; color: #555; margin-bottom: 4px; display: flex; align-items: center; }
-        .message-theirs .chat-author-name { color: var(--brand-blue); }
-        .avatar { width: 24px; height: 24px; border-radius: 50%; color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 8px; font-size: 0.8em; flex-shrink: 0; }
-        .bubble-footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 2px; height: 16px; }
-        .bubble-footer .item-timestamp { color: rgba(0,0,0,0.6); font-size: 0.7em; }
-        .bubble-footer .reply-btn { font-size: 0.7em; font-weight: 600; cursor: pointer; background: none; border: none; color: rgba(0,0,0,0.5); padding: 0; opacity: 1; }
-        .message-theirs .bubble-footer .reply-btn { color: rgba(0,0,0,0.6); }
-        .bubble-footer .reply-btn:hover { color: var(--brand-blue); }
-        .chat-input-bar { display: flex; gap: 10px; align-items: center; padding: 10px; background-color: transparent; border-top: 1px solid rgba(255, 255, 255, 0.8); }
-        .chat-input-bar select { font-family: 'Poppins', sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #ccc; background-color: #fff; }
-        .chat-input-bar textarea { flex-grow: 1; padding: 10px; border-radius: 18px; border: 1px solid #ccc; resize: none; font-family: 'Poppins', sans-serif; font-size: 1em; line-height: 1.4; max-height: 100px; }
-        .chat-input-bar button { background-color: var(--brand-blue); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; }
-        .chat-input-bar button:hover { background-color: #0056b3; }
-        .chat-disclaimer { font-size: 0.7em; color: #444; text-align: center; margin-top: 8px; padding: 0 10px; }
-        .reply-quote-block { margin: -2px 0 8px 0; padding: 6px 10px; border-radius: 6px; border-left: 3px solid; }
-        .reply-quote-author { font-size: 0.8em; font-weight: 600; }
-        .reply-quote-text { font-size: 0.85em; opacity: 0.8; margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .message-mine .reply-quote-block { background-color: rgba(168, 224, 153, 0.5); border-left-color: #72b863; }
-        .message-theirs .reply-quote-block { background-color: rgba(0, 123, 255, 0.1); border-left-color: var(--brand-blue); }
-        .message-theirs .reply-quote-author { color: var(--brand-blue); }
-        .message-mine .reply-quote-author { color: #1e5513; }
-        .chat-sent-indicator { display: flex; align-items: center; gap: 5px; align-self: flex-end; margin-right: 15px; margin-bottom: 5px; font-size: 0.75em; color: #555; opacity: 1; transition: opacity 0.3s ease; }
-        .chat-sent-indicator.hidden { opacity: 0; }
-        .chat-sent-indicator svg { width: 12px; height: 12px; fill: none; stroke: var(--brand-green); stroke-width: 3; }
-
-        /* --- Fullscreen Chat Styles --- */
-        body.fullscreen-chat-active { padding: 0; overflow: hidden; }
-        body.fullscreen-chat-active .container { max-width: 100%; width: 100%; height: 100vh; padding: 0; margin: 0; }
-        body.fullscreen-chat-active #main-container > *:not(#chat-view) { display: none !important; }
-        body.fullscreen-chat-active #chat-view { height: 100%; padding: 0; }
-        body.fullscreen-chat-active #chat-view-wrapper { height: 100%; border-radius: 0; border: none; }
-        body.fullscreen-chat-active .chat-header { margin-top: 0; padding: 10px 20px; border-radius: 0; }
-        body.fullscreen-chat-active #chat-messages-container { padding-bottom: 10px; }
-
-        /* --- Gemini FAB and Overlay Styles --- */
-        #gemini-fab {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--gemini-purple);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 2em;
+        /* --- TWITTER STYLE POSTS --- */
+        .create-post-card { padding: 20px; margin-bottom: 20px; text-align: center; }
+        .create-post-card button { width: 100%; padding: 12px; font-size: 1.1em; }
+        .posts-container { display: flex; flex-direction: column; gap: 15px; }
+        
+        .tweet-card {
+            background: rgba(255, 255, 255, 0.95); /* High opacity for readability */
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            cursor: pointer;
-            z-index: 999;
-            transition: transform 0.2s ease;
+            gap: 12px;
+            color: #1c2a39; /* Dark text */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        #gemini-fab:hover {
-            transform: scale(1.1);
-        }
-        #gemini-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(240, 242, 245, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 9998;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-        #gemini-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .gemini-container {
-            width: 100%;
-            max-width: 700px;
-            height: 90%;
-            max-height: 800px;
-            background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        .gemini-container.glowing-effect {
-            animation: glow 2.5s 1 ease-out;
-        }
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 10px rgba(142, 68, 173, 0.2), 0 0 10px rgba(142, 68, 173, 0.2), 0 4px 30px rgba(0, 0, 0, 0.1); }
-            50% { box-shadow: 0 0 25px rgba(142, 68, 173, 0.7), 0 0 40px rgba(142, 68, 173, 0.5), 0 4px 30px rgba(0, 0, 0, 0.1); }
-        }
-        .gemini-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        .gemini-header h2 {
-            margin: 0;
-            font-size: 1.3em;
-            color: var(--gemini-purple);
-        }
-        #gemini-messages {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .gemini-message {
-            max-width: 85%;
-            padding: 10px 15px;
-            border-radius: 18px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        .gemini-message.user {
-            background-color: rgba(227, 242, 253, 0.7);
-            margin-left: auto;
-        }
-        .gemini-message.model {
-            background-color: rgba(233, 230, 255, 0.8);
-            margin-right: auto;
-        }
-        .gemini-message .avatar {
-            flex-shrink: 0;
-        }
-        .gemini-message p {
-            margin: 0;
-        }
-        .gemini-evidence {
-            background-color: rgba(225, 225, 225, 0.4);
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            font-size: 0.9em;
-            color: #444;
-        }
-        .gemini-evidence-title {
-            font-weight: 600;
-            color: var(--gemini-purple);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .gemini-evidence p {
-            white-space: pre-wrap;
-            margin: 0;
-        }
-        .gemini-suggestions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            margin-top: 15px;
-        }
-        .gemini-suggestion {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid var(--gemini-purple);
-            color: var(--gemini-purple);
-            padding: 8px 12px;
-            border-radius: 16px;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
-        }
-        .gemini-suggestion:hover {
-            background-color: var(--gemini-purple);
-            color: white;
-        }
-        .gemini-input-bar {
-            padding: 15px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            display: flex;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-        .gemini-input-bar textarea {
-            flex-grow: 1;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            resize: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1em;
-        }
-        .gemini-input-bar button {
-            border: none;
-            background-color: var(--gemini-purple);
-            color: white;
-            border-radius: 8px;
-            padding: 0 20px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-        }
+        .tweet-left { flex-shrink: 0; }
+        .tweet-avatar { width: 48px; height: 48px; border-radius: 50%; font-size: 24px; display: flex; align-items: center; justify-content: center; background: #f0f2f5; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .tweet-right { flex-grow: 1; min-width: 0; /* Crucial for text wrap */ }
+        .tweet-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+        .tweet-author { font-weight: 700; color: #0f1419; margin-right: 5px;}
+        .tweet-time { color: #536471; font-size: 0.85em; }
+        .tweet-content { font-size: 1em; line-height: 1.5; color: #0f1419; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: anywhere; }
+        .tweet-footer { margin-top: 10px; display: flex; gap: 20px; border-top: 1px solid #eff3f4; padding-top: 8px;}
+        .tweet-action-btn { background: none; border: none; color: #536471; cursor: pointer; font-size: 0.85em; display: flex; align-items: center; gap: 5px; transition: color 0.2s; padding: 0; font-weight: 600;}
+        .tweet-action-btn:hover { color: var(--brand-blue); }
+        .tweet-action-btn svg { width: 18px; height: 18px; fill: currentColor; }
 
         /* --- Responsive Styles for Mobile --- */
         @media (max-width: 768px) {
@@ -396,19 +254,6 @@
             .item-content { padding: 12px 15px; }
             .popup-content { padding: 20px; max-width: 95%; max-height: 90vh; }
             .view-switcher button { padding: 8px 12px; font-size: 0.9em; }
-            .fullscreen-btn { font-size: 1.6em; padding: 5px 10px; }
-            
-            #gemini-fab { width: 50px; height: 50px; font-size: 1.5em; bottom: 20px; right: 20px; }
-            .gemini-container { height: 100%; max-height: 100%; border-radius: 0; }
-
-            /* Chat UX Improvements */
-            #chat-view { margin-top: -20px; }
-            #chat-view-wrapper { height: 80vh; }
-            .chat-message { font-size: 0.95em; }
-            .chat-input-bar { flex-wrap: wrap; gap: 5px; }
-            .chat-input-bar select { width: 100%; margin-bottom: 5px; order: 1; }
-            .chat-input-bar textarea { order: 2; }
-            .chat-input-bar button[type="submit"] { order: 3; }
         }
 
         /* --- Success Indicator Styles --- */
@@ -427,9 +272,9 @@
             font-weight: 600;
             font-size: 1.2em;
             transition: opacity 0.3s ease, visibility 0.3s ease;
-            background: rgba(220, 255, 220, 0.6);
+            background: rgba(220, 255, 220, 0.8);
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(40, 167, 69, 0.4);
@@ -462,19 +307,19 @@
         <span>¡Guardado!</span>
     </div>
 
-    <div id="pre-screen-overlay">
-        <div class="pre-screen-content">
-            <div class="pre-screen-text">
-                <h2>⚠️ ¡Cuidado!</h2>
-                <p>Para uso interno solamente. El link es abierto y cualquiera puede acceder y ver su información.</p>
-            </div>
-            <div class="loader"></div>
-            <button id="enter-button" class="enter-button">Sí, ingresar</button>
+    <div id="login-overlay">
+        <div class="login-content">
+            <h2>🔐 Acceso al Itinerario</h2>
+            <p>Ingresa tus credenciales para ver y editar el viaje.</p>
+            <input type="email" id="email-input" placeholder="Correo electrónico">
+            <input type="password" id="password-input" placeholder="Contraseña">
+            <button id="login-btn" class="login-btn">Entrar</button>
+            <p id="login-error">Error: Verifica tus datos</p>
         </div>
     </div>
 
     <div id="calendar-modal" class="popup-overlay"><div class="popup-content"><span class="close-popup">&times;</span><h2 id="modal-date"></h2><div id="modal-events"></div><button class="modal-close-button">OK</button></div></div>
-    
+   
     <div id="add-item-modal" class="popup-overlay">
         <div class="popup-content">
             <span class="close-popup">&times;</span>
@@ -498,49 +343,134 @@
     </div>
 
     <div class="container" id="main-container">
-    </div>
-
-    <button id="gemini-fab" title="Ask Gemini about the trip">✨</button>
-    <div id="gemini-overlay">
-        <div class="gemini-container">
-            <div class="gemini-header">
-                <h2>Pregúntale a Gemini</h2>
-                <button class="close-popup" style="position: static; font-size: 2em; line-height: 1;">&times;</button>
-            </div>
-            <div id="gemini-messages">
-                 </div>
-            <form id="gemini-form" class="gemini-input-bar">
-                <textarea id="gemini-input" placeholder="Pregúntale al itinerario..." required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
         </div>
-    </div>
     
-    <footer>Version 090125f</footer>
+    <footer>
+        Version 090125k (Twitter Style Posts) <br>
+        <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    
+   
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- CONFIG & DATA ---
-        const GEMINI_API_KEY = "AIzaSyAaX890dAtSWE-U2FDnWkiHG62SK9xEhoI";
-        const firebaseConfig = { apiKey: "AIzaSyAaX890dAtSWE-U2FDnWkiHG62SK9xEhoI", authDomain: "itinerario-viaje-cbf9d.firebaseapp.com", databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com", projectId: "itinerario-viaje-cbf9d", storageBucket: "itinerario-viaje-cbf9d.appspot.com", messagingSenderId: "88371586960", appId: "1:88371586960:web:8b2dd61a4b7d2bed963515" };
+        const firebaseConfig = {
+          apiKey: "AIzaSyBrIoHLMIN9XmcTIsTiQQsCUYAKGJut_U8",
+          authDomain: "itinerario-viaje-cbf9d.firebaseapp.com",
+          databaseURL: "https://itinerario-viaje-cbf9d-default-rtdb.firebaseio.com",
+          projectId: "itinerario-viaje-cbf9d",
+          storageBucket: "itinerario-viaje-cbf9d.firebasestorage.app",
+          messagingSenderId: "88371586960",
+          appId: "1:88371586960:web:8b2dd61a4b7d2bed963515"
+        };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+        const auth = firebase.auth(); // Initialize Auth
         const appDataRef = database.ref('appData');
         let appData = {};
         let currentView = 'timeline';
-        const defaultAppData = { lastUpdate: { user: "Sistema", time: new Date().toISOString(), type: 'general' }, timelineEvents: { "event-1":{id:"event-1",date:"2025-12-13",icon:"🛬",description:"<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.",type:"flight",flightInfo:{title:"Llegada de Nathan",flights:[{num:"CMP716",route:"Austin → Panamá"},{num:"CMP155",route:"Panamá → Medellín"}]}},"event-2":{id:"event-2",date:"2025-12-22",icon:"🏠",description:"Regreso de Nathan a Medellin.",type:"flight",flightInfo:{title:"Regreso de Nathan",flights:[{num:"EFY821",route:"Villavicencio → Medellín"}]}},"event-3":{id:"event-3",date:"2025-12-24",icon:"🎄",description:"Celebración de Nochebuena 🎅",type:"holiday"},"event-4":{id:"event-4",date:"2025-12-25",icon:"🎁",description:"Día de Navidad 🌟",type:"holiday"},"event-5":{id:"event-5",date:"2025-12-31",icon:"🎉",description:"Celebración de Fin de Año 🥂",type:"holiday"},"event-6":{id:"event-6",date:"2026-01-01",icon:"🥂",description:"Día de Año Nuevo. Descanso. 🎉",type:"holiday"},"event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CMP716",route:"Austin → Panamá"},{num:"CMP155",route:"Panamá → Medellín"}]}},"event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},"event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},"event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},"event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CMP209",route:"Medellín → Panamá"},{num:"CMP715",route:"Panamá → Austin"}]}}}, importantNotes: { "note-101":{id:"note-101",text:"<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben."},"note-102":{id:"note-102",text:"Faber, Yisela, y Rosita no saben absolutamente nada."} }, plannedActivities: { "activity-201":{id:"activity-201",text:"Bingo"},"activity-202":{id:"activity-202",text:'Regalos con la letra "V" de un valor de $10,000 pesos'},"activity-203":{id:"activity-203",text:"Scavenger Hunt (Búsqueda del tesoro)"},"activity-204":{id:"activity-204",text:"Pictionary"} } };
-        
-        let geminiConversationHistory = [];
-        
+        const defaultAppData = { lastUpdate: { user: "Sistema", time: new Date().toISOString(), type: 'general' }, timelineEvents: { "event-1":{id:"event-1",date:"2025-12-13",icon:"🛬",description:"<strong>PM:</strong> LLegada de Nathan a Medellin desde USA.",type:"flight",flightInfo:{title:"Llegada de Nathan",flights:[{num:"CMP716",route:"Austin → Panamá"},{num:"CMP155",route:"Panamá → Medellín"}]}},"event-2":{id:"event-2",date:"2025-12-22",icon:"🏠",description:"Regreso de Nathan a Medellin.",type:"flight",flightInfo:{title:"Regreso de Nathan",flights:[{num:"EFY821",route:"Villavicencio → Medellín"}]}},"event-3":{id:"event-3",date:"2025-12-24",icon:"🎄",description:"Celebración de Nochebuena 🎅",type:"holiday"},"event-4":{id:"event-4",date:"2025-12-25",icon:"🎁",description:"Día de Navidad 🌟",type:"holiday"},"event-5":{id:"event-5",date:"2025-12-31",icon:"🎉",description:"Celebración de Fin de Año 🥂",type:"holiday"},"event-6":{id:"event-6",date:"2026-01-01",icon:"🥂",description:"Día de Año Nuevo. Descanso. 🎉",type:"holiday"},"event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CMP716",route:"Austin → Panamá"},{num:"CMP155",route:"Panamá → Medellín"}]}},"event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},"event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},"event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},"event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CMP209",route:"Medellín → Panamá"},{num:"CMP715",route:"Panamá → Austin"}]}}}, importantNotes: { "note-101":{id:"note-101",text:"<strong>¡PRIVADO!</strong> Maria Helena, Yedinson, y Yazmin ya saben."},"note-102":{id:"note-102",text:"Faber, Yisela, y Rosita no saben absolutamente nada."} }, plannedActivities: { "activity-201":{id:"activity-201",text:"Bingo"},"activity-202":{id:"activity-202",text:'Regalos con la letra "V" de un valor de $10,000 pesos'},"activity-203":{id:"activity-203",text:"Scavenger Hunt (Búsqueda del tesoro)"},"activity-204":{id:"activity-204",text:"Pictionary"} }, posts: {} };
+       
+        // --- AUTH LOGIC ---
+        const loginOverlay = document.getElementById('login-overlay');
+        const loginBtn = document.getElementById('login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const mainContainer = document.getElementById('main-container');
+        const emailInput = document.getElementById('email-input');
+        const passwordInput = document.getElementById('password-input');
+        const loginError = document.getElementById('login-error');
+
+        // Listen for Auth State Changes
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in.
+                console.log("Usuario conectado:", user.email);
+                loginOverlay.classList.add('hidden');
+                mainContainer.classList.add('visible');
+                
+                // Only attach the DB listener IF we are logged in
+                appDataRef.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    let loadedData = (data && data.timelineEvents) ? data : JSON.parse(JSON.stringify(defaultAppData));
+                    if(!loadedData.posts) loadedData.posts = {}; // Inicializar posts si no existe
+                    appData = loadedData;
+                    renderApp();
+                }, (error) => {
+                    console.error("Error leyendo base de datos (posiblemente permiso denegado):", error);
+                });
+
+            } else {
+                // User is signed out.
+                console.log("Usuario desconectado");
+                loginOverlay.classList.remove('hidden');
+                mainContainer.classList.remove('visible');
+                appDataRef.off(); // Detach listener
+            }
+        });
+
+        loginBtn.addEventListener('click', () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            loginError.style.display = 'none';
+            loginBtn.innerText = 'Verificando...';
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in success - onAuthStateChanged will handle the rest
+                    loginBtn.innerText = 'Entrar';
+                })
+                .catch((error) => {
+                    console.error(error);
+                    loginBtn.innerText = 'Entrar';
+                    loginError.innerText = "Error: " + error.message;
+                    loginError.style.display = 'block';
+                });
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut();
+        });
+       
         // --- WIDGETS ---
         function updateCountdowns() {
             const targets = [ { id: 'card-nathan', date: '2025-12-13T18:00:00', title: 'Llegada de Nathan' }, { id: 'card-ron-anyela', date: '2026-01-03T18:00:00', title: 'Llegada de Ron & Anyela' }];
-            targets.forEach(target => { const el=document.getElementById(target.id); if(!el) return; const t=new Date(target.date).getTime(), n=new Date().getTime(), d=t-n; let c=`<h3>${target.title}</h3><div class="arrival-date">${formatAndCapitalizeDate(new Date(target.date))}</div>`; if(d<0) c+="<h4>¡Ya llegó!</h4>"; else {const s=Math.floor(d/864e5),o=Math.floor(d%864e5/36e5),i=Math.floor(d%36e5/6e4),a=Math.floor(d%6e4/1e3);c+=`<div class="timer"><div class="time-block"><span>${String(s).padStart(2,"0")}</span><span>Días</span></div><div class="time-block"><span>${String(o).padStart(2,"0")}</span><span>Horas</span></div><div class="time-block"><span>${String(i).padStart(2,"0")}</span><span>Min</span></div><div class="time-block"><span>${String(a).padStart(2,"0")}</span><span>Seg</span></div></div>`} el.innerHTML=c });
+            targets.forEach(target => { 
+                const el=document.getElementById(target.id); 
+                if(!el) return; 
+                const t=new Date(target.date).getTime(), n=new Date().getTime(), d=t-n; 
+                
+                // Pulse Effect Logic
+                const daysLeft = Math.floor(d / (1000 * 60 * 60 * 24));
+                if (daysLeft < 13 && daysLeft >= 0) {
+                    el.classList.add('urgent-pulse');
+                } else {
+                    el.classList.remove('urgent-pulse');
+                }
+
+                // Charging Bar Logic
+                // Start filling from 30 days out. 30 days = 0%, 0 days = 100%
+                const maxDays = 30; 
+                let percentage = 0;
+                if (daysLeft < maxDays) {
+                    percentage = 100 - ((daysLeft / maxDays) * 100);
+                    if (percentage < 0) percentage = 0;
+                    if (percentage > 100) percentage = 100;
+                }
+                
+                let c=`<h3>${target.title}</h3><div class="arrival-date">${formatAndCapitalizeDate(new Date(target.date))}</div>`; 
+                if(d<0) c+="<h4>¡Ya llegó!</h4><div class='progress-container'><div class='progress-bar' style='width:100%'></div></div>"; 
+                else {
+                    const s=Math.floor(d/864e5),o=Math.floor(d%864e5/36e5),i=Math.floor(d%36e5/6e4),a=Math.floor(d%6e4/1e3);
+                    c+=`<div class="timer"><div class="time-block"><span>${String(s).padStart(2,"0")}</span><span>Días</span></div><div class="time-block"><span>${String(o).padStart(2,"0")}</span><span>Horas</span></div><div class="time-block"><span>${String(i).padStart(2,"0")}</span><span>Min</span></div><div class="time-block"><span>${String(a).padStart(2,"0")}</span><span>Seg</span></div></div>`;
+                    c+=`<div class="progress-container"><div class="progress-bar" style="width:${percentage}%"></div></div>`;
+                } 
+                el.innerHTML=c 
+            });
         }
-        
+       
         async function fetchWeather() {
             const locations = [
                 { id: 'weather-austin', city: 'Austin', emoji: '🤠', lat: 30.27, lon: -97.74, timezone: 'America/Chicago' },
@@ -558,7 +488,7 @@
                     const tempC = Math.round(data.current_weather.temperature);
                     const tempF = Math.round(tempC * 9 / 5 + 32);
                     const localTime = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', timeZone: loc.timezone }).replace('p. m.', 'PM').replace('a. m.', 'AM');
-                    
+                   
                     elements.forEach(el => {
                         if (loc.id === 'weather-algeciras') {
                             el.innerHTML = `<span class="weather-icon">🌡️</span> Clima actual en ${loc.city}: <strong>${tempF}°F / ${tempC}°C</strong>`;
@@ -580,20 +510,13 @@
             if(user) appData.lastUpdate = { user, time: new Date().toISOString(), eventDate: itemDate, type: updateType };
             appDataRef.set(appData); 
         }
-        appDataRef.on('value', (snapshot) => {
-            const data = snapshot.val();
-            let loadedData = (data && data.timelineEvents) ? data : JSON.parse(JSON.stringify(defaultAppData));
-            if(!loadedData.groupChat) loadedData.groupChat = {};
-            appData = loadedData;
-            renderApp();
-        });
 
         const dayFormatter = new Intl.DateTimeFormat('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
         const formatAndCapitalizeDate = (date) => {
             const formatted = dayFormatter.format(date);
             return formatted.charAt(0).toUpperCase() + formatted.slice(1);
         };
-        
+       
         function handleBannerVisibility() {
             const banner = document.getElementById('how-to-banner');
             if (banner && localStorage.getItem('itineraryBannerDismissed') !== 'true') {
@@ -615,50 +538,39 @@
             return `<span>${visibleText}</span><span class="ellipsis">... </span><span class="more-text" style="display:none;">${hiddenText}</span> <a href="#" class="toggle-text-btn">Ver más</a>`;
         }
 
-        const AVATAR_COLORS = ['#E53935', '#D81B60', '#5E35B1', '#3949AB', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#7CB342', '#F4511E', '#795548', '#546E7A'];
-        const getInitials = (name) => {
-            if (!name) return '';
-            if (name === 'Gemini') return '✨';
-            const names = name.split(' ');
-            if (names.length > 1 && names[1]) {
-                return (names[0].charAt(0) + names[1].charAt(0)).toUpperCase();
-            }
-            return name.charAt(0).toUpperCase();
+        // --- AVATARES PERSONALIZADOS ---
+        const AVATARS = {
+            "Anyela": "👩🏻‍🦱",
+            "Nathan": "👦🏻",
+            "Yazmin": "👩🏻",
+            "Ron": "👨🏻",
+            "Yedinson": "🧔🏻‍♂️",
+            "Daniel": "🧑🏻",
+            "Gemini": "✨"
         };
 
-        const generateColor = (name) => {
-            if (name === 'Gemini') return 'var(--gemini-purple)';
-            let hash = 0;
-            if (!name || name.length === 0) return AVATAR_COLORS[0];
-            for (let i = 0; i < name.length; i++) {
-                hash = name.charCodeAt(i) + ((hash << 5) - hash);
-            }
-            const index = Math.abs(hash) % AVATAR_COLORS.length;
-            return AVATAR_COLORS[index];
+        const getAvatar = (name) => {
+            return AVATARS[name] || "👤"; // Retorna el avatar o uno por defecto
         };
-        
+       
         function renderApp() {
-            const isChatFullscreen = document.body.classList.contains('fullscreen-chat-active');
-            
             document.getElementById('main-container').innerHTML = getBaseHTML();
             renderTimeline(); 
             renderCalendar(); 
-            renderChat();
+            renderPosts(); // Renderiza la nueva sección de Posts
             renderInfoLists();
             attachDynamicListeners();
             updateHeader();
             updateCountdowns();
             fetchWeather();
             handleBannerVisibility();
-            
-            if (currentView === 'chat' && isChatFullscreen) {
-                switchView('chat', false);
-            } else {
-                switchView(currentView, true);
-            }
+           
+            if (currentView === 'chat') currentView = 'posts'; // Redirigir chat antiguo a posts
+            switchView(currentView, true);
         }
 
         function renderMessageThreadsListHTML(messages, options = {}) {
+            // Este método se mantiene para la timeline, pero ya NO se usa para los Posts.
             if (messages.length === 0) return '';
             const notesById = {};
             messages.forEach(note => { notesById[note.id] = { ...note, replies: [] }; });
@@ -670,14 +582,15 @@
                     allMessageThreads.push(notesById[note.id]);
                 }
             });
-            
+           
             const threadsOldestFirst = [...allMessageThreads].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
             const threadNumberMap = new Map(threadsOldestFirst.map((thread, index) => [thread.id, index + 1]));
 
+            // Ordenar hilos más recientes primero para Posts, cronológico para notas del día (opcional, aquí usaremos reciente primero)
             const messageThreads = allMessageThreads.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            
+           
             let html = '';
-            const collapseAfter = options.collapseAfter || messageThreads.length;
+            const collapseAfter = options.collapseAfter || 10; // Mostrar más posts por defecto
 
             const renderAndTrack = (threads) => {
                 let tempHtml = '';
@@ -709,16 +622,10 @@
             if (thread.replies.length > 0) {
                 threadHtml += `<h4 class="messages-header" style="margin-top: 10px; padding-top: 10px; font-size: 0.9em;">Comentarios:</h4>`;
                 threadHtml += `<div class="replies-container">`;
-                const repliesOldestFirst = [...thread.replies].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
-                const replyNumberMap = new Map(repliesOldestFirst.map((reply, index) => [reply.id, index + 1]));
-                const repliesNewestFirst = [...thread.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+                const repliesNewestFirst = [...thread.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)); // Nuevos comentarios arriba en el hilo
 
-                let lastReplyAuthor = thread.author;
                 repliesNewestFirst.forEach((reply) => { 
-                    const showAuthor = reply.author !== lastReplyAuthor;
-                    const replyNumber = replyNumberMap.get(reply.id);
-                    threadHtml += renderMessage(reply, replyNumber, true, { ...options, showAuthor });
-                    lastReplyAuthor = reply.author;
+                    threadHtml += renderMessage(reply, 0, true, { ...options });
                 });
                 threadHtml += `</div>`;
             }
@@ -727,17 +634,18 @@
         }
 
         function renderMessage(note, number, isReply, options = {}) {
-            const numberClass = isReply ? 'reply' : 'thread';
-            const numberHtml = `<span class="message-number ${numberClass}">${number}</span>`;
-            const authorHtml = `<strong class="author-name">${note.author}:</strong>`;
-            
+            // Este método renderiza mensajes para Timeline.
+            // Los posts usan su propia lógica en renderPosts.
+            const avatarHtml = `<span class="avatar-img">${getAvatar(note.author)}</span>`;
+            const authorHtml = `<strong class="author-name">${avatarHtml} ${note.author}:</strong>`;
+           
             let nuevoIndicator = '';
             if (note.id === options.mostRecentId && !isReply) {
                 nuevoIndicator = `<strong class="recent-indicator red">NUEVO</strong>`;
             } else if (isReply && note.id === options.mostRecentInThreadId) {
                 nuevoIndicator = `<strong class="recent-indicator green">MÁS RECIENTE</strong>`;
             }
-            
+           
             const timestampHtml = `<span class="item-timestamp">${nuevoIndicator} ${new Date(note.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit', timeZone: 'America/Bogota'}).replace('.', '')} COL</span>`;
             const replyCounter = !isReply && note.replies && note.replies.length > 0 ? `<span class="reply-counter-badge">${note.replies.length}</span>` : '';
             let footerHtml = `<div class="note-footer">${timestampHtml}`;
@@ -745,8 +653,8 @@
                 footerHtml += `<button class="reply-btn" data-type="${options.dataType}" data-reply-to-id="${note.id}" ${note.date ? `data-date="${note.date}"` : ''}>Responder${replyCounter}</button>`;
             }
             footerHtml += `</div>`;
-            
-            const authorLine = `<div class="author-name">${numberHtml} ${authorHtml}</div>`;
+           
+            const authorLine = `<div class="author-name">${authorHtml}</div>`;
             const messageContent = `<div class="note-content">${authorLine}${truncateText(note.text)}${footerHtml}</div>`;
 
             if(isReply) {
@@ -755,91 +663,11 @@
                 return `<div class="item-content"><div class="item-description">${messageContent}</div>`;
             }
         }
-
-        function getDisplayDate(messageDate) {
-            const today = new Date();
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-
-            const opts = { timeZone: 'America/Bogota' };
-            if (messageDate.toLocaleDateString('es-CO', opts) === today.toLocaleDateString('es-CO', opts)) {
-                return "Hoy";
-            }
-            if (messageDate.toLocaleDateString('es-CO', opts) === yesterday.toLocaleDateString('es-CO', opts)) {
-                return "Ayer";
-            }
-            return messageDate.toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Bogota' });
-        }
-        
-        function renderMessageBubblesHTML(messages, options = {}) {
-            let html = '';
-            let lastDisplayDate = null;
-            let lastAuthor = null;
-
-            messages.forEach(note => {
-                const messageDate = new Date(note.timestamp);
-                const displayDate = getDisplayDate(messageDate);
-
-                if (displayDate !== lastDisplayDate) {
-                    html += `<div class="chat-date-separator"><span>${displayDate}</span></div>`;
-                    lastDisplayDate = displayDate;
-                    lastAuthor = null; 
-                }
-                
-                const showAuthor = note.author !== lastAuthor;
-                html += renderBubble(note, showAuthor, options);
-                lastAuthor = note.author;
-            });
-            return html;
-        }
-
-        function renderBubble(note, showAuthor, options) {
-            const currentUser = localStorage.getItem('itineraryAuthor');
-            const isMine = note.author === currentUser;
-            const groupClass = showAuthor ? '' : 'grouped';
-            const bubbleClasses = `chat-message ${isMine ? 'message-mine' : 'message-theirs'}`;
-            const avatar = `<div class="avatar" style="background-color: ${generateColor(note.author)}">${getInitials(note.author)}</div>`;
-            const authorHtml = !isMine && showAuthor ? `<div class="chat-author-name">${avatar}<strong>${note.author}</strong></div>` : '';
-            const timestampHtml = `<span class="item-timestamp">${new Date(note.timestamp).toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit', timeZone: 'America/Bogota'}).replace('p. m.', 'PM').replace('a. m.', 'AM')}</span>`;
-            const replies = Object.values(appData.groupChat || []).filter(m => m.replyingTo === note.id);
-            const replyCounter = replies.length > 0 ? `<span class="reply-counter-badge">${replies.length}</span>` : '';
-            const replyButtonHtml = `<button class="reply-btn" data-type="groupChat" data-reply-to-id="${note.id}">Responder${replyCounter}</button>`;
-
-            let replyQuoteHTML = '';
-            if (note.replyingTo) {
-                const originalMessage = Object.values(appData.groupChat || []).find(m => m.id === note.replyingTo);
-                if (originalMessage) {
-                    const quoteText = originalMessage.text.length > 60 ? originalMessage.text.substring(0, 60) + '...' : originalMessage.text;
-                    replyQuoteHTML = `
-                        <div class="reply-quote-block">
-                            <strong class="reply-quote-author">${originalMessage.author}</strong>
-                            <p class="reply-quote-text">${quoteText}</p>
-                        </div>`;
-                }
-            }
-            
-            const messageContentHTML = `<div style="margin-top: 5px;">${note.text}</div>`;
-
-            return `
-                <div class="chat-message-container ${groupClass}">
-                    ${authorHtml}
-                    <div class="${bubbleClasses}">
-                        <div class="note-content">
-                            ${replyQuoteHTML}
-                            ${messageContentHTML}
-                            <div class="bubble-footer">
-                                ${replyButtonHtml}
-                                ${timestampHtml}
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-        }
-        
+       
         function getBirthdayHTML() {
             return `<div class="birthday-banner">🎉🎂 ¡Feliz Cumpleaños, Faiber! 🎈🥳</div>`;
         }
-        
+       
         function getEventDateRange() {
             const allEvents = Object.values(appData.timelineEvents || {});
             const dates = allEvents.map(e => e.date).filter(Boolean);
@@ -861,18 +689,21 @@
             if(dateStr === '2026-01-15') {
                 html += getBirthdayHTML();
             }
-            
+           
             const weatherStartDate = new Date('2026-01-09T00:00:00');
             const weatherEndDate = new Date('2026-01-16T23:59:59');
             const currentDate = new Date(dateStr + 'T12:00:00');
             if (currentDate >= weatherStartDate && currentDate <= weatherEndDate) {
                 html += `<div class="weather-forecast" id="weather-algeciras">Cargando clima de Algeciras...</div>`;
             }
-            
+           
             const planEvents = events.filter(e => e.type !== 'note');
             const noteEvents = events.filter(e => e.type === 'note');
             if (planEvents.length > 0) {
-                planEvents.forEach(item => { html += `<div class="item-description">${item.description}</div>`; if (item.flightInfo) { const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join(''); html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`; } });
+                planEvents.forEach(item => { 
+                    const aiBadge = item.aiGenerated ? '<span class="ai-badge">✨ IA</span>' : '';
+                    html += `<div class="item-description">${item.description}${aiBadge}</div>`; 
+                    if (item.flightInfo) { const buttons = item.flightInfo.flights.map(f => `<div class="flight-info"><a href="https://es.flightaware.com/live/flight/${f.num.replace(/\d/g,'')}${f.num.replace(/\D/g,'')}" target="_blank" class="flight-button">✈️ Ver Vuelo ${f.num}</a><span class="flight-route">${f.route}</span></div>`).join(''); html += `<div class="flight-tracker"><h4><span class="live-indicator"></span>Seguimiento en Vivo:</h4><div class="flight-buttons">${buttons}</div></div>`; } });
             } else if (noteEvents.length === 0 && dateStr !== '2026-01-15') {
                 html += `<div class="item-description tbd">No hay planes para este día.</div>`;
             }
@@ -889,11 +720,11 @@
             const allEvents = Object.values(appData.timelineEvents || {});
             let html = '', currentMonth = -1;
             const monthFormatter = new Intl.DateTimeFormat('es-CO', { month: 'long', year: 'numeric' });
-            
+           
             const { start: startDate, end: endDate } = getEventDateRange();
             if (!startDate) return;
             endDate.setDate(endDate.getDate() + 1);
-            
+           
             const todayStr = new Date().toISOString().split('T')[0];
 
             for (let d = new Date(startDate); d < endDate; d.setDate(d.getDate() + 1)) {
@@ -916,7 +747,7 @@
         function renderCalendar() {
             const calendarView = document.getElementById('calendar-view'), allEvents = Object.values(appData.timelineEvents || {});
             calendarView.innerHTML = '';
-            
+           
             const { start: calStartDate, end: calEndDate } = getEventDateRange();
             if (!calStartDate) return;
             const monthsToRender = [];
@@ -925,7 +756,7 @@
                 monthsToRender.push({ y: loopDate.getFullYear(), m: loopDate.getMonth() });
                 loopDate.setMonth(loopDate.getMonth() + 1);
             }
-            
+           
             const todayStr = new Date().toISOString().split('T')[0];
 
             monthsToRender.forEach(cal => {
@@ -941,7 +772,7 @@
                     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     const events = allEvents.filter(item => item.date === dateStr);
                     const noteCount = events.filter(item => item.type === 'note' && !item.replyingTo).length;
-                    
+                   
                     let dayClass = 'calendar-day';
                     if (dateStr === todayStr) dayClass += ' today';
                     if (dateStr === '2026-01-15') dayClass += ' birthday-date';
@@ -958,78 +789,99 @@
             });
         }
 
-        function renderChat() {
-            const chatView = document.getElementById('chat-view');
-            const allChatMessages = Object.values(appData.groupChat || []);
-            allChatMessages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        // --- Renderizar Publicaciones (Estilo Twitter) ---
+        function renderPosts() {
+            const postsView = document.getElementById('posts-view');
+            const allPosts = Object.values(appData.posts || []);
+            allPosts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Recientes primero
             
-            let header = `<div class="chat-header"><h2>Chat Grupal</h2><button id="fullscreen-chat-btn" class="fullscreen-btn" title="Volver a la vista principal">&#x2716;</button></div>`;
-            
-            let messagesHTML = renderMessageBubblesHTML(allChatMessages, { dataType: 'groupChat' });
-            if (allChatMessages.length === 0) {
-                messagesHTML = `<div class="item-content tbd" style="text-align:center; padding: 20px; background: transparent; border: none; backdrop-filter: none;">No hay mensajes. ¡Sé el primero en escribir!</div>`;
-            }
-            const inputBarHTML = `
-                <div id="chat-sent-indicator" class="chat-sent-indicator hidden">
-                    Enviado 
-                    <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="6" cy="6" r="5" stroke-width="1.5"/>
-                        <path d="M3.5 6 L5.5 8 L8.5 4" stroke-width="1.5"/>
-                    </svg>
+            // Header: Crear Publicación
+            let html = `
+                <div class="create-post-card">
+                    <h3>📢 Publicaciones Familiares</h3>
+                    <button class="add-button" data-type="posts" style="width:auto; border-radius:8px; padding: 10px 20px; font-size:1em;">+ Nueva Publicación</button>
                 </div>
-                <form id="chat-form" class="chat-input-bar">
-                    <select id="chat-author-select" required>
-                        <option value="" disabled selected>¿Quién eres?</option>
-                        <option value="Anyela">Anyela</option><option value="Nathan">Nathan</option><option value="Yazmin">Yazmin</option>
-                        <option value="Ron">Ron</option><option value="Yedinson">Yedinson</option><option value="Daniel">Daniel</option>
-                    </select>
-                    <textarea id="chat-textarea" placeholder="Escribe un mensaje..."></textarea>
-                    <button type="submit" title="Enviar Mensaje">➤</button>
-                </form>
-                <p class="chat-disclaimer">Los mensajes a través de esta aplicación no son seguros, cualquiera con este link puede acceder.</p>
             `;
-            chatView.innerHTML = `<div id="chat-view-wrapper">${header}<div id="chat-messages-container">${messagesHTML}</div>${inputBarHTML}</div>`;
-            const savedAuthor = localStorage.getItem('itineraryAuthor');
-            if (savedAuthor) {
-                document.getElementById('chat-author-select').value = savedAuthor;
+
+            if (allPosts.length === 0) {
+                html += `<div class="item-content tbd" style="text-align:center; padding: 20px;">No hay publicaciones. ¡Sé el primero en compartir algo!</div>`;
+            } else {
+                html += `<div class="posts-container">`;
+                allPosts.forEach(post => {
+                    const date = new Date(post.timestamp).toLocaleString('es-CO', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                    const replyCount = Object.values(appData.posts || []).filter(p => p.replyingTo === post.id).length;
+                    
+                    // Solo renderizamos posts principales (no respuestas directas en el feed principal, simplificado)
+                    if (!post.replyingTo) {
+                        html += `
+                        <div class="tweet-card">
+                            <div class="tweet-left">
+                                <div class="tweet-avatar">${getAvatar(post.author)}</div>
+                            </div>
+                            <div class="tweet-right">
+                                <div class="tweet-header">
+                                    <span class="tweet-author">${post.author}</span>
+                                    <span class="tweet-time">· ${date}</span>
+                                </div>
+                                <div class="tweet-content">${post.text}</div>
+                                <div class="tweet-footer">
+                                    <button class="tweet-action-btn reply-btn" data-type="posts" data-reply-to-id="${post.id}">
+                                        <svg viewBox="0 0 24 24"><g><path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path></g></svg>
+                                        ${replyCount > 0 ? replyCount : 'Responder'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                });
+                html += `</div>`;
             }
+            
+            postsView.innerHTML = html;
         }
-        
+       
         function renderInfoLists() {
             ['importantNotes', 'plannedActivities'].forEach(type => {
                 const list = document.getElementById(type === 'importantNotes' ? 'important-notes-list' : 'planned-activities-list');
                 const items = Object.values(appData[type] || {});
                 items.sort((a,b) => (b.timestamp && a.timestamp) ? new Date(b.timestamp) - new Date(a.timestamp) : 0);
-                list.innerHTML = items.map(item => `<li><div class="info-item-text">${truncateText(item.text)}</div></li>`).join("");
+                list.innerHTML = items.map(item => {
+                    const aiBadge = item.aiGenerated ? '<span class="ai-badge">✨ IA</span>' : '';
+                    return `<li><div class="info-item-text">${truncateText(item.text)}${aiBadge}</div></li>`;
+                }).join("");
             });
         }
-        
+       
         function updateHeader() {
             const updateDetailsContainer = document.getElementById('update-details');
             if (!updateDetailsContainer || !appData.lastUpdate) return;
-            
+           
             const { user, time, eventDate, type } = appData.lastUpdate;
             if(!time) { updateDetailsContainer.innerHTML = ''; return; }
-            
+           
             const updateTimestamp = new Date(time).toLocaleString('es-CO', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
             const lastUpdateHtml = `<div class="last-update">Actualizado por <strong>${user}</strong> • ${updateTimestamp}</div>`;
-            
+           
             let notificationHtml = '';
             const timeSinceUpdate = new Date() - new Date(time);
 
             if (user !== 'Sistema' && timeSinceUpdate < 600000) { // 10 minute window
                 let locationText = '';
                 let chipClass = '';
-                if(type === 'chat') {
-                    locationText = ' en Chat Grupal';
-                    chipClass = 'chat-update';
+                if(type === 'posts') {
+                    locationText = ' en Publicaciones';
+                    chipClass = 'post-update';
+                } else if (type === 'ai_update') {
+                    locationText = ' por IA';
+                    chipClass = 'ai-update';
                 } else if (type === 'timeline' && eventDate) {
                     const dateObj = new Date(eventDate + 'T12:00:00');
                     const notificationDate = dateObj.toLocaleDateString('es-CO', { month: 'short', day: 'numeric', timeZone: 'America/Bogota' });
                     locationText = ` en: ${notificationDate}`;
                     chipClass = 'timeline-update';
                 }
-                notificationHtml = `<div class="notification-chip ${chipClass}">🔔 Nuevo Mensaje${locationText}</div>`;
+                notificationHtml = `<div class="notification-chip ${chipClass}">🔔 Novedad${locationText}</div>`;
             }
             updateDetailsContainer.innerHTML = notificationHtml + lastUpdateHtml;
         }
@@ -1040,7 +892,7 @@
                             <div class="live-status"><span class="live-indicator"></span>En vivo</div>
                             <div class="update-details" id="update-details"></div>
                         </div>
-                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, añadir mensajes con <span class="icon-inline add-button-demo">+</span>, y ahora, ¡pregúntale al asistente de IA sobre el viaje con el botón ✨!</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver informacion importante del itinerario, y ver las publicaciones familiares. Todas las horas estan en hora Colombiana.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
                         <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                         <div class="weather-widget">
                             <h3>Clima Actual</h3>
@@ -1050,13 +902,13 @@
                                 <div id="weather-medellin" class="weather-location-item">Cargando...</div>
                             </div>
                         </div>
-                        <div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-chat">Chat Grupal</button><button id="show-calendar">Calendario</button></div>
+                        <div class="view-switcher"><button id="show-timeline" class="active">Línea de Tiempo</button><button id="show-posts">Publicaciones</button><button id="show-calendar">Calendario</button></div>
                         <div class="timeline" id="timeline-view"></div>
-                        <div id="chat-view" class="view-hidden"></div>
+                        <div id="posts-view" class="view-hidden"></div>
                         <div id="calendar-view" class="view-hidden"></div>
                         <div class="info-cards-container"><h2>Información Adicional</h2><div class="info-card"><h3>📝 Notas Importantes <button class="add-button" data-type="importantNotes">+</button></h3><ul id="important-notes-list"></ul></div><div class="info-card"><h3>🎲 Actividades Planeadas <button class="add-button" data-type="plannedActivities">+</button></h3><ul id="planned-activities-list"></ul></div></div>`; 
         }
-        
+       
         function showSuccessIndicator(message = '¡Guardado!', isError = false) {
             const indicator = document.getElementById('success-indicator');
             const checkmark = indicator.querySelector('.checkmark');
@@ -1071,31 +923,15 @@
                 }, 4000);
             }
         }
-        
-        function showChatSentIndicator() {
-            const indicator = document.getElementById('chat-sent-indicator');
-             if (indicator) {
-                indicator.classList.remove('hidden');
-                setTimeout(() => {
-                    indicator.classList.add('hidden');
-                }, 2000);
-            }
-        }
-        
+       
         function attachDynamicListeners() {
-            const views = { timeline: document.getElementById('timeline-view'), calendar: document.getElementById('calendar-view'), chat: document.getElementById('chat-view') };
+            const views = { timeline: document.getElementById('timeline-view'), calendar: document.getElementById('calendar-view'), posts: document.getElementById('posts-view') };
             document.getElementById('show-timeline').addEventListener('click', () => switchView('timeline'));
             document.getElementById('show-calendar').addEventListener('click', () => switchView('calendar'));
-            document.getElementById('show-chat').addEventListener('click', () => switchView('chat'));
-            
+            document.getElementById('show-posts').addEventListener('click', () => switchView('posts'));
+           
             window.switchView = function(activeView, isInitialLoad = false) {
                 currentView = activeView;
-
-                if (activeView === 'chat' && !isInitialLoad) {
-                    document.body.classList.add('fullscreen-chat-active');
-                } else {
-                    document.body.classList.remove('fullscreen-chat-active');
-                }
 
                 Object.keys(views).forEach(key => {
                     const button = document.getElementById(`show-${key}`);
@@ -1109,16 +945,9 @@
                         }
                     }
                 });
-                
-                if (activeView === 'chat') {
-                    setTimeout(() => {
-                        const chatContainer = document.getElementById('chat-messages-container');
-                        if(chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight;
-                    }, 0);
-                }
             }
         }
-        
+       
         function openModal(options) {
             const modal = document.getElementById('add-item-modal');
             const contextContainer = document.getElementById('reply-context-container');
@@ -1130,26 +959,22 @@
                 contextContainer.style.display = 'block';
                 let contextHTML = `<h4>Respondiendo a:</h4>
                 <div class="reply-context original-message">
-                    <strong>${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO', {timeZone: 'America/Bogota'})}</small>
+                    <strong>${getAvatar(options.originalMessage.author)} ${options.originalMessage.author}</strong> <small>${new Date(options.originalMessage.timestamp).toLocaleString('es-CO', {timeZone: 'America/Bogota'})}</small>
                     <p>${options.originalMessage.text}</p>
                 </div>`;
-                
+               
                 if (options.replies && options.replies.length > 0) {
-                    const repliesOldestFirst = [...options.replies].sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
-                    const replyNumberMap = new Map(repliesOldestFirst.map((reply, index) => [reply.id, index + 1]));
                     const repliesNewestFirst = [...options.replies].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
-                    
+                   
                     let repliesHtml = '<h5>Respuestas Anteriores:</h5>';
-                    
+                   
                     repliesNewestFirst.forEach((reply, index) => {
-                        const replyNumber = replyNumberMap.get(reply.id);
-                        const numberHtml = `<span class="message-number reply">${replyNumber}</span>`;
                         const nuevoIndicator = (index === 0) ? `<strong class="recent-indicator green">MÁS RECIENTE</strong>` : '';
                         const timestampHtml = `<small>${nuevoIndicator} ${new Date(reply.timestamp).toLocaleString('es-CO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit', timeZone: 'America/Bogota'}).replace('.', '')}</small>`;
 
                         repliesHtml += `
                             <div class="reply-context">
-                                <div class="author-name">${numberHtml} <strong>${reply.author}</strong></div>
+                                <div class="author-name">${getAvatar(reply.author)} <strong>${reply.author}</strong></div>
                                 <p>${reply.text}</p>
                                 <div class="reply-context-footer">${timestampHtml}</div>
                             </div>`;
@@ -1157,7 +982,7 @@
                     contextHTML += repliesHtml;
                 }
                 contextContainer.innerHTML = contextHTML;
-                
+               
                 setTimeout(() => {
                     if (contextContainer.scrollHeight > contextContainer.clientHeight) {
                         contextContainer.classList.add('is-scrollable');
@@ -1177,203 +1002,7 @@
             document.getElementById('calendar-modal').classList.remove('popup-visible');
             modal.classList.add('popup-visible');
         }
-        
-        function sendChatMessage(author, messageData) {
-            if (!author) {
-                alert("Por favor, selecciona tu nombre antes de enviar un mensaje.");
-                return;
-            }
-            localStorage.setItem('itineraryAuthor', author);
-            
-            const newId = `msg-${Date.now()}`;
-            if (!appData.groupChat) appData.groupChat = {};
-            
-            const item = {
-                id: newId,
-                author,
-                timestamp: new Date().toISOString(),
-                ...messageData 
-            };
-            
-            appData.groupChat[newId] = item;
-            saveData(author, null, 'chat');
-            showChatSentIndicator();
-        }
-
-        function generateItineraryContext() {
-            let context = "";
-            const tempDiv = document.createElement('div');
-            const stripHtml = (html) => {
-                if (!html) return '';
-                tempDiv.innerHTML = html;
-                return tempDiv.textContent || tempDiv.innerText || "";
-            };
-
-            const allEvents = Object.values(appData.timelineEvents || {});
-            const eventsByDate = {};
-            
-            allEvents.forEach(event => {
-                if (!event.date) return;
-                if (!eventsByDate[event.date]) {
-                    eventsByDate[event.date] = [];
-                }
-                eventsByDate[event.date].push(event);
-            });
-
-            context += "## Itinerario y Comentarios del Viaje:\n";
-            Object.keys(eventsByDate).sort().forEach(date => {
-                const dayEvents = eventsByDate[date];
-                const mainEvents = dayEvents.filter(e => e.type !== 'note');
-                const notes = dayEvents.filter(e => e.type === 'note');
-
-                mainEvents.forEach(event => {
-                     context += `- ${event.date} (${event.icon}): ${stripHtml(event.description)}\n`;
-                     if (event.flightInfo && event.flightInfo.flights) {
-                        context += `  - Detalles del Vuelo (${event.flightInfo.title}):\n`;
-                        event.flightInfo.flights.forEach(flight => {
-                            context += `    - Vuelo ${flight.num}: ${flight.route}\n`;
-                        });
-                     }
-                });
-
-                if (notes.length > 0) {
-                    const notesById = {};
-                    notes.forEach(n => notesById[n.id] = {...n, replies: []});
-                    const noteThreads = [];
-                    notes.forEach(n => {
-                        if (n.replyingTo && notesById[n.replyingTo]) {
-                            notesById[n.replyingTo].replies.push(n);
-                        } else {
-                            noteThreads.push(notesById[n.id]);
-                        }
-                    });
-
-                    if (noteThreads.length > 0) {
-                        context += `  - Comentarios para ${date}:\n`;
-                        noteThreads.forEach(thread => {
-                            context += `    - [Comentario de ${thread.author}]: "${stripHtml(thread.text)}"\n`;
-                            thread.replies.sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp)).forEach(reply => {
-                                context += `      - [Respuesta de ${reply.author}]: "${stripHtml(reply.text)}"\n`;
-                            });
-                        });
-                    }
-                }
-            });
-
-            context += "\n## Notas Importantes Generales:\n";
-            Object.values(appData.importantNotes || {}).forEach(note => {
-                context += `- ${stripHtml(note.text)}\n`;
-            });
-
-            context += "\n## Actividades Planeadas Generales:\n";
-            Object.values(appData.plannedActivities || {}).forEach(activity => {
-                context += `- ${stripHtml(activity.text)}\n`;
-            });
-            
-            return context;
-        }
-
-        async function askGemini(history, userPrompt) {
-            if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("PASTE")) {
-                return "Error: La clave API de Gemini no está configurada.";
-            }
-
-            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
-            
-            const itineraryContext = generateItineraryContext();
-            const systemInstruction = `You are a helpful travel assistant for a family trip. Use the provided ITINERARY CONTEXT to answer the user's questions. Be friendly and conversational. Today's date is ${new Date().toLocaleDateString()}. When your answer comes directly from the context, you MUST quote the relevant part in a markdown blockquote to show your work, starting it with '> **Fuente del Itinerario:**'. IMPORTANT: You MUST respond in SPANISH and maintain a natural conversational flow. Do not repeat greetings in an ongoing conversation.`;
-
-            const contents = [
-                { role: "user", parts: [{ text: `CONTEXT:\n${itineraryContext}` }] },
-                { role: "model", parts: [{ text: "Ok, entiendo el contexto. Estoy listo para ayudar." }] },
-                ...history.map(item => ({
-                    role: item.role === 'user' ? 'user' : 'model',
-                    parts: [{ text: item.text }]
-                })),
-                { role: "user", parts: [{ text: userPrompt }] }
-            ];
-
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents, systemInstruction: { parts: [{ text: systemInstruction }] } })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error("Gemini API Error:", errorData);
-                    return `Error de API: ${errorData.error.message}`;
-                }
-
-                const data = await response.json();
-                return data.candidates[0].content.parts[0].text;
-            } catch (error) {
-                console.error("Fetch error for Gemini API:", error);
-                return "No se pudo contactar a Gemini. Revise la conexión o la clave API.";
-            }
-        }
-
-        function renderGeminiConversation() {
-            const container = document.getElementById('gemini-messages');
-            if(!container) return;
-            
-            let html = geminiConversationHistory.map(msg => {
-                const avatar = `<div class="avatar" style="background-color: ${generateColor(msg.role === 'user' ? 'User' : 'Gemini')}">${getInitials(msg.role === 'user' ? 'Tú' : 'Gemini')}</div>`;
-                
-                let messageText = msg.text;
-                let evidenceHtml = '';
-                const evidenceMarker = '> **Fuente del Itinerario:**';
-
-                if (messageText.includes(evidenceMarker)) {
-                    const parts = messageText.split(evidenceMarker);
-                    messageText = parts[0].trim();
-                    let evidenceContent = parts[1].trim()
-                        .split('\n')
-                        .map(line => line.trim().startsWith('>') ? line.trim().substring(1).trim() : line.trim())
-                        .join('\n');
-                    
-                    evidenceHtml = `
-                        <div class="gemini-evidence">
-                            <div class="gemini-evidence-title">📄 Fuente del Itinerario</div>
-                            <p>${evidenceContent.replace(/\n/g, '<br>')}</p>
-                        </div>
-                    `;
-                }
-
-                const mainTextHtml = messageText.replace(/\n/g, '<br>');
-
-                return `
-                    <div class="gemini-message ${msg.role}">
-                        ${avatar}
-                        <div class="note-content">
-                            <p>${mainTextHtml}</p>
-                            ${evidenceHtml}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            if (geminiConversationHistory.length === 1 && geminiConversationHistory[0].role === 'model') {
-                 const suggestions = [
-                    "¿Cuándo llega Nathan?", 
-                    "¿Qué actividades tenemos planeadas?", 
-                    "Hazme un resumen del 15 de enero",
-                    "¿Quién no sabe del secreto?"
-                ];
-                html += '<div class="gemini-suggestions">';
-                suggestions.forEach(s => {
-                    html += `<button class="gemini-suggestion">${s}</button>`;
-                });
-                html += '</div>';
-            }
-
-            container.innerHTML = html;
-            container.scrollTop = container.scrollHeight;
-        }
-
-        attachStaticListeners(); 
-        
+       
         function attachStaticListeners() {
             document.body.addEventListener('click', (e) => {
                 const target = e.target;
@@ -1385,13 +1014,13 @@
                     const ellipsis = parent.querySelector('.ellipsis');
                     const moreText = parent.querySelector('.more-text');
                     const isHidden = moreText.style.display === 'none';
-                    
+                   
                     ellipsis.style.display = isHidden ? 'none' : 'inline';
                     moreText.style.display = isHidden ? 'inline' : 'none';
                     target.textContent = isHidden ? 'Ver menos' : 'Ver más';
                     return;
                 }
-                
+               
                 if (target.matches('.toggle-visibility-link')) {
                     const hiddenContent = target.previousElementSibling;
                     const isHidden = hiddenContent.style.display === 'none' || hiddenContent.style.display === '';
@@ -1405,20 +1034,13 @@
                     }
                     return;
                 }
-                
+               
                 const popup = target.closest('.popup-overlay');
                 if (popup && (target === popup || target.matches('.close-popup') || target.matches('.modal-close-button'))) { 
                     popup.classList.remove('popup-visible'); 
                     return; 
                 }
-                
-                const fullscreenBtn = target.closest('#fullscreen-chat-btn');
-                if(fullscreenBtn) {
-                    document.body.classList.remove('fullscreen-chat-active');
-                    switchView('timeline');
-                    return;
-                }
-
+               
                 const calendarDay = target.closest('.calendar-day:not(.other-month)');
                 if(calendarDay) {
                     const dateStr = calendarDay.dataset.date;
@@ -1442,14 +1064,16 @@
                     const type = replyButton.dataset.type;
                     const replyToId = replyButton.dataset.replyToId;
                     const date = replyButton.dataset.date || '';
-                    const messagePool = (type === 'groupChat') ? Object.values(appData.groupChat || {}) : Object.values(appData.timelineEvents || {});
-                    const originalMessage = messagePool.find(m => m.id === replyToId);
+                    
+                    const pool = (type === 'posts') ? Object.values(appData.posts || {}) : Object.values(appData.timelineEvents || {});
+                    const originalMessage = pool.find(m => m.id === replyToId);
 
                     if (originalMessage) {
                         let replies = [];
-                        if(type === 'groupChat' || type === 'timelineEvents') {
-                            replies = messagePool.filter(m => m.replyingTo === replyToId)
-                                               .sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+                        if (type === 'posts') {
+                             replies = pool.filter(m => m.replyingTo === replyToId).sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+                        } else if(type === 'timelineEvents') {
+                            replies = pool.filter(m => m.replyingTo === replyToId).sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
                         }
                         openModal({ 
                             title: `Responder a ${originalMessage.author}`, 
@@ -1465,69 +1089,34 @@
                 const addButton = target.closest('.add-button');
                 if(addButton) {
                     const type = addButton.dataset.type;
+                    if (type === 'posts') {
+                         openModal({ title: 'Nueva Publicación', type: type });
+                         return;
+                    }
                     const itemDate = addButton.dataset.date || '';
                     let title = type === 'importantNotes' ? 'Añadir Nota Importante' : 
                                 type === 'plannedActivities' ? 'Añadir Actividad' : 'Añadir Nota';
                     openModal({ title: title, type: type, date: itemDate });
                     return;
                 }
-                
-                const geminiFab = target.closest('#gemini-fab');
-                const geminiOverlay = document.getElementById('gemini-overlay');
-                if (geminiFab) {
-                    geminiOverlay.classList.add('visible');
-                    const geminiContainer = geminiOverlay.querySelector('.gemini-container');
-                    geminiContainer.classList.add('glowing-effect');
-                    geminiContainer.addEventListener('animationend', () => {
-                        geminiContainer.classList.remove('glowing-effect');
-                    }, { once: true });
-
-                    if(geminiConversationHistory.length === 0) {
-                        geminiConversationHistory.push({role: 'model', text: "¡Hola! He leído el itinerario del viaje. ¿En qué puedo ayudarte a planificar?"});
-                        renderGeminiConversation();
-                    }
-                }
-                const closeGeminiBtn = target.closest('#gemini-overlay .close-popup');
-                if (closeGeminiBtn || target.id === 'gemini-overlay') {
-                    geminiOverlay.classList.remove('visible');
-                }
-
-                const suggestionBtn = target.closest('.gemini-suggestion');
-                if(suggestionBtn) {
-                    const prompt = suggestionBtn.textContent;
-                    document.getElementById('gemini-input').value = prompt;
-                    document.querySelector('#gemini-form button[type="submit"]').click();
-                }
             });
 
             document.body.addEventListener('submit', function(e) {
-                if(e.target.id === 'chat-form') {
-                    e.preventDefault();
-                    const authorSelect = document.getElementById('chat-author-select');
-                    const textarea = document.getElementById('chat-textarea');
-                    const author = authorSelect.value;
-                    const text = textarea.value.trim();
-                    
-                    if (text) {
-                        sendChatMessage(author, { text: text });
-                        textarea.value = '';
-                        textarea.style.height = 'auto';
-                    }
-                } else if (e.target.id === 'add-item-form') {
+                if (e.target.id === 'add-item-form') {
                     e.preventDefault(); 
                     const type = document.getElementById('item-type-input').value;
                     const text = document.getElementById('item-description-input').value.trim();
                     const author = document.getElementById('author-select').value;
                     if (!type || !text || !author) { alert("Por favor, completa todos los campos."); return; }
                     localStorage.setItem('itineraryAuthor', author);
-                    
+                   
                     const newId = `${type.slice(0,4)}-${Date.now()}`;
                     if (!appData[type]) appData[type] = {};
-                    
+                   
                     const item = { id: newId, text, author, timestamp: new Date().toISOString() };
                     const replyingToId = document.getElementById('reply-to-id-input').value;
                     if(replyingToId) item.replyingTo = replyingToId;
-                    
+                   
                     let notificationType = 'general';
                     let eventDateForNotification = null;
 
@@ -1537,30 +1126,15 @@
                         item.type = 'note'; 
                         eventDateForNotification = item.date;
                         notificationType = 'timeline';
+                    } else if (type === 'posts') {
+                        notificationType = 'posts';
                     }
-                    
+                   
                     appData[type][newId] = item;
                     saveData(author, eventDateForNotification, notificationType);
-                    
+                   
                     document.getElementById('add-item-modal').classList.remove('popup-visible');
                     showSuccessIndicator();
-                } else if (e.target.id === 'gemini-form') {
-                    e.preventDefault();
-                    const input = document.getElementById('gemini-input');
-                    const prompt = input.value.trim();
-                    if (!prompt) return;
-
-                    const currentHistory = [...geminiConversationHistory];
-                    geminiConversationHistory.push({ role: 'user', text: prompt });
-                    geminiConversationHistory.push({ role: 'model', text: 'Pensando...' });
-                    renderGeminiConversation();
-                    input.value = '';
-
-                    askGemini(currentHistory, prompt).then(response => {
-                        geminiConversationHistory.pop();
-                        geminiConversationHistory.push({ role: 'model', text: response });
-                        renderGeminiConversation();
-                    });
                 }
             });
         }
