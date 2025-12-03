@@ -198,9 +198,43 @@
         .popup-visible .popup-content{transform:scale(1)}.popup-content h2{margin-top:0;margin-bottom:15px;flex-shrink:0;}.close-popup{position:absolute;top:10px;right:15px;font-size:28px;font-weight:700;color:#555;cursor:pointer;transition:color .2s;z-index:10;}.close-popup:hover{color:#000}
         #modal-date{display:flex;justify-content:space-between;align-items:center;width:100%;gap:15px;padding-right:30px;}
         #modal-events{overflow-y:auto; flex-grow:1; text-align:left;}
-        .view-switcher{display:flex;justify-content:center;margin-bottom:30px;background:rgba(255,255,255,0.3);border-radius:10px;padding:5px}
-        .view-switcher button{border:none;padding:10px 20px;font-family:'Poppins',sans-serif;font-size:1em;font-weight:600;background:transparent;color:#333;border-radius:8px;cursor:pointer;transition:all .3s ease}
-        .view-switcher button.active{background:rgba(255,255,255,0.8);color:var(--brand-blue);box-shadow:0 2px 5px rgba(0,0,0,.1)}
+        
+        /* --- ESTILOS NAVEGACIÓN "STICKY PREMIUM" --- */
+        .view-switcher {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
+            border-radius: 12px;
+            padding: 5px;
+            /* Sticky properties */
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* Sombra fuerte */
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .view-switcher button {
+            border: none;
+            padding: 10px 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95em;
+            font-weight: 600;
+            background: transparent;
+            color: #555;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1; /* Ocupar espacio igual */
+        }
+        .view-switcher button.active {
+            background: var(--brand-blue); /* Fondo Azul fuerte */
+            color: white; /* Texto Blanco */
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+        }
+
         .view-hidden{display:none}
         .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:#ccc;border:1px solid #ccc;border-radius:8px;overflow:hidden}
         .calendar-header{font-weight:600;text-align:center;padding:8px 0;font-size:0.9em;background:rgba(255,255,255,0.4)}
@@ -431,9 +465,9 @@
             <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
         </ul>
         <div class="login-content">
-            <div class="secret-note">⚠️ NOTA: ROSALINA, FAIBER, Y YISELA NO SABEN NADA ⚠️</div>
+            <div class="secret-note">⚠️ NOTE: ROSALINA, FAIBER, Y YISELA NO SABEN NADA ⚠️</div>
             <h2>🔐 Acceso al Itinerario</h2>
-            <p style="margin-top:0;"> Seleccione tu nombre en abajo donde dice ¿Quién eres?, luego usa el correo: detodo078@gmail.com e introduzca la contraseña</p>
+            <p style="margin-top:0;">Ingresa tus credenciales para ver y editar el viaje.</p>
             
             <select id="login-name-select" class="login-field">
                 <option value="" disabled selected>¿Quién eres?</option>
@@ -486,7 +520,7 @@
         </div>
     
     <footer>
-        Version 090125p, Dic 1, 2025 <br>
+        Version 090125p (Fixed + Copa Flights + Birthday Fix + Snow + Buttons + Sticky) <br>
         <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
     </footer>
 
@@ -526,7 +560,7 @@
                 "event-7":{id:"event-7",date:"2026-01-03",icon:"🛬",description:"<strong>PM:</strong> Llegada de Ron y Anyela a Medellín desde USA.",type:"flight",flightInfo:{title:"Llegada de Ron y Anyela",flights:[{num:"CMP716",route:"Austin → Panamá"},{num:"CMP155",route:"Panamá → Medellín"}]}},
                 "event-8":{id:"event-8",date:"2026-01-04",icon:"👨‍👩‍👧‍👦",description:"Primer encuentro familiar. Almuerzo (hora por definir).",type:"celebration"},
                 "event-9":{id:"event-9",date:"2026-01-12",icon:"🎊",description:"Día en Algeciras (Día Festivo 🎊). Planes por determinar.",type:"holiday"},
-                "event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},
+                "event-10":{id:"event-10",date:"2026-01-15",icon:"🎂",description:"<strong>AM:</strong> Llegada - Bus - De la Familia a Medellin.<br><strong>PM:</strong> Salida y llegada - Vuelo - Ron, Anyela y Nathan para Medellin.",type:"travel"},
                 "event-11":{id:"event-11",date:"2026-01-17",icon:"🛫",description:"<strong>AM:</strong> Salida del resto del grupo desde Medellín a USA. Fin del viaje.",type:"flight",flightInfo:{title:"Vuelos de Regreso",flights:[{num:"CMP209",route:"Medellín → Panamá"},{num:"CMP715",route:"Panamá → Austin"}]}}
             }, 
             importantNotes: { 
@@ -1221,7 +1255,7 @@
                             <div class="live-status"><span class="live-indicator"></span>En vivo</div>
                             <div class="update-details" id="update-details"></div>
                         </div>
-                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, y ver las publicaciones familiares.</p><button class="dismiss-banner-btn"> (x) Cerrar y no volver a mostrar</button></div>
+                        <div class="how-to-banner" id="how-to-banner"><h4>¿Cómo usar?</h4><p>Este es un itinerario en vivo. Aquí podrás seguir el conteo regresivo, ver el clima, y ver las publicaciones familiares.</p><button class="dismiss-banner-btn">No volver a mostrar</button></div>
                         <div class="countdown-container"><div class="countdown-card" id="card-nathan">Cargando...</div><div class="countdown-card" id="card-ron-anyela">Cargando...</div></div>
                         <div class="weather-widget">
                             <h3>Clima Actual</h3>
@@ -1479,6 +1513,7 @@
 
         // --- INITIALIZATION ---
         attachStaticListeners(); 
+        createSnowflakes(); // Start snow on login screen
         setInterval(updateCountdowns, 1000);
         setInterval(fetchWeather, 300000);
     });
