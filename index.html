@@ -104,7 +104,7 @@
         h1,h2,h3{text-align:center;color:#1c2a39}h1{font-size:2.2em;margin-bottom:15px;text-shadow: 0 1px 3px rgba(0,0,0,0.1);}h2{font-size:1.5em;margin:40px 0 20px;color:var(--brand-blue)}
         
         /* Glassmorphism Cards */
-        .status-bar, .countdown-card, .item-content, .info-card, .weather-widget, .how-to-banner, .create-post-card, .admin-banner-display {
+        .status-bar, .countdown-card, .item-content, .info-card, .weather-widget, .how-to-banner, .create-post-card {
             background: rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2.9px); -webkit-backdrop-filter: blur(2.9px); border: 1px solid rgba(255, 255, 255, 1);
         }
 
@@ -179,7 +179,19 @@
         .timeline-item.today .item-content { border: 2px solid var(--brand-red); box-shadow: 0 0 15px rgba(207, 70, 71, 0.2); }
         .item-content{padding:15px 20px;}
         .item-date{font-weight:600;color:var(--brand-blue);font-size:1.1em;margin-bottom:2px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.item-date span{flex-grow:1;}.tbd{color:#556;font-style:italic}
-        .day-sub-header { font-size: 0.9em; color: #555; font-style: italic; margin-bottom: 8px; display: block; width: 100%; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 4px; }
+        
+        /* --- ESTILOS TEXTO DEL DÍA (Subtítulo) --- */
+        .day-sub-header {
+            font-size: 1em; /* Tamaño normal */
+            color: #333;    /* Color oscuro normal */
+            font-style: normal; /* Sin cursiva */
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid rgba(0,0,0,0.1); 
+            padding-bottom: 6px;
+        }
         .admin-edit-btn { background: none; border: none; cursor: pointer; font-size: 0.8em; margin-left: 5px; opacity: 0.6; transition: opacity 0.2s; }
         .admin-edit-btn:hover { opacity: 1; transform: scale(1.1); }
 
@@ -398,13 +410,17 @@
 
         /* --- Admin Banner Styles --- */
         .admin-banner-display {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             color: white;
             padding: 15px;
             margin-bottom: 15px;
             text-align: center;
             position: relative;
-            border: none;
+            border-radius: 16px;
         }
         .admin-banner-display h3 { color: white; margin: 0 0 5px 0; font-size: 1.1em; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
         .admin-banner-display p { margin: 0; font-size: 0.95em; }
